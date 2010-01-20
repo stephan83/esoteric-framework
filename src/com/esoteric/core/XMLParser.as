@@ -36,7 +36,6 @@ package com.esoteric.core
 {
 	import com.esoteric.core.ElementExpressionQueue;
 	import com.esoteric.core.RenderQueue;
-	import com.esoteric.display.ApplicationElement;
 	import com.esoteric.events.LoadEvent;
 	import com.esoteric.expressions.ExpressionVm;
 	import com.esoteric.net.Cache;
@@ -56,49 +55,19 @@ package com.esoteric.core
 		//---------------------------------------------------------------------
 		
 		/**
-		 * Parses an application.
-		 * 
-		 * @param	xml				the XML to parse
-		 * @param	stage			the stage
-		 * @param	elementFactory	the element factory
-		 * @param	expVm			the expression virtual machine
-		 * @param	expQueue		the expression queue
-		 * @param	renderQueue		the render queue
-		 * @param	renderEngine	the 3D render engine
-		 * @param	globals			the globals
-		 * @return	the application element
-		 */
-		public static function parse(xml:XML, stage:Stage, elementFactory:ElementFactory, expVm:ExpressionVm = null, expQueue:ElementExpressionQueue = null, renderQueue:RenderQueue = null, renderEngine:IRenderEngine = null, cache:Cache = null, globals:BindableObject = null, extraContext:Object = null):ApplicationElement
-		{
-			var application:ApplicationElement = new ApplicationElement(stage, elementFactory, expVm, expQueue, renderQueue, renderEngine, cache, globals, extraContext);
-			
-			parseChildren(xml, elementFactory, application, application);
-			
-			parseAttributes(xml, application);
-			
-			application.dispatchEvent(new LoadEvent(LoadEvent.PARSED));
-			
-			application.main();
-			
-			return application;
-		}
-		
-		/**
 		 * Parses a node.
 		 * 
 		 * @param	xml				the node XML
-		 * @param	elementFactory	the element factory
-		 * @param	root			the root element
-		 * @param	parent			the parent element
+		 * @param	context			the context
 		 * @return					the element
 		 */
-		public static function parseNode(xml:XML, elementFactory:ElementFactory, root:ApplicationElement, parent:IElement):IElement
+		public static function parseNode(xml:XML, context:Context):IElement
 		{
 			try
 			{
-				var element:IElement = elementFactory.create(xml.name(), root, parent);
+				var element:IElement = context.factory.create(context, xml.name());
 				
-				parseChildren(xml, elementFactory, root, element);
+				parseChildren(xml, context, element);
 				
 				parseAttributes(xml, element);
 				
@@ -114,7 +83,8 @@ package com.esoteric.core
 		}
 		
 		/**
-		 * Parses attriburets
+		 * Parses attributes.
+		 * 
 		 * @param	xml		the node XML
 		 * @param	element	the element
 		 */
@@ -150,13 +120,20 @@ package com.esoteric.core
 			}
 		}
 		
-		public static function parseChildren(xml:XML, elementFactory:ElementFactory, root:ApplicationElement, element:IElement):void
+		/**
+		 * Parses children.
+		 * 
+		 * @param	xml		the node XML
+		 * @param	context	the context
+		 * @param	element	the element
+		 */
+		public static function parseChildren(xml:XML, context:Context, element:IElement):void
 		{
 			for each(var child:XML in xml.*)
 			{
 				if (child.name())
 				{
-					element.addChild(parseNode(child, elementFactory, root, element));
+					element.addChild(parseNode(child, context));
 				}
 			}
 		}

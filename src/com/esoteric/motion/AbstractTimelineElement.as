@@ -2,7 +2,7 @@
 	DO NOT MODIFY THIS FILE, THE CODE GENERATOR WILL ERASE ANY CHANGES MADE.
 	MAKE CHANGES TO THE DERIVED CLASS INSTEAD.
 
-	Last generated 2010-01-06 17:00:07.581000 UTC.
+	Last generated 2010-01-20 20:05:47.825000 UTC.
 
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	~                           Esoteric Framework                            ~
@@ -41,8 +41,7 @@ package com.esoteric.motion
 {
 	import com.esoteric.core.AbstractElement;
 
-	import com.esoteric.core.IElement;
-	import com.esoteric.display.ApplicationElement;
+	import com.esoteric.core.Context;
 	import com.esoteric.events.ElementEvent;
 	import com.esoteric.events.PropertyChangeEvent;
 	
@@ -56,9 +55,9 @@ package com.esoteric.motion
 		/**
 		 * Constructor.
 		 */
-		public function AbstractTimelineElement(root:ApplicationElement, parent:IElement, kind:String) 
+		public function AbstractTimelineElement(context:Context, kind:String) 
 		{
-			super(root, parent, kind);
+			super(context, kind);
 			
 
 		}
@@ -125,9 +124,9 @@ package com.esoteric.motion
 				_duration = value;
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
-					dispatchEventNow(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'duration', oldValue, value));
+					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'duration', oldValue, value));
 				}
-				root.renderQueue.add(this);
+				
 			}
 		}
 
@@ -149,9 +148,9 @@ package com.esoteric.motion
 				_position = value;
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
-					dispatchEventNow(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'position', oldValue, value));
+					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'position', oldValue, value));
 				}
-				root.renderQueue.add(this);
+				
 			}
 		}
 
@@ -173,9 +172,9 @@ package com.esoteric.motion
 				_repeat = value;
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
-					dispatchEventNow(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'repeat', oldValue, value));
+					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'repeat', oldValue, value));
 				}
-				root.renderQueue.add(this);
+				
 			}
 		}
 
@@ -197,9 +196,9 @@ package com.esoteric.motion
 				_playing = value;
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
-					dispatchEventNow(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'playing', oldValue, value));
+					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'playing', oldValue, value));
 				}
-				root.renderQueue.add(this);
+				
 			}
 		}
 

@@ -2,7 +2,7 @@
 	DO NOT MODIFY THIS FILE, THE CODE GENERATOR WILL ERASE ANY CHANGES MADE.
 	MAKE CHANGES TO THE DERIVED CLASS INSTEAD.
 
-	Last generated 2010-01-06 17:00:07.481000 UTC.
+	Last generated 2010-01-20 20:05:47.734000 UTC.
 
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	~                           Esoteric Framework                            ~
@@ -41,8 +41,7 @@ package com.esoteric.display
 {
 	import flash.display.Loader;
 
-	import com.esoteric.core.IElement;
-	import com.esoteric.display.ApplicationElement;
+	import com.esoteric.core.Context;
 	import com.esoteric.events.ElementEvent;
 	import com.esoteric.events.PropertyChangeEvent;
 	
@@ -56,9 +55,9 @@ package com.esoteric.display
 		/**
 		 * Constructor.
 		 */
-		public function AbstractLoaderElement(root:ApplicationElement, parent:IElement, kind:String) 
+		public function AbstractLoaderElement(context:Context, kind:String) 
 		{
-			super(root, parent, kind);
+			super(context, kind);
 			
 
 		}
@@ -115,9 +114,9 @@ package com.esoteric.display
 				_url = value;
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
-					dispatchEventNow(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'url', oldValue, value));
+					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'url', oldValue, value));
 				}
-				root.renderQueue.add(this);
+				
 			}
 		}
 
@@ -139,9 +138,9 @@ package com.esoteric.display
 				_loader = value;
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
-					dispatchEventNow(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'loader', oldValue, value));
+					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'loader', oldValue, value));
 				}
-				root.renderQueue.add(this);
+				
 			}
 		}
 

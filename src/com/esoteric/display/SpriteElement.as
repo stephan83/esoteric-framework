@@ -34,6 +34,7 @@
 
 package com.esoteric.display
 {
+	import com.esoteric.core.Context;
 	import com.esoteric.core.IElement;
 	import com.esoteric.display.ApplicationElement;
 	import com.esoteric.events.PropertyChangeEvent;
@@ -52,9 +53,9 @@ package com.esoteric.display
 		/**
 		 * Constructor.
 		 */
-		public function SpriteElement(root:ApplicationElement, parent:IElement, type:String) 
+		public function SpriteElement(context:Context, type:String) 
 		{
-			super(root, parent, kind);
+			super(context, kind);
 		}
 		
 		//---------------------------------------------------------------------

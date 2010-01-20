@@ -67,9 +67,9 @@ package com.esoteric.core
 		// Interface implementations
 		//---------------------------------------------------------------------
 		
-		public function build(root:ApplicationElement, parent:IElement, kind:String):IElement
+		public function build(context:Context, kind:String):IElement
 		{
-			return new _className(root, parent, kind);
+			return new _className(context, kind);
 		}
 		
 	}

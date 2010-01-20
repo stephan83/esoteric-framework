@@ -2,7 +2,7 @@
 	DO NOT MODIFY THIS FILE, THE CODE GENERATOR WILL ERASE ANY CHANGES MADE.
 	MAKE CHANGES TO THE DERIVED CLASS INSTEAD.
 
-	Last generated 2010-01-06 17:00:07.424000 UTC.
+	Last generated 2010-01-20 20:05:47.678000 UTC.
 
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	~                           Esoteric Framework                            ~
@@ -41,8 +41,7 @@ package com.esoteric.display
 {
 	import org.papervision3d.objects.DisplayObject3D;
 
-	import com.esoteric.core.IElement;
-	import com.esoteric.display.ApplicationElement;
+	import com.esoteric.core.Context;
 	import com.esoteric.events.ElementEvent;
 	import com.esoteric.events.PropertyChangeEvent;
 	
@@ -56,9 +55,9 @@ package com.esoteric.display
 		/**
 		 * Constructor.
 		 */
-		public function AbstractDisplayObject3DElement(root:ApplicationElement, parent:IElement, kind:String) 
+		public function AbstractDisplayObject3DElement(context:Context, kind:String) 
 		{
-			super(root, parent, kind);
+			super(context, kind);
 			
 
 		}
@@ -202,9 +201,9 @@ package com.esoteric.display
 				_displayObject3D = value;
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
-					dispatchEventNow(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'displayObject3D', oldValue, value));
+					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'displayObject3D', oldValue, value));
 				}
-				root.renderQueue.add(this);
+				
 			}
 		}
 
@@ -226,9 +225,9 @@ package com.esoteric.display
 				_filters = value;
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
-					dispatchEventNow(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'filters', oldValue, value));
+					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'filters', oldValue, value));
 				}
-				root.renderQueue.add(this);
+				
 			}
 		}
 
@@ -256,10 +255,10 @@ package com.esoteric.display
 					displayObject3D.localRotationZ = value;
 				}
 
-				root.renderQueue.add(this);			
+							
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
-					dispatchEventNow(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'localRotationZ', oldValue, value));
+					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'localRotationZ', oldValue, value));
 				}
 			}
 		}
@@ -287,10 +286,10 @@ package com.esoteric.display
 					displayObject3D.localRotationY = value;
 				}
 
-				root.renderQueue.add(this);			
+							
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
-					dispatchEventNow(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'localRotationY', oldValue, value));
+					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'localRotationY', oldValue, value));
 				}
 			}
 		}
@@ -318,10 +317,10 @@ package com.esoteric.display
 					displayObject3D.localRotationX = value;
 				}
 
-				root.renderQueue.add(this);			
+							
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
-					dispatchEventNow(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'localRotationX', oldValue, value));
+					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'localRotationX', oldValue, value));
 				}
 			}
 		}
@@ -349,10 +348,10 @@ package com.esoteric.display
 					displayObject3D.rotationZ = value;
 				}
 
-				root.renderQueue.add(this);			
+							
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
-					dispatchEventNow(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'rotationZ', oldValue, value));
+					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'rotationZ', oldValue, value));
 				}
 			}
 		}
@@ -380,10 +379,10 @@ package com.esoteric.display
 					displayObject3D.rotationY = value;
 				}
 
-				root.renderQueue.add(this);			
+							
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
-					dispatchEventNow(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'rotationY', oldValue, value));
+					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'rotationY', oldValue, value));
 				}
 			}
 		}
@@ -411,10 +410,10 @@ package com.esoteric.display
 					displayObject3D.rotationX = value;
 				}
 
-				root.renderQueue.add(this);			
+							
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
-					dispatchEventNow(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'rotationX', oldValue, value));
+					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'rotationX', oldValue, value));
 				}
 			}
 		}
@@ -442,10 +441,10 @@ package com.esoteric.display
 					displayObject3D.scaleX = value;
 				}
 
-				root.renderQueue.add(this);			
+							
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
-					dispatchEventNow(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'scaleX', oldValue, value));
+					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'scaleX', oldValue, value));
 				}
 			}
 		}
@@ -473,10 +472,10 @@ package com.esoteric.display
 					displayObject3D.scaleY = value;
 				}
 
-				root.renderQueue.add(this);			
+							
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
-					dispatchEventNow(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'scaleY', oldValue, value));
+					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'scaleY', oldValue, value));
 				}
 			}
 		}
@@ -504,10 +503,10 @@ package com.esoteric.display
 					displayObject3D.scaleZ = value;
 				}
 
-				root.renderQueue.add(this);			
+							
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
-					dispatchEventNow(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'scaleZ', oldValue, value));
+					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'scaleZ', oldValue, value));
 				}
 			}
 		}
@@ -535,10 +534,10 @@ package com.esoteric.display
 					displayObject3D.scale = value;
 				}
 
-				root.renderQueue.add(this);			
+							
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
-					dispatchEventNow(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'scale', oldValue, value));
+					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'scale', oldValue, value));
 				}
 			}
 		}
@@ -566,10 +565,10 @@ package com.esoteric.display
 					displayObject3D.useOwnContainer = value;
 				}
 
-				root.renderQueue.add(this);			
+							
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
-					dispatchEventNow(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'useOwnContainer', oldValue, value));
+					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'useOwnContainer', oldValue, value));
 				}
 			}
 		}
@@ -597,10 +596,10 @@ package com.esoteric.display
 					displayObject3D.y = value;
 				}
 
-				root.renderQueue.add(this);			
+							
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
-					dispatchEventNow(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'y', oldValue, value));
+					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'y', oldValue, value));
 				}
 			}
 		}
@@ -628,10 +627,10 @@ package com.esoteric.display
 					displayObject3D.x = value;
 				}
 
-				root.renderQueue.add(this);			
+							
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
-					dispatchEventNow(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'x', oldValue, value));
+					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'x', oldValue, value));
 				}
 			}
 		}
@@ -659,10 +658,10 @@ package com.esoteric.display
 					displayObject3D.z = value;
 				}
 
-				root.renderQueue.add(this);			
+							
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
-					dispatchEventNow(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'z', oldValue, value));
+					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'z', oldValue, value));
 				}
 			}
 		}

@@ -34,6 +34,7 @@
 
 package com.esoteric.display
 {
+	import com.esoteric.core.Context;
 	import com.esoteric.core.IElement;
 	import com.esoteric.display.ApplicationElement;
 	import com.esoteric.events.PointInputEvent;
@@ -54,9 +55,9 @@ package com.esoteric.display
 		/**
 		 * Constructor.
 		 */
-		public function InteractiveObjectElement(root:ApplicationElement, parent:IElement, type:String) 
+		public function InteractiveObjectElement(context:Context, type:String) 
 		{
-			super(root, parent, kind);
+			super(context, kind);
 			
 			new Watcher(this, 'visible', visibleWatcher);
 			new Watcher(this, 'mouseEnabled', mouseEnabledWatcher);
@@ -155,7 +156,7 @@ package com.esoteric.display
 			var global:Point = new Point(e.stageX, e.stageY);
 			var local:Point = displayObject.globalToLocal(global);
 			
-			dispatchEventNow(new PointInputEvent(PointInputEvent.CLICK_NOW, false, false, local.x, local.y, 0, e.stageX, e.stageY));
+			dispatchEvent(new PointInputEvent(PointInputEvent.CLICK_NOW, false, false, local.x, local.y, 0, e.stageX, e.stageY));
 			dispatchEvent(new PointInputEvent(PointInputEvent.CLICK, false, false, local.x, local.y, 0, e.stageX, e.stageY));
 		}
 		

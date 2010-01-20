@@ -2,7 +2,7 @@
 	DO NOT MODIFY THIS FILE, THE CODE GENERATOR WILL ERASE ANY CHANGES MADE.
 	MAKE CHANGES TO THE DERIVED CLASS INSTEAD.
 
-	Last generated 2010-01-06 17:00:07.529000 UTC.
+	Last generated 2010-01-20 20:05:47.796000 UTC.
 
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	~                           Esoteric Framework                            ~
@@ -42,8 +42,7 @@ package com.esoteric.filters
 	import com.esoteric.core.TweenableElement;
 	import flash.filters.BitmapFilter;
 
-	import com.esoteric.core.IElement;
-	import com.esoteric.display.ApplicationElement;
+	import com.esoteric.core.Context;
 	import com.esoteric.events.ElementEvent;
 	import com.esoteric.events.PropertyChangeEvent;
 	
@@ -57,9 +56,9 @@ package com.esoteric.filters
 		/**
 		 * Constructor.
 		 */
-		public function AbstractBitmapFilterElement(root:ApplicationElement, parent:IElement, kind:String) 
+		public function AbstractBitmapFilterElement(context:Context, kind:String) 
 		{
-			super(root, parent, kind);
+			super(context, kind);
 			
 
 		}

@@ -126,13 +126,11 @@ package com.esoteric.core
 		/**
 		 * Creates an element.
 		 * 
+		 * @param	context			the context
 		 * @param	kind			the element kind
-		 * @param	root			the root element
-		 * @param	parent			the parent element
-		 * @param	allowUnknown	allow unknown element kinds
 		 * @return	the element
 		 */
-		public function create(kind:String, root:ApplicationElement, parent:IElement):IElement
+		public function create(context:Context, kind:String):IElement
 		{
 			var element:IElement;
 			
@@ -140,7 +138,7 @@ package com.esoteric.core
 			{
 				if (_allowUnknown)
 				{
-					element = _unknownBuilder.build(root, parent, kind);
+					element = _unknownBuilder.build(context, kind);
 					
 					element.initialize();
 					
@@ -150,7 +148,7 @@ package com.esoteric.core
 				throw new UnknownElementKindError(kind);
 			}
 			
-			element = _builders[kind].build(root, parent, kind);
+			element = _builders[kind].build(context, kind);
 			
 			element.initialize();
 			
@@ -162,7 +160,7 @@ package com.esoteric.core
 		 */
 		private function loadBuiltins():void
 		{
-			add("BitmapFile", new StaticElementBuilder(BitmapFileElement));
+			/*add("BitmapFile", new StaticElementBuilder(BitmapFileElement));
 			add("BlurFilter", new StaticElementBuilder(BlurFilterElement));
 			add("Camera3D", new StaticElementBuilder(Camera3DElement));
 			add("Circle", new StaticElementBuilder(CircleElement));
@@ -189,15 +187,15 @@ package com.esoteric.core
 			add("Script", new StaticElementBuilder(ScriptElement));
 			add("Shape", new StaticElementBuilder(ShapeElement));
 			add("SolidFill", new StaticElementBuilder(SolidFillElement));
-			add("SoundFile", new StaticElementBuilder(SoundFileElement));
+			add("SoundFile", new StaticElementBuilder(SoundFileElement));*/
 			add("Sprite", new StaticElementBuilder(SpriteElement));
-			add("Sprite3D", new StaticElementBuilder(Sprite3DElement));
+			/*add("Sprite3D", new StaticElementBuilder(Sprite3DElement));
 			add("TextField", new StaticElementBuilder(TextFieldElement));
 			add("Timeline", new StaticElementBuilder(TimelineElement));
 			add("Timer", new StaticElementBuilder(TimerElement));
 			add("VideoFile", new StaticElementBuilder(VideoFileElement));
 			add("Viewport3D", new StaticElementBuilder(Viewport3DElement));
-			add("Watcher", new StaticElementBuilder(WatcherElement));
+			add("Watcher", new StaticElementBuilder(WatcherElement));*/
 		}
 		
 	}

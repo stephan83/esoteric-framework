@@ -2,7 +2,7 @@
 	DO NOT MODIFY THIS FILE, THE CODE GENERATOR WILL ERASE ANY CHANGES MADE.
 	MAKE CHANGES TO THE DERIVED CLASS INSTEAD.
 
-	Last generated 2010-01-06 17:00:07.523000 UTC.
+	Last generated 2010-01-20 20:05:47.790000 UTC.
 
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	~                           Esoteric Framework                            ~
@@ -41,8 +41,7 @@ package com.esoteric.display
 {
 	import org.papervision3d.view.Viewport3D;
 
-	import com.esoteric.core.IElement;
-	import com.esoteric.display.ApplicationElement;
+	import com.esoteric.core.Context;
 	import com.esoteric.events.ElementEvent;
 	import com.esoteric.events.PropertyChangeEvent;
 	
@@ -56,9 +55,9 @@ package com.esoteric.display
 		/**
 		 * Constructor.
 		 */
-		public function AbstractViewport3DElement(root:ApplicationElement, parent:IElement, kind:String) 
+		public function AbstractViewport3DElement(context:Context, kind:String) 
 		{
-			super(root, parent, kind);
+			super(context, kind);
 			
 			viewport3D.autoClipping = _autoClipping;
 			viewport3D.autoCulling = _autoCulling;
@@ -150,9 +149,9 @@ package com.esoteric.display
 				_camera = value;
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
-					dispatchEventNow(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'camera', oldValue, value));
+					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'camera', oldValue, value));
 				}
-				root.renderQueue.add(this);
+				
 			}
 		}
 
@@ -182,9 +181,9 @@ package com.esoteric.display
 				_viewport3D = value;
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
-					dispatchEventNow(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'viewport3D', oldValue, value));
+					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'viewport3D', oldValue, value));
 				}
-				root.renderQueue.add(this);
+				
 			}
 		}
 
@@ -206,9 +205,9 @@ package com.esoteric.display
 				_scene = value;
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
-					dispatchEventNow(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'scene', oldValue, value));
+					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'scene', oldValue, value));
 				}
-				root.renderQueue.add(this);
+				
 			}
 		}
 
@@ -236,10 +235,10 @@ package com.esoteric.display
 					viewport3D.autoClipping = value;
 				}
 
-				root.renderQueue.add(this);			
+							
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
-					dispatchEventNow(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'autoClipping', oldValue, value));
+					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'autoClipping', oldValue, value));
 				}
 			}
 		}
@@ -267,10 +266,10 @@ package com.esoteric.display
 					viewport3D.autoCulling = value;
 				}
 
-				root.renderQueue.add(this);			
+							
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
-					dispatchEventNow(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'autoCulling', oldValue, value));
+					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'autoCulling', oldValue, value));
 				}
 			}
 		}
@@ -298,10 +297,10 @@ package com.esoteric.display
 					viewport3D.viewportHeight = value;
 				}
 
-				root.renderQueue.add(this);			
+							
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
-					dispatchEventNow(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'viewportHeight', oldValue, value));
+					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'viewportHeight', oldValue, value));
 				}
 			}
 		}
@@ -329,10 +328,10 @@ package com.esoteric.display
 					viewport3D.interactive = value;
 				}
 
-				root.renderQueue.add(this);			
+							
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
-					dispatchEventNow(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'interactive', oldValue, value));
+					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'interactive', oldValue, value));
 				}
 			}
 		}
@@ -360,10 +359,10 @@ package com.esoteric.display
 					viewport3D.viewportWidth = value;
 				}
 
-				root.renderQueue.add(this);			
+							
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
-					dispatchEventNow(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'viewportWidth', oldValue, value));
+					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'viewportWidth', oldValue, value));
 				}
 			}
 		}

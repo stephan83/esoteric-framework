@@ -4,8 +4,8 @@ $license
 
 package $namespace
 {
+	import com.esoteric.core.Context;
 	import com.esoteric.core.IElement;
-	import com.esoteric.display.ApplicationElement;
 	
 	public class $classname extends $abstract
 	{
@@ -17,9 +17,9 @@ package $namespace
 		/**
 		 * Constructor.
 		 */
-		public function $classname(root:ApplicationElement, parent:IElement, kind:String) 
+		public function $classname(context:Context, kind:String) 
 		{
-			super(root, parent, kind);
+			super(context, kind);
 		}
 
 

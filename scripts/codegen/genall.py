@@ -5,11 +5,11 @@ import string
 import sys
 from codegen import Template, Codegen
 
-BASE_DIR = '../../src/src'
+BASE_DIR = '../../src/'
 TEMPLATES_DIR = 'templates'
 ELEMENTS_DIR = 'elements'
 LICENSES_DIR = 'licenses'
-ASSETS_DIR = '../../src/assets/elements'
+ASSETS_DIR = '../../assets/elements'
 INCLUDE_ASSETS_DIR = '../../../../assets/elements'
 
 force = False

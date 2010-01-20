@@ -50,9 +50,11 @@ package com.esoteric.core
 		//---------------------------------------------------------------------
 		
 		/**
-		 * The root element.
+		 * The context.
 		 */
-		function get root():ApplicationElement;
+		function get context():Context;
+		
+		function set context(value:Context):void;
 		
 		/**
 		 * The parent element.
@@ -134,49 +136,6 @@ package com.esoteric.core
 		 * @param	child	the child to remove
 		 */
 		function removeChild(child:IElement):void;
-		
-		/**
-		 * Create an expression context for a property.
-		 * 
-		 * @param	name	the name of the property
-		 * @return	an expression context for the property
-		 */
-		function createExpressionContext(name:String):Object;
-
-		/**
-		 * Returns whether this element contains an element.
-		 * 
-		 * @param	element	the element
-		 * @return	whether this element contains this element
-		 */
-		function contains(element:IElement):Boolean;
-		
-		/**
-		 * Renders the element.
-		 */
-		function render():void;
-		
-		/**
-		 * Returns the first element with the specificed ID or null.
-		 * 
-		 * @param	id	the ID
-		 * @return	the first element with the specificed ID or null.
-		 */
-		function getElementById(id:String):IElement;
-		
-		/**
-		 * Forces an event to be delayed to the next frame.
-		 * 
-		 * @param	e	the event
-		 */
-		function dispatchEventNextFrame(e:Event):void;
-		
-		/**
-		 * Forces an event to be dispatched now.
-		 * 
-		 * @param	e	the event
-		 */
-		function dispatchEventNow(e:Event):Boolean;
 		
 	}
 	

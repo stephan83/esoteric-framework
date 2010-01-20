@@ -114,8 +114,6 @@ package com.esoteric.core
 			
 			for (p in _expressions)
 			{
-				root.expQueue.remove(_expressions[p]);
-				
 				_expressions[p].removeEventListener(ExpressionEvent.OUTDATED, outdatedExpressionHandler);
 				_expressions[p].destroy();
 				delete _expressions[p];
@@ -136,7 +134,12 @@ package com.esoteric.core
 		/**
 		 * @inheritDoc
 		 */
-		public function get root():ApplicationElement { return _element.root; }
+		public function get context():Context { return _element.context; }
+		
+		public function set context(value:Context):void
+		{
+			_element.context = value;
+		}
 		
 		/**
 		 * @inheritDoc
@@ -308,11 +311,10 @@ package com.esoteric.core
 			if (match)
 			{
 				// TODO: enabled
-				_expressions[name] = new Expression(match[1], _element.root.expVm, _element.createExpressionContext(name));
+				_expressions[name] = new Expression(match[1], _element.context.vm);
 				_watchers[name] = new Watcher(_expressions[name], "value", createExpressionValueHandler(name));
 				
 				_expressions[name].addEventListener(ExpressionEvent.OUTDATED, outdatedExpressionHandler);
-				_element.root.expQueue.add(_expressions[name], true);
 			}
 			else
 			{
@@ -425,10 +427,6 @@ package com.esoteric.core
 		 */
 		private function outdatedExpressionHandler(e:ExpressionEvent):void 
 		{
-			if (_element.root)
-			{
-				_element.root.expQueue.add(e.target as Expression);
-			}
 		}
 		
 		/**

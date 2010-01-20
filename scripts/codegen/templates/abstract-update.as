@@ -1,1 +1,1 @@
-				root.renderQueue.add(this);
+				

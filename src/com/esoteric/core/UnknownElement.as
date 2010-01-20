@@ -59,11 +59,11 @@ package com.esoteric.core
 		/**
 		 * Constructor.
 		 */
-		public function UnknownElement(root:ApplicationElement, parent:IElement, kind:String) 
+		public function UnknownElement(context:Context, kind:String) 
 		{
 			super();
 			
-			_element = new AbstractElement(root, parent, kind, this);
+			_element = new AbstractElement(context, this);
 		}
 		//---------------------------------------------------------------------
 		// Variables
@@ -103,7 +103,12 @@ package com.esoteric.core
 		/**
 		 * @inheritDoc
 		 */
-		public function get root():ApplicationElement { return _element ? _element.root : null; }
+		public function get context():Context { return _element ? _element.context : null; }
+		
+		public function set context(value:Context):void
+		{
+			_element.context = value;
+		}
 		
 		/**
 		 * @inheritDoc

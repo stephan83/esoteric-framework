@@ -49,12 +49,11 @@ package com.esoteric.core
 		/**
 		 * Builds an element.
 		 * 
-		 * @param	root	the root element
-		 * @param	parent	the parent element
+		 * @param	context	the context
 		 * @param	kind	the element kind
 		 * @return	the element
 		 */
-		function build(root:ApplicationElement, parent:IElement, kind:String):IElement;
+		function build(context:Context, kind:String):IElement;
 		
 	}
 	

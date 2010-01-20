@@ -1,0 +1,12 @@
+{
+	"desc": "The preloader.",
+	
+	"baseclass": "SpriteElement",
+	
+	"asset": "Preloader",
+
+	"imports": [
+		"com.esoteric.display.SpriteElement"
+	]
+	
+}

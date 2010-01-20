@@ -34,6 +34,7 @@
 
 package com.esoteric.display
 {
+	import com.esoteric.core.Context;
 	import com.esoteric.core.ElementProxyManager;
 	import com.esoteric.core.IElement;
 	import com.esoteric.core.IElementProxy;
@@ -58,9 +59,9 @@ package com.esoteric.display
 		/**
 		 * Constructor.
 		 */
-		public function DisplayObjectElement(root:ApplicationElement, parent:IElement, kind:String) 
+		public function DisplayObjectElement(context:Context, kind:String) 
 		{
-			super(root, parent, kind);
+			super(context, kind);
 			
 			displayObject = createDisplayObject();
 			

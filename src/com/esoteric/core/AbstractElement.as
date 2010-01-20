@@ -64,15 +64,15 @@ package com.esoteric.core
 		/**
 		 * Constructor.
 		 */
-		public function AbstractElement(root:ApplicationElement, parent:IElement, kind:String, target:IElement = null) 
+		public function AbstractElement(context:Context, kind:String, target:IElement = null) 
 		{
-			_root = root;
+			_context = context;
 			_parent = parent;
 			_kind = kind;
 			_uid = String(_nextUID++);
 			_target = target ? target : this;
 			
-			_context = 
+			/*_context = 
 			{
 				"this":			_target,
 				"root":			_root,
@@ -98,15 +98,13 @@ package com.esoteric.core
 									rest.unshift(functionName);
 									return ExternalInterface.call.apply(_target, rest);
 								}
-			};
+			};*/
 			
-			for (var s:String in root.extraContext)
+			/*for (var s:String in root.extraContext)
 			{
 				_context[s] = root.extraContext[s];
-			}
+			}*/
 			
-			//_target.addEventListener(LoadEvent.DESCENDANT_BEGIN, descendantBeginHandler);
-			//_target.addEventListener(LoadEvent.DESCENDANT_FINISH, descendantFinishHandler);
 			_children.addEventListener(PropertyChangeEvent.PROPERTY_ADDED, childAddedHandler);
 			_children.addEventListener(PropertyChangeEvent.PROPERTY_REMOVED, childRemovedHandler);
 			
@@ -130,11 +128,6 @@ package com.esoteric.core
 		//---------------------------------------------------------------------
 		// Variables
 		//---------------------------------------------------------------------
-		
-		/**
-		 * @private
-		 */
-		private var _root:ApplicationElement;
 		
 		/**
 		 * @private
@@ -204,7 +197,7 @@ package com.esoteric.core
 		/**
 		 * @private
 		 */
-		private var _context:Object;
+		private var _context:Context;
 		
 		/**
 		 * @private
@@ -254,10 +247,8 @@ package com.esoteric.core
 			_text = null;
 			_uid = null;
 			
-			_root.renderQueue.remove(_target);
-			_target.dispatchEventNow(new ElementEvent(ElementEvent.DESTROYED));
+			_target.dispatchEvent(new ElementEvent(ElementEvent.DESTROYED));
 			_target = null;
-			_root = null;
 			
 			_numElements--;
 		}
@@ -270,7 +261,9 @@ package com.esoteric.core
 		/**
 		 * @inheritDoc
 		 */
-		public function get root():ApplicationElement { return _root; }
+		public function get context():Context { return _context; }
+		
+		public function set context(value:Context):void { _context = value; }
 		
 		/**
 		 * @inheritDoc
@@ -320,7 +313,6 @@ package com.esoteric.core
 			_text = value;
 			
 			_target.dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'text', oldValue, value)); 
-			root.renderQueue.add(_target);
 		}
 		
 		/**
@@ -378,63 +370,6 @@ package com.esoteric.core
 		/**
 		 * @inheritDoc
 		 */
-		public function createExpressionContext(name:String):Object
-		{
-			return _context;
-		}
-		
-		/**
-		 * @inheritDoc
-		 */
-		public function contains(element:IElement):Boolean
-		{
-			if (element == _target)
-			{
-				return true;
-			}
-			
-			for each(var child:IElement in _children)
-			{
-				var match:Boolean = child.contains(element);
-				
-				if (match)
-				{
-					return true;
-				}
-			}
-			
-			return false;
-		}
-		
-		/**
-		 * @inheritDoc
-		 */
-		public function render():void
-		{
-			_rendering = true;
-			
-			while (_eventQueue.length)
-			{
-				_target.dispatchEvent(_eventQueue.shift());
-			}
-			
-			_eventQueue = _nextFrameEventQueue;
-			
-			_nextFrameEventQueue = new Array();
-			
-			_target.dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
-			
-			_rendering = false;
-			
-			if (_eventQueue.length)
-			{
-				root.renderQueue.add(_target);
-			}
-		}
-		
-		/**
-		 * @inheritDoc
-		 */
 		public function getElementById(id:String):IElement
 		{
 			if (_id == id)
@@ -483,45 +418,6 @@ package com.esoteric.core
 			return elements;
 		}
 		
-		/**
-		 * @inheritDoc
-		 */
-		public function dispatchEventNextFrame(e:Event):void
-		{
-			if (!_nextFrameEventQueue.length)
-			{
-				root.renderQueue.add(_target);
-			}
-			
-			_nextFrameEventQueue.push(e);
-		}
-		
-		//---------------------------------------------------------------------
-		// Overrides
-		//---------------------------------------------------------------------
-		
-		public override function dispatchEvent(e:Event):Boolean
-		{
-			if (_rendering)
-			{
-				return super.dispatchEvent(e);
-			}
-			
-			if (!_eventQueue.length)
-			{
-				root.renderQueue.add(_target);
-			}
-			
-			_eventQueue.push(e);
-			
-			return true;
-		}
-		
-		public function dispatchEventNow(e:Event):Boolean
-		{
-			return super.dispatchEvent(e);
-		}
-		
 		//---------------------------------------------------------------------
 		// Methods
 		//---------------------------------------------------------------------
@@ -547,8 +443,6 @@ package com.esoteric.core
 			e.newValue.addEventListener(LoadEvent.DESCENDANT_BEGIN, childDescendantBeginHandler);
 			e.newValue.addEventListener(LoadEvent.DESCENDANT_FINISH, childDescendantFinishHandler);
 			e.newValue.addEventListener(LoadEvent.DESCENDANT_ERROR, childDescendantErrorHandler);
-			
-			_root.renderQueue.add(_target);
 		}
 		
 		/**
@@ -566,8 +460,6 @@ package com.esoteric.core
 			e.oldValue.removeEventListener(LoadEvent.DESCENDANT_BEGIN, childDescendantBeginHandler);
 			e.oldValue.removeEventListener(LoadEvent.DESCENDANT_FINISH, childDescendantFinishHandler);
 			e.oldValue.removeEventListener(LoadEvent.DESCENDANT_ERROR, childDescendantErrorHandler);
-			
-			_root.renderQueue.add(_target);
 		}
 		
 		/**
@@ -579,8 +471,8 @@ package com.esoteric.core
 			{
 				_loading = true;
 				
-				_target.dispatchEventNow(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'loading', false, true));
-				_target.dispatchEventNow(new LoadEvent(LoadEvent.BEGIN, false, false, [_target]));
+				_target.dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'loading', false, true));
+				_target.dispatchEvent(new LoadEvent(LoadEvent.BEGIN, false, false, [_target]));
 			}
 		}
 		
@@ -594,8 +486,8 @@ package com.esoteric.core
 				_loading = false;
 				
 				// Force event to be dispatched next frame because sometimes things loads instantly and mess things up.
-				_target.dispatchEventNextFrame(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'loading', true, false));
-				_target.dispatchEventNextFrame(new LoadEvent(LoadEvent.FINISH, false, false, [_target]));
+				_target.dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'loading', true, false));
+				_target.dispatchEvent(new LoadEvent(LoadEvent.FINISH, false, false, [_target]));
 			}
 		}
 		
@@ -610,8 +502,8 @@ package com.esoteric.core
 				_errorLoading = true;
 				
 				// Force event to be dispatched next frame because sometimes things loads instantly and mess things up.
-				_target.dispatchEventNextFrame(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'loading', true, false));
-				_target.dispatchEventNextFrame(new LoadEvent(LoadEvent.ERROR, false, false, [_target]));
+				_target.dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'loading', true, false));
+				_target.dispatchEvent(new LoadEvent(LoadEvent.ERROR, false, false, [_target]));
 			}
 		}
 		
@@ -620,7 +512,7 @@ package com.esoteric.core
 		 */
 		private function childUpdatedHandler(e:ElementEvent):void 
 		{
-			_root.renderQueue.add(_target);
+			
 		}
 		
 		/**

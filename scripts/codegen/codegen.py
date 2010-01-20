@@ -133,8 +133,8 @@ class Template:
     def element(self, classname, namespace, abstract, timestamp, license):
         return self.elem.substitute({'classname': classname, 'namespace': namespace, 'abstract': abstract, 'timestamp': timestamp, 'license': license})
 	
-    def asset(self, classname, license):
-        return self.asset_tpl.substitute({'classname': classname, 'license': license})
+    def asset(self, element, license):
+        return self.asset_tpl.substitute({'element': element, 'license': license})
 	
     def abstractLoadAsset(self):
         return self.load_asset_tpl.substitute()
@@ -189,13 +189,13 @@ class Codegen:
             f.close()
             print filename + ' was generated.'
 	
-        if element.has_key('asset') and element['asset'] is True:
+        if element.has_key('asset'):
             directory = assets_dir + '/' + self.namespaceDir(element['namespace']) + '/'
 
             if not os.path.exists(directory):
                 os.makedirs(directory)
 
-            filename = directory + element['classname'] + '.xml'
+            filename = directory + element['asset'] + '.xml'
             
             if os.path.isfile(filename):
                 print filename + ' already exists, skipping.'
@@ -240,7 +240,7 @@ class Codegen:
         
     def abstractAsset(self, element, assets_dir):
         if element.has_key('asset') and element['asset']:
-            asset = assets_dir + '/' + self.namespaceDir(element['namespace']) + '/' + element['classname'] + '.xml'
+            asset = assets_dir + '/' + self.namespaceDir(element['namespace']) + '/' + element['asset'] + '.xml'
             return self.template.abstractAsset(asset)
         
         return ''
@@ -361,7 +361,7 @@ class Codegen:
         return self.template.element(element['classname'], element['namespace'], 'Abstract' + element['classname'], timestamp, license)
 	
     def asset(self, element, license):
-        return self.template.asset(element['classname'], license)
+        return self.template.asset(element['asset'], license)
 	
     def namespaceDir(self, namespace):
         return string.join(namespace.split('.'), '/')

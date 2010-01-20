@@ -10,8 +10,7 @@ $license
 package $namespace 
 {
 $imports
-	import com.esoteric.core.IElement;
-	import com.esoteric.display.ApplicationElement;
+	import com.esoteric.core.Context;
 	import com.esoteric.events.ElementEvent;
 	import com.esoteric.events.PropertyChangeEvent;
 	
@@ -25,9 +24,9 @@ $imports
 		/**
 		 * Constructor.
 		 */
-		public function $classname(root:ApplicationElement, parent:IElement, kind:String) 
+		public function $classname(context:Context, kind:String) 
 		{
-			super(root, parent, kind);
+			super(context, kind);
 			
 $initials
 		}
