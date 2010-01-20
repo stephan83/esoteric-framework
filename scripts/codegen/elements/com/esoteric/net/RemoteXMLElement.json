@@ -1,0 +1,22 @@
+{
+	"desc": "The RemoteXml element is used as to retrieve remote XML data.",
+	
+	"baseclass": "AbstractElement",
+
+	"imports": [
+		"com.esoteric.core.AbstractElement",
+		"com.esoteric.utils.BindableArray"
+	],
+	
+	"properties": {
+		"url": {
+			"type":	"String",
+			"desc": "The URL of the remote XML source."
+		},
+		"variables": {
+			"type":	"BindableArray",
+			"desc": "An array containing pairs of data/values.",
+			"default": "new BindableArray()"
+		}
+	}
+}

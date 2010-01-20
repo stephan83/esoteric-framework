@@ -1,0 +1,17 @@
+{
+	"desc": "The KeyFrame element is used to create a keyframe in timeline animations.",
+	
+	"baseclass": "ScriptElement",
+
+	"imports": [
+		"com.esoteric.core.ScriptElement"
+	],
+	
+	"properties": {
+		"position": {
+			"type":	"int",
+			"desc": "The position of the frame, in milliseconds.",
+			"default": "0"
+		}
+	}
+}

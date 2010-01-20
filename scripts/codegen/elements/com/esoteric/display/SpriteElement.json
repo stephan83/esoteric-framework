@@ -1,0 +1,43 @@
+{
+	"desc": "The Sprite element is used to group 2D elements.",
+	
+	"baseclass": "InteractiveObjectElement",
+
+	"imports": [
+		"flash.display.Sprite"
+	],
+	
+	"properties": {
+		"sprite": {
+			"type":	"Sprite",
+			"default": "new Sprite()",
+			"desc": "The sprite object.",
+			"doc": false
+		}
+	},
+	
+	"objectProperties": {
+		"buttonMode": {
+			"object": "sprite",
+			"property": "buttonMode",
+			"type":	"Boolean",
+			"default": "false",
+			"desc": "Whether to treat the sprite as a button."
+		},
+		"useHandCursor": {
+			"object": "sprite",
+			"property": "useHandCursor",
+			"type":	"Boolean",
+			"default": "false",
+			"desc": "Whether to use a hand cursor when buttonMode is enabled."
+		},
+		"mouseChildren": {
+			"object": "sprite",
+			"property": "mouseChildren",
+			"type":	"Boolean",
+			"desc": "Whether to enable mouse events on children.",
+			"default": "true"
+		}
+	}
+	
+}

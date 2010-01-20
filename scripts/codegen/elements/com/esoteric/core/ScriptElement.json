@@ -1,0 +1,19 @@
+{
+	"desc": "The Script element is used to store a list of instructions. It can be executed by calling the run(...) functions. The arguments are available through the args array.",
+	
+	"baseclass": "AbstractElement",
+
+	"imports": [
+		"com.esoteric.expressions.Expression"
+	],
+	
+	"properties": {
+		"expression": {
+			"namespace": "protected",
+			"type":	"Expression",
+			"desc": "The expression object.",
+			"bindable": false,
+			"update": false
+		}
+	}
+}

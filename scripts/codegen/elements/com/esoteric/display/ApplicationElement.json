@@ -1,0 +1,96 @@
+{
+	"desc": "The Application element is the root element of an application.",
+	
+	"baseclass": "SpriteElement",
+
+	"imports": [
+		"com.esoteric.core.ElementExpressionQueue",
+		"com.esoteric.core.ElementFactory",
+		"com.esoteric.core.RenderQueue",
+		"com.esoteric.expressions.ExpressionVm",
+		"com.esoteric.net.Cache",
+		"com.esoteric.utils.BindableObject",
+		"flash.display.Stage",
+		"org.papervision3d.core.render.IRenderEngine"
+	],
+	
+	"properties": {
+		"stage": {
+			"type":	"Stage",
+			"desc": "The stage.",
+			"bindable": false,
+			"update": false,
+			"doc": false
+		},
+		"elementFactory": {
+			"type":	"ElementFactory",
+			"desc": "The element factory.",
+			"bindable": false,
+			"update": false,
+			"doc": false
+		},
+		"expVm": {
+			"type":	"ExpressionVm",
+			"desc": "The expression virtual machine.",
+			"bindable": false,
+			"update": false,
+			"doc": false
+		},
+		"expQueue": {
+			"type":	"ElementExpressionQueue",
+			"desc": "The element expression queue.",
+			"bindable": false,
+			"update": false,
+			"doc": false
+		},
+		"renderQueue": {
+			"type":	"RenderQueue",
+			"desc": "The render queue.",
+			"bindable": false,
+			"update": false,
+			"doc": false
+		},
+		"renderEngine": {
+			"type":	"IRenderEngine",
+			"desc": "The 3D render engine.",
+			"bindable": false,
+			"update": false,
+			"doc": false
+		},
+		"cache": {
+			"type":	"Cache",
+			"desc": "The cache.",
+			"bindable": false,
+			"update": false,
+			"doc": false
+		},
+		"globals": {
+			"type":	"BindableObject",
+			"desc": "The global variables.",
+			"bindable": false,
+			"update": false
+		},
+		"extraContext": {
+			"type":	"Object",
+			"desc": "Extra context.",
+			"bindable": false,
+			"update": false
+		},
+		"applicationWidth": {
+			"type":	"Number",
+			"default": 640,
+			"desc": "The width of the application, in pixels."
+		},
+		"applicationHeight": {
+			"type":	"Number",
+			"default": 480,
+			"desc": "The height of the application, in pixels."
+		},
+		"volume": {
+			"property": "volume",
+			"type":	"Number",
+			"default": "1.0",
+			"desc": "The global volume of sound, between 0.0 and 1.0."
+		}
+	}
+}

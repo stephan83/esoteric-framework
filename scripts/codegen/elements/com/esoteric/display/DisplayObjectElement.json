@@ -1,0 +1,105 @@
+{
+	"desc": "The DisplayObject elements is used as the base class for all 2D element.",
+	
+	"baseclass": "TweenableElement",
+
+	"imports": [
+		"com.esoteric.core.TweenableElement",
+		"com.esoteric.utils.BindableArray",
+		"flash.display.DisplayObject"
+	],
+	
+	"properties": {
+		"displayObject": {
+			"type":	"DisplayObject",
+			"desc": "The DisplayObject object.",
+			"bindable": false,
+			"update": false,
+			"doc": false
+		},
+		"width": {
+			"type":	"Number",
+			"desc": "The width of the display object.",
+			"default": "0.0"
+		},
+		"height": {
+			"type":	"Number",
+			"desc": "The height of the display object.",
+			"default": "0.0"
+		},
+		"mask": {
+			"type":	"DisplayObjectElement",
+			"desc": "The DisplayObjectElement to use as a mask."
+		},
+		"filters": {
+			"type":	"BindableArray",
+			"desc": "An array of bitmap filters."
+		},
+		"hiddenAncestor": {
+			"type":	"Boolean",
+			"desc": "Whether the object has a hidden ancestor.",
+			"default": "false"
+		}
+	},
+	
+	"objectProperties": {
+		"x": {
+			"object": "displayObject",
+			"property": "x",
+			"type":	"Number",
+			"default": "0.0",
+			"desc": "The vertical position of the display object.",
+			"doc": false
+		},
+		"y": {
+			"object": "displayObject",
+			"property": "y",
+			"type":	"Number",
+			"default": "0.0",
+			"desc": "The horizontal position of the display object.",
+			"doc": false
+		},
+		"scaleX": {
+			"object": "displayObject",
+			"property": "scaleX",
+			"type":	"Number",
+			"default": "1.0",
+			"desc": "The horizontal scaling factor of the display object."
+		},
+		"scaleY": {
+			"object": "displayObject",
+			"property": "scaleY",
+			"type":	"Number",
+			"default": "1.0",
+			"desc": "The vertical scaling factor of the display object."
+		},
+		"visible": {
+			"object": "displayObject",
+			"property": "visible",
+			"type":	"Boolean",
+			"default": "true",
+			"desc": "Whether the display object is visible."
+		},
+		"alpha": {
+			"object": "displayObject",
+			"property": "alpha",
+			"type":	"Number",
+			"default": "1.0",
+			"desc": "The alpha value of the display object."
+		},
+		"rotation": {
+			"object": "displayObject",
+			"property": "rotation",
+			"type":	"Number",
+			"default": "0.0",
+			"desc": "The rotation of the display object, in degrees."
+		},
+		"cacheAsBitmap": {
+			"object": "displayObject",
+			"property": "cacheAsBitmap",
+			"type":	"Boolean",
+			"default": "false",
+			"desc": "Whether to cache as bitmap."
+		}
+	}
+}

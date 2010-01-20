@@ -1,0 +1,53 @@
+{
+	"desc": "The VideoFile element is used to play video.",
+	
+	"baseclass": "DisplayObjectElement",
+
+	"imports": [
+		"com.esoteric.display.DisplayObjectElement"
+	],
+
+	
+	"properties": {
+		"url": {
+			"type":	"String",
+			"desc": "The URL of the video."
+		},
+		"playing": {
+			"type":	"Boolean",
+			"default": "false",
+			"desc": "Whether the video is playing."
+		},
+		"position": {
+			"type":	"int",
+			"default": "0",
+			"desc": "The position of the playhead in the sound file, in milliseconds."
+		},
+		"length": {
+			"type":	"int",
+			"default": "0",
+			"desc": "The length of the sound file, in milliseconds."
+		},
+		"bufferLength": {
+			"type":	"Number",
+			"default": "0",
+			"desc": "The length of the data in the buffer."
+		},
+		"buffering": {
+			"type":	"Boolean",
+			"default": "false",
+			"desc": "Whether the video is buffering."
+		},
+		"videoWidth": {
+			"type":	"int",
+			"default": "0",
+			"desc": "The width of the video source."
+		},
+		"videoHeight": {
+			"type":	"int",
+			"default": "0",
+			"desc": "The height of the video source."
+		}
+	}
+	
+}

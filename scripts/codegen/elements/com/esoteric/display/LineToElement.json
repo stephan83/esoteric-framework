@@ -1,0 +1,23 @@
+{
+	"desc": "The LineTo element is used to draw a straight line from the current drawing position to a point.",
+	
+	"baseclass": "TweenableElement",
+
+	"imports": [
+		"com.esoteric.core.TweenableElement"
+	],
+	
+	"properties": {
+		"x": {
+			"type":	"Number",
+			"default": "0.0",
+			"desc": "A number that indicates the horizontal position relative to the registration point of the parent display object (in pixels)."
+		},
+		"y": {
+			"type":	"Number",
+			"default": "0.0",
+			"desc": "A number that indicates the vertical position relative to the registration point of the parent display object (in pixels)."
+		}
+	}
+	
+}

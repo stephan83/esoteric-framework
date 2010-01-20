@@ -1,0 +1,24 @@
+{
+	"desc": "The Plane element is used to create a plane.",
+	
+	"doc": false,
+	
+	"baseclass": "DisplayObject3DElement",
+
+	"imports": [
+		"org.papervision3d.objects.primitives.Plane"
+	],
+	
+	"properties": {
+		"plane": {
+			"type":	"Plane",
+			"default": "new Plane()",
+			"desc": "The plane object."
+		},
+		"material": {
+			"type":	"MaterialObject3DElement",
+			"desc": "The MaterialObject3D object."
+		}
+	}
+	
+}

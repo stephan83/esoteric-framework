@@ -1,0 +1,32 @@
+{
+	"desc": "The Timeline element is used to create timeline animations.",
+	
+	"baseclass": "AbstractElement",
+
+	"imports": [
+		"com.esoteric.core.AbstractElement"
+	],
+	
+	"properties": {
+		"duration": {
+			"type":	"int",
+			"desc": "The duration of the timeline, in milliseconds.",
+			"default": "10000"
+		},
+		"position": {
+			"type":	"int",
+			"desc": "The position of the timeline, in milliseconds.",
+			"default": "0"
+		},
+		"playing": {
+			"type":	"Boolean",
+			"desc": "Whether the timeline is playing.",
+			"default": "false"
+		},
+		"repeat": {
+			"type":	"int",
+			"desc": "How many times should the timeline repeat, 0 = infinite.",
+			"default": "1"
+		}
+	}
+}

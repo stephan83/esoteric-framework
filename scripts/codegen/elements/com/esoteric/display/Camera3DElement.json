@@ -1,0 +1,19 @@
+{
+	"desc": "The Camera3D element is used to create a camera in 3D space.",
+	
+	"baseclass": "CameraObject3DElement",
+
+	"imports": [
+		"org.papervision3d.cameras.Camera3D"
+	],
+	
+	"properties": {
+		"camera3D": {
+			"type":	"Camera3D",
+			"default": "new Camera3D()",
+			"desc": "The Camera3D object.",
+			"doc": false
+		}
+	}
+	
+}

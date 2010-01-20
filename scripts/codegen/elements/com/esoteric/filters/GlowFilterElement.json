@@ -1,0 +1,72 @@
+{
+	"desc": "The GlowFilter element is used to create a glow filter.",
+	
+	"baseclass": "BitmapFilterElement",
+
+	"imports": [
+		"flash.filters.BitmapFilterQuality",
+		"flash.filters.GlowFilter"
+	],
+	
+	"properties": {
+		"glowFilter": {
+			"type":	"GlowFilter",
+			"default": "new GlowFilter()",
+			"desc": "",
+			"doc": false
+		}
+	},
+	
+	"objectProperties": {
+		"alpha": {
+			"object": "glowFilter",
+			"property": "alpha",
+			"type":	"Number",
+			"default": "1.0",
+			"desc": ""
+		}, "blurX": {
+			"object": "glowFilter",
+			"property": "blurX",
+			"type":	"Number",
+			"default": "4.0",
+			"desc": ""
+		}, "blurY": {
+			"object": "glowFilter",
+			"property": "blurY",
+			"type":	"Number",
+			"default": "4.0",
+			"desc": ""
+		}, "color": {
+			"object": "glowFilter",
+			"property": "color",
+			"type":	"int",
+			"default": "0xFFFFFF",
+			"desc": ""
+		}, "inner": {
+			"object": "glowFilter",
+			"property": "inner",
+			"type":	"Boolean",
+			"default": "false",
+			"desc": ""
+		}, "knockout": {
+			"object": "glowFilter",
+			"property": "knockout",
+			"type":	"Boolean",
+			"default": "false",
+			"desc": ""
+		}, "quality": {
+			"object": "glowFilter",
+			"property": "quality",
+			"type":	"int",
+			"default": "BitmapFilterQuality.MEDIUM",
+			"desc": ""
+		}, "strength": {
+			"object": "glowFilter",
+			"property": "strength",
+			"type":	"Number",
+			"default": "2.0",
+			"desc": ""
+		}
+	}
+	
+}

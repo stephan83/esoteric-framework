@@ -1,0 +1,19 @@
+{
+	"desc": "The Shape element is used to contain draw elements.",
+	
+	"baseclass": "DisplayObjectElement",
+
+	"imports": [
+		"flash.display.Shape"
+	],
+	
+	"properties": {
+		"shape": {
+			"type":	"Shape",
+			"default": "new Shape()",
+			"desc": "The Shape object.",
+			"doc": false
+		}
+	}
+	
+}

@@ -1,0 +1,33 @@
+{
+	"desc": "The CurveTo element is used to draw a curve from the current drawing position to a point using control points.",
+	
+	"baseclass": "TweenableElement",
+
+	"imports": [
+		"com.esoteric.core.TweenableElement"
+	],
+	
+	"properties": {
+		"controlX": {
+			"type":	"Number",
+			"default": "0.0",
+			"desc": "A number that specifies the horizontal position of the control point relative to the registration point of the parent display object."
+		},
+		"controlY": {
+			"type":	"Number",
+			"default": "0.0",
+			"desc": "A number that specifies the vertical position of the control point relative to the registration point of the parent display object."
+		},
+		"anchorX": {
+			"type":	"Number",
+			"default": "0.0",
+			"desc": "A number that specifies the horizontal position of the next anchor point relative to the registration point of the parent display object."
+		},
+		"anchorY": {
+			"type":	"Number",
+			"default": "0.0",
+			"desc": "A number that specifies the vertical position of the next anchor point relative to the registration point of the parent display object."
+		}
+	}
+	
+}

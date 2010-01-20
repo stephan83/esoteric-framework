@@ -1,0 +1,115 @@
+{
+	"desc": "The SoundFile element is used to load a sound from a URL.",
+	
+	"baseclass": "TweenableElement",
+
+	"imports": [
+		"com.esoteric.core.TweenableElement",
+		"flash.media.SoundChannel",
+		"flash.media.SoundTransform",
+		"flash.utils.Timer"
+	],
+	
+	"properties": {
+		"soundChannel": {
+			"namespace": "protected",
+			"type":	"SoundChannel",
+			"desc": "The SoundChannel object.",
+			"bindable": false,
+			"update": false,
+			"doc": false
+		},
+		"url": {
+			"type":	"String",
+			"desc": "The url of the sound file."
+		},
+		"playing": {
+			"type":	"Boolean",
+			"default": "false",
+			"desc": "Whether the sound is playing."
+		},
+		"loops": {
+			"type":	"int",
+			"default": "1",
+			"desc": "How many times to loop the sound."
+		},
+		"position": {
+			"type":	"int",
+			"default": "0",
+			"desc": "The position of the playhead in the sound file, in milliseconds."
+		},
+		"length": {
+			"type":	"int",
+			"default": "0",
+			"desc": "The length of the sound file, in milliseconds."
+		},
+		"timer": {
+			"namespace": "protected",
+			"type":	"Timer",
+			"default": "new Timer(100)",
+			"desc": "The Timer object.",
+			"bindable": false,
+			"update": false
+		},
+		"album": {
+			"type":	"String",
+			"desc": "The name of the album; corresponds to the ID3 2.0 tag TALB."
+		},
+		"artist": {
+			"type":	"String",
+			"desc": "The name of the artist; corresponds to the ID3 2.0 tag TPE1."
+		},
+		"comment": {
+			"type":	"String",
+			"desc": "A comment about the recording; corresponds to the ID3 2.0 tag COMM."
+		},
+		"genre": {
+			"type":	"String",
+			"desc": "The genre of the song; corresponds to the ID3 2.0 tag TCON."
+		},
+		"songName": {
+			"type":	"String",
+			"desc": "The name of the song; corresponds to the ID3 2.0 tag TIT2."
+		},
+		"track": {
+			"type":	"String",
+			"desc": "The track number; corresponds to the ID3 2.0 tag TRCK."
+		},
+		"year": {
+			"type":	"String",
+			"desc": "The year of the recording; corresponds to the ID3 2.0 tag TYER."
+		},
+		"volume": {
+			"object": "soundTransform",
+			"property": "volume",
+			"type":	"Number",
+			"default": "1.0",
+			"desc": "The volume of the sound, between 0.0 and 1.0."
+		},
+		"mute": {
+			"type":	"Boolean",
+			"default": "false",
+			"desc": "Whether the sound is mute."
+		}
+	},
+	
+	"objectProperties": {
+		"soundTransform": {
+			"namespace": "protected",
+			"object": "soundChannel",
+			"property": "soundTransform",
+			"type":	"SoundTransform",
+			"default": "new SoundTransform()",
+			"desc": "The SoundChannel object",
+			"bindable": false,
+			"update": false
+		},
+		"delay": {
+			"object": "timer",
+			"property": "delay",
+			"type":	"Number",
+			"default": "100",
+			"desc": "The delay between playhead updates, in milliseconds."
+		}
+	}
+}

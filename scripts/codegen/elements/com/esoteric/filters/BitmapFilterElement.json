@@ -1,0 +1,20 @@
+{
+	"desc": "The BitmapFilter element is used as the base element for all bitmap filter elements. You cannot create a BitmapFilter element directly.",
+	
+	"baseclass": "TweenableElement",
+
+	"imports": [
+		"com.esoteric.core.TweenableElement",
+		"flash.filters.BitmapFilter"
+	],
+	
+	"properties": {
+		"bitmapFilter": {
+			"type":	"BitmapFilter",
+			"desc": "The BitmapFilter object.",
+			"bindable": false,
+			"update": false,
+			"doc": false
+		}
+	}
+}

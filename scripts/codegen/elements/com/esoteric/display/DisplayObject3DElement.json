@@ -1,0 +1,123 @@
+{
+	"desc": "The DisplayObject3D element is used as the base class for all 3D elements.",
+	
+	"baseclass": "DisplayObjectContainer3DElement",
+	
+	"imports": [
+		"org.papervision3d.objects.DisplayObject3D"
+	],
+	
+	"properties": {
+		"displayObject3D": {
+			"type":	"DisplayObject3D",
+			"desc": "The DisplayObject3D object.",
+			"doc": false
+		},
+		"filters": {
+			"type":	"Array",
+			"desc": "An array of bitmap filters."
+		}
+	},
+	
+	"objectProperties": {
+		"x": {
+			"object": "displayObject3D",
+			"property": "x",
+			"type":	"Number",
+			"default": "0.0",
+			"desc": "The vertical position of the object."
+		},
+		"y": {
+			"object": "displayObject3D",
+			"property": "y",
+			"type":	"Number",
+			"default": "0.0",
+			"desc": "The horizontal position of the object."
+		},
+		"z": {
+			"object": "displayObject3D",
+			"property": "z",
+			"type":	"Number",
+			"default": "0.0",
+			"desc": "The depth of the object."
+		},
+		"rotationX": {
+			"object": "displayObject3D",
+			"property": "rotationX",
+			"type":	"Number",
+			"default": "0.0",
+			"desc": "The rotation of the object around the x-axis, in degrees."
+		},
+		"rotationY": {
+			"object": "displayObject3D",
+			"property": "rotationY",
+			"type":	"Number",
+			"default": "0.0",
+			"desc": "The rotation of the object around the y-axis, in degrees."
+		},
+		"rotationZ": {
+			"object": "displayObject3D",
+			"property": "rotationZ",
+			"type":	"Number",
+			"default": "0.0",
+			"desc": "The rotation of the object around the z-axis, in degrees."
+		},
+		"localRotationX": {
+			"object": "displayObject3D",
+			"property": "localRotationX",
+			"type":	"Number",
+			"default": "0.0",
+			"desc": "The local rotation of the object around the x-axis, in degrees."
+		},
+		"localRotationY": {
+			"object": "displayObject3D",
+			"property": "localRotationY",
+			"type":	"Number",
+			"default": "0.0",
+			"desc": "The local rotation of the object around the y-axis, in degrees."
+		},
+		"localRotationZ": {
+			"object": "displayObject3D",
+			"property": "localRotationZ",
+			"type":	"Number",
+			"default": "0.0",
+			"desc": "The local rotation of the object around the z-axis, in degrees."
+		},
+		"scale": {
+			"object": "displayObject3D",
+			"property": "scale",
+			"type":	"Number",
+			"default": "1.0",
+			"desc": "The scale of the object."
+		},
+		"scaleX": {
+			"object": "displayObject3D",
+			"property": "scaleX",
+			"type":	"Number",
+			"default": "1.0",
+			"desc": "The scale of the object along the x-axis."
+		},
+		"scaleY": {
+			"object": "displayObject3D",
+			"property": "scaleY",
+			"type":	"Number",
+			"default": "1.0",
+			"desc": "The scale of the object along the y-axis."
+		},
+		"scaleZ": {
+			"object": "displayObject3D",
+			"property": "scaleZ",
+			"type":	"Number",
+			"default": "1.0",
+			"desc": "The scale of the object along the z-axis."
+		},
+		"useOwnContainer": {
+			"object": "displayObject3D",
+			"property": "useOwnContainer",
+			"type":	"Boolean",
+			"default": "false",
+			"desc": "Whether the object uses its own container."
+		}
+	}
+	
+}

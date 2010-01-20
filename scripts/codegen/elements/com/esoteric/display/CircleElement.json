@@ -1,0 +1,28 @@
+{
+	"desc": "The Cicle element is used to draw a circle.",
+	
+	"baseclass": "TweenableElement",
+
+	"imports": [
+		"com.esoteric.core.TweenableElement"
+	],
+	
+	"properties": {
+		"x": {
+			"type":	"Number",
+			"default": "0.0",
+			"desc": "The x location of the center of the circle relative to the registration point of the parent display object (in pixels)."
+		},
+		"y": {
+			"type":	"Number",
+			"default": "0.0",
+			"desc": "The y location of the center of the circle relative to the registration point of the parent display object (in pixels)."
+		},
+		"radius": {
+			"type":	"Number",
+			"default": "100.0",
+			"desc": "The radius of the circle (in pixels)."
+		}
+	}
+	
+}

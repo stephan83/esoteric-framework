@@ -1,0 +1,31 @@
+{
+	"desc": "The Bitmap element is the base for all bitmap elements such as the BitmapFile element. You cannot create a Bitmap element directly.",
+	
+	"baseclass": "DisplayObjectElement",
+
+	"imports": [
+		"flash.display.Bitmap"
+	],
+	
+	"properties": {
+		"bitmap": {
+			"namespace": "protected",
+			"type":	"Bitmap",
+			"default": "new Bitmap()",
+			"desc": "The bitmap object.",
+			"bindable": false,
+			"update": false
+		}
+	},
+	
+	"objectProperties": {
+		"smoothing": {
+			"object": "bitmap",
+			"property": "smoothing",
+			"type":	"Boolean",
+			"default": "false",
+			"desc": "Whether to enable smoothing to increase quality when the bitmap is scaled at the cost of performance."
+		}
+	}
+	
+}

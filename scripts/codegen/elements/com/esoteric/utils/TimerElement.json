@@ -1,0 +1,38 @@
+{
+	"desc": "The Timer element is used to store a list of instructions that are to be executed repeatedly. It can be executed by calling the start(), stop(), and reset() functions.",
+	
+	"baseclass": "ScriptElement",
+
+	"imports": [
+		"com.esoteric.core.ScriptElement",
+		"flash.utils.Timer"
+	],
+	
+	"properties": {
+		"timer": {
+			"namespace": "protected",
+			"type":	"Timer",
+			"desc": "The timer object.",
+			"bindable": false,
+			"update": false,
+			"default": "new Timer(1000)",
+			"doc": false
+		}
+	},
+	
+	"objectProperties": {
+		"delay": {
+			"object": "timer",
+			"property": "delay",
+			"type":	"int",
+			"default": "1000",
+			"desc": "The delay, in milliseconds, between timer events."
+		}, "repeatCount": {
+			"object": "timer",
+			"property": "repeatCount",
+			"type":	"int",
+			"default": "0",
+			"desc": "The total number of times the timer is set to run."
+		}
+	}
+}

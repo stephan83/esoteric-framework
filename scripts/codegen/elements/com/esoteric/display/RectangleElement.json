@@ -1,0 +1,33 @@
+{
+	"desc": "The Rectangle element is used to draw a rectangle.",
+	
+	"baseclass": "TweenableElement",
+
+	"imports": [
+		"com.esoteric.core.TweenableElement"
+	],
+	
+	"properties": {
+		"x": {
+			"type":	"Number",
+			"default": "0.0",
+			"desc": "The vertical position of the rectangle."
+		},
+		"y": {
+			"type":	"Number",
+			"default": "0.0",
+			"desc": "The horizontal position of the rectangle."
+		},
+		"width": {
+			"type":	"Number",
+			"default": "100.0",
+			"desc": "The width of the rectangle."
+		},
+		"height": {
+			"type":	"Number",
+			"default": "100.0",
+			"desc": "The height of the rectangle."
+		}
+	}
+	
+}

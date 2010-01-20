@@ -1,0 +1,78 @@
+{
+	"desc": "The Interactive element is used as the base element for all interactive 2D element. You cannot create an interactive element directly.",
+	
+	"baseclass": "DisplayObjectElement",
+
+	"imports": [
+		"flash.display.InteractiveObject"
+	],
+	
+	"properties": {
+		"interactiveObject": {
+			"type":	"InteractiveObject",
+			"desc": "The InteractiveObject object.",
+			"bindable": false,
+			"update": false,
+			"doc": false
+		},
+		"localX": {
+			"type":	"Number",
+			"desc": "",
+			"default": "0.0",
+			"update": "false"
+		},
+		"localY": {
+			"type":	"Number",
+			"desc": "",
+			"default": "0.0",
+			"update": "false"
+		},
+		"globalX": {
+			"type":	"Number",
+			"desc": "",
+			"default": "0.0",
+			"update": "false"
+		},
+		"globalY": {
+			"type":	"Number",
+			"desc": "",
+			"default": "0.0",
+			"update": "false"
+		},
+		"pressed": {
+			"type":	"Boolean",
+			"desc": "Whether a point input is pressing this object.",
+			"default": "false",
+			"update": "false"
+		},
+		"hovered": {
+			"type":	"Boolean",
+			"desc": "Whether a point input is over this object.",
+			"default": "false",
+			"update": "false"
+		},
+		"pressedX": {
+			"type":	"Number",
+			"desc": "",
+			"default": "0.0",
+			"update": "false"
+		},
+		"pressedY": {
+			"type":	"Number",
+			"desc": "",
+			"default": "0.0",
+			"update": "false"
+		}
+		
+	},
+	
+	"objectProperties": {
+		"mouseEnabled": {
+			"object": "interactiveObject",
+			"property": "mouseEnabled",
+			"type":	"Boolean",
+			"desc": "Whether to enable mouse properties.",
+			"default": "false"
+		}
+	}
+}

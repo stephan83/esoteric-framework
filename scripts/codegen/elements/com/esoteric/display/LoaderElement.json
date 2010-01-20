@@ -1,0 +1,23 @@
+{
+	"desc": "The Loader element is used to load external SWF files. It can also load images, but BitmapImage is more powerful.",
+	
+	"baseclass": "DisplayObjectElement",
+
+	"imports": [
+		"flash.display.Loader"
+	],
+	
+	"properties": {
+		"loader": {
+			"type":	"Loader",
+			"default": "new Loader()",
+			"desc": "The loader.",
+			"doc": false
+		},
+		"url": {
+			"type":	"String",
+			"desc": "The URL of the SWF file."
+		}
+	}
+	
+}

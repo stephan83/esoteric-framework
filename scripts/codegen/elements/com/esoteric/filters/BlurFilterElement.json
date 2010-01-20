@@ -1,0 +1,42 @@
+{
+	"desc": "The BlurFilter element is used to create a blur filter.",
+	
+	"baseclass": "BitmapFilterElement",
+
+	"imports": [
+		"flash.filters.BitmapFilterQuality",
+		"flash.filters.BlurFilter"
+	],
+	
+	"properties": {
+		"blurFilter": {
+			"type":	"BlurFilter",
+			"default": "new BlurFilter()",
+			"desc": "",
+			"doc": false
+		}
+	},
+	
+	"objectProperties": {
+		"blurX": {
+			"object": "blurFilter",
+			"property": "blurX",
+			"type":	"Number",
+			"default": "4.0",
+			"desc": ""
+		}, "blurY": {
+			"object": "blurFilter",
+			"property": "blurY",
+			"type":	"Number",
+			"default": "4.0",
+			"desc": ""
+		}, "quality": {
+			"object": "blurFilter",
+			"property": "quality",
+			"type":	"int",
+			"default": "BitmapFilterQuality.MEDIUM",
+			"desc": ""
+		}
+	}
+	
+}

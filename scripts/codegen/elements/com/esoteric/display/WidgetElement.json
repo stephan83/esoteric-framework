@@ -1,0 +1,18 @@
+{
+	"desc": "The Widget element is used as the base class for widgets.",
+	
+	"baseclass": "SpriteElement",
+
+	"imports": [
+		"com.esoteric.display.SpriteElement"
+	],
+	
+	"properties": {
+		"skin": {
+			"type":	"String",
+			"default": "null",
+			"desc": "The URL of the skin."
+		}
+	}
+	
+}

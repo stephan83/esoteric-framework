@@ -1,0 +1,58 @@
+{
+	"desc": "The GradientLineStyle element is used to set the gradient style of a line.",
+	
+	"baseclass": "TweenableElement",
+
+	"imports": [
+		"com.esoteric.core.TweenableElement",
+		"flash.display.GradientType"
+	],
+	
+	"properties": {
+		"type": {
+			"type":	"String",
+			"default": "GradientType.LINEAR",
+			"desc": "The gradient type."
+		},
+		"colors": {
+			"type":	"Array",
+			"default": "[0x000000, 0xFFFFFF]",
+			"desc": "The color values."
+		},
+		"alphas": {
+			"type": "Array",
+			"default": "[1.0, 1.0]",
+			"desc": "The alpha values."
+		},
+		"ratios": {
+			"type": "Array",
+			"default": "[0, 255]",
+			"desc": "The ratios."
+		},
+		"width": {
+			"type": "Number",
+			"default": "100.0",
+			"desc": "The width of the gradient matrix."
+		},
+		"height": {
+			"type": "Number",
+			"default": "100.0",
+			"desc": "The height of the gradient matrix."
+		},
+		"rotation": {
+			"type": "Number",
+			"default": "0.0",
+			"desc": "The rotation of the gradient matrix, in degrees."
+		},
+		"tx": {
+			"type": "Number",
+			"default": "0.0",
+			"desc": "The horizontal translation of the gradient matrix."
+		},
+		"ty": {
+			"type": "Number",
+			"default": "0.0",
+			"desc": "The vertical translation of the gradient matrix."
+		}
+	}
+}

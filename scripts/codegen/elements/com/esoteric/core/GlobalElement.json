@@ -1,0 +1,16 @@
+{
+	"desc": "The Global elements is used to create a global variables which is bindable. Scripts can access global variables by using the globals keyword.",
+	
+	"baseclass": "TweenableElement",
+	
+	"properties": {
+		"name": {
+			"type":	"String",
+			"desc": "The global variable's name."
+		},
+		"value": {
+			"type":	"*",
+			"desc": "The global variable's value."
+		}
+	}
+}

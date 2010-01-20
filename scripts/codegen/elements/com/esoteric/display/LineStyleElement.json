@@ -1,0 +1,32 @@
+{
+	"desc": "The LineStyle element is used to set the style of a line.",
+	
+	"baseclass": "TweenableElement",
+
+	"imports": [
+		"com.esoteric.core.TweenableElement"
+	],
+	
+	"properties": {
+		"thickness": {
+			"type": "Number",
+			"default": "NaN",
+			"desc": "An integer that indicates the thickness of the line in points; valid values are 0 to 255. If a number is not specified, or if the parameter is undefined, a line is not drawn. If a value of less than 0 is passed, the default is 0. The value 0 indicates hairline thickness; the maximum thickness is 255. If a value greater than 255 is passed, the default is 255."
+		},
+		"color": {
+			"type":	"int",
+			"default": "0x000000",
+			"desc": "A hexadecimal color value of the line; for example, red is 0xFF0000, blue is 0x0000FF, and so on."
+		},
+		"alpha": {
+			"type":	"Number",
+			"default": "1.0",
+			"desc": "A number that indicates the alpha value of the color of the line; valid values are 0 to 1. If a value is not indicated, the default is 1 (solid). If the value is less than 0, the default is 0. If the value is greater than 1, the default is 1."
+		},
+		"pixelHinting": {
+			"type":	"Boolean",
+			"default": "false",
+			"desc": "A Boolean value that specifies whether to hint strokes to full pixels. This affects both the position of anchors of a curve and the line stroke size itself. With pixelHinting set to true, line widths are adjusted to full pixel widths. With pixelHinting set to false, disjoints can appear for curves and straight lines."
+		}
+	}
+}

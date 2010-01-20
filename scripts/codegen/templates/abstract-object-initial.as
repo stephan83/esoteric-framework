@@ -1,0 +1,1 @@
+					value.$property = _$name;

@@ -1,0 +1,90 @@
+{
+	"desc": "The DropShadowFilter element is used to create a drop shadow filter.",
+	
+	"baseclass": "BitmapFilterElement",
+
+	"imports": [
+		"flash.filters.BitmapFilterQuality",
+		"flash.filters.DropShadowFilter"
+	],
+	
+	"properties": {
+		"dropShadowFilter": {
+			"type":	"DropShadowFilter",
+			"default": "new DropShadowFilter()",
+			"desc": "",
+			"doc": false
+		}
+	},
+	
+	"objectProperties": {
+		"alpha": {
+			"object": "dropShadowFilter",
+			"property": "alpha",
+			"type":	"Number",
+			"default": "1.0",
+			"desc": ""
+		}, "blurX": {
+			"object": "dropShadowFilter",
+			"property": "blurX",
+			"type":	"Number",
+			"default": "4.0",
+			"desc": ""
+		}, "blurY": {
+			"object": "dropShadowFilter",
+			"property": "blurY",
+			"type":	"Number",
+			"default": "4.0",
+			"desc": ""
+		}, "color": {
+			"object": "dropShadowFilter",
+			"property": "color",
+			"type":	"int",
+			"default": "0x000000",
+			"desc": ""
+		}, "inner": {
+			"object": "dropShadowFilter",
+			"property": "inner",
+			"type":	"Boolean",
+			"default": "false",
+			"desc": ""
+		}, "knockout": {
+			"object": "dropShadowFilter",
+			"property": "knockout",
+			"type":	"Boolean",
+			"default": "false",
+			"desc": ""
+		}, "quality": {
+			"object": "dropShadowFilter",
+			"property": "quality",
+			"type":	"int",
+			"default": "BitmapFilterQuality.MEDIUM",
+			"desc": ""
+		}, "strength": {
+			"object": "dropShadowFilter",
+			"property": "strength",
+			"type":	"Number",
+			"default": "2.0",
+			"desc": ""
+		}, "angle": {
+			"object": "dropShadowFilter",
+			"property": "angle",
+			"type":	"Number",
+			"default": "45",
+			"desc": ""
+		}, "distance": {
+			"object": "dropShadowFilter",
+			"property": "distance",
+			"type":	"Number",
+			"default": "4.0",
+			"desc": ""
+		}, "hideObject": {
+			"object": "dropShadowFilter",
+			"property": "hideObject",
+			"type":	"Boolean",
+			"default": "false",
+			"desc": ""
+		}
+	}
+	
+}

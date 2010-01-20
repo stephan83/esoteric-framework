@@ -1,0 +1,23 @@
+{
+	"desc": "The BitmapFile element is used to load a bitmap from a file.",
+	
+	"baseclass": "BitmapElement",
+	
+	"properties": {
+		"url": {
+			"type":	"String",
+			"desc": "The URL of the bitmap."
+		},
+		"bitmapWidth": {
+			"type":	"int",
+			"default": 0,
+			"desc": "The width of the bitmap data."
+		},
+		"bitmapHeight": {
+			"type":	"int",
+			"default": 0,
+			"desc": "The height of the bitmap data."
+		}
+	}
+	
+}

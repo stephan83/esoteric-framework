@@ -1,0 +1,42 @@
+{
+	"desc": "The RoundedRectangle element is used to draw a rounded rectangle.",
+	
+	"baseclass": "TweenableElement",
+
+	"imports": [
+		"com.esoteric.core.TweenableElement"
+	],
+	
+	"properties": {
+		"x": {
+			"type":	"Number",
+			"default": "0.0",
+			"desc": "The vertical position of the rounded rectangle."
+		},
+		"y": {
+			"type":	"Number",
+			"default": "0.0",
+			"desc": "The horizontal position of the rounded rectangle."
+		},
+		"width": {
+			"type":	"Number",
+			"default": "100.0",
+			"desc": "The width of the rounded rectangle."
+		},
+		"height": {
+			"type":	"Number",
+			"default": "100.0",
+			"desc": "The height of the rounded rectangle."
+		},
+		"ellipseWidth": {
+			"type":	"Number",
+			"default": "20.0",
+			"desc": "The ellipse width of the rounded rectangle."
+		},
+		"ellipseHeight": {
+			"type":	"Number",
+			"default": "20.0",
+			"desc": "The ellipse height of the rounded rectangle."
+		}
+	}
+}

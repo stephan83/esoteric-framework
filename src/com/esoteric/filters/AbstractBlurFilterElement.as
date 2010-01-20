@@ -1,0 +1,241 @@
+/*
+	DO NOT MODIFY THIS FILE, THE CODE GENERATOR WILL ERASE ANY CHANGES MADE.
+	MAKE CHANGES TO THE DERIVED CLASS INSTEAD.
+
+	Last generated 2010-01-06 17:00:07.532000 UTC.
+
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	~                           Esoteric Framework                            ~
+	~                       framework.esotericorp.com                         ~
+	~                                                                         ~
+	~                  Crafted with care by Stephan Florquin                  ~
+	~                       stephan.florquin@gmail.com                        ~
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	
+	-----                                                                 -----
+
+	Copyright (c) 2009 Stephan Florquin
+
+	Permission is hereby granted, free of charge, to any person	obtaining a
+	copy of this software and associated documentationfiles (the "Software"),
+	to deal in the Software without	restriction, including without limitation
+	the rights to use, copy, modify, merge, publish, distribute, sublicense,
+	and / or sell	copies of the Software, and to permit persons to whom the
+	Software is furnished to do so, subject to the following conditions:
+
+	The above copyright notice and this permission notice shall be included in
+	all copies or substantial portions of the Software.
+
+	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,	EXPRESS OR
+	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+	FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+	DEALINGS IN THE SOFTWARE.
+	
+	-----                                                                 -----
+*/
+
+package com.esoteric.filters 
+{
+	import flash.filters.BitmapFilterQuality;
+	import flash.filters.BlurFilter;
+
+	import com.esoteric.core.IElement;
+	import com.esoteric.display.ApplicationElement;
+	import com.esoteric.events.ElementEvent;
+	import com.esoteric.events.PropertyChangeEvent;
+	
+	public class AbstractBlurFilterElement extends BitmapFilterElement
+	{
+		
+		//---------------------------------------------------------------------
+		// Constructor
+		//---------------------------------------------------------------------
+		
+		/**
+		 * Constructor.
+		 */
+		public function AbstractBlurFilterElement(root:ApplicationElement, parent:IElement, kind:String) 
+		{
+			super(root, parent, kind);
+			
+			blurFilter.quality = _quality;
+			blurFilter.blurX = _blurX;
+			blurFilter.blurY = _blurY;
+
+		}
+		
+		//---------------------------------------------------------------------
+		// Overrides
+		//---------------------------------------------------------------------
+		
+		/**
+		 * @inheritDoc
+		 */
+		
+		public override function initialize():void
+		{
+			super.initialize();
+			
+
+		}
+
+		//---------------------------------------------------------------------
+		// Variables
+		//---------------------------------------------------------------------
+		
+		/**
+		 * @private
+		 */
+		private var _blurFilter:BlurFilter = new BlurFilter();
+
+		/**
+		 * @private
+		 */
+		private var _quality:int = BitmapFilterQuality.MEDIUM;
+
+		/**
+		 * @private
+		 */
+		private var _blurX:Number = 4.0;
+
+		/**
+		 * @private
+		 */
+		private var _blurY:Number = 4.0;
+
+
+		//---------------------------------------------------------------------
+		// Getters and setters
+		//---------------------------------------------------------------------
+		
+		/**
+		 *  [default = new BlurFilter()]
+		 *
+		 * @default	new BlurFilter()
+		 */
+		public function get blurFilter():BlurFilter { return _blurFilter; }
+		
+		public function set blurFilter(value:BlurFilter):void 
+		{
+			if(_blurFilter != value)
+			{
+				var oldValue:BlurFilter = _blurFilter;
+			
+				if(value)
+				{
+					value.quality = _quality;
+					value.blurX = _blurX;
+					value.blurY = _blurY;
+
+				}
+			
+				_blurFilter = value;
+				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
+				{
+					dispatchEventNow(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'blurFilter', oldValue, value));
+				}
+				root.renderQueue.add(this);
+			}
+		}
+
+
+		/**
+		 *  [default = BitmapFilterQuality.MEDIUM]
+		 *
+		 * @default	BitmapFilterQuality.MEDIUM
+		 */
+		public function get quality():int { return _quality; }
+		
+		public function set quality(value:int):void 
+		{
+
+			if(quality != value)
+			{
+				var oldValue:int = _quality;
+
+
+				
+				_quality = value;
+
+				if(blurFilter)
+				{
+					blurFilter.quality = value;
+				}
+
+				root.renderQueue.add(this);			
+				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
+				{
+					dispatchEventNow(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'quality', oldValue, value));
+				}
+			}
+		}
+
+		/**
+		 *  [default = 4.0]
+		 *
+		 * @default	4.0
+		 */
+		public function get blurX():Number { return _blurX; }
+		
+		public function set blurX(value:Number):void 
+		{
+
+			if(blurX != value)
+			{
+				var oldValue:Number = _blurX;
+
+
+				
+				_blurX = value;
+
+				if(blurFilter)
+				{
+					blurFilter.blurX = value;
+				}
+
+				root.renderQueue.add(this);			
+				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
+				{
+					dispatchEventNow(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'blurX', oldValue, value));
+				}
+			}
+		}
+
+		/**
+		 *  [default = 4.0]
+		 *
+		 * @default	4.0
+		 */
+		public function get blurY():Number { return _blurY; }
+		
+		public function set blurY(value:Number):void 
+		{
+
+			if(blurY != value)
+			{
+				var oldValue:Number = _blurY;
+
+
+				
+				_blurY = value;
+
+				if(blurFilter)
+				{
+					blurFilter.blurY = value;
+				}
+
+				root.renderQueue.add(this);			
+				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
+				{
+					dispatchEventNow(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'blurY', oldValue, value));
+				}
+			}
+		}
+
+
+	}
+	
+}

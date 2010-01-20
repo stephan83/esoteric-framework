@@ -1,0 +1,22 @@
+{
+	"desc": "The SolidFill element is used to initiate a solid fill.",
+	
+	"baseclass": "TweenableElement",
+
+	"imports": [
+		"com.esoteric.core.TweenableElement"
+	],
+	
+	"properties": {
+		"color": {
+			"type":	"int",
+			"default": "0x000000",
+			"desc": "The color value."
+		},
+		"alpha": {
+			"type":	"Number",
+			"default": "1.0",
+			"desc": "The alpha value."
+		}
+	}
+}

@@ -1,0 +1,245 @@
+{
+	"desc": "The TextField element is used to create a text field.",
+	
+	"baseclass": "InteractiveObjectElement",
+
+	"imports": [
+		"com.esoteric.display.InteractiveObjectElement",
+		"flash.text.AntiAliasType",
+		"flash.text.TextField",
+		"flash.text.TextFieldAutoSize",
+		"flash.text.TextFieldType",
+		"flash.text.TextFormat",
+		"flash.text.TextFormatAlign"
+	],
+	
+	"properties": {
+		"textField": {
+			"namespace": "protected",
+			"type":	"TextField",
+			"default": "new TextField()",
+			"desc": "The text field object.",
+			"bindable": false,
+			"update": false,
+			"doc": false
+		},
+		"textFormat": {
+			"namespace": "protected",
+			"type":	"TextFormat",
+			"default": "new TextFormat()",
+			"desc": "The text format object.",
+			"bindable": false,
+			"doc": false
+		},
+		"textWidth": {
+			"type":	"int",
+			"default": "0",
+			"desc": "The text width.",
+			"update": false
+		},
+		"textHeight": {
+			"type":	"int",
+			"default": "0",
+			"desc": "The text height.",
+			"update": false
+		}
+	},
+	
+	"objectProperties": {
+		"antiAliasType": {
+			"object": "textField",
+			"property": "antiAliasType",
+			"type":	"String",
+			"default": "AntiAliasType.ADVANCED",
+			"desc": "The type of anti-aliasing."
+		},
+		"autoSize": {
+			"object": "textField",
+			"property": "autoSize",
+			"type":	"String",
+			"default": "TextFieldAutoSize.NONE",
+			"desc": "The auto-size policy for the text."
+		},
+		"selectable": {
+			"object": "textField",
+			"property": "selectable",
+			"type":	"Boolean",
+			"default": "false",
+			"desc": "Whether the text can be selected."
+		},
+		"multiline": {
+			"object": "textField",
+			"property": "multiline",
+			"type":	"Boolean",
+			"default": "false",
+			"desc": "Whether the text can spread over multiple lines."
+		},
+		"wordWrap": {
+			"object": "textField",
+			"property": "wordWrap",
+			"type":	"Boolean",
+			"default": "false",
+			"desc": "Whether to word wrap the text."
+		},
+		"embedFonts": {
+			"object": "textField",
+			"property": "embedFonts",
+			"type":	"Boolean",
+			"default": "false",
+			"desc": "Whether to embed fonts."
+		},
+		"type": {
+			"object": "textField",
+			"property": "type",
+			"type":	"String",
+			"default": "TextFieldType.DYNAMIC",
+			"desc": "The type of the text field (either 'dynamic' or 'input')."
+		},
+		"align": {
+			"object": "textFormat",
+			"property": "align",
+			"type":	"String",
+			"default": "TextFormatAlign.LEFT",
+			"desc": "The text alignment."
+		},
+		
+		"blockIdent": {
+			"object": "textFormat",
+			"property": "blockIndent",
+			"type":	"Object",
+			"default": "0",
+			"desc": "The block indentation, in pixels."
+		},
+		"bullet": {
+			"object": "textFormat",
+			"property": "bullet",
+			"type":	"Object",
+			"default": "false",
+			"desc": "Whether the paragraphs are bullets."
+		},
+		"color": {
+			"object": "textFormat",
+			"property": "color",
+			"type":	"Object",
+			"default": "0x000000",
+			"desc": "The font color."
+		},
+		"font": {
+			"object": "textFormat",
+			"property": "font",
+			"type":	"String",
+			"default": "\"_sans\"",
+			"desc": "The font name."
+		},
+		"indent": {
+			"object": "textFormat",
+			"property": "indent",
+			"type":	"Object",
+			"default": "0",
+			"desc": "The text indentation."
+		},
+		"italic": {
+			"object": "textFormat",
+			"property": "italic",
+			"type":	"Object",
+			"default": "false",
+			"desc": "Whether the text is italic."
+		},
+		"kerning": {
+			"object": "textFormat",
+			"property": "kerning",
+			"type":	"Object",
+			"default": "false",
+			"desc": "The text kerning."
+		},
+		"leading": {
+			"object": "textFormat",
+			"property": "leading",
+			"type":	"Object",
+			"default": "0",
+			"desc": "The text leading."
+		},
+		"rightMargin": {
+			"object": "textFormat",
+			"property": "rightMargin",
+			"type":	"Object",
+			"default": "0",
+			"desc": "The right margin, in pixels."
+		},
+		"leftMargin": {
+			"object": "textFormat",
+			"property": "leftMargin",
+			"type":	"Object",
+			"default": "0",
+			"desc": "The left margin, in pixels."
+		},
+		"letterSpacing": {
+			"object": "textFormat",
+			"property": "letterSpacing",
+			"type":	"Object",
+			"default": "0.0",
+			"desc": "The letter spacing."
+		},
+		"size": {
+			"object": "textFormat",
+			"property": "size",
+			"type":	"Object",
+			"default": "12",
+			"desc": "The font size."
+		},
+		"tabStops": {
+			"object": "textFormat",
+			"property": "tabStops",
+			"type":	"Array",
+			"desc": "The tab stops."
+		},
+		"target": {
+			"object": "textFormat",
+			"property": "target",
+			"type":	"String",
+			"default": "\"_self\"",
+			"desc": "The target frame for the link."
+		},
+		"underline": {
+			"object": "textFormat",
+			"property": "underline",
+			"type":	"Object",
+			"default": "false",
+			"desc": "Whether to underline the text."
+		},
+		"url": {
+			"object": "textFormat",
+			"property": "url",
+			"type":	"String",
+			"desc": "The link URL for the text."
+		},
+		"restrict": {
+			"object": "textField",
+			"property": "restrict",
+			"type":	"String",
+			"desc": "Restricts what characters are allowed upon user input."
+		},
+		"maxChars": {
+			"object": "textField",
+			"property": "maxChars",
+			"type":	"int",
+			"default": "0",
+			"desc": "The maximum number of characters allowed."
+		},
+		"sharpness": {
+			"object": "textField",
+			"property": "sharpness",
+			"type":	"int",
+			"default": "-100",
+			"desc": "The sharpness of the text."
+		},
+		"thickness": {
+			"object": "textField",
+			"property": "thickness",
+			"type":	"int",
+			"default": "100",
+			"desc": "The thickness of the text."
+		}
+	}
+	
+}
