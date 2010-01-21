@@ -27,7 +27,7 @@
     <option showBindingWarnings="True" />
     <option showDeprecationWarnings="True" />
     <option showUnusedTypeSelectorWarnings="True" />
-    <option strict="False" />
+    <option strict="True" />
     <option useNetwork="True" />
     <option useResourceBundleMetadata="True" />
     <option warnings="False" />

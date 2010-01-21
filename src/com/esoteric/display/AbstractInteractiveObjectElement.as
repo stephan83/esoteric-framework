@@ -2,7 +2,7 @@
 	DO NOT MODIFY THIS FILE, THE CODE GENERATOR WILL ERASE ANY CHANGES MADE.
 	MAKE CHANGES TO THE DERIVED CLASS INSTEAD.
 
-	Last generated 2010-01-20 20:05:47.713000 UTC.
+	Last generated 2010-01-20 20:12:19.416000 UTC.
 
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	~                           Esoteric Framework                            ~
@@ -156,7 +156,7 @@ package com.esoteric.display
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'pressedX', oldValue, value));
 				}
-				
+				context.renderQueue.add(this);
 			}
 		}
 
@@ -180,7 +180,7 @@ package com.esoteric.display
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'hovered', oldValue, value));
 				}
-				
+				context.renderQueue.add(this);
 			}
 		}
 
@@ -204,7 +204,7 @@ package com.esoteric.display
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'pressedY', oldValue, value));
 				}
-				
+				context.renderQueue.add(this);
 			}
 		}
 
@@ -228,7 +228,7 @@ package com.esoteric.display
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'globalX', oldValue, value));
 				}
-				
+				context.renderQueue.add(this);
 			}
 		}
 
@@ -252,7 +252,7 @@ package com.esoteric.display
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'localY', oldValue, value));
 				}
-				
+				context.renderQueue.add(this);
 			}
 		}
 
@@ -276,7 +276,7 @@ package com.esoteric.display
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'localX', oldValue, value));
 				}
-				
+				context.renderQueue.add(this);
 			}
 		}
 
@@ -325,7 +325,7 @@ package com.esoteric.display
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'globalY', oldValue, value));
 				}
-				
+				context.renderQueue.add(this);
 			}
 		}
 
@@ -349,7 +349,7 @@ package com.esoteric.display
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'pressed', oldValue, value));
 				}
-				
+				context.renderQueue.add(this);
 			}
 		}
 
@@ -377,7 +377,7 @@ package com.esoteric.display
 					interactiveObject.mouseEnabled = value;
 				}
 
-							
+				context.renderQueue.add(this);			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'mouseEnabled', oldValue, value));

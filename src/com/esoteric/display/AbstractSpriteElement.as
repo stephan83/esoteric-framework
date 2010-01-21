@@ -2,7 +2,7 @@
 	DO NOT MODIFY THIS FILE, THE CODE GENERATOR WILL ERASE ANY CHANGES MADE.
 	MAKE CHANGES TO THE DERIVED CLASS INSTEAD.
 
-	Last generated 2010-01-20 20:05:47.785000 UTC.
+	Last generated 2010-01-20 20:12:19.478000 UTC.
 
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	~                           Esoteric Framework                            ~
@@ -135,7 +135,7 @@ package com.esoteric.display
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'sprite', oldValue, value));
 				}
-				
+				context.renderQueue.add(this);
 			}
 		}
 
@@ -163,7 +163,7 @@ package com.esoteric.display
 					sprite.mouseChildren = value;
 				}
 
-							
+				context.renderQueue.add(this);			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'mouseChildren', oldValue, value));
@@ -194,7 +194,7 @@ package com.esoteric.display
 					sprite.useHandCursor = value;
 				}
 
-							
+				context.renderQueue.add(this);			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'useHandCursor', oldValue, value));
@@ -225,7 +225,7 @@ package com.esoteric.display
 					sprite.buttonMode = value;
 				}
 
-							
+				context.renderQueue.add(this);			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'buttonMode', oldValue, value));

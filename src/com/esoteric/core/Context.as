@@ -35,9 +35,11 @@
 	
 package com.esoteric.core 
 {
+	import com.esoteric.expressions.Closure;
 	import com.esoteric.expressions.ExpressionVm;
 	import com.esoteric.net.Cache;
 	import flash.display.Stage;
+	import flash.events.Event;
 	
 	/**
 	 * Render context.
@@ -58,12 +60,20 @@ package com.esoteric.core
 		 * @param	vm			the virtual machine
 		 * @param	cache		the cache
 		 */
-		public function Context(stage:Stage, factory:ElementFactory = null, vm:ExpressionVm = null, cache:Cache = null) 
+		public function Context(stage:Stage, factory:ElementFactory = null, vm:ExpressionVm = null, cache:Cache = null, expQueue:ElementExpressionQueue = null, closure:Closure = null, renderQueue:RenderQueue = null) 
 		{
-			this.stage = stage;
-			this.factory = factory || new ElementFactory();
-			this.vm = vm || new ExpressionVm();
-			this.cache = cache || new Cache();
+			_stage = stage;
+			_factory = factory || new ElementFactory();
+			_vm = vm || new ExpressionVm();
+			_cache = cache || new Cache();
+			_expQueue = expQueue || new ElementExpressionQueue();
+			_closure = closure || new Closure();
+			_renderQueue = renderQueue || new RenderQueue();
+			
+			_closure.current.stageWidth = stage.stageWidth;
+			_closure.current.stageHeight = stage.stageHeight;
+			
+			_stage.addEventListener(Event.RESIZE, resizeHandler);
 		}
 		
 		//---------------------------------------------------------------------
@@ -89,6 +99,21 @@ package com.esoteric.core
 		 * @private
 		 */
 		private var _cache:Cache;
+		
+		/**
+		 * @private
+		 */
+		private var _expQueue:ElementExpressionQueue;
+		
+		/**
+		 * @private
+		 */
+		private var _closure:Closure;
+		
+		/**
+		 * @private
+		 */
+		private var _renderQueue:RenderQueue;
 		
 		//---------------------------------------------------------------------
 		// Methods
@@ -132,6 +157,45 @@ package com.esoteric.core
 		public function set cache(value:Cache):void 
 		{
 			_cache = value;
+		}
+		
+		/**
+		 * The render queue.
+		 */
+		public function get renderQueue():RenderQueue { return _renderQueue; }
+		
+		public function set renderQueue(value:RenderQueue):void 
+		{
+			_renderQueue = value;
+		}
+		
+		/**
+		 * The expression queue.
+		 */
+		public function get expQueue():ElementExpressionQueue { return _expQueue; }
+		
+		public function set expQueue(value:ElementExpressionQueue):void 
+		{
+			_expQueue = value;
+		}
+		
+		/**
+		 * The closure.
+		 */
+		public function get closure():Closure { return _closure; }
+		
+		public function set closure(value:Closure):void 
+		{
+			_closure = value;
+		}
+		
+		/**
+		 * @private
+		 */
+		private function resizeHandler(e:Event):void 
+		{
+			_closure.current.stageWidth = stage.stageWidth;
+			_closure.current.stageHeight = stage.stageHeight;
 		}
 		
 	}

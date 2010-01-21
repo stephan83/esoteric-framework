@@ -35,5 +35,7 @@
 -->
 
 <Preloader>
+	
+	<TextField color="0xffffff"><![CDATA[{stageWidth + ', ' + stageHeight}]]></TextField>
 
 </Preloader>

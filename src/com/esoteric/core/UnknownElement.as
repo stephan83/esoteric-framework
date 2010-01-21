@@ -63,7 +63,7 @@ package com.esoteric.core
 		{
 			super();
 			
-			_element = new AbstractElement(context, this);
+			_element = new AbstractElement(context, kind, this);
 		}
 		//---------------------------------------------------------------------
 		// Variables
@@ -190,9 +190,9 @@ package com.esoteric.core
 		/**
 		 * @inheritDoc
 		 */
-		public function createExpressionContext(name:String):Object
+		public function render():void
 		{
-			return _element.createExpressionContext(name);
+			_element.render();
 		}
 		
 		/**
@@ -203,45 +203,13 @@ package com.esoteric.core
 			return _element.contains(element);
 		}
 		
-		/**
-		 * @inheritDoc
-		 */
-		public function render():void
-		{
-			_element.render();
-		}
-		
-		/**
-		 * @inheritDoc
-		 */
-		public function getElementById(id:String):IElement
-		{
-			return _element.getElementById(id);
-		}
-		
-		/**
-		 * @inheritDoc
-		 */
-		public function dispatchEventNextFrame(e:Event):void
-		{
-			_element.dispatchEventNextFrame(e);
-		}
-		
-		/**
-		 * @inheritDoc
-		 */
-		public function dispatchEventNow(e:Event):Boolean
-		{
-			return _element.dispatchEventNow(e);
-		}
-		
 		//---------------------------------------------------------------------
 		// OVERRIDES
 		//---------------------------------------------------------------------
 		
 		override public function clone():ICloneable
 		{
-			var elementCopy:UnknownElement = new UnknownElement(root, parent, kind);
+			var elementCopy:UnknownElement = new UnknownElement(context, kind);
 			
 			for (var name:String in this)
 			{

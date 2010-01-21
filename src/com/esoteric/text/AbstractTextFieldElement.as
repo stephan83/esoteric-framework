@@ -2,7 +2,7 @@
 	DO NOT MODIFY THIS FILE, THE CODE GENERATOR WILL ERASE ANY CHANGES MADE.
 	MAKE CHANGES TO THE DERIVED CLASS INSTEAD.
 
-	Last generated 2010-01-20 20:05:47.844000 UTC.
+	Last generated 2010-01-20 20:12:19.539000 UTC.
 
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	~                           Esoteric Framework                            ~
@@ -349,7 +349,7 @@ package com.esoteric.text
 			
 				_textFormat = value;
 
-				
+				context.renderQueue.add(this);
 			}
 		}
 
@@ -425,7 +425,7 @@ package com.esoteric.text
 					textField.embedFonts = value;
 				}
 
-							
+				context.renderQueue.add(this);			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'embedFonts', oldValue, value));
@@ -456,7 +456,7 @@ package com.esoteric.text
 					textFormat.color = value;
 				}
 
-							
+				context.renderQueue.add(this);			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'color', oldValue, value));
@@ -487,7 +487,7 @@ package com.esoteric.text
 					textField.sharpness = value;
 				}
 
-							
+				context.renderQueue.add(this);			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'sharpness', oldValue, value));
@@ -518,7 +518,7 @@ package com.esoteric.text
 					textField.restrict = value;
 				}
 
-							
+				context.renderQueue.add(this);			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'restrict', oldValue, value));
@@ -549,7 +549,7 @@ package com.esoteric.text
 					textField.wordWrap = value;
 				}
 
-							
+				context.renderQueue.add(this);			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'wordWrap', oldValue, value));
@@ -580,7 +580,7 @@ package com.esoteric.text
 					textFormat.font = value;
 				}
 
-							
+				context.renderQueue.add(this);			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'font', oldValue, value));
@@ -611,7 +611,7 @@ package com.esoteric.text
 					textFormat.tabStops = value;
 				}
 
-							
+				context.renderQueue.add(this);			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'tabStops', oldValue, value));
@@ -642,7 +642,7 @@ package com.esoteric.text
 					textFormat.underline = value;
 				}
 
-							
+				context.renderQueue.add(this);			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'underline', oldValue, value));
@@ -673,7 +673,7 @@ package com.esoteric.text
 					textFormat.size = value;
 				}
 
-							
+				context.renderQueue.add(this);			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'size', oldValue, value));
@@ -704,7 +704,7 @@ package com.esoteric.text
 					textField.antiAliasType = value;
 				}
 
-							
+				context.renderQueue.add(this);			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'antiAliasType', oldValue, value));
@@ -735,7 +735,7 @@ package com.esoteric.text
 					textFormat.leading = value;
 				}
 
-							
+				context.renderQueue.add(this);			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'leading', oldValue, value));
@@ -766,7 +766,7 @@ package com.esoteric.text
 					textField.thickness = value;
 				}
 
-							
+				context.renderQueue.add(this);			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'thickness', oldValue, value));
@@ -797,7 +797,7 @@ package com.esoteric.text
 					textFormat.kerning = value;
 				}
 
-							
+				context.renderQueue.add(this);			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'kerning', oldValue, value));
@@ -828,7 +828,7 @@ package com.esoteric.text
 					textField.multiline = value;
 				}
 
-							
+				context.renderQueue.add(this);			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'multiline', oldValue, value));
@@ -859,7 +859,7 @@ package com.esoteric.text
 					textFormat.italic = value;
 				}
 
-							
+				context.renderQueue.add(this);			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'italic', oldValue, value));
@@ -890,7 +890,7 @@ package com.esoteric.text
 					textFormat.leftMargin = value;
 				}
 
-							
+				context.renderQueue.add(this);			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'leftMargin', oldValue, value));
@@ -921,7 +921,7 @@ package com.esoteric.text
 					textField.type = value;
 				}
 
-							
+				context.renderQueue.add(this);			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'type', oldValue, value));
@@ -952,7 +952,7 @@ package com.esoteric.text
 					textField.autoSize = value;
 				}
 
-							
+				context.renderQueue.add(this);			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'autoSize', oldValue, value));
@@ -983,7 +983,7 @@ package com.esoteric.text
 					textFormat.rightMargin = value;
 				}
 
-							
+				context.renderQueue.add(this);			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'rightMargin', oldValue, value));
@@ -1014,7 +1014,7 @@ package com.esoteric.text
 					textField.maxChars = value;
 				}
 
-							
+				context.renderQueue.add(this);			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'maxChars', oldValue, value));
@@ -1045,7 +1045,7 @@ package com.esoteric.text
 					textFormat.letterSpacing = value;
 				}
 
-							
+				context.renderQueue.add(this);			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'letterSpacing', oldValue, value));
@@ -1076,7 +1076,7 @@ package com.esoteric.text
 					textField.selectable = value;
 				}
 
-							
+				context.renderQueue.add(this);			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'selectable', oldValue, value));
@@ -1107,7 +1107,7 @@ package com.esoteric.text
 					textFormat.indent = value;
 				}
 
-							
+				context.renderQueue.add(this);			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'indent', oldValue, value));
@@ -1138,7 +1138,7 @@ package com.esoteric.text
 					textFormat.target = value;
 				}
 
-							
+				context.renderQueue.add(this);			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'target', oldValue, value));
@@ -1169,7 +1169,7 @@ package com.esoteric.text
 					textFormat.bullet = value;
 				}
 
-							
+				context.renderQueue.add(this);			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'bullet', oldValue, value));
@@ -1200,7 +1200,7 @@ package com.esoteric.text
 					textFormat.url = value;
 				}
 
-							
+				context.renderQueue.add(this);			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'url', oldValue, value));
@@ -1231,7 +1231,7 @@ package com.esoteric.text
 					textFormat.align = value;
 				}
 
-							
+				context.renderQueue.add(this);			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'align', oldValue, value));
@@ -1262,7 +1262,7 @@ package com.esoteric.text
 					textFormat.blockIndent = value;
 				}
 
-							
+				context.renderQueue.add(this);			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'blockIdent', oldValue, value));

@@ -34,6 +34,7 @@
 
 package com.esoteric.text
 {
+	import com.esoteric.core.Context;
 	import com.esoteric.core.IElement;
 	import com.esoteric.display.ApplicationElement;
 	import com.esoteric.events.PropertyChangeEvent;
@@ -54,9 +55,9 @@ package com.esoteric.text
 		/**
 		 * Constructor.
 		 */
-		public function TextFieldElement(root:ApplicationElement, parent:IElement, type:String) 
+		public function TextFieldElement(context:Context, type:String) 
 		{
-			super(root, parent, kind);
+			super(context, kind);
 			
 			textField.addEventListener(Event.CHANGE, textInputHandler);
 		}

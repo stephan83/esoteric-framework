@@ -107,6 +107,11 @@ package com.esoteric.core
 		function initialize():void;
 		
 		/**
+		 * Renders the elements.
+		 */
+		function render():void;
+		
+		/**
 		 * Returns the child at the specified index.
 		 * 
 		 * @param	index	the index of the child
@@ -136,6 +141,14 @@ package com.esoteric.core
 		 * @param	child	the child to remove
 		 */
 		function removeChild(child:IElement):void;
+		
+		/**
+		 * Returns whether the elements contains another element.
+		 * 
+		 * @param	element	the element
+		 * @return	whether the elements contains the other element
+		 */
+		function contains(element:IElement):Boolean;
 		
 	}
 	

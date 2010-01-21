@@ -133,6 +133,11 @@ package com.esoteric.core
 			_elements = _nextIElements;
 			_nextIElements = new Array();
 			
+			if (_elements.length)
+			{
+				render();
+			}
+			
 			_rendering = false;
 		}
 		

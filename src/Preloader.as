@@ -2,6 +2,7 @@
 {
 	import com.esoteric.core.Context;
 	import com.esoteric.core.ElementFactory;
+	import com.esoteric.core.Engine;
 	import com.esoteric.core.IElement;
 	import com.esoteric.core.StaticElementBuilder;
 	import com.esoteric.core.XMLParser;
@@ -34,24 +35,32 @@
 			
 			var factory:ElementFactory = new ElementFactory();
 			factory.add('Preloader', new StaticElementBuilder(PreloaderElement));
-			var context:Context = new Context(stage, factory);
-			var root:PreloaderElement = XMLParser.parseNode(<Preloader />, context) as PreloaderElement;
+			_context = new Context(stage, factory);
+			var root:PreloaderElement = XMLParser.parseNode(<Preloader />, _context) as PreloaderElement;
 			
 			addChild(root.sprite);
 		}
 		
+		private var _context:Context;
+		
+		private var _engine:Engine = new Engine();
+		
 		private function progress(e:ProgressEvent):void 
 		{
 			// update loader
+			
+			
 		}
 		
 		private function checkFrame(e:Event):void 
 		{
 			if (currentFrame == totalFrames) 
 			{
-				removeEventListener(Event.ENTER_FRAME, checkFrame);
+				//removeEventListener(Event.ENTER_FRAME, checkFrame);
 				//startup();
 			}
+			
+			_engine.render(_context);
 		}
 		
 		private function startup():void 

@@ -57,9 +57,9 @@ package com.esoteric.expressions
 		
 		function set vm(value:ExpressionVm):void;
 		
-		function get context():Object;
+		function get closure():Closure;
 		
-		function set context(value:Object):void;
+		function set closure(value:Closure):void;
 		
 		function get expression():String;
 		

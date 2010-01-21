@@ -219,6 +219,14 @@ package com.esoteric.core
 		/**
 		 * @inheritDoc
 		 */
+		public function render():void
+		{
+			
+		}
+		
+		/**
+		 * @inheritDoc
+		 */
 		public function destroy():void
 		{
 			for (var i:int = numChildren - 1; i >= 0; i--)
@@ -313,6 +321,8 @@ package com.esoteric.core
 			_text = value;
 			
 			_target.dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'text', oldValue, value)); 
+			
+			_context.renderQueue.add(_target);
 		}
 		
 		/**
@@ -370,29 +380,6 @@ package com.esoteric.core
 		/**
 		 * @inheritDoc
 		 */
-		public function getElementById(id:String):IElement
-		{
-			if (_id == id)
-			{
-				return _target;
-			}
-			
-			for each(var child:IElement in _children)
-			{
-				var result:IElement = child.getElementById(id);
-				
-				if (result)
-				{
-					return result;
-				}
-			}
-			
-			return null;
-		}
-		
-		/**
-		 * @inheritDoc
-		 */
 		public function findElements(property:String, value:String):Array
 		{
 			var elements:Array = new Array();
@@ -416,6 +403,29 @@ package com.esoteric.core
 			}
 			
 			return elements;
+		}
+		
+		/**
+		 * @inheritDoc
+		 */
+		public function contains(element:IElement):Boolean
+		{
+			if (element == _target)
+			{
+				return true;
+			}
+			
+			for each(var child:IElement in _children)
+			{
+				var match:Boolean = child.contains(element);
+				
+				if (match)
+				{
+					return true;
+				}
+			}
+			
+			return false;
 		}
 		
 		//---------------------------------------------------------------------

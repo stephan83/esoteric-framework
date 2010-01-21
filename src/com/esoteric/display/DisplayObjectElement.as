@@ -181,7 +181,7 @@ package com.esoteric.display
 			{
 				this[prop] = endValue;
 				
-				dispatchEventNextFrame(new TweenEvent(TweenEvent.MOTION_FINISH, false, false, this, prop));
+				dispatchEvent(new TweenEvent(TweenEvent.MOTION_FINISH, false, false, this, prop));
 			}
 			else
 			{

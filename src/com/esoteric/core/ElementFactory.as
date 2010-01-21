@@ -189,9 +189,9 @@ package com.esoteric.core
 			add("SolidFill", new StaticElementBuilder(SolidFillElement));
 			add("SoundFile", new StaticElementBuilder(SoundFileElement));*/
 			add("Sprite", new StaticElementBuilder(SpriteElement));
-			/*add("Sprite3D", new StaticElementBuilder(Sprite3DElement));
+			//add("Sprite3D", new StaticElementBuilder(Sprite3DElement));
 			add("TextField", new StaticElementBuilder(TextFieldElement));
-			add("Timeline", new StaticElementBuilder(TimelineElement));
+			/*add("Timeline", new StaticElementBuilder(TimelineElement));
 			add("Timer", new StaticElementBuilder(TimerElement));
 			add("VideoFile", new StaticElementBuilder(VideoFileElement));
 			add("Viewport3D", new StaticElementBuilder(Viewport3DElement));

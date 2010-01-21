@@ -64,7 +64,7 @@ package com.esoteric.expressions
 		private var _watchers:Array = new Array();
 		private var _paused:Boolean = false;
 		private var _evaluating:Boolean = false;
-		private var _context:Object;
+		private var _closure:Closure;
 		private var _instructions:Array;
 		private var _enableWatchers:Boolean;
 		private var _outdated:Boolean = true;
@@ -73,10 +73,10 @@ package com.esoteric.expressions
 		// CONSTRUCTOR
 		//---------------------------------------------------------------------
 		
-		public function Expression(expression:String, vm:ExpressionVm, context:Object = null, paused:Boolean = false, enableWatchers:Boolean = true) 
+		public function Expression(expression:String, vm:ExpressionVm, closure:Closure = null, paused:Boolean = false, enableWatchers:Boolean = true) 
 		{
 			_vm = vm;
-			_context = context;
+			_closure = closure;
 			_paused = paused;
 			_enableWatchers = enableWatchers;
 			this.expression = expression;
@@ -88,7 +88,7 @@ package com.esoteric.expressions
 		
 		public function clone():ICloneable
 		{
-			return new Expression(expression, _vm, _context, _paused);
+			return new Expression(expression, _vm, _closure, _paused, _enableWatchers);
 		}
 		
 		//---------------------------------------------------------------------
@@ -100,7 +100,7 @@ package com.esoteric.expressions
 			destroyWatchers();
 			
 			_vm = null;
-			_context = null;
+			_closure = null;
 			_expression = null;
 			_value = null;
 			_watchers = null;
@@ -119,11 +119,11 @@ package com.esoteric.expressions
 			_vm = value;
 		}
 		
-		public function get context():Object { return _context; }
+		public function get closure():Closure { return _closure; }
 		
-		public function set context(value:Object):void 
+		public function set closure(value:Closure):void 
 		{
-			_context = value;
+			_closure = value;
 		}
 		
 		public function get expression():String { return _expression; }
@@ -170,7 +170,7 @@ package com.esoteric.expressions
 			}
 			
 			_evaluating = true;
-			_value = _vm.eval(_instructions, _context, _enableWatchers);
+			_value = _vm.eval(_instructions, _closure.current, _enableWatchers);
 			_evaluating = false;
 			
 			if (_enableWatchers)

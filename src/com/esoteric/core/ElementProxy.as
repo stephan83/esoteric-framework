@@ -226,22 +226,6 @@ package com.esoteric.core
 		/**
 		 * @inheritDoc
 		 */
-		public function createExpressionContext(name:String):Object
-		{
-			return _element.createExpressionContext(name);
-		}
-		
-		/**
-		 * @inheritDoc
-		 */
-		public function contains(element:IElement):Boolean
-		{
-			return _element.contains(element);
-		}
-		
-		/**
-		 * @inheritDoc
-		 */
 		public function render():void
 		{
 			_element.render();
@@ -250,25 +234,9 @@ package com.esoteric.core
 		/**
 		 * @inheritDoc
 		 */
-		public function getElementById(id:String):IElement
+		public function contains(element:IElement):Boolean
 		{
-			return _element.getElementById(id);
-		}
-		
-		/**
-		 * @inheritDoc
-		 */
-		public function dispatchEventNextFrame(e:Event):void
-		{
-			_element.dispatchEventNextFrame(e);
-		}
-		
-		/**
-		 * @inheritDoc
-		 */
-		public function dispatchEventNow(e:Event):Boolean
-		{
-			return _element.dispatchEventNow(e);
+			return _element.contains(element);
 		}
 		
 		//---------------------------------------------------------------------
@@ -310,11 +278,12 @@ package com.esoteric.core
 			
 			if (match)
 			{
-				// TODO: enabled
-				_expressions[name] = new Expression(match[1], _element.context.vm);
+				_expressions[name] = new Expression(match[1], _element.context.vm, context.closure);
 				_watchers[name] = new Watcher(_expressions[name], "value", createExpressionValueHandler(name));
 				
 				_expressions[name].addEventListener(ExpressionEvent.OUTDATED, outdatedExpressionHandler);
+				
+				context.expQueue.add(_expressions[name]);
 			}
 			else
 			{
@@ -427,6 +396,7 @@ package com.esoteric.core
 		 */
 		private function outdatedExpressionHandler(e:ExpressionEvent):void 
 		{
+			context.expQueue.add(e.target as Expression);
 		}
 		
 		/**
