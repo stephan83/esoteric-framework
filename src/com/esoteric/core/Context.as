@@ -70,9 +70,9 @@ package com.esoteric.core
 			_closure = closure || new Closure();
 			_renderQueue = renderQueue || new RenderQueue();
 			
-			_closure.current.stageWidth = stage.stageWidth;
-			_closure.current.stageHeight = stage.stageHeight;
-			_closure.current.trace = trace;
+			_closure['stageWidth'] = stage.stageWidth;
+			_closure['stageHeight'] = stage.stageHeight;
+			_closure['trace'] = trace;
 			
 			_stage.addEventListener(Event.RESIZE, resizeHandler);
 		}
@@ -195,8 +195,8 @@ package com.esoteric.core
 		 */
 		private function resizeHandler(e:Event):void 
 		{
-			_closure.current.stageWidth = stage.stageWidth;
-			_closure.current.stageHeight = stage.stageHeight;
+			_closure['stageWidth'] = stage.stageWidth;
+			_closure['stageHeight'] = stage.stageHeight;
 		}
 		
 	}

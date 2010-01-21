@@ -65,6 +65,7 @@ package com.esoteric.expressions
 		private var _paused:Boolean = false;
 		private var _evaluating:Boolean = false;
 		private var _closure:Closure;
+		private var _local:Closure;
 		private var _instructions:Array;
 		private var _enableWatchers:Boolean;
 		private var _outdated:Boolean = true;
@@ -77,6 +78,7 @@ package com.esoteric.expressions
 		{
 			_vm = vm;
 			_closure = closure;
+			_local = new Closure(closure);
 			_paused = paused;
 			_enableWatchers = enableWatchers;
 			this.expression = expression;
@@ -170,7 +172,7 @@ package com.esoteric.expressions
 			}
 			
 			_evaluating = true;
-			_value = _vm.eval(_instructions, _closure.current, _enableWatchers);
+			_value = _vm.eval(_instructions, _local, _enableWatchers);
 			_evaluating = false;
 			
 			if (_enableWatchers)

@@ -35,14 +35,17 @@
 
 package com.esoteric.expressions 
 {
+	import com.esoteric.events.PropertyChangeEvent;
 	import com.esoteric.utils.BindableObject;
+	import com.esoteric.utils.Enumerator;
+	import flash.utils.Dictionary;
 	
 	/**
 	 * Expression closure
 	 * 
 	 * @author Stephan Florquin
 	 */
-	public class Closure
+	public class Closure extends Enumerator
 	{
 		
 		//---------------------------------------------------------------------
@@ -52,11 +55,15 @@ package com.esoteric.expressions
 		/**
 		 * Constructor.
 		 */
-		public function Closure() 
+		public function Closure(parent:Closure = null) 
 		{
-			super();
+			_parent = parent;
 			
-			push();
+			if (_parent)
+			{
+				parent.addEventListener(PropertyChangeEvent.PROPERTY_ADDED, parentPropertyAddedHandler);
+				parent.addEventListener(PropertyChangeEvent.PROPERTY_UPDATED, parentPropertyUpdatedHandler);
+			}
 		}
 		
 		//---------------------------------------------------------------------
@@ -66,25 +73,171 @@ package com.esoteric.expressions
 		/**
 		 * @private
 		 */
-		private var _stack:Array = new Array();
+		private var _parent:Closure;
+		
+		/**
+		 * @private
+		 */
+		private var _dict:Dictionary = new Dictionary();
+		
+		//---------------------------------------------------------------------
+		// Overrides
+		//---------------------------------------------------------------------
+		
+		public function toString():String
+		{
+			return 'closure';
+		}
+		
+		override enumerator function getProperty(name:*):*
+		{
+			if (_dict.hasOwnProperty(name))
+			{
+				return _dict[name];
+			}
+			
+			if (_parent)
+			{
+				return _parent[name];
+			}
+			
+			return null;
+		}
+		
+		override enumerator function setProperty(name:*, value:*):void
+		{
+			if (hasOwnProperty(name))
+			{
+				if (_dict.hasOwnProperty(name))
+				{
+					var oldValue:* = _dict[name];
+				
+					_dict[name] = value;
+					
+					dispatchEvent(new PropertyChangeEvent(
+						PropertyChangeEvent.PROPERTY_UPDATED,
+						false,
+						false,
+						name,
+						oldValue,
+						value
+					));
+				}
+				else
+				{
+					_parent[name] = value;
+				}
+			}
+			else
+			{
+				_dict[name] = value;
+				
+				dispatchEvent(new PropertyChangeEvent(
+					PropertyChangeEvent.PROPERTY_ADDED,
+					false,
+					false,
+					name,
+					null,
+					value
+				));
+			}
+		}
+		
+		override enumerator function hasProperty(name:*):Boolean
+		{
+			if (_dict.hasOwnProperty(name))
+			{
+				return true;
+			}
+			
+			if (_parent)
+			{
+				return _parent.hasOwnProperty(name);
+			}
+			
+			return false;
+		}
+		
+		/*override enumerator function nextNameIndex(index:int):int
+		{
+			if (index == 0)
+			{
+				_items.splice(0, _items.length);
+			
+				for (var name:String in _object)
+				{
+					_items.push(name);
+				}
+			}
+			
+			if (index < _items.length)
+				return index + 1;
+			
+			return 0;
+		}
+		
+		override enumerator function nextName(index:int):String
+		{
+			return _items[index - 1];
+		}*/
 		
 		//---------------------------------------------------------------------
 		// Methods
 		//---------------------------------------------------------------------
 		
-		public function get current():BindableObject
+		/**
+		 * Forces a variable to be set within current closure and children
+		 * only.
+		 * 
+		 * @param	name	local name
+		 * @param	value	global name
+		 */
+		public function setLocal(name:*, value:*):void
 		{
-			return _stack[_stack.length - 1];
+			if (_dict.hasOwnProperty(name))
+			{
+				var oldValue:* = _dict[name];
+			
+				_dict[name] = value;
+				
+				dispatchEvent(new PropertyChangeEvent(
+					PropertyChangeEvent.PROPERTY_UPDATED,
+					false,
+					false,
+					name,
+					oldValue,
+					value
+				));
+			}
+			else
+			{
+				_dict[name] = value;
+				
+				dispatchEvent(new PropertyChangeEvent(
+					PropertyChangeEvent.PROPERTY_ADDED,
+					false,
+					false,
+					name,
+					null,
+					value
+				));
+			}
 		}
 		
-		public function push():void
+		/**
+		 * @private
+		 */
+		private function parentPropertyUpdatedHandler(e:PropertyChangeEvent):void 
 		{
-			_stack[_stack.length] = new BindableObject();
+			dispatchEvent(e.clone());
 		}
 		
-		public function pop():void
+		/**
+		 * @private
+		 */
+		private function parentPropertyAddedHandler(e:PropertyChangeEvent):void 
 		{
-			_stack.length--;
+			dispatchEvent(e.clone());
 		}
 		
 	}

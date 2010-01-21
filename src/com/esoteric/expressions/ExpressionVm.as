@@ -111,7 +111,7 @@ package com.esoteric.expressions
 		// PUBLIC FUNCTIONS
 		//---------------------------------------------------------------------
 		
-		public function eval(instructions:Array, context:Object, bind:Boolean = true):*
+		public function eval(instructions:Array, closure:Closure, bind:Boolean = true):*
 		{
 			var initialTop:int = _top;
 			var length:int = instructions.length;
@@ -220,7 +220,7 @@ package com.esoteric.expressions
 					
 					case instructionTypes.pushc:
 					{
-						_stack[++_top] = context;
+						_stack[++_top] = closure;
 						break;
 					}
 					
@@ -471,13 +471,13 @@ package com.esoteric.expressions
 					
 					case instructionTypes.func:
 					{
-						_stack[++_top] = makeFunc(instruction[1], context, bind);
+						_stack[++_top] = makeFunc(instruction[1], new Closure(closure), bind);
 						break;
 					}
 					
 					case instructionTypes.arg:
 					{
-						context[instruction[1]] = _stack[_top];
+						closure.setLocal(instruction[1], _stack[_top]);
 						_top--;
 						break;
 					}
@@ -524,7 +524,7 @@ package com.esoteric.expressions
 			dispatchEvent(new ExpressionEvent(ExpressionEvent.BINDABLE_PROPERTY_LOADED, false, false, bindable, property));
 		}
 		
-		private function makeFunc(instructions:Array, context:Object, bind:Boolean):Function
+		private function makeFunc(instructions:Array, closure:Closure, bind:Boolean):Function
 		{
 			return function(...args):* {
 				args.reverse();
@@ -536,7 +536,7 @@ package com.esoteric.expressions
 					header.push([instructionTypes.push, arg]);
 				}
 				
-				return eval(header.concat(instructions), context, bind);
+				return eval(header.concat(instructions), closure, bind);
 			}
 		}
 		
