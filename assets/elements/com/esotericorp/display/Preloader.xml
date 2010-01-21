@@ -34,8 +34,25 @@
 	-----                                                                 -----
 -->
 
-<Preloader mouseEnabled="true" buttonMode="true" useHandCursor="true">
+<Preloader>
 	
+	
+	<Sprite alpha="1" mouseEnabled="true" buttonMode="true" useHandCursor="true">
+		<Shape>
+			<SolidFill>
+				<Rectangle width="{stageWidth}" height="{stageHeight}" />
+			</SolidFill>
+		</Shape>
+		
+		<Script>
+			<![CDATA[
+				this.addEventListener('click', function(e) {
+					trace('click');
+				});
+			]]>
+		</Script>
+	</Sprite>
+		
 	<Script>
 		<![CDATA[
 			
@@ -60,11 +77,6 @@
 			print('Hello', 'World!');
 			trace(a);
 			trace(msg1);
-			trace(print);
-			
-			/*addEventListener('click', function(e) {
-				trace('click');
-			});*/
 		]]>
 	</Script>
 	

@@ -464,14 +464,20 @@ package com.esoteric.core
 		 */
 		protected function createClosure():Closure
 		{
+			var closure:Closure;
+			
 			if (_parent)
 			{
-				return new Closure(_parent.closure);
+				closure = new Closure(_parent.closure);
 			}
 			else
 			{
-				return new Closure(_context.closure);
+				closure = new Closure(_context.closure);
 			}
+			
+			closure.setLocal('this', _target);
+			
+			return closure;
 		}
 		 
 		/**

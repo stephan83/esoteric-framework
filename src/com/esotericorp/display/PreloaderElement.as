@@ -36,6 +36,7 @@ package com.esotericorp.display
 {
 	import com.esoteric.core.Context;
 	import flash.display.Sprite;
+	import flash.events.Event;
 	
 	public class PreloaderElement extends AbstractPreloaderElement
 	{
@@ -54,6 +55,8 @@ package com.esotericorp.display
 			super(context, kind);
 			
 			sprite = new _concreteLight() as Sprite;
+			
+			addEventListener('click', function(e:Event):void { trace('test'); } );
 		}
 
 	}
