@@ -35,7 +35,7 @@
 package com.esoteric.display
 {
 	import com.esoteric.core.IElement;
-	import com.esoteric.display.ApplicationElement;
+	import com.esoteric.core.Context;
 	import com.esoteric.events.ElementEvent;
 	import com.esoteric.net.CacheRequest;
 	import flash.display.Bitmap;
@@ -58,9 +58,9 @@ package com.esoteric.display
 		/**
 		 * Constructor.
 		 */
-		public function BitmapFileElement(root:ApplicationElement, parent:IElement, kind:String) 
+		public function BitmapFileElement(context:Context, kind:String) 
 		{
-			super(root, parent, kind);
+			super(context, kind);
 			
 			addEventListener(ElementEvent.BYTES_LOADED, bytesLoadedHandler);
 		}
@@ -87,7 +87,7 @@ package com.esoteric.display
 			{				
 				startLoading();
 				
-				var data:* = root.cache.get(value);
+				var data:* = context.cache.get(value);
 				
 				if (data is ByteArray)
 				{
@@ -103,7 +103,7 @@ package com.esoteric.display
 				}
 				else if(!data)
 				{
-					var cacheRequest:CacheRequest = new CacheRequest(root.cache, value, true);
+					var cacheRequest:CacheRequest = new CacheRequest(context.cache, value, true);
 					cacheRequest.addEventListener(Event.COMPLETE, completeHandler);
 					cacheRequest.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
 					cacheRequest.load();
@@ -136,7 +136,7 @@ package com.esoteric.display
 		 */
 		private function completeHandler(e:Event):void 
 		{
-			var data:* = root.cache.get(url);
+			var data:* = context.cache.get(url);
 			
 			if (data is ByteArray)
 			{

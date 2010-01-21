@@ -35,7 +35,7 @@
 package com.esoteric.display
 {
 	import com.esoteric.core.IElement;
-	import com.esoteric.display.ApplicationElement;
+	import com.esoteric.core.Context;
 	
 	/**
 	* Generated 2008-08-03 06:43:05.897000 UTC.
@@ -50,9 +50,9 @@ package com.esoteric.display
 		/**
 		 * Constructor.
 		 */
-		public function RectangleElement(root:ApplicationElement, parent:IElement, kind:String) 
+		public function RectangleElement(context:Context, kind:String) 
 		{
-			super(root, parent, kind);
+			super(context, kind);
 		}
 		
 		//---------------------------------------------------------------------

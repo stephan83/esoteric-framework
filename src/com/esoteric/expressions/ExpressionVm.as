@@ -231,12 +231,14 @@ package com.esoteric.expressions
 						switch(instruction[1])
 						{
 							case "||":
+							case "or":
 							{
 								_stack[--_top] = _stack[_top] || _stack[_top + 1] ;
 								break;
 							}
 							
 							case "&&":
+							case "and":
 							{
 								_stack[--_top] = _stack[_top] && _stack[_top + 1] ;
 								break;
@@ -285,24 +287,28 @@ package com.esoteric.expressions
 							}
 							
 							case "<":
+							case "lt":
 							{
 								_stack[--_top] = _stack[_top] < _stack[_top + 1];
 								break;
 							}
 							
 							case ">":
+							case "gt":
 							{
 								_stack[--_top] = _stack[_top] > _stack[_top + 1];
 								break;
 							}
 							
 							case "<=":
+							case "lte":
 							{
 								_stack[--_top] = _stack[_top] <= _stack[_top + 1];
 								break;
 							}
 							
 							case ">=":
+							case "gte":
 							{
 								_stack[--_top] = _stack[_top] >= _stack[_top + 1];
 								break;

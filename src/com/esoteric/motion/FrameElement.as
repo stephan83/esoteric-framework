@@ -35,7 +35,7 @@
 package com.esoteric.motion
 {
 	import com.esoteric.core.IElement;
-	import com.esoteric.display.ApplicationElement;
+	import com.esoteric.core.Context;
 	
 	public class FrameElement extends AbstractFrameElement
 	{
@@ -47,9 +47,9 @@ package com.esoteric.motion
 		/**
 		 * Constructor.
 		 */
-		public function FrameElement(root:ApplicationElement, parent:IElement, kind:String) 
+		public function FrameElement(context:Context, kind:String) 
 		{
-			super(root, parent, kind);
+			super(context, kind);
 		}
 
 

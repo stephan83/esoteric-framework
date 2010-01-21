@@ -35,7 +35,7 @@
 package com.esoteric.display
 {
 	import com.esoteric.core.IElement;
-	import com.esoteric.display.ApplicationElement;
+	import com.esoteric.core.Context;
 	
 	/**
 	* Generated 2008-08-03 06:44:21.386000 UTC.
@@ -50,9 +50,9 @@ package com.esoteric.display
 		/**
 		 * Constructor.
 		 */
-		public function RoundedRectangleElement(root:ApplicationElement, parent:IElement, kind:String) 
+		public function RoundedRectangleElement(context:Context, kind:String) 
 		{
-			super(root, parent, kind);
+			super(context, kind);
 		}
 		
 		//---------------------------------------------------------------------

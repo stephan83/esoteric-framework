@@ -106,6 +106,7 @@ logicalOr
 	:	logicalAnd
 		(
 			'||'^ logicalAnd
+		|	'or'^ logicalAnd
 		)*
 	;
 	
@@ -113,6 +114,7 @@ logicalAnd
 	:	bitwiseOr
 		(
 			'&&'^ bitwiseOr
+		|	'and'^ bitwiseOr
 		)*
 	;
 
@@ -151,9 +153,13 @@ relExp
 	:	shiftExp
 		(
 			'<'^ shiftExp
+		|	'lt'^ shiftExp
 		|	'>'^ shiftExp
+		|	'gt'^ shiftExp
 		|	'<='^ shiftExp
+		|	'lte'^ shiftExp
 		|	'>='^ shiftExp
+		|	'gte'^ shiftExp
 		)*
 	;
 
@@ -239,7 +245,8 @@ params
 	;
 	
 array
-	:	'[' i=items? ']'			-> ^(CreateArray $i)
+	:	'[' i=items ']'			-> ^(CreateArray $i)
+	|	'[' ']'					-> ^(CreateArray)
 	;
 	
 items

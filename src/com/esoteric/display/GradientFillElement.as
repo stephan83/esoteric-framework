@@ -35,7 +35,7 @@
 package com.esoteric.display
 {
 	import com.esoteric.core.IElement;
-	import com.esoteric.display.ApplicationElement;
+	import com.esoteric.core.Context;
 	import flash.geom.Matrix;
 	
 	/**
@@ -51,9 +51,9 @@ package com.esoteric.display
 		/**
 		 * Constructor.
 		 */
-		public function GradientFillElement(root:ApplicationElement, parent:IElement, kind:String) 
+		public function GradientFillElement(context:Context, kind:String) 
 		{
-			super(root, parent, kind);
+			super(context, kind);
 		}
 		
 		//---------------------------------------------------------------------

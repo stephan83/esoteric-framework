@@ -35,7 +35,7 @@
 package com.esoteric.core
 {
 	import com.esoteric.core.IElement;
-	import com.esoteric.display.ApplicationElement;
+	import com.esoteric.core.Context;
 	import com.esoteric.expressions.Expression;
 	
 	/**
@@ -51,9 +51,9 @@ package com.esoteric.core
 		/**
 		 * Constructor.
 		 */
-		public function ScriptElement(root:ApplicationElement, parent:IElement, kind:String) 
+		public function ScriptElement(context:Context, kind:String) 
 		{
-			super(root, parent, kind);
+			super(context, kind);
 		}
 
 		//---------------------------------------------------------------------
@@ -73,7 +73,7 @@ package com.esoteric.core
 			
 			if (value)
 			{
-				expression = new Expression(value, root.expVm, null, false, false);
+				expression = new Expression(value, context.vm, null, false, false);
 			}
 			
 			super.text = value;
@@ -102,13 +102,13 @@ package com.esoteric.core
 		 */
 		public function run(...args):void
 		{
-			var context:Object = createExpressionContext('text');
+			/*var context:Object = createExpressionContext('text');
 			
 			context.args = args;
 			
 			expression.context = context;
 			
-			root.expQueue.add(expression);
+			root.expQueue.add(expression);*/
 		}
 		
 		/**
@@ -118,13 +118,13 @@ package com.esoteric.core
 		 */
 		protected function runNow(...args):void
 		{
-			var context:Object = createExpressionContext('text');
+			/*var context:Object = createExpressionContext('text');
 			
 			context.args = args;
 			
 			expression.context = context;
 			
-			root.expQueue.evalExpression(expression);
+			root.expQueue.evalExpression(expression);*/
 		}
 
 	}

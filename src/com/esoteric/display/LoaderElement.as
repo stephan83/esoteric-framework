@@ -35,7 +35,7 @@
 package com.esoteric.display
 {
 	import com.esoteric.core.IElement;
-	import com.esoteric.display.ApplicationElement;
+	import com.esoteric.core.Context;
 	import flash.display.DisplayObject;
 	import flash.events.Event;
 	import flash.net.URLRequest;
@@ -50,9 +50,9 @@ package com.esoteric.display
 		/**
 		 * Constructor.
 		 */
-		public function LoaderElement(root:ApplicationElement, parent:IElement, type:String) 
+		public function LoaderElement(context:Context, type:String) 
 		{
-			super(root, parent, kind);
+			super(context, kind);
 			
 			loader.contentLoaderInfo.addEventListener(Event.COMPLETE, completeHandler);
 		}

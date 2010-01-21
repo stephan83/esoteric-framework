@@ -35,7 +35,7 @@
 package com.esoteric.display
 {
 	import com.esoteric.core.IElement;
-	import com.esoteric.display.ApplicationElement;
+	import com.esoteric.core.Context;
 	import com.esoteric.events.ElementEvent;
 	import org.papervision3d.core.proto.MaterialObject3D;
 	import org.papervision3d.materials.MovieMaterial;
@@ -53,11 +53,11 @@ package com.esoteric.display
 		/**
 		 * Constructor.
 		 */
-		public function MovieMaterialElement(root:ApplicationElement, parent:IElement, type:String) 
+		public function MovieMaterialElement(context:Context, type:String) 
 		{
-			super(root, parent, kind);
+			super(context, kind);
 			
-			root.addEventListener(ElementEvent.POST_RENDER, postRenderHandler);
+			//root.addEventListener(ElementEvent.POST_RENDER, postRenderHandler);
 		}
 		
 		//---------------------------------------------------------------------
@@ -108,7 +108,7 @@ package com.esoteric.display
 		{
 			movieMaterial.animated = true;
 			
-			root.renderQueue.add(this);
+			context.renderQueue.add(this);
 		}
 		
 		/**

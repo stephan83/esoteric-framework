@@ -35,7 +35,7 @@
 package com.esoteric.display
 {
 	import com.esoteric.core.IElement;
-	import com.esoteric.display.ApplicationElement;
+	import com.esoteric.core.Context;
 	import com.esoteric.events.PropertyChangeEvent;
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -53,9 +53,9 @@ package com.esoteric.display
 		/**
 		 * Constructor
 		 */
-		public function Sprite3DElement(root:ApplicationElement, parent:IElement, type:String) 
+		public function Sprite3DElement(context:Context, type:String) 
 		{
-			super(root, parent, kind);
+			super(context, kind);
 			
 			// Interactive clips need to be on the stage, so put one in an
 			// invisible container to add it to the stage.
@@ -101,7 +101,7 @@ package com.esoteric.display
 				
 				_userScaleX = value;
 				
-				root.renderQueue.add(this);
+				context.renderQueue.add(this);
 				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'scaleX', oldValue, value));
 			}
 		}
@@ -117,7 +117,7 @@ package com.esoteric.display
 				
 				_userScaleY = value;
 				
-				root.renderQueue.add(this);
+				context.renderQueue.add(this);
 				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'scaleY', oldValue, value));
 			}
 		}
@@ -133,13 +133,13 @@ package com.esoteric.display
 				{
 					// Since the clip is no longer interactive, remove the 
 					// container from the stage.
-					root.stage.removeChild(_container);
+					context.stage.removeChild(_container);
 				}
 				else
 				{
 					// The clip is now interactive so the container must be
 					// added to the stage.
-					root.stage.addChild(_container);
+					context.stage.addChild(_container);
 				}
 			}
 			
@@ -154,7 +154,7 @@ package com.esoteric.display
 			if (interactive)
 			{
 				// Remove the container from the stage.
-				root.stage.removeChild(_container);
+				context.stage.removeChild(_container);
 			}
 			
 			super.destroy();

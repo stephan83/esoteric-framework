@@ -34,7 +34,7 @@
 
 package com.esoteric.core 
 {
-	import com.esoteric.display.ApplicationElement;
+	import com.esoteric.core.Context;
 	import com.esoteric.utils.IBindable;
 	import com.esoteric.utils.IDestroyable;
 	import flash.events.Event;

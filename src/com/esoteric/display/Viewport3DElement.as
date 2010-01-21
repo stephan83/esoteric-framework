@@ -35,7 +35,7 @@
 package com.esoteric.display
 {
 	import com.esoteric.core.IElement;
-	import com.esoteric.display.ApplicationElement;
+	import com.esoteric.core.Context;
 	import com.esoteric.events.ElementEvent;
 	import flash.display.DisplayObject;
 	
@@ -52,9 +52,9 @@ package com.esoteric.display
 		/**
 		 * Constructor.
 		 */
-		public function Viewport3DElement(root:ApplicationElement, parent:IElement, type:String) 
+		public function Viewport3DElement(context:Context, type:String) 
 		{
-			super(root, parent, kind);
+			super(context, kind);
 		}
 		
 		//---------------------------------------------------------------------
@@ -107,7 +107,7 @@ package com.esoteric.display
 				scene.preRender();
 				
 				//root.renderEngine.renderScene(scene.scene3D, camera.cameraObject3D, viewport3D, false);
-				root.renderEngine.renderScene(scene.scene3D, camera.cameraObject3D, viewport3D);
+				//root.renderEngine.renderScene(scene.scene3D, camera.cameraObject3D, viewport3D);
 				
 				scene.postRender();
 			}
@@ -132,7 +132,7 @@ package com.esoteric.display
 		 */
 		private function cameraUpdatedHandler(e:ElementEvent):void 
 		{
-			root.renderQueue.add(this);
+			context.renderQueue.add(this);
 		}
 		
 		/**
@@ -140,7 +140,7 @@ package com.esoteric.display
 		 */
 		private function sceneUpdatedHandler(e:ElementEvent):void 
 		{
-			root.renderQueue.add(this);
+			context.renderQueue.add(this);
 		}
 
 	}

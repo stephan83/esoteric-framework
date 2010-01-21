@@ -41,7 +41,7 @@ package com.esoteric.display
 	import com.esoteric.core.IElementProxy;
 	import com.esoteric.core.RenderQueue;
 	import com.esoteric.core.XMLParser;
-	import com.esoteric.display.ApplicationElement;
+	import com.esoteric.core.Context;
 	import com.esoteric.events.ElementEvent;
 	import com.esoteric.events.LoadEvent;
 	import com.esoteric.events.PropertyChangeEvent;

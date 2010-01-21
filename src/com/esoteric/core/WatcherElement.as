@@ -35,7 +35,7 @@
 package com.esoteric.core
 {
 	import com.esoteric.core.IElement;
-	import com.esoteric.display.ApplicationElement;
+	import com.esoteric.core.Context;
 	import com.esoteric.events.PropertyChangeEvent;
 	
 	public class WatcherElement extends AbstractWatcherElement
@@ -48,9 +48,9 @@ package com.esoteric.core
 		/**
 		 * Constructor.
 		 */
-		public function WatcherElement(root:ApplicationElement, parent:IElement, kind:String) 
+		public function WatcherElement(context:Context, kind:String) 
 		{
-			super(root, parent, kind);
+			super(context, kind);
 			
 			this.addEventListener(PropertyChangeEvent.PROPERTY_UPDATED, propertyUpdatedHandler);
 		}
@@ -62,14 +62,14 @@ package com.esoteric.core
 		/**
 		 * @inheritDoc
 		 */
-		override public function createExpressionContext(name:String):Object
+		/*override public function createExpressionContext(name:String):Object
 		{
 			var context:Object = super.createExpressionContext(name);
 			
 			context.e = lastEvent;
 			
 			return context;
-		}
+		}*/
 		
 		/**
 		 * @inheritDoc

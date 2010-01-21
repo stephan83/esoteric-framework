@@ -35,7 +35,7 @@
 package com.esoteric.sound
 {
 	import com.esoteric.core.IElement;
-	import com.esoteric.display.ApplicationElement;
+	import com.esoteric.core.Context;
 	import com.esoteric.events.PlaybackEvent;
 	import flash.events.Event;
 	import flash.events.TimerEvent;
@@ -54,9 +54,9 @@ package com.esoteric.sound
 		/**
 		 * Constructor.
 		 */
-		public function SoundFileElement(root:ApplicationElement, parent:IElement, kind:String) 
+		public function SoundFileElement(context:Context, kind:String) 
 		{
-			super(root, parent, kind);
+			super(context, kind);
 			
 			timer.addEventListener(TimerEvent.TIMER, timerHandler);
 		}
@@ -202,7 +202,7 @@ package com.esoteric.sound
 		{
 			startLoading();
 			
-			var data:* = root.cache.get(url);
+			var data:* = context.cache.get(url);
 			
 			if (data)
 			{

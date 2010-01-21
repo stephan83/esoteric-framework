@@ -35,7 +35,7 @@
 package com.esoteric.display
 {
 	import com.esoteric.core.IElement;
-	import com.esoteric.display.ApplicationElement;
+	import com.esoteric.core.Context;
 	import com.esoteric.events.PropertyChangeEvent;
 	import org.papervision3d.core.proto.DisplayObjectContainer3D;
 	
@@ -52,9 +52,9 @@ package com.esoteric.display
 		/**
 		 * Constructor.
 		 */
-		public function DisplayObjectContainer3DElement(root:ApplicationElement, parent:IElement, kind:String) 
+		public function DisplayObjectContainer3DElement(context:Context, kind:String) 
 		{
-			super(root, parent, kind);
+			super(context, kind);
 			
 			displayObjectContainer3D = createDisplayObjectContainer3D();
 		}

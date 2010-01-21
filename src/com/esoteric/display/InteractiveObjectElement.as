@@ -36,7 +36,7 @@ package com.esoteric.display
 {
 	import com.esoteric.core.Context;
 	import com.esoteric.core.IElement;
-	import com.esoteric.display.ApplicationElement;
+	import com.esoteric.core.Context;
 	import com.esoteric.events.PointInputEvent;
 	import com.esoteric.events.PropertyChangeEvent;
 	import com.esoteric.utils.Watcher;

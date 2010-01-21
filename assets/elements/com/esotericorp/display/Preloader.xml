@@ -36,6 +36,12 @@
 
 <Preloader>
 	
-	<TextField color="0xffffff"><![CDATA[{stageWidth + ', ' + stageHeight}]]></TextField>
+	<Shape>
+		<SolidFill color="0xcccccc">
+			<Rectangle width="200" height="50" />
+		</SolidFill>
+	</Shape>
+	
+	<TextField color="0xffffff"><![CDATA[{stageWidth gt stageHeight}]]></TextField>
 
 </Preloader>

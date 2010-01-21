@@ -35,7 +35,7 @@
 package com.esoteric.core 
 {
 	import com.esoteric.motion.TweenableObject;
-	import com.esoteric.display.ApplicationElement;
+	import com.esoteric.core.Context;
 	import com.esoteric.events.TweenEvent;
 	import com.esoteric.utils.BindableObject;
 	import fl.motion.easing.*;

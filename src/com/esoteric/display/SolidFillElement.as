@@ -35,7 +35,7 @@
 package com.esoteric.display
 {
 	import com.esoteric.core.IElement;
-	import com.esoteric.display.ApplicationElement;
+	import com.esoteric.core.Context;
 	
 	/**
 	* Generated 2008-08-03 06:25:49.304000 UTC.
@@ -50,9 +50,9 @@ package com.esoteric.display
 		/**
 		 * Constructor.
 		 */
-		public function SolidFillElement(root:ApplicationElement, parent:IElement, kind:String) 
+		public function SolidFillElement(context:Context, kind:String) 
 		{
-			super(root, parent, kind);
+			super(context, kind);
 		}
 		
 		//---------------------------------------------------------------------

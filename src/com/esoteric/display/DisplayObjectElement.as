@@ -38,7 +38,7 @@ package com.esoteric.display
 	import com.esoteric.core.ElementProxyManager;
 	import com.esoteric.core.IElement;
 	import com.esoteric.core.IElementProxy;
-	import com.esoteric.display.ApplicationElement;
+	import com.esoteric.core.Context;
 	import com.esoteric.events.ElementEvent;
 	import com.esoteric.events.PropertyChangeEvent;
 	import com.esoteric.events.TweenEvent;

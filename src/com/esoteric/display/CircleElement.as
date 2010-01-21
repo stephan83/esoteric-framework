@@ -35,7 +35,7 @@
 package com.esoteric.display
 {
 	import com.esoteric.core.IElement;
-	import com.esoteric.display.ApplicationElement;
+	import com.esoteric.core.Context;
 	
 	public class CircleElement extends AbstractCircleElement implements IGraphicCommandElement
 	{
@@ -47,9 +47,9 @@ package com.esoteric.display
 		/**
 		 * Constructor.
 		 */
-		public function CircleElement(root:ApplicationElement, parent:IElement, kind:String) 
+		public function CircleElement(context:Context, kind:String) 
 		{
-			super(root, parent, kind);
+			super(context, kind);
 		}
 		
 		//---------------------------------------------------------------------

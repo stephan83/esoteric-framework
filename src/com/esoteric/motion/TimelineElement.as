@@ -35,7 +35,7 @@
 package com.esoteric.motion
 {
 	import com.esoteric.core.IElement;
-	import com.esoteric.display.ApplicationElement;
+	import com.esoteric.core.Context;
 	import com.esoteric.events.ElementEvent;
 	import com.esoteric.events.PropertyChangeEvent;
 	import com.esoteric.utils.Watcher;
@@ -51,11 +51,11 @@ package com.esoteric.motion
 		/**
 		 * Constructor.
 		 */
-		public function TimelineElement(root:ApplicationElement, parent:IElement, kind:String) 
+		public function TimelineElement(context:Context, kind:String) 
 		{
-			super(root, parent, kind);
+			super(context, kind);
 			
-			root.addEventListener(ElementEvent.PRE_RENDER, preRenderHandler);
+			//context.addEventListener(ElementEvent.PRE_RENDER, preRenderHandler);
 			//root.addEventListener(ElementEvent.POST_RENDER, postRenderHandler);
 			
 			//new Watcher(this, 'position', positionWatcher);
@@ -90,7 +90,7 @@ package com.esoteric.motion
 			}
 			else if (!value && playing)
 			{
-				root.removeEventListener(ElementEvent.POST_RENDER, postRenderHandler);
+				//context.removeEventListener(ElementEvent.POST_RENDER, postRenderHandler);
 			}
 			
 			super.playing = value;

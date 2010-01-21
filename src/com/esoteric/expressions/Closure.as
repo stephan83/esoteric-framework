@@ -1,4 +1,5 @@
-/*
+﻿/*
+
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	~                           Esoteric Framework                            ~
 	~                       framework.esotericorp.com                         ~
@@ -32,16 +33,16 @@
 	-----                                                                 -----
 */
 
-package com.esoteric.display
+package com.esoteric.expressions 
 {
-	import com.esoteric.core.IElement;
-	import com.esoteric.core.Context;
-	import flash.display.DisplayObject;
+	import com.esoteric.utils.BindableObject;
 	
 	/**
-	* Generated 2008-08-04 08:40:26.453000 UTC.
-	*/
-	public class BitmapElement extends AbstractBitmapElement
+	 * Expression closure
+	 * 
+	 * @author Stephan Florquin
+	 */
+	public class Closure
 	{
 		
 		//---------------------------------------------------------------------
@@ -51,44 +52,41 @@ package com.esoteric.display
 		/**
 		 * Constructor.
 		 */
-		public function BitmapElement(context:Context, kind:String) 
+		public function Closure() 
 		{
-			super(context, kind);
+			super();
+			
+			push();
 		}
-
 		
 		//---------------------------------------------------------------------
-		// Overridden properties
+		// Members
 		//---------------------------------------------------------------------
 		
 		/**
-		 * @inheritDoc
+		 * @private
 		 */
-		override public function set width(value:Number):void
+		private var _stack:Array = new Array();
+		
+		//---------------------------------------------------------------------
+		// Methods
+		//---------------------------------------------------------------------
+		
+		public function get current():BindableObject
 		{
-			bitmap.width = value;
-			
-			super.width = value;
+			return _stack[_stack.length - 1];
 		}
 		
-		/**
-		 * @inheritDoc
-		 */
-		override public function set height(value:Number):void
+		public function push():void
 		{
-			bitmap.height = value;
-			
-			super.height = value;
+			_stack[_stack.length] = new BindableObject();
 		}
 		
-		/**
-		 * @inheritDoc
-		 */
-		override protected function createDisplayObject():DisplayObject
+		public function pop():void
 		{
-			return bitmap;
+			_stack.length--;
 		}
-
+		
 	}
-	
+
 }

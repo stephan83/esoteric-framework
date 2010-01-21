@@ -30,7 +30,7 @@
     <option strict="True" />
     <option useNetwork="True" />
     <option useResourceBundleMetadata="True" />
-    <option warnings="False" />
+    <option warnings="True" />
     <option verboseStackTraces="False" />
     <option linkReport="" />
     <option loadExterns="" />

@@ -35,7 +35,7 @@
 package com.esoteric.filters
 {
 	import com.esoteric.core.IElement;
-	import com.esoteric.display.ApplicationElement;
+	import com.esoteric.core.Context;
 	import flash.filters.BitmapFilter;
 	import flash.filters.BitmapFilterQuality;
 	
@@ -49,9 +49,9 @@ package com.esoteric.filters
 		/**
 		 * Constructor.
 		 */
-		public function DropShadowFilterElement(root:ApplicationElement, parent:IElement, type:String) 
+		public function DropShadowFilterElement(context:Context, type:String) 
 		{
-			super(root, parent, kind);
+			super(context, kind);
 		}
 		
 		//---------------------------------------------------------------------
@@ -61,7 +61,7 @@ package com.esoteric.filters
 		/**
 		 * @inheritDoc
 		 */
-		override public function createExpressionContext(name:String):Object
+		/*override public function createExpressionContext(name:String):Object
 		{
 			var context:Object = super.createExpressionContext(name);
 			
@@ -71,7 +71,7 @@ package com.esoteric.filters
 			}
 			
 			return context;
-		}
+		}*/
 		
 		/**
 		 * @inheritDoc

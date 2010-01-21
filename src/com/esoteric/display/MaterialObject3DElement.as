@@ -35,7 +35,7 @@
 package com.esoteric.display
 {
 	import com.esoteric.core.IElement;
-	import com.esoteric.display.ApplicationElement;
+	import com.esoteric.core.Context;
 	import org.papervision3d.core.proto.MaterialObject3D;
 	
 	/**
@@ -51,9 +51,9 @@ package com.esoteric.display
 		/**
 		 * Constructor.
 		 */
-		public function MaterialObject3DElement(root:ApplicationElement, parent:IElement, kind:String) 
+		public function MaterialObject3DElement(context:Context, kind:String) 
 		{
-			super(root, parent, kind);
+			super(context, kind);
 			
 			materialObject3D = createMaterialObject3D();
 		}

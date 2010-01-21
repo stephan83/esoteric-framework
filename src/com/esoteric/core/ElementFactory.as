@@ -34,7 +34,7 @@
 
 package com.esoteric.core 
 {
-	import com.esoteric.display.ApplicationElement;
+	import com.esoteric.core.Context;
 	import com.esoteric.display.BitmapFileElement;
 	import com.esoteric.display.Camera3DElement;
 	import com.esoteric.display.CircleElement;
@@ -160,7 +160,7 @@ package com.esoteric.core
 		 */
 		private function loadBuiltins():void
 		{
-			/*add("BitmapFile", new StaticElementBuilder(BitmapFileElement));
+			add("BitmapFile", new StaticElementBuilder(BitmapFileElement));
 			add("BlurFilter", new StaticElementBuilder(BlurFilterElement));
 			add("Camera3D", new StaticElementBuilder(Camera3DElement));
 			add("Circle", new StaticElementBuilder(CircleElement));
@@ -187,15 +187,15 @@ package com.esoteric.core
 			add("Script", new StaticElementBuilder(ScriptElement));
 			add("Shape", new StaticElementBuilder(ShapeElement));
 			add("SolidFill", new StaticElementBuilder(SolidFillElement));
-			add("SoundFile", new StaticElementBuilder(SoundFileElement));*/
+			add("SoundFile", new StaticElementBuilder(SoundFileElement));
 			add("Sprite", new StaticElementBuilder(SpriteElement));
-			//add("Sprite3D", new StaticElementBuilder(Sprite3DElement));
+			add("Sprite3D", new StaticElementBuilder(Sprite3DElement));
 			add("TextField", new StaticElementBuilder(TextFieldElement));
-			/*add("Timeline", new StaticElementBuilder(TimelineElement));
+			add("Timeline", new StaticElementBuilder(TimelineElement));
 			add("Timer", new StaticElementBuilder(TimerElement));
 			add("VideoFile", new StaticElementBuilder(VideoFileElement));
 			add("Viewport3D", new StaticElementBuilder(Viewport3DElement));
-			add("Watcher", new StaticElementBuilder(WatcherElement));*/
+			add("Watcher", new StaticElementBuilder(WatcherElement));
 		}
 		
 	}

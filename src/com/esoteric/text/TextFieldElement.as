@@ -36,7 +36,7 @@ package com.esoteric.text
 {
 	import com.esoteric.core.Context;
 	import com.esoteric.core.IElement;
-	import com.esoteric.display.ApplicationElement;
+	import com.esoteric.core.Context;
 	import com.esoteric.events.PropertyChangeEvent;
 	import flash.display.InteractiveObject;
 	import flash.events.Event;

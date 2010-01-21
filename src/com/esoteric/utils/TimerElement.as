@@ -35,7 +35,7 @@
 package com.esoteric.utils
 {
 	import com.esoteric.core.IElement;
-	import com.esoteric.display.ApplicationElement;
+	import com.esoteric.core.Context;
 	import flash.events.TimerEvent;
 	
 	public class TimerElement extends AbstractTimerElement
@@ -48,9 +48,9 @@ package com.esoteric.utils
 		/**
 		 * Constructor.
 		 */
-		public function TimerElement(root:ApplicationElement, parent:IElement, kind:String) 
+		public function TimerElement(context:Context, kind:String) 
 		{
-			super(root, parent, kind);
+			super(context, kind);
 			
 			timer.addEventListener(TimerEvent.TIMER, timerHandler);
 		}

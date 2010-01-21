@@ -34,7 +34,7 @@
 
 package com.esoteric.core 
 {
-	import com.esoteric.display.ApplicationElement;
+	import com.esoteric.core.Context;
 	
 	/**
 	* @author Stephan Florquin

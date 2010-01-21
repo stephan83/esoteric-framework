@@ -35,7 +35,7 @@
 package com.esoteric.core 
 {
 	import com.esoteric.core.ElementExpressionQueue;
-	import com.esoteric.display.ApplicationElement;
+	import com.esoteric.core.Context;
 	import com.esoteric.Esoteric;
 	import com.esoteric.events.ElementEvent;
 	import com.esoteric.events.ExpressionEvent;

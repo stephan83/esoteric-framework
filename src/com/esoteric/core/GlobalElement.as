@@ -35,7 +35,7 @@
 package com.esoteric.core
 {
 	import com.esoteric.core.IElement;
-	import com.esoteric.display.ApplicationElement;
+	import com.esoteric.core.Context;
 	import com.esoteric.utils.Binding;
 	
 	public class GlobalElement extends AbstractGlobalElement
@@ -48,9 +48,9 @@ package com.esoteric.core
 		/**
 		 * Constructor.
 		 */
-		public function GlobalElement(root:ApplicationElement, parent:IElement, kind:String) 
+		public function GlobalElement(context:Context, kind:String) 
 		{
-			super(root, parent, kind);
+			super(context, kind);
 		}
 		
 		//---------------------------------------------------------------------
@@ -84,7 +84,7 @@ package com.esoteric.core
 			if (value && value.length)
 			{
 				// Bind the global to the value of this element.
-				_binding = new Binding(root.globals, value, this, 'value');
+				//_binding = new Binding(root.globals, value, this, 'value');
 			}
 			
 			super.name = value;

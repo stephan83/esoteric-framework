@@ -35,7 +35,7 @@
 package com.esoteric.display
 {
 	import com.esoteric.core.IElement;
-	import com.esoteric.display.ApplicationElement;
+	import com.esoteric.core.Context;
 	import flash.geom.Matrix;
 	
 	public class LineGradientStyleElement extends AbstractLineGradientStyleElement implements IGraphicCommandElement
@@ -48,9 +48,9 @@ package com.esoteric.display
 		/**
 		 * Constructor.
 		 */
-		public function LineGradientStyleElement(root:ApplicationElement, parent:IElement, kind:String) 
+		public function LineGradientStyleElement(context:Context, kind:String) 
 		{
-			super(root, parent, kind);
+			super(context, kind);
 		}
 		
 		//---------------------------------------------------------------------

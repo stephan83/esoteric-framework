@@ -35,7 +35,7 @@
 package com.esoteric.media
 {
 	import com.esoteric.core.IElement;
-	import com.esoteric.display.ApplicationElement;
+	import com.esoteric.core.Context;
 	import com.esoteric.events.AudioFileEvent;
 	import flash.display.DisplayObject;
 	import flash.events.NetStatusEvent;
@@ -55,9 +55,9 @@ package com.esoteric.media
 		/**
 		 * Constructor.
 		 */
-		public function VideoFileElement(root:ApplicationElement, parent:IElement, kind:String) 
+		public function VideoFileElement(context:Context, kind:String) 
 		{
-			super(root, parent, kind);
+			super(context, kind);
 			
 			var nc:NetConnection = new NetConnection();
 			

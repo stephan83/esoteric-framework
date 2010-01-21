@@ -1,4 +1,5 @@
-/*
+﻿/*
+
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	~                           Esoteric Framework                            ~
 	~                       framework.esotericorp.com                         ~
@@ -31,17 +32,15 @@
 	
 	-----                                                                 -----
 */
-
-package com.esoteric.display
-{
-	import com.esoteric.core.IElement;
-	import com.esoteric.core.Context;
-	import flash.display.DisplayObject;
 	
+package com.esoteric.core 
+{
 	/**
-	* Generated 2008-08-04 08:40:26.453000 UTC.
-	*/
-	public class BitmapElement extends AbstractBitmapElement
+	 * Esoteric framework engine.
+	 * 
+	 * @author Stephan Florquin
+	 */
+	public class Engine
 	{
 		
 		//---------------------------------------------------------------------
@@ -51,44 +50,26 @@ package com.esoteric.display
 		/**
 		 * Constructor.
 		 */
-		public function BitmapElement(context:Context, kind:String) 
+		public function Engine() 
 		{
-			super(context, kind);
+			
 		}
-
 		
 		//---------------------------------------------------------------------
-		// Overridden properties
+		// Methods
 		//---------------------------------------------------------------------
 		
 		/**
-		 * @inheritDoc
+		 * Updates the UI.
+		 * 
+		 * @param	context	the context
 		 */
-		override public function set width(value:Number):void
+		public function render(context:Context):void
 		{
-			bitmap.width = value;
-			
-			super.width = value;
+			context.expQueue.run();
+			context.renderQueue.render();
 		}
 		
-		/**
-		 * @inheritDoc
-		 */
-		override public function set height(value:Number):void
-		{
-			bitmap.height = value;
-			
-			super.height = value;
-		}
-		
-		/**
-		 * @inheritDoc
-		 */
-		override protected function createDisplayObject():DisplayObject
-		{
-			return bitmap;
-		}
-
 	}
-	
+
 }

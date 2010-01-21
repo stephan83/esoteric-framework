@@ -35,7 +35,7 @@
 package com.esoteric.display
 {
 	import com.esoteric.core.IElement;
-	import com.esoteric.display.ApplicationElement;
+	import com.esoteric.core.Context;
 	import flash.display.DisplayObject;
 	
 	public class ShapeElement extends AbstractShapeElement
@@ -48,9 +48,9 @@ package com.esoteric.display
 		/**
 		 * Constructor.
 		 */
-		public function ShapeElement(root:ApplicationElement, parent:IElement, type:String) 
+		public function ShapeElement(context:Context, type:String) 
 		{
-			super(root, parent, kind);
+			super(context, kind);
 		}
 		
 		//---------------------------------------------------------------------

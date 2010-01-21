@@ -35,7 +35,7 @@
 package com.esoteric.filters
 {
 	import com.esoteric.core.IElement;
-	import com.esoteric.display.ApplicationElement;
+	import com.esoteric.core.Context;
 	import flash.filters.BitmapFilter;
 	
 	public class BitmapFilterElement extends AbstractBitmapFilterElement implements IBitmapFilterElement
@@ -48,9 +48,9 @@ package com.esoteric.filters
 		/**
 		 * Constructor.
 		 */
-		public function BitmapFilterElement(root:ApplicationElement, parent:IElement, kind:String) 
+		public function BitmapFilterElement(context:Context, kind:String) 
 		{
-			super(root, parent, kind);
+			super(context, kind);
 			
 			bitmapFilter = createBitmapFilter();
 		}

@@ -39,7 +39,7 @@ package com.esoteric.net
 	import com.esoteric.core.ElementProxyManager;
 	import com.esoteric.core.IElement;
 	import com.esoteric.core.XMLParser;
-	import com.esoteric.display.ApplicationElement;
+	import com.esoteric.core.Context;
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
 	import flash.net.URLLoader;
@@ -58,9 +58,9 @@ package com.esoteric.net
 		/**
 		 * Constructor.
 		 */
-		public function RemoteXMLElement(root:ApplicationElement, parent:IElement, kind:String) 
+		public function RemoteXMLElement(context:Context, kind:String) 
 		{
-			super(root, parent, kind);
+			super(context, kind);
 			
 			_loader.addEventListener(Event.COMPLETE, completeHandler);
 			_loader.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
@@ -147,7 +147,7 @@ package com.esoteric.net
 			
 			var xml:XML = XML(event.target.data);
 			
-			addChild(XMLParser.parseNode(xml, root.elementFactory, root, this));
+			addChild(XMLParser.parseNode(xml, context));
 			
 			var proxy:ElementProxy = ElementProxyManager.getInstance(this);
 			var attributes:XMLList = xml.attributes();
