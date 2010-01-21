@@ -25,6 +25,20 @@ tokens {
 @parser::package {com.esoteric.expressions}
 @lexer::package {com.esoteric.expressions}
 
+@members {
+	private var _errorReporter:IErrorReporter;
+	
+	public function set errorReporter(reporter:IErrorReporter):void { _errorReporter = reporter; }
+	
+	override public function displayRecognitionError(tokenNames:Array, e:RecognitionException):void
+	{
+		var header:String = getErrorHeader(e);
+		var msg:String = getErrorMessage(e, tokenNames);
+		
+		_errorReporter.report(header, msg, e.line);
+	}
+}
+
 //-----------------------------------------------------------------------------
 // PARSER RULES
 //-----------------------------------------------------------------------------

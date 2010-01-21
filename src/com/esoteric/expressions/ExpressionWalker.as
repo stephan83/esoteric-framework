@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g 2010-01-21 14:33:58
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g 2010-01-21 16:22:57
 package com.esoteric.expressions {
     import org.antlr.runtime.*;
         import org.antlr.runtime.tree.*;    
@@ -95,13 +95,13 @@ package com.esoteric.expressions {
             public function ExpressionWalker(input:TreeNodeStream, state:RecognizerSharedState = null) {
                 super(input, state);
 
-                dfa9 = new DFA(this, 9,
-                            "105:1: value : ( ^(o= ( '||' | 'or' | '&&' | 'and' | '|' | '^' | '&' | '==' | '!=' | '===' | '!==' | '<' | 'lt' | '>' | 'gt' | '<=' | 'lte' | '>=' | 'gte' | '<<' | '>>' | '>>>' | '+' | '-' | '*' | '/' | '%' ) exp exp ) | ^( CondExp exp exp exp ) | ^(o= ( '-' | '+' | '~' | '!' ) exp ) | ^(f= FuncCall ( exp )+ ) | ^( PropRef exp i= Identifier ) | ^( PropExp exp exp ) | NumberLiteral | StringLiteral | 'true' | 'false' | i= Identifier | ^(a= CreateArray ( exp )* ) );",
-                            DFA9_eot, DFA9_eof, DFA9_min,
-                            DFA9_max, DFA9_accept, DFA9_special,
-                            DFA9_transition, DFA9_specialStateTransition);
+                dfa10 = new DFA(this, 10,
+                            "106:1: value : ( ^(o= ( '||' | 'or' | '&&' | 'and' | '|' | '^' | '&' | '==' | '!=' | '===' | '!==' | '<' | 'lt' | '>' | 'gt' | '<=' | 'lte' | '>=' | 'gte' | '<<' | '>>' | '>>>' | '+' | '-' | '*' | '/' | '%' ) exp exp ) | ^( CondExp exp exp exp ) | ^(o= ( '-' | '+' | '~' | '!' ) exp ) | ^(f= FuncCall ( exp )+ ) | ^( PropRef exp i= Identifier ) | ^( PropExp exp exp ) | NumberLiteral | StringLiteral | 'true' | 'false' | i= Identifier | ^(a= CreateArray ( exp )* ) );",
+                            DFA10_eot, DFA10_eof, DFA10_min,
+                            DFA10_max, DFA10_accept, DFA10_special,
+                            DFA10_transition, DFA10_specialStateTransition);
 
-                this.state.ruleMemo = new Array(74+1);
+                this.state.ruleMemo = new Array(75+1);
                  
             }
             
@@ -165,53 +165,78 @@ package com.esoteric.expressions {
         // $ANTLR end main
 
         // $ANTLR start stmtList
-        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:45:1: stmtList : ^( StmtList ( stmt )* ) ;
+        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:45:1: stmtList : ( ^( StmtList ( stmt )* ) | EOF );
         public final function stmtList():void {
             var stmtList_StartIndex:int = input.index;
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 2) ) { return ; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:45:9: ( ^( StmtList ( stmt )* ) )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:45:11: ^( StmtList ( stmt )* )
-                {
-                matchStream(input,StmtList,FOLLOW_StmtList_in_stmtList74); if (this.state.failed) return ;
+                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:45:9: ( ^( StmtList ( stmt )* ) | EOF )
+                var alt2:int=2;
+                var LA2_0:int = input.LA(1);
 
-                if ( input.LA(1)==TokenConstants.DOWN ) {
-                    matchStream(input, TokenConstants.DOWN, null); if (this.state.failed) return ;
-                    // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:45:22: ( stmt )*
-                    loop1:
-                    do {
-                        var alt1:int=2;
-                        var LA1_0:int = input.LA(1);
-
-                        if ( (LA1_0==5||(LA1_0>=11 && LA1_0<=12)) ) {
-                            alt1=1;
-                        }
-
-
-                        switch (alt1) {
-                    	case 1 :
-                    	    // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:0:0: stmt
-                    	    {
-                    	    pushFollow(FOLLOW_stmt_in_stmtList76);
-                    	    stmt();
-
-                    	    state._fsp = state._fsp - 1;
-                    	    if (this.state.failed) return ;
-
-                    	    }
-                    	    break;
-
-                    	default :
-                    	    break loop1;
-                        }
-                    } while (true);
-
-
-                    matchStream(input, TokenConstants.UP, null); if (this.state.failed) return ;
+                if ( (LA2_0==4) ) {
+                    alt2=1;
                 }
+                else if ( (LA2_0==-1) ) {
+                    alt2=2;
+                }
+                else {
+                    if (this.state.backtracking>0) {this.state.failed=true; return ;}
+                    throw new NoViableAltException("", 2, 0, input);
 
                 }
+                switch (alt2) {
+                    case 1 :
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:45:11: ^( StmtList ( stmt )* )
+                        {
+                        matchStream(input,StmtList,FOLLOW_StmtList_in_stmtList74); if (this.state.failed) return ;
 
+                        if ( input.LA(1)==TokenConstants.DOWN ) {
+                            matchStream(input, TokenConstants.DOWN, null); if (this.state.failed) return ;
+                            // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:45:22: ( stmt )*
+                            loop1:
+                            do {
+                                var alt1:int=2;
+                                var LA1_0:int = input.LA(1);
+
+                                if ( (LA1_0==5||(LA1_0>=11 && LA1_0<=12)) ) {
+                                    alt1=1;
+                                }
+
+
+                                switch (alt1) {
+                            	case 1 :
+                            	    // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:0:0: stmt
+                            	    {
+                            	    pushFollow(FOLLOW_stmt_in_stmtList76);
+                            	    stmt();
+
+                            	    state._fsp = state._fsp - 1;
+                            	    if (this.state.failed) return ;
+
+                            	    }
+                            	    break;
+
+                            	default :
+                            	    break loop1;
+                                }
+                            } while (true);
+
+
+                            matchStream(input, TokenConstants.UP, null); if (this.state.failed) return ;
+                        }
+
+                        }
+                        break;
+                    case 2 :
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:46:4: EOF
+                        {
+                        matchStream(input,EOF,FOLLOW_EOF_in_stmtList83); if (this.state.failed) return ;
+
+                        }
+                        break;
+
+                }
             }
             catch (re:RecognitionException) {
                 reportError(re);
@@ -225,40 +250,40 @@ package com.esoteric.expressions {
         // $ANTLR end stmtList
 
         // $ANTLR start stmt
-        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:48:1: stmt : ( expList | ifStmt | whileStmt );
+        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:49:1: stmt : ( expList | ifStmt | whileStmt );
         public final function stmt():void {
             var stmt_StartIndex:int = input.index;
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 3) ) { return ; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:48:6: ( expList | ifStmt | whileStmt )
-                var alt2:int=3;
+                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:49:6: ( expList | ifStmt | whileStmt )
+                var alt3:int=3;
                 switch ( input.LA(1) ) {
                 case ExpList:
                     {
-                    alt2=1;
+                    alt3=1;
                     }
                     break;
                 case IfStmt:
                     {
-                    alt2=2;
+                    alt3=2;
                     }
                     break;
                 case WhileStmt:
                     {
-                    alt2=3;
+                    alt3=3;
                     }
                     break;
                 default:
                     if (this.state.backtracking>0) {this.state.failed=true; return ;}
-                    throw new NoViableAltException("", 2, 0, input);
+                    throw new NoViableAltException("", 3, 0, input);
 
                 }
 
-                switch (alt2) {
+                switch (alt3) {
                     case 1 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:48:8: expList
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:49:8: expList
                         {
-                        pushFollow(FOLLOW_expList_in_stmt89);
+                        pushFollow(FOLLOW_expList_in_stmt94);
                         expList();
 
                         state._fsp = state._fsp - 1;
@@ -267,9 +292,9 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 2 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:49:4: ifStmt
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:50:4: ifStmt
                         {
-                        pushFollow(FOLLOW_ifStmt_in_stmt94);
+                        pushFollow(FOLLOW_ifStmt_in_stmt99);
                         ifStmt();
 
                         state._fsp = state._fsp - 1;
@@ -278,9 +303,9 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 3 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:50:4: whileStmt
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:51:4: whileStmt
                         {
-                        pushFollow(FOLLOW_whileStmt_in_stmt99);
+                        pushFollow(FOLLOW_whileStmt_in_stmt104);
                         whileStmt();
 
                         state._fsp = state._fsp - 1;
@@ -303,34 +328,34 @@ package com.esoteric.expressions {
         // $ANTLR end stmt
 
         // $ANTLR start expList
-        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:53:1: expList : ^( ExpList ( exp )* ) ;
+        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:54:1: expList : ^( ExpList ( exp )* ) ;
         public final function expList():void {
             var expList_StartIndex:int = input.index;
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 4) ) { return ; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:53:9: ( ^( ExpList ( exp )* ) )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:53:11: ^( ExpList ( exp )* )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:54:9: ( ^( ExpList ( exp )* ) )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:54:11: ^( ExpList ( exp )* )
                 {
-                matchStream(input,ExpList,FOLLOW_ExpList_in_expList111); if (this.state.failed) return ;
+                matchStream(input,ExpList,FOLLOW_ExpList_in_expList116); if (this.state.failed) return ;
 
                 if ( input.LA(1)==TokenConstants.DOWN ) {
                     matchStream(input, TokenConstants.DOWN, null); if (this.state.failed) return ;
-                    // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:53:21: ( exp )*
-                    loop3:
+                    // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:54:21: ( exp )*
+                    loop4:
                     do {
-                        var alt3:int=2;
-                        var LA3_0:int = input.LA(1);
+                        var alt4:int=2;
+                        var LA4_0:int = input.LA(1);
 
-                        if ( ((LA3_0>=6 && LA3_0<=10)||(LA3_0>=14 && LA3_0<=16)||(LA3_0>=34 && LA3_0<=45)||(LA3_0>=48 && LA3_0<=78)) ) {
-                            alt3=1;
+                        if ( ((LA4_0>=6 && LA4_0<=10)||(LA4_0>=14 && LA4_0<=16)||(LA4_0>=34 && LA4_0<=45)||(LA4_0>=48 && LA4_0<=78)) ) {
+                            alt4=1;
                         }
 
 
-                        switch (alt3) {
+                        switch (alt4) {
                     	case 1 :
                     	    // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:0:0: exp
                     	    {
-                    	    pushFollow(FOLLOW_exp_in_expList113);
+                    	    pushFollow(FOLLOW_exp_in_expList118);
                     	    exp();
 
                     	    state._fsp = state._fsp - 1;
@@ -340,7 +365,7 @@ package com.esoteric.expressions {
                     	    break;
 
                     	default :
-                    	    break loop3;
+                    	    break loop4;
                         }
                     } while (true);
 
@@ -363,46 +388,46 @@ package com.esoteric.expressions {
         // $ANTLR end expList
 
         // $ANTLR start ifStmt
-        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:56:1: ifStmt : ( ^( IfStmt exp stmtList stmtList ) | ^( IfStmt exp stmtList ifStmt ) | ^( IfStmt exp stmtList ) );
+        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:57:1: ifStmt : ( ^( IfStmt exp stmtList stmtList ) | ^( IfStmt exp stmtList ifStmt ) | ^( IfStmt exp stmtList ) );
         public final function ifStmt():void {
             var ifStmt_StartIndex:int = input.index;
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 5) ) { return ; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:56:8: ( ^( IfStmt exp stmtList stmtList ) | ^( IfStmt exp stmtList ifStmt ) | ^( IfStmt exp stmtList ) )
-                var alt4:int=3;
-                var LA4_0:int = input.LA(1);
+                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:57:8: ( ^( IfStmt exp stmtList stmtList ) | ^( IfStmt exp stmtList ifStmt ) | ^( IfStmt exp stmtList ) )
+                var alt5:int=3;
+                var LA5_0:int = input.LA(1);
 
-                if ( (LA4_0==11) ) {
-                    var LA4_1:int = input.LA(2);
+                if ( (LA5_0==11) ) {
+                    var LA5_1:int = input.LA(2);
 
-                    if ( (synpred5_ExpressionWalker()) ) {
-                        alt4=1;
+                    if ( (synpred6_ExpressionWalker()) ) {
+                        alt5=1;
                     }
-                    else if ( (synpred6_ExpressionWalker()) ) {
-                        alt4=2;
+                    else if ( (synpred7_ExpressionWalker()) ) {
+                        alt5=2;
                     }
                     else if ( (true) ) {
-                        alt4=3;
+                        alt5=3;
                     }
                     else {
                         if (this.state.backtracking>0) {this.state.failed=true; return ;}
-                        throw new NoViableAltException("", 4, 1, input);
+                        throw new NoViableAltException("", 5, 1, input);
 
                     }
                 }
                 else {
                     if (this.state.backtracking>0) {this.state.failed=true; return ;}
-                    throw new NoViableAltException("", 4, 0, input);
+                    throw new NoViableAltException("", 5, 0, input);
 
                 }
-                switch (alt4) {
+                switch (alt5) {
                     case 1 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:56:10: ^( IfStmt exp stmtList stmtList )
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:57:10: ^( IfStmt exp stmtList stmtList )
                         {
-                        matchStream(input,IfStmt,FOLLOW_IfStmt_in_ifStmt131); if (this.state.failed) return ;
+                        matchStream(input,IfStmt,FOLLOW_IfStmt_in_ifStmt136); if (this.state.failed) return ;
 
                         matchStream(input, TokenConstants.DOWN, null); if (this.state.failed) return ;
-                        pushFollow(FOLLOW_exp_in_ifStmt136);
+                        pushFollow(FOLLOW_exp_in_ifStmt141);
                         exp();
 
                         state._fsp = state._fsp - 1;
@@ -410,7 +435,7 @@ package com.esoteric.expressions {
                         if ( this.state.backtracking==0 ) {
                            _codegen.beginif() 
                         }
-                        pushFollow(FOLLOW_stmtList_in_ifStmt148);
+                        pushFollow(FOLLOW_stmtList_in_ifStmt153);
                         stmtList();
 
                         state._fsp = state._fsp - 1;
@@ -418,7 +443,7 @@ package com.esoteric.expressions {
                         if ( this.state.backtracking==0 ) {
                            _codegen.beginelse() 
                         }
-                        pushFollow(FOLLOW_stmtList_in_ifStmt159);
+                        pushFollow(FOLLOW_stmtList_in_ifStmt164);
                         stmtList();
 
                         state._fsp = state._fsp - 1;
@@ -432,12 +457,12 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 2 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:63:4: ^( IfStmt exp stmtList ifStmt )
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:64:4: ^( IfStmt exp stmtList ifStmt )
                         {
-                        matchStream(input,IfStmt,FOLLOW_IfStmt_in_ifStmt182); if (this.state.failed) return ;
+                        matchStream(input,IfStmt,FOLLOW_IfStmt_in_ifStmt187); if (this.state.failed) return ;
 
                         matchStream(input, TokenConstants.DOWN, null); if (this.state.failed) return ;
-                        pushFollow(FOLLOW_exp_in_ifStmt187);
+                        pushFollow(FOLLOW_exp_in_ifStmt192);
                         exp();
 
                         state._fsp = state._fsp - 1;
@@ -445,7 +470,7 @@ package com.esoteric.expressions {
                         if ( this.state.backtracking==0 ) {
                            _codegen.beginif() 
                         }
-                        pushFollow(FOLLOW_stmtList_in_ifStmt199);
+                        pushFollow(FOLLOW_stmtList_in_ifStmt204);
                         stmtList();
 
                         state._fsp = state._fsp - 1;
@@ -453,7 +478,7 @@ package com.esoteric.expressions {
                         if ( this.state.backtracking==0 ) {
                            _codegen.beginelse() 
                         }
-                        pushFollow(FOLLOW_ifStmt_in_ifStmt210);
+                        pushFollow(FOLLOW_ifStmt_in_ifStmt215);
                         ifStmt();
 
                         state._fsp = state._fsp - 1;
@@ -467,12 +492,12 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 3 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:70:4: ^( IfStmt exp stmtList )
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:71:4: ^( IfStmt exp stmtList )
                         {
-                        matchStream(input,IfStmt,FOLLOW_IfStmt_in_ifStmt234); if (this.state.failed) return ;
+                        matchStream(input,IfStmt,FOLLOW_IfStmt_in_ifStmt239); if (this.state.failed) return ;
 
                         matchStream(input, TokenConstants.DOWN, null); if (this.state.failed) return ;
-                        pushFollow(FOLLOW_exp_in_ifStmt239);
+                        pushFollow(FOLLOW_exp_in_ifStmt244);
                         exp();
 
                         state._fsp = state._fsp - 1;
@@ -480,7 +505,7 @@ package com.esoteric.expressions {
                         if ( this.state.backtracking==0 ) {
                            _codegen.beginif() 
                         }
-                        pushFollow(FOLLOW_stmtList_in_ifStmt251);
+                        pushFollow(FOLLOW_stmtList_in_ifStmt256);
                         stmtList();
 
                         state._fsp = state._fsp - 1;
@@ -508,22 +533,22 @@ package com.esoteric.expressions {
         // $ANTLR end ifStmt
 
         // $ANTLR start whileStmt
-        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:77:1: whileStmt : ^( WhileStmt exp stmtList ) ;
+        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:78:1: whileStmt : ^( WhileStmt exp stmtList ) ;
         public final function whileStmt():void {
             var whileStmt_StartIndex:int = input.index;
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 6) ) { return ; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:78:2: ( ^( WhileStmt exp stmtList ) )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:78:4: ^( WhileStmt exp stmtList )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:79:2: ( ^( WhileStmt exp stmtList ) )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:79:4: ^( WhileStmt exp stmtList )
                 {
-                matchStream(input,WhileStmt,FOLLOW_WhileStmt_in_whileStmt278); if (this.state.failed) return ;
+                matchStream(input,WhileStmt,FOLLOW_WhileStmt_in_whileStmt283); if (this.state.failed) return ;
 
                 if ( this.state.backtracking==0 ) {
                    _codegen.prewhile() 
                 }
 
                 matchStream(input, TokenConstants.DOWN, null); if (this.state.failed) return ;
-                pushFollow(FOLLOW_exp_in_whileStmt289);
+                pushFollow(FOLLOW_exp_in_whileStmt294);
                 exp();
 
                 state._fsp = state._fsp - 1;
@@ -531,7 +556,7 @@ package com.esoteric.expressions {
                 if ( this.state.backtracking==0 ) {
                    _codegen.beginwhile() 
                 }
-                pushFollow(FOLLOW_stmtList_in_whileStmt301);
+                pushFollow(FOLLOW_stmtList_in_whileStmt306);
                 stmtList();
 
                 state._fsp = state._fsp - 1;
@@ -557,31 +582,31 @@ package com.esoteric.expressions {
         // $ANTLR end whileStmt
 
         // $ANTLR start exp
-        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:85:1: exp : ( set | value );
+        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:86:1: exp : ( set | value );
         public final function exp():void {
             var exp_StartIndex:int = input.index;
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 7) ) { return ; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:85:5: ( set | value )
-                var alt5:int=2;
-                var LA5_0:int = input.LA(1);
+                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:86:5: ( set | value )
+                var alt6:int=2;
+                var LA6_0:int = input.LA(1);
 
-                if ( ((LA5_0>=34 && LA5_0<=45)) ) {
-                    alt5=1;
+                if ( ((LA6_0>=34 && LA6_0<=45)) ) {
+                    alt6=1;
                 }
-                else if ( ((LA5_0>=6 && LA5_0<=10)||(LA5_0>=14 && LA5_0<=16)||(LA5_0>=48 && LA5_0<=78)) ) {
-                    alt5=2;
+                else if ( ((LA6_0>=6 && LA6_0<=10)||(LA6_0>=14 && LA6_0<=16)||(LA6_0>=48 && LA6_0<=78)) ) {
+                    alt6=2;
                 }
                 else {
                     if (this.state.backtracking>0) {this.state.failed=true; return ;}
-                    throw new NoViableAltException("", 5, 0, input);
+                    throw new NoViableAltException("", 6, 0, input);
 
                 }
-                switch (alt5) {
+                switch (alt6) {
                     case 1 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:85:7: set
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:86:7: set
                         {
-                        pushFollow(FOLLOW_set_in_exp321);
+                        pushFollow(FOLLOW_set_in_exp326);
                         set();
 
                         state._fsp = state._fsp - 1;
@@ -590,9 +615,9 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 2 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:86:4: value
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:87:4: value
                         {
-                        pushFollow(FOLLOW_value_in_exp326);
+                        pushFollow(FOLLOW_value_in_exp331);
                         value();
 
                         state._fsp = state._fsp - 1;
@@ -615,15 +640,15 @@ package com.esoteric.expressions {
         // $ANTLR end exp
 
         // $ANTLR start set
-        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:89:1: set : ^(o= ( '=' | '*=' | '/=' | '%=' | '+=' | '-=' | '<<=' | '>>=' | '>>>=' | '&=' | '^=' | '|=' ) exp ( seti | sete | setr ) ) ;
+        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:90:1: set : ^(o= ( '=' | '*=' | '/=' | '%=' | '+=' | '-=' | '<<=' | '>>=' | '>>>=' | '&=' | '^=' | '|=' ) exp ( seti | sete | setr ) ) ;
         public final function set():void {
             var set_StartIndex:int = input.index;
             var o:Object=null;
 
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 8) ) { return ; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:89:5: ( ^(o= ( '=' | '*=' | '/=' | '%=' | '+=' | '-=' | '<<=' | '>>=' | '>>>=' | '&=' | '^=' | '|=' ) exp ( seti | sete | setr ) ) )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:89:7: ^(o= ( '=' | '*=' | '/=' | '%=' | '+=' | '-=' | '<<=' | '>>=' | '>>>=' | '&=' | '^=' | '|=' ) exp ( seti | sete | setr ) )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:90:5: ( ^(o= ( '=' | '*=' | '/=' | '%=' | '+=' | '-=' | '<<=' | '>>=' | '>>>=' | '&=' | '^=' | '|=' ) exp ( seti | sete | setr ) ) )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:90:7: ^(o= ( '=' | '*=' | '/=' | '%=' | '+=' | '-=' | '<<=' | '>>=' | '>>>=' | '&=' | '^=' | '|=' ) exp ( seti | sete | setr ) )
                 {
                 o=Object(input.LT(1));
                 if ( (input.LA(1)>=34 && input.LA(1)<=45) ) {
@@ -637,40 +662,40 @@ package com.esoteric.expressions {
 
 
                 matchStream(input, TokenConstants.DOWN, null); if (this.state.failed) return ;
-                pushFollow(FOLLOW_exp_in_set395);
+                pushFollow(FOLLOW_exp_in_set400);
                 exp();
 
                 state._fsp = state._fsp - 1;
                 if (this.state.failed) return ;
-                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:91:8: ( seti | sete | setr )
-                var alt6:int=3;
+                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:92:8: ( seti | sete | setr )
+                var alt7:int=3;
                 switch ( input.LA(1) ) {
                 case Identifier:
                     {
-                    alt6=1;
+                    alt7=1;
                     }
                     break;
                 case PropExp:
                     {
-                    alt6=2;
+                    alt7=2;
                     }
                     break;
                 case PropRef:
                     {
-                    alt6=3;
+                    alt7=3;
                     }
                     break;
                 default:
                     if (this.state.backtracking>0) {this.state.failed=true; return ;}
-                    throw new NoViableAltException("", 6, 0, input);
+                    throw new NoViableAltException("", 7, 0, input);
 
                 }
 
-                switch (alt6) {
+                switch (alt7) {
                     case 1 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:91:9: seti
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:92:9: seti
                         {
-                        pushFollow(FOLLOW_seti_in_set398);
+                        pushFollow(FOLLOW_seti_in_set403);
                         seti();
 
                         state._fsp = state._fsp - 1;
@@ -679,9 +704,9 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 2 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:91:16: sete
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:92:16: sete
                         {
-                        pushFollow(FOLLOW_sete_in_set402);
+                        pushFollow(FOLLOW_sete_in_set407);
                         sete();
 
                         state._fsp = state._fsp - 1;
@@ -690,9 +715,9 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 3 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:91:23: setr
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:92:23: setr
                         {
-                        pushFollow(FOLLOW_setr_in_set406);
+                        pushFollow(FOLLOW_setr_in_set411);
                         setr();
 
                         state._fsp = state._fsp - 1;
@@ -724,17 +749,17 @@ package com.esoteric.expressions {
         // $ANTLR end set
 
         // $ANTLR start seti
-        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:95:1: seti : i= Identifier ;
+        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:96:1: seti : i= Identifier ;
         public final function seti():void {
             var seti_StartIndex:int = input.index;
             var i:Object=null;
 
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 9) ) { return ; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:95:6: (i= Identifier )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:95:8: i= Identifier
+                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:96:6: (i= Identifier )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:96:8: i= Identifier
                 {
-                i=Object(matchStream(input,Identifier,FOLLOW_Identifier_in_seti431)); if (this.state.failed) return ;
+                i=Object(matchStream(input,Identifier,FOLLOW_Identifier_in_seti436)); if (this.state.failed) return ;
                 if ( this.state.backtracking==0 ) {
                    _codegen.pushc();  
                 }
@@ -757,23 +782,23 @@ package com.esoteric.expressions {
         // $ANTLR end seti
 
         // $ANTLR start sete
-        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:99:1: sete : ^( PropExp exp exp ) ;
+        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:100:1: sete : ^( PropExp exp exp ) ;
         public final function sete():void {
             var sete_StartIndex:int = input.index;
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 10) ) { return ; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:99:6: ( ^( PropExp exp exp ) )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:99:8: ^( PropExp exp exp )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:100:6: ( ^( PropExp exp exp ) )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:100:8: ^( PropExp exp exp )
                 {
-                matchStream(input,PropExp,FOLLOW_PropExp_in_sete461); if (this.state.failed) return ;
+                matchStream(input,PropExp,FOLLOW_PropExp_in_sete466); if (this.state.failed) return ;
 
                 matchStream(input, TokenConstants.DOWN, null); if (this.state.failed) return ;
-                pushFollow(FOLLOW_exp_in_sete463);
+                pushFollow(FOLLOW_exp_in_sete468);
                 exp();
 
                 state._fsp = state._fsp - 1;
                 if (this.state.failed) return ;
-                pushFollow(FOLLOW_exp_in_sete465);
+                pushFollow(FOLLOW_exp_in_sete470);
                 exp();
 
                 state._fsp = state._fsp - 1;
@@ -799,25 +824,25 @@ package com.esoteric.expressions {
         // $ANTLR end sete
 
         // $ANTLR start setr
-        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:102:1: setr : ^( PropRef exp i= Identifier ) ;
+        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:103:1: setr : ^( PropRef exp i= Identifier ) ;
         public final function setr():void {
             var setr_StartIndex:int = input.index;
             var i:Object=null;
 
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 11) ) { return ; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:102:6: ( ^( PropRef exp i= Identifier ) )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:102:8: ^( PropRef exp i= Identifier )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:103:6: ( ^( PropRef exp i= Identifier ) )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:103:8: ^( PropRef exp i= Identifier )
                 {
-                matchStream(input,PropRef,FOLLOW_PropRef_in_setr483); if (this.state.failed) return ;
+                matchStream(input,PropRef,FOLLOW_PropRef_in_setr488); if (this.state.failed) return ;
 
                 matchStream(input, TokenConstants.DOWN, null); if (this.state.failed) return ;
-                pushFollow(FOLLOW_exp_in_setr485);
+                pushFollow(FOLLOW_exp_in_setr490);
                 exp();
 
                 state._fsp = state._fsp - 1;
                 if (this.state.failed) return ;
-                i=Object(matchStream(input,Identifier,FOLLOW_Identifier_in_setr489)); if (this.state.failed) return ;
+                i=Object(matchStream(input,Identifier,FOLLOW_Identifier_in_setr494)); if (this.state.failed) return ;
 
                 matchStream(input, TokenConstants.UP, null); if (this.state.failed) return ;
                 if ( this.state.backtracking==0 ) {
@@ -839,7 +864,7 @@ package com.esoteric.expressions {
         // $ANTLR end setr
 
         // $ANTLR start value
-        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:105:1: value : ( ^(o= ( '||' | 'or' | '&&' | 'and' | '|' | '^' | '&' | '==' | '!=' | '===' | '!==' | '<' | 'lt' | '>' | 'gt' | '<=' | 'lte' | '>=' | 'gte' | '<<' | '>>' | '>>>' | '+' | '-' | '*' | '/' | '%' ) exp exp ) | ^( CondExp exp exp exp ) | ^(o= ( '-' | '+' | '~' | '!' ) exp ) | ^(f= FuncCall ( exp )+ ) | ^( PropRef exp i= Identifier ) | ^( PropExp exp exp ) | NumberLiteral | StringLiteral | 'true' | 'false' | i= Identifier | ^(a= CreateArray ( exp )* ) );
+        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:106:1: value : ( ^(o= ( '||' | 'or' | '&&' | 'and' | '|' | '^' | '&' | '==' | '!=' | '===' | '!==' | '<' | 'lt' | '>' | 'gt' | '<=' | 'lte' | '>=' | 'gte' | '<<' | '>>' | '>>>' | '+' | '-' | '*' | '/' | '%' ) exp exp ) | ^( CondExp exp exp exp ) | ^(o= ( '-' | '+' | '~' | '!' ) exp ) | ^(f= FuncCall ( exp )+ ) | ^( PropRef exp i= Identifier ) | ^( PropExp exp exp ) | NumberLiteral | StringLiteral | 'true' | 'false' | i= Identifier | ^(a= CreateArray ( exp )* ) );
         public final function value():TreeRuleReturnScope {
             var retval:TreeRuleReturnScope = new TreeRuleReturnScope();
             retval.start = input.LT(1);
@@ -851,12 +876,12 @@ package com.esoteric.expressions {
 
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 12) ) { return retval; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:105:7: ( ^(o= ( '||' | 'or' | '&&' | 'and' | '|' | '^' | '&' | '==' | '!=' | '===' | '!==' | '<' | 'lt' | '>' | 'gt' | '<=' | 'lte' | '>=' | 'gte' | '<<' | '>>' | '>>>' | '+' | '-' | '*' | '/' | '%' ) exp exp ) | ^( CondExp exp exp exp ) | ^(o= ( '-' | '+' | '~' | '!' ) exp ) | ^(f= FuncCall ( exp )+ ) | ^( PropRef exp i= Identifier ) | ^( PropExp exp exp ) | NumberLiteral | StringLiteral | 'true' | 'false' | i= Identifier | ^(a= CreateArray ( exp )* ) )
-                var alt9:int=12;
-                alt9 = dfa9.predict(input);
-                switch (alt9) {
+                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:106:7: ( ^(o= ( '||' | 'or' | '&&' | 'and' | '|' | '^' | '&' | '==' | '!=' | '===' | '!==' | '<' | 'lt' | '>' | 'gt' | '<=' | 'lte' | '>=' | 'gte' | '<<' | '>>' | '>>>' | '+' | '-' | '*' | '/' | '%' ) exp exp ) | ^( CondExp exp exp exp ) | ^(o= ( '-' | '+' | '~' | '!' ) exp ) | ^(f= FuncCall ( exp )+ ) | ^( PropRef exp i= Identifier ) | ^( PropExp exp exp ) | NumberLiteral | StringLiteral | 'true' | 'false' | i= Identifier | ^(a= CreateArray ( exp )* ) )
+                var alt10:int=12;
+                alt10 = dfa10.predict(input);
+                switch (alt10) {
                     case 1 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:105:9: ^(o= ( '||' | 'or' | '&&' | 'and' | '|' | '^' | '&' | '==' | '!=' | '===' | '!==' | '<' | 'lt' | '>' | 'gt' | '<=' | 'lte' | '>=' | 'gte' | '<<' | '>>' | '>>>' | '+' | '-' | '*' | '/' | '%' ) exp exp )
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:106:9: ^(o= ( '||' | 'or' | '&&' | 'and' | '|' | '^' | '&' | '==' | '!=' | '===' | '!==' | '<' | 'lt' | '>' | 'gt' | '<=' | 'lte' | '>=' | 'gte' | '<<' | '>>' | '>>>' | '+' | '-' | '*' | '/' | '%' ) exp exp )
                         {
                         o=Object(input.LT(1));
                         if ( (input.LA(1)>=48 && input.LA(1)<=74) ) {
@@ -870,12 +895,12 @@ package com.esoteric.expressions {
 
 
                         matchStream(input, TokenConstants.DOWN, null); if (this.state.failed) return retval;
-                        pushFollow(FOLLOW_exp_in_value623);
+                        pushFollow(FOLLOW_exp_in_value628);
                         exp();
 
                         state._fsp = state._fsp - 1;
                         if (this.state.failed) return retval;
-                        pushFollow(FOLLOW_exp_in_value625);
+                        pushFollow(FOLLOW_exp_in_value630);
                         exp();
 
                         state._fsp = state._fsp - 1;
@@ -889,12 +914,12 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 2 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:110:4: ^( CondExp exp exp exp )
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:111:4: ^( CondExp exp exp exp )
                         {
-                        matchStream(input,CondExp,FOLLOW_CondExp_in_value650); if (this.state.failed) return retval;
+                        matchStream(input,CondExp,FOLLOW_CondExp_in_value655); if (this.state.failed) return retval;
 
                         matchStream(input, TokenConstants.DOWN, null); if (this.state.failed) return retval;
-                        pushFollow(FOLLOW_exp_in_value661);
+                        pushFollow(FOLLOW_exp_in_value666);
                         exp();
 
                         state._fsp = state._fsp - 1;
@@ -902,7 +927,7 @@ package com.esoteric.expressions {
                         if ( this.state.backtracking==0 ) {
                            _codegen.beginif() 
                         }
-                        pushFollow(FOLLOW_exp_in_value673);
+                        pushFollow(FOLLOW_exp_in_value678);
                         exp();
 
                         state._fsp = state._fsp - 1;
@@ -910,7 +935,7 @@ package com.esoteric.expressions {
                         if ( this.state.backtracking==0 ) {
                            _codegen.beginelse() 
                         }
-                        pushFollow(FOLLOW_exp_in_value685);
+                        pushFollow(FOLLOW_exp_in_value690);
                         exp();
 
                         state._fsp = state._fsp - 1;
@@ -924,7 +949,7 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 3 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:117:4: ^(o= ( '-' | '+' | '~' | '!' ) exp )
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:118:4: ^(o= ( '-' | '+' | '~' | '!' ) exp )
                         {
                         o=Object(input.LT(1));
                         if ( (input.LA(1)>=70 && input.LA(1)<=71)||(input.LA(1)>=75 && input.LA(1)<=76) ) {
@@ -938,7 +963,7 @@ package com.esoteric.expressions {
 
 
                         matchStream(input, TokenConstants.DOWN, null); if (this.state.failed) return retval;
-                        pushFollow(FOLLOW_exp_in_value730);
+                        pushFollow(FOLLOW_exp_in_value735);
                         exp();
 
                         state._fsp = state._fsp - 1;
@@ -952,28 +977,28 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 4 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:122:4: ^(f= FuncCall ( exp )+ )
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:123:4: ^(f= FuncCall ( exp )+ )
                         {
-                        f=Object(matchStream(input,FuncCall,FOLLOW_FuncCall_in_value753)); if (this.state.failed) return retval;
+                        f=Object(matchStream(input,FuncCall,FOLLOW_FuncCall_in_value758)); if (this.state.failed) return retval;
 
                         matchStream(input, TokenConstants.DOWN, null); if (this.state.failed) return retval;
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:122:17: ( exp )+
-                        var cnt7:int=0;
-                        loop7:
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:123:17: ( exp )+
+                        var cnt8:int=0;
+                        loop8:
                         do {
-                            var alt7:int=2;
-                            var LA7_0:int = input.LA(1);
+                            var alt8:int=2;
+                            var LA8_0:int = input.LA(1);
 
-                            if ( ((LA7_0>=6 && LA7_0<=10)||(LA7_0>=14 && LA7_0<=16)||(LA7_0>=34 && LA7_0<=45)||(LA7_0>=48 && LA7_0<=78)) ) {
-                                alt7=1;
+                            if ( ((LA8_0>=6 && LA8_0<=10)||(LA8_0>=14 && LA8_0<=16)||(LA8_0>=34 && LA8_0<=45)||(LA8_0>=48 && LA8_0<=78)) ) {
+                                alt8=1;
                             }
 
 
-                            switch (alt7) {
+                            switch (alt8) {
                         	case 1 :
                         	    // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:0:0: exp
                         	    {
-                        	    pushFollow(FOLLOW_exp_in_value755);
+                        	    pushFollow(FOLLOW_exp_in_value760);
                         	    exp();
 
                         	    state._fsp = state._fsp - 1;
@@ -983,12 +1008,12 @@ package com.esoteric.expressions {
                         	    break;
 
                         	default :
-                        	    if ( cnt7 >= 1 ) break loop7;
+                        	    if ( cnt8 >= 1 ) break loop8;
                         	    if (this.state.backtracking>0) {this.state.failed=true; return retval;}
-                                    throw new EarlyExitException(7, input);
+                                    throw new EarlyExitException(8, input);
 
                             }
-                            cnt7++;
+                            cnt8++;
                         } while (true);
 
 
@@ -1000,17 +1025,17 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 5 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:124:4: ^( PropRef exp i= Identifier )
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:125:4: ^( PropRef exp i= Identifier )
                         {
-                        matchStream(input,PropRef,FOLLOW_PropRef_in_value771); if (this.state.failed) return retval;
+                        matchStream(input,PropRef,FOLLOW_PropRef_in_value776); if (this.state.failed) return retval;
 
                         matchStream(input, TokenConstants.DOWN, null); if (this.state.failed) return retval;
-                        pushFollow(FOLLOW_exp_in_value773);
+                        pushFollow(FOLLOW_exp_in_value778);
                         exp();
 
                         state._fsp = state._fsp - 1;
                         if (this.state.failed) return retval;
-                        i=Object(matchStream(input,Identifier,FOLLOW_Identifier_in_value777)); if (this.state.failed) return retval;
+                        i=Object(matchStream(input,Identifier,FOLLOW_Identifier_in_value782)); if (this.state.failed) return retval;
 
                         matchStream(input, TokenConstants.UP, null); if (this.state.failed) return retval;
                         if ( this.state.backtracking==0 ) {
@@ -1023,17 +1048,17 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 6 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:127:4: ^( PropExp exp exp )
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:128:4: ^( PropExp exp exp )
                         {
-                        matchStream(input,PropExp,FOLLOW_PropExp_in_value802); if (this.state.failed) return retval;
+                        matchStream(input,PropExp,FOLLOW_PropExp_in_value807); if (this.state.failed) return retval;
 
                         matchStream(input, TokenConstants.DOWN, null); if (this.state.failed) return retval;
-                        pushFollow(FOLLOW_exp_in_value804);
+                        pushFollow(FOLLOW_exp_in_value809);
                         exp();
 
                         state._fsp = state._fsp - 1;
                         if (this.state.failed) return retval;
-                        pushFollow(FOLLOW_exp_in_value806);
+                        pushFollow(FOLLOW_exp_in_value811);
                         exp();
 
                         state._fsp = state._fsp - 1;
@@ -1047,9 +1072,9 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 7 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:129:4: NumberLiteral
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:130:4: NumberLiteral
                         {
-                        matchStream(input,NumberLiteral,FOLLOW_NumberLiteral_in_value820); if (this.state.failed) return retval;
+                        matchStream(input,NumberLiteral,FOLLOW_NumberLiteral_in_value825); if (this.state.failed) return retval;
                         if ( this.state.backtracking==0 ) {
                            _codegen.push(Number(input.tokenStream.toStringWithRange(
                             input.treeAdaptor.getTokenStartIndex(retval.start),
@@ -1059,9 +1084,9 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 8 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:131:4: StringLiteral
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:132:4: StringLiteral
                         {
-                        matchStream(input,StringLiteral,FOLLOW_StringLiteral_in_value834); if (this.state.failed) return retval;
+                        matchStream(input,StringLiteral,FOLLOW_StringLiteral_in_value839); if (this.state.failed) return retval;
                         if ( this.state.backtracking==0 ) {
                            _codegen.push(cleanUpString(input.tokenStream.toStringWithRange(
                             input.treeAdaptor.getTokenStartIndex(retval.start),
@@ -1071,9 +1096,9 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 9 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:133:4: 'true'
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:134:4: 'true'
                         {
-                        matchStream(input,77,FOLLOW_77_in_value848); if (this.state.failed) return retval;
+                        matchStream(input,77,FOLLOW_77_in_value853); if (this.state.failed) return retval;
                         if ( this.state.backtracking==0 ) {
                            _codegen.push(true); 
                         }
@@ -1081,9 +1106,9 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 10 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:134:4: 'false'
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:135:4: 'false'
                         {
-                        matchStream(input,78,FOLLOW_78_in_value861); if (this.state.failed) return retval;
+                        matchStream(input,78,FOLLOW_78_in_value866); if (this.state.failed) return retval;
                         if ( this.state.backtracking==0 ) {
                            _codegen.push(false); 
                         }
@@ -1091,9 +1116,9 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 11 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:136:4: i= Identifier
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:137:4: i= Identifier
                         {
-                        i=Object(matchStream(input,Identifier,FOLLOW_Identifier_in_value878)); if (this.state.failed) return retval;
+                        i=Object(matchStream(input,Identifier,FOLLOW_Identifier_in_value883)); if (this.state.failed) return retval;
                         if ( this.state.backtracking==0 ) {
                            _codegen.pushc(); 
                         }
@@ -1107,28 +1132,28 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 12 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:140:4: ^(a= CreateArray ( exp )* )
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:141:4: ^(a= CreateArray ( exp )* )
                         {
-                        a=Object(matchStream(input,CreateArray,FOLLOW_CreateArray_in_value925)); if (this.state.failed) return retval;
+                        a=Object(matchStream(input,CreateArray,FOLLOW_CreateArray_in_value930)); if (this.state.failed) return retval;
 
                         if ( input.LA(1)==TokenConstants.DOWN ) {
                             matchStream(input, TokenConstants.DOWN, null); if (this.state.failed) return retval;
-                            // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:140:20: ( exp )*
-                            loop8:
+                            // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:141:20: ( exp )*
+                            loop9:
                             do {
-                                var alt8:int=2;
-                                var LA8_0:int = input.LA(1);
+                                var alt9:int=2;
+                                var LA9_0:int = input.LA(1);
 
-                                if ( ((LA8_0>=6 && LA8_0<=10)||(LA8_0>=14 && LA8_0<=16)||(LA8_0>=34 && LA8_0<=45)||(LA8_0>=48 && LA8_0<=78)) ) {
-                                    alt8=1;
+                                if ( ((LA9_0>=6 && LA9_0<=10)||(LA9_0>=14 && LA9_0<=16)||(LA9_0>=34 && LA9_0<=45)||(LA9_0>=48 && LA9_0<=78)) ) {
+                                    alt9=1;
                                 }
 
 
-                                switch (alt8) {
+                                switch (alt9) {
                             	case 1 :
                             	    // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:0:0: exp
                             	    {
-                            	    pushFollow(FOLLOW_exp_in_value927);
+                            	    pushFollow(FOLLOW_exp_in_value932);
                             	    exp();
 
                             	    state._fsp = state._fsp - 1;
@@ -1138,7 +1163,7 @@ package com.esoteric.expressions {
                             	    break;
 
                             	default :
-                            	    break loop8;
+                            	    break loop9;
                                 }
                             } while (true);
 
@@ -1165,56 +1190,26 @@ package com.esoteric.expressions {
         }
         // $ANTLR end value
 
-        // $ANTLR start synpred5_ExpressionWalker
-        public final function synpred5_ExpressionWalker_fragment():void {
-            // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:56:10: ( ^( IfStmt exp stmtList stmtList ) )
-            // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:56:10: ^( IfStmt exp stmtList stmtList )
-            {
-            matchStream(input,IfStmt,FOLLOW_IfStmt_in_synpred5_ExpressionWalker131); if (this.state.failed) return ;
-
-            matchStream(input, TokenConstants.DOWN, null); if (this.state.failed) return ;
-            pushFollow(FOLLOW_exp_in_synpred5_ExpressionWalker136);
-            exp();
-
-            state._fsp = state._fsp - 1;
-            if (this.state.failed) return ;
-            pushFollow(FOLLOW_stmtList_in_synpred5_ExpressionWalker148);
-            stmtList();
-
-            state._fsp = state._fsp - 1;
-            if (this.state.failed) return ;
-            pushFollow(FOLLOW_stmtList_in_synpred5_ExpressionWalker159);
-            stmtList();
-
-            state._fsp = state._fsp - 1;
-            if (this.state.failed) return ;
-
-            matchStream(input, TokenConstants.UP, null); if (this.state.failed) return ;
-
-            }
-        }
-        // $ANTLR end synpred5_ExpressionWalker
-
         // $ANTLR start synpred6_ExpressionWalker
         public final function synpred6_ExpressionWalker_fragment():void {
-            // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:63:4: ( ^( IfStmt exp stmtList ifStmt ) )
-            // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:63:4: ^( IfStmt exp stmtList ifStmt )
+            // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:57:10: ( ^( IfStmt exp stmtList stmtList ) )
+            // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:57:10: ^( IfStmt exp stmtList stmtList )
             {
-            matchStream(input,IfStmt,FOLLOW_IfStmt_in_synpred6_ExpressionWalker182); if (this.state.failed) return ;
+            matchStream(input,IfStmt,FOLLOW_IfStmt_in_synpred6_ExpressionWalker136); if (this.state.failed) return ;
 
             matchStream(input, TokenConstants.DOWN, null); if (this.state.failed) return ;
-            pushFollow(FOLLOW_exp_in_synpred6_ExpressionWalker187);
+            pushFollow(FOLLOW_exp_in_synpred6_ExpressionWalker141);
             exp();
 
             state._fsp = state._fsp - 1;
             if (this.state.failed) return ;
-            pushFollow(FOLLOW_stmtList_in_synpred6_ExpressionWalker199);
+            pushFollow(FOLLOW_stmtList_in_synpred6_ExpressionWalker153);
             stmtList();
 
             state._fsp = state._fsp - 1;
             if (this.state.failed) return ;
-            pushFollow(FOLLOW_ifStmt_in_synpred6_ExpressionWalker210);
-            ifStmt();
+            pushFollow(FOLLOW_stmtList_in_synpred6_ExpressionWalker164);
+            stmtList();
 
             state._fsp = state._fsp - 1;
             if (this.state.failed) return ;
@@ -1225,12 +1220,42 @@ package com.esoteric.expressions {
         }
         // $ANTLR end synpred6_ExpressionWalker
 
-        // $ANTLR start synpred47_ExpressionWalker
-        public final function synpred47_ExpressionWalker_fragment():void {
+        // $ANTLR start synpred7_ExpressionWalker
+        public final function synpred7_ExpressionWalker_fragment():void {
+            // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:64:4: ( ^( IfStmt exp stmtList ifStmt ) )
+            // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:64:4: ^( IfStmt exp stmtList ifStmt )
+            {
+            matchStream(input,IfStmt,FOLLOW_IfStmt_in_synpred7_ExpressionWalker187); if (this.state.failed) return ;
+
+            matchStream(input, TokenConstants.DOWN, null); if (this.state.failed) return ;
+            pushFollow(FOLLOW_exp_in_synpred7_ExpressionWalker192);
+            exp();
+
+            state._fsp = state._fsp - 1;
+            if (this.state.failed) return ;
+            pushFollow(FOLLOW_stmtList_in_synpred7_ExpressionWalker204);
+            stmtList();
+
+            state._fsp = state._fsp - 1;
+            if (this.state.failed) return ;
+            pushFollow(FOLLOW_ifStmt_in_synpred7_ExpressionWalker215);
+            ifStmt();
+
+            state._fsp = state._fsp - 1;
+            if (this.state.failed) return ;
+
+            matchStream(input, TokenConstants.UP, null); if (this.state.failed) return ;
+
+            }
+        }
+        // $ANTLR end synpred7_ExpressionWalker
+
+        // $ANTLR start synpred48_ExpressionWalker
+        public final function synpred48_ExpressionWalker_fragment():void {
             var o:Object=null;
 
-            // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:105:9: ( ^(o= ( '||' | 'or' | '&&' | 'and' | '|' | '^' | '&' | '==' | '!=' | '===' | '!==' | '<' | 'lt' | '>' | 'gt' | '<=' | 'lte' | '>=' | 'gte' | '<<' | '>>' | '>>>' | '+' | '-' | '*' | '/' | '%' ) exp exp ) )
-            // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:105:9: ^(o= ( '||' | 'or' | '&&' | 'and' | '|' | '^' | '&' | '==' | '!=' | '===' | '!==' | '<' | 'lt' | '>' | 'gt' | '<=' | 'lte' | '>=' | 'gte' | '<<' | '>>' | '>>>' | '+' | '-' | '*' | '/' | '%' ) exp exp )
+            // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:106:9: ( ^(o= ( '||' | 'or' | '&&' | 'and' | '|' | '^' | '&' | '==' | '!=' | '===' | '!==' | '<' | 'lt' | '>' | 'gt' | '<=' | 'lte' | '>=' | 'gte' | '<<' | '>>' | '>>>' | '+' | '-' | '*' | '/' | '%' ) exp exp ) )
+            // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:106:9: ^(o= ( '||' | 'or' | '&&' | 'and' | '|' | '^' | '&' | '==' | '!=' | '===' | '!==' | '<' | 'lt' | '>' | 'gt' | '<=' | 'lte' | '>=' | 'gte' | '<<' | '>>' | '>>>' | '+' | '-' | '*' | '/' | '%' ) exp exp )
             {
             o=Object(input.LT(1));
             if ( (input.LA(1)>=48 && input.LA(1)<=74) ) {
@@ -1244,12 +1269,12 @@ package com.esoteric.expressions {
 
 
             matchStream(input, TokenConstants.DOWN, null); if (this.state.failed) return ;
-            pushFollow(FOLLOW_exp_in_synpred47_ExpressionWalker623);
+            pushFollow(FOLLOW_exp_in_synpred48_ExpressionWalker628);
             exp();
 
             state._fsp = state._fsp - 1;
             if (this.state.failed) return ;
-            pushFollow(FOLLOW_exp_in_synpred47_ExpressionWalker625);
+            pushFollow(FOLLOW_exp_in_synpred48_ExpressionWalker630);
             exp();
 
             state._fsp = state._fsp - 1;
@@ -1259,14 +1284,14 @@ package com.esoteric.expressions {
 
             }
         }
-        // $ANTLR end synpred47_ExpressionWalker
+        // $ANTLR end synpred48_ExpressionWalker
 
-        // $ANTLR start synpred52_ExpressionWalker
-        public final function synpred52_ExpressionWalker_fragment():void {
+        // $ANTLR start synpred53_ExpressionWalker
+        public final function synpred53_ExpressionWalker_fragment():void {
             var o:Object=null;
 
-            // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:117:4: ( ^(o= ( '-' | '+' | '~' | '!' ) exp ) )
-            // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:117:4: ^(o= ( '-' | '+' | '~' | '!' ) exp )
+            // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:118:4: ( ^(o= ( '-' | '+' | '~' | '!' ) exp ) )
+            // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:118:4: ^(o= ( '-' | '+' | '~' | '!' ) exp )
             {
             o=Object(input.LT(1));
             if ( (input.LA(1)>=70 && input.LA(1)<=71)||(input.LA(1)>=75 && input.LA(1)<=76) ) {
@@ -1280,7 +1305,7 @@ package com.esoteric.expressions {
 
 
             matchStream(input, TokenConstants.DOWN, null); if (this.state.failed) return ;
-            pushFollow(FOLLOW_exp_in_synpred52_ExpressionWalker730);
+            pushFollow(FOLLOW_exp_in_synpred53_ExpressionWalker735);
             exp();
 
             state._fsp = state._fsp - 1;
@@ -1290,16 +1315,16 @@ package com.esoteric.expressions {
 
             }
         }
-        // $ANTLR end synpred52_ExpressionWalker
+        // $ANTLR end synpred53_ExpressionWalker
 
 
            // Delegated rules
 
-        public final function synpred47_ExpressionWalker():Boolean {
+        public final function synpred48_ExpressionWalker():Boolean {
             this.state.backtracking++;
             var start:int = input.mark();
             try {
-                synpred47_ExpressionWalker_fragment(); // can never throw exception
+                synpred48_ExpressionWalker_fragment(); // can never throw exception
             } catch (re:RecognitionException) {
                 trace("impossible: "+re);
             }
@@ -1309,11 +1334,11 @@ package com.esoteric.expressions {
             this.state.failed=false;
             return success;
         }
-        public final function synpred52_ExpressionWalker():Boolean {
+        public final function synpred53_ExpressionWalker():Boolean {
             this.state.backtracking++;
             var start:int = input.mark();
             try {
-                synpred52_ExpressionWalker_fragment(); // can never throw exception
+                synpred53_ExpressionWalker_fragment(); // can never throw exception
             } catch (re:RecognitionException) {
                 trace("impossible: "+re);
             }
@@ -1337,11 +1362,11 @@ package com.esoteric.expressions {
             this.state.failed=false;
             return success;
         }
-        public final function synpred5_ExpressionWalker():Boolean {
+        public final function synpred7_ExpressionWalker():Boolean {
             this.state.backtracking++;
             var start:int = input.mark();
             try {
-                synpred5_ExpressionWalker_fragment(); // can never throw exception
+                synpred7_ExpressionWalker_fragment(); // can never throw exception
             } catch (re:RecognitionException) {
                 trace("impossible: "+re);
             }
@@ -1354,21 +1379,21 @@ package com.esoteric.expressions {
 
 
 
-        private const DFA9_eot:Array =
+        private const DFA10_eot:Array =
             DFA.unpackEncodedString("\x0e\u80ff\xff");
-        private const DFA9_eof:Array =
+        private const DFA10_eof:Array =
             DFA.unpackEncodedString("\x0e\u80ff\xff");
-        private const DFA9_min:Array =
+        private const DFA10_min:Array =
             DFA.unpackEncodedString("\x01\x06\x01\x00\x0c\u80ff\xff", true);
-        private const DFA9_max:Array =
+        private const DFA10_max:Array =
             DFA.unpackEncodedString("\x01\x4e\x01\x00\x0c\u80ff\xff", true);
-        private const DFA9_accept:Array =
+        private const DFA10_accept:Array =
             DFA.unpackEncodedString("\x02\u80ff\xff\x01\x02\x01\x01\x01"+
             "\x03\x01\x04\x01\x05\x01\x06\x01\x07\x01\x08\x01\x09\x01\x0a"+
             "\x01\x0b\x01\x0c");
-        private const DFA9_special:Array =
+        private const DFA10_special:Array =
             DFA.unpackEncodedString("\x01\u80ff\xff\x01\x00\x0c\u80ff\xff");
-        private const DFA9_transition:Array = [
+        private const DFA10_transition:Array = [
                 DFA.unpackEncodedString("\x01\x05\x01\x06\x01\x07\x01\x02"+
                 "\x01\x0d\x03\u80ff\xff\x01\x08\x01\x09\x01\x0c\x1f\u80ff\xff"+
                 "\x16\x03\x02\x01\x03\x03\x02\x04\x01\x0a\x01\x0b"),
@@ -1386,106 +1411,107 @@ package com.esoteric.expressions {
                 DFA.unpackEncodedString(""),
                 DFA.unpackEncodedString("")
         ];
-            private function DFA9_specialStateTransition(dfa:DFA, s:int, _input:IntStream):int {
+            private function DFA10_specialStateTransition(dfa:DFA, s:int, _input:IntStream):int {
                 var input:TreeNodeStream = TreeNodeStream(_input);
             	var _s:int = s;
                 switch ( s ) {
                         case 0 : 
-                            var LA9_1:int = input.LA(1);
+                            var LA10_1:int = input.LA(1);
 
                              
-                            var index9_1:int = input.index;
+                            var index10_1:int = input.index;
                             input.rewind();
                             s = -1;
-                            if ( (synpred47_ExpressionWalker()) ) {s = 3;}
+                            if ( (synpred48_ExpressionWalker()) ) {s = 3;}
 
-                            else if ( (synpred52_ExpressionWalker()) ) {s = 4;}
+                            else if ( (synpred53_ExpressionWalker()) ) {s = 4;}
 
                              
-                            input.seek(index9_1);
+                            input.seek(index10_1);
                             if ( s>=0 ) return s;
                             break;
                 }
                 if (this.state.backtracking>0) {this.state.failed=true; return -1;}
-                throw dfa.error(new NoViableAltException(dfa.description, 9, _s, input));
+                throw dfa.error(new NoViableAltException(dfa.description, 10, _s, input));
             }
 
-        protected var dfa9:DFA;  // initialized in constructor
+        protected var dfa10:DFA;  // initialized in constructor
      
 
         public static const FOLLOW_stmtList_in_main63:BitSet = new BitSet([0x00000002, 0x00000000]);
         public static const FOLLOW_StmtList_in_stmtList74:BitSet = new BitSet([0x00000004, 0x00000000]);
         public static const FOLLOW_stmt_in_stmtList76:BitSet = new BitSet([0x00001828, 0x00000000]);
-        public static const FOLLOW_expList_in_stmt89:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_ifStmt_in_stmt94:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_whileStmt_in_stmt99:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_ExpList_in_expList111:BitSet = new BitSet([0x00000004, 0x00000000]);
-        public static const FOLLOW_exp_in_expList113:BitSet = new BitSet([0x0001C7C8, 0xFFFF3FFC, 0x00007FFF, 0x00000000]);
-        public static const FOLLOW_IfStmt_in_ifStmt131:BitSet = new BitSet([0x00000004, 0x00000000]);
-        public static const FOLLOW_exp_in_ifStmt136:BitSet = new BitSet([0x00000010, 0x00000000]);
-        public static const FOLLOW_stmtList_in_ifStmt148:BitSet = new BitSet([0x00000010, 0x00000000]);
-        public static const FOLLOW_stmtList_in_ifStmt159:BitSet = new BitSet([0x00000008, 0x00000000]);
-        public static const FOLLOW_IfStmt_in_ifStmt182:BitSet = new BitSet([0x00000004, 0x00000000]);
-        public static const FOLLOW_exp_in_ifStmt187:BitSet = new BitSet([0x00000010, 0x00000000]);
-        public static const FOLLOW_stmtList_in_ifStmt199:BitSet = new BitSet([0x00000800, 0x00000000]);
-        public static const FOLLOW_ifStmt_in_ifStmt210:BitSet = new BitSet([0x00000008, 0x00000000]);
-        public static const FOLLOW_IfStmt_in_ifStmt234:BitSet = new BitSet([0x00000004, 0x00000000]);
-        public static const FOLLOW_exp_in_ifStmt239:BitSet = new BitSet([0x00000010, 0x00000000]);
-        public static const FOLLOW_stmtList_in_ifStmt251:BitSet = new BitSet([0x00000008, 0x00000000]);
-        public static const FOLLOW_WhileStmt_in_whileStmt278:BitSet = new BitSet([0x00000004, 0x00000000]);
-        public static const FOLLOW_exp_in_whileStmt289:BitSet = new BitSet([0x00000010, 0x00000000]);
-        public static const FOLLOW_stmtList_in_whileStmt301:BitSet = new BitSet([0x00000008, 0x00000000]);
-        public static const FOLLOW_set_in_exp321:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_value_in_exp326:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_set_in_set344:BitSet = new BitSet([0x00000004, 0x00000000]);
-        public static const FOLLOW_exp_in_set395:BitSet = new BitSet([0x00010180, 0x00000000]);
-        public static const FOLLOW_seti_in_set398:BitSet = new BitSet([0x00000008, 0x00000000]);
-        public static const FOLLOW_sete_in_set402:BitSet = new BitSet([0x00000008, 0x00000000]);
-        public static const FOLLOW_setr_in_set406:BitSet = new BitSet([0x00000008, 0x00000000]);
-        public static const FOLLOW_Identifier_in_seti431:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_PropExp_in_sete461:BitSet = new BitSet([0x00000004, 0x00000000]);
-        public static const FOLLOW_exp_in_sete463:BitSet = new BitSet([0x0001C7C8, 0xFFFF3FFC, 0x00007FFF, 0x00000000]);
-        public static const FOLLOW_exp_in_sete465:BitSet = new BitSet([0x00000008, 0x00000000]);
-        public static const FOLLOW_PropRef_in_setr483:BitSet = new BitSet([0x00000004, 0x00000000]);
-        public static const FOLLOW_exp_in_setr485:BitSet = new BitSet([0x00010000, 0x00000000]);
-        public static const FOLLOW_Identifier_in_setr489:BitSet = new BitSet([0x00000008, 0x00000000]);
-        public static const FOLLOW_set_in_value513:BitSet = new BitSet([0x00000004, 0x00000000]);
-        public static const FOLLOW_exp_in_value623:BitSet = new BitSet([0x0001C7C8, 0xFFFF3FFC, 0x00007FFF, 0x00000000]);
-        public static const FOLLOW_exp_in_value625:BitSet = new BitSet([0x00000008, 0x00000000]);
-        public static const FOLLOW_CondExp_in_value650:BitSet = new BitSet([0x00000004, 0x00000000]);
-        public static const FOLLOW_exp_in_value661:BitSet = new BitSet([0x0001C7C8, 0xFFFF3FFC, 0x00007FFF, 0x00000000]);
-        public static const FOLLOW_exp_in_value673:BitSet = new BitSet([0x0001C7C8, 0xFFFF3FFC, 0x00007FFF, 0x00000000]);
-        public static const FOLLOW_exp_in_value685:BitSet = new BitSet([0x00000008, 0x00000000]);
-        public static const FOLLOW_set_in_value711:BitSet = new BitSet([0x00000004, 0x00000000]);
-        public static const FOLLOW_exp_in_value730:BitSet = new BitSet([0x00000008, 0x00000000]);
-        public static const FOLLOW_FuncCall_in_value753:BitSet = new BitSet([0x00000004, 0x00000000]);
-        public static const FOLLOW_exp_in_value755:BitSet = new BitSet([0x0001C7C8, 0xFFFF3FFC, 0x00007FFF, 0x00000000]);
-        public static const FOLLOW_PropRef_in_value771:BitSet = new BitSet([0x00000004, 0x00000000]);
-        public static const FOLLOW_exp_in_value773:BitSet = new BitSet([0x00010000, 0x00000000]);
-        public static const FOLLOW_Identifier_in_value777:BitSet = new BitSet([0x00000008, 0x00000000]);
-        public static const FOLLOW_PropExp_in_value802:BitSet = new BitSet([0x00000004, 0x00000000]);
-        public static const FOLLOW_exp_in_value804:BitSet = new BitSet([0x0001C7C8, 0xFFFF3FFC, 0x00007FFF, 0x00000000]);
-        public static const FOLLOW_exp_in_value806:BitSet = new BitSet([0x00000008, 0x00000000]);
-        public static const FOLLOW_NumberLiteral_in_value820:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_StringLiteral_in_value834:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_77_in_value848:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_78_in_value861:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_Identifier_in_value878:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_CreateArray_in_value925:BitSet = new BitSet([0x00000004, 0x00000000]);
-        public static const FOLLOW_exp_in_value927:BitSet = new BitSet([0x0001C7C8, 0xFFFF3FFC, 0x00007FFF, 0x00000000]);
-        public static const FOLLOW_IfStmt_in_synpred5_ExpressionWalker131:BitSet = new BitSet([0x00000004, 0x00000000]);
-        public static const FOLLOW_exp_in_synpred5_ExpressionWalker136:BitSet = new BitSet([0x00000010, 0x00000000]);
-        public static const FOLLOW_stmtList_in_synpred5_ExpressionWalker148:BitSet = new BitSet([0x00000010, 0x00000000]);
-        public static const FOLLOW_stmtList_in_synpred5_ExpressionWalker159:BitSet = new BitSet([0x00000008, 0x00000000]);
-        public static const FOLLOW_IfStmt_in_synpred6_ExpressionWalker182:BitSet = new BitSet([0x00000004, 0x00000000]);
-        public static const FOLLOW_exp_in_synpred6_ExpressionWalker187:BitSet = new BitSet([0x00000010, 0x00000000]);
-        public static const FOLLOW_stmtList_in_synpred6_ExpressionWalker199:BitSet = new BitSet([0x00000800, 0x00000000]);
-        public static const FOLLOW_ifStmt_in_synpred6_ExpressionWalker210:BitSet = new BitSet([0x00000008, 0x00000000]);
-        public static const FOLLOW_set_in_synpred47_ExpressionWalker513:BitSet = new BitSet([0x00000004, 0x00000000]);
-        public static const FOLLOW_exp_in_synpred47_ExpressionWalker623:BitSet = new BitSet([0x0001C7C8, 0xFFFF3FFC, 0x00007FFF, 0x00000000]);
-        public static const FOLLOW_exp_in_synpred47_ExpressionWalker625:BitSet = new BitSet([0x00000008, 0x00000000]);
-        public static const FOLLOW_set_in_synpred52_ExpressionWalker711:BitSet = new BitSet([0x00000004, 0x00000000]);
-        public static const FOLLOW_exp_in_synpred52_ExpressionWalker730:BitSet = new BitSet([0x00000008, 0x00000000]);
+        public static const FOLLOW_EOF_in_stmtList83:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_expList_in_stmt94:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_ifStmt_in_stmt99:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_whileStmt_in_stmt104:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_ExpList_in_expList116:BitSet = new BitSet([0x00000004, 0x00000000]);
+        public static const FOLLOW_exp_in_expList118:BitSet = new BitSet([0x0001C7C8, 0xFFFF3FFC, 0x00007FFF, 0x00000000]);
+        public static const FOLLOW_IfStmt_in_ifStmt136:BitSet = new BitSet([0x00000004, 0x00000000]);
+        public static const FOLLOW_exp_in_ifStmt141:BitSet = new BitSet([0x00000010, 0x00000000]);
+        public static const FOLLOW_stmtList_in_ifStmt153:BitSet = new BitSet([0x00000010, 0x00000000]);
+        public static const FOLLOW_stmtList_in_ifStmt164:BitSet = new BitSet([0x00000008, 0x00000000]);
+        public static const FOLLOW_IfStmt_in_ifStmt187:BitSet = new BitSet([0x00000004, 0x00000000]);
+        public static const FOLLOW_exp_in_ifStmt192:BitSet = new BitSet([0x00000010, 0x00000000]);
+        public static const FOLLOW_stmtList_in_ifStmt204:BitSet = new BitSet([0x00000800, 0x00000000]);
+        public static const FOLLOW_ifStmt_in_ifStmt215:BitSet = new BitSet([0x00000008, 0x00000000]);
+        public static const FOLLOW_IfStmt_in_ifStmt239:BitSet = new BitSet([0x00000004, 0x00000000]);
+        public static const FOLLOW_exp_in_ifStmt244:BitSet = new BitSet([0x00000010, 0x00000000]);
+        public static const FOLLOW_stmtList_in_ifStmt256:BitSet = new BitSet([0x00000008, 0x00000000]);
+        public static const FOLLOW_WhileStmt_in_whileStmt283:BitSet = new BitSet([0x00000004, 0x00000000]);
+        public static const FOLLOW_exp_in_whileStmt294:BitSet = new BitSet([0x00000010, 0x00000000]);
+        public static const FOLLOW_stmtList_in_whileStmt306:BitSet = new BitSet([0x00000008, 0x00000000]);
+        public static const FOLLOW_set_in_exp326:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_value_in_exp331:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_set_in_set349:BitSet = new BitSet([0x00000004, 0x00000000]);
+        public static const FOLLOW_exp_in_set400:BitSet = new BitSet([0x00010180, 0x00000000]);
+        public static const FOLLOW_seti_in_set403:BitSet = new BitSet([0x00000008, 0x00000000]);
+        public static const FOLLOW_sete_in_set407:BitSet = new BitSet([0x00000008, 0x00000000]);
+        public static const FOLLOW_setr_in_set411:BitSet = new BitSet([0x00000008, 0x00000000]);
+        public static const FOLLOW_Identifier_in_seti436:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_PropExp_in_sete466:BitSet = new BitSet([0x00000004, 0x00000000]);
+        public static const FOLLOW_exp_in_sete468:BitSet = new BitSet([0x0001C7C8, 0xFFFF3FFC, 0x00007FFF, 0x00000000]);
+        public static const FOLLOW_exp_in_sete470:BitSet = new BitSet([0x00000008, 0x00000000]);
+        public static const FOLLOW_PropRef_in_setr488:BitSet = new BitSet([0x00000004, 0x00000000]);
+        public static const FOLLOW_exp_in_setr490:BitSet = new BitSet([0x00010000, 0x00000000]);
+        public static const FOLLOW_Identifier_in_setr494:BitSet = new BitSet([0x00000008, 0x00000000]);
+        public static const FOLLOW_set_in_value518:BitSet = new BitSet([0x00000004, 0x00000000]);
+        public static const FOLLOW_exp_in_value628:BitSet = new BitSet([0x0001C7C8, 0xFFFF3FFC, 0x00007FFF, 0x00000000]);
+        public static const FOLLOW_exp_in_value630:BitSet = new BitSet([0x00000008, 0x00000000]);
+        public static const FOLLOW_CondExp_in_value655:BitSet = new BitSet([0x00000004, 0x00000000]);
+        public static const FOLLOW_exp_in_value666:BitSet = new BitSet([0x0001C7C8, 0xFFFF3FFC, 0x00007FFF, 0x00000000]);
+        public static const FOLLOW_exp_in_value678:BitSet = new BitSet([0x0001C7C8, 0xFFFF3FFC, 0x00007FFF, 0x00000000]);
+        public static const FOLLOW_exp_in_value690:BitSet = new BitSet([0x00000008, 0x00000000]);
+        public static const FOLLOW_set_in_value716:BitSet = new BitSet([0x00000004, 0x00000000]);
+        public static const FOLLOW_exp_in_value735:BitSet = new BitSet([0x00000008, 0x00000000]);
+        public static const FOLLOW_FuncCall_in_value758:BitSet = new BitSet([0x00000004, 0x00000000]);
+        public static const FOLLOW_exp_in_value760:BitSet = new BitSet([0x0001C7C8, 0xFFFF3FFC, 0x00007FFF, 0x00000000]);
+        public static const FOLLOW_PropRef_in_value776:BitSet = new BitSet([0x00000004, 0x00000000]);
+        public static const FOLLOW_exp_in_value778:BitSet = new BitSet([0x00010000, 0x00000000]);
+        public static const FOLLOW_Identifier_in_value782:BitSet = new BitSet([0x00000008, 0x00000000]);
+        public static const FOLLOW_PropExp_in_value807:BitSet = new BitSet([0x00000004, 0x00000000]);
+        public static const FOLLOW_exp_in_value809:BitSet = new BitSet([0x0001C7C8, 0xFFFF3FFC, 0x00007FFF, 0x00000000]);
+        public static const FOLLOW_exp_in_value811:BitSet = new BitSet([0x00000008, 0x00000000]);
+        public static const FOLLOW_NumberLiteral_in_value825:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_StringLiteral_in_value839:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_77_in_value853:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_78_in_value866:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_Identifier_in_value883:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_CreateArray_in_value930:BitSet = new BitSet([0x00000004, 0x00000000]);
+        public static const FOLLOW_exp_in_value932:BitSet = new BitSet([0x0001C7C8, 0xFFFF3FFC, 0x00007FFF, 0x00000000]);
+        public static const FOLLOW_IfStmt_in_synpred6_ExpressionWalker136:BitSet = new BitSet([0x00000004, 0x00000000]);
+        public static const FOLLOW_exp_in_synpred6_ExpressionWalker141:BitSet = new BitSet([0x00000010, 0x00000000]);
+        public static const FOLLOW_stmtList_in_synpred6_ExpressionWalker153:BitSet = new BitSet([0x00000010, 0x00000000]);
+        public static const FOLLOW_stmtList_in_synpred6_ExpressionWalker164:BitSet = new BitSet([0x00000008, 0x00000000]);
+        public static const FOLLOW_IfStmt_in_synpred7_ExpressionWalker187:BitSet = new BitSet([0x00000004, 0x00000000]);
+        public static const FOLLOW_exp_in_synpred7_ExpressionWalker192:BitSet = new BitSet([0x00000010, 0x00000000]);
+        public static const FOLLOW_stmtList_in_synpred7_ExpressionWalker204:BitSet = new BitSet([0x00000800, 0x00000000]);
+        public static const FOLLOW_ifStmt_in_synpred7_ExpressionWalker215:BitSet = new BitSet([0x00000008, 0x00000000]);
+        public static const FOLLOW_set_in_synpred48_ExpressionWalker518:BitSet = new BitSet([0x00000004, 0x00000000]);
+        public static const FOLLOW_exp_in_synpred48_ExpressionWalker628:BitSet = new BitSet([0x0001C7C8, 0xFFFF3FFC, 0x00007FFF, 0x00000000]);
+        public static const FOLLOW_exp_in_synpred48_ExpressionWalker630:BitSet = new BitSet([0x00000008, 0x00000000]);
+        public static const FOLLOW_set_in_synpred53_ExpressionWalker716:BitSet = new BitSet([0x00000004, 0x00000000]);
+        public static const FOLLOW_exp_in_synpred53_ExpressionWalker735:BitSet = new BitSet([0x00000008, 0x00000000]);
 
     }
 }

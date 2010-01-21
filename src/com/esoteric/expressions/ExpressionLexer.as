@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g 2010-01-21 14:33:45
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g 2010-01-21 16:04:27
 package com.esoteric.expressions {
     import org.antlr.runtime.*;
         
@@ -92,7 +92,7 @@ package com.esoteric.expressions {
             super(input, state);
 
             dfa13 = new DFA(this, 13,
-                        "278:1: NumberLiteral : ( ( '-' )? ( '.' )? ( Digit )+ ( Exponent )? | ( '-' )? ( Digit )+ '.' ( Digit )+ ( Exponent )? | '0' ( 'x' | 'X' ) ( HexDigit )+ );",
+                        "292:1: NumberLiteral : ( ( '-' )? ( '.' )? ( Digit )+ ( Exponent )? | ( '-' )? ( Digit )+ '.' ( Digit )+ ( Exponent )? | '0' ( 'x' | 'X' ) ( HexDigit )+ );",
                         DFA13_eot, DFA13_eof, DFA13_min,
                         DFA13_max, DFA13_accept, DFA13_special,
                         DFA13_transition);
@@ -1285,12 +1285,12 @@ package com.esoteric.expressions {
             try {
                 var _type:int = LineComment;
                 var _channel:int = DEFAULT_TOKEN_CHANNEL;
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:265:2: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:265:4: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:279:2: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:279:4: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
                 {
                 matchString("//"); 
 
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:265:9: (~ ( '\\n' | '\\r' ) )*
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:279:9: (~ ( '\\n' | '\\r' ) )*
                 loop1:
                 do {
                     var alt1:int=2;
@@ -1303,7 +1303,7 @@ package com.esoteric.expressions {
 
                     switch (alt1) {
                 	case 1 :
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:265:9: ~ ( '\\n' | '\\r' )
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:279:9: ~ ( '\\n' | '\\r' )
                 	    {
                 	    if ( (input.LA(1)>=0 && input.LA(1)<=9)||(input.LA(1)>=11 && input.LA(1)<=12)||(input.LA(1)>=14 && input.LA(1)<=65535) ) {
                 	        input.consume();
@@ -1322,7 +1322,7 @@ package com.esoteric.expressions {
                     }
                 } while (true);
 
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:265:25: ( '\\r' )?
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:279:25: ( '\\r' )?
                 var alt2:int=2;
                 var LA2_0:int = input.LA(1);
 
@@ -1331,7 +1331,7 @@ package com.esoteric.expressions {
                 }
                 switch (alt2) {
                     case 1 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:265:25: '\\r'
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:279:25: '\\r'
                         {
                         match(13); 
 
@@ -1360,12 +1360,12 @@ package com.esoteric.expressions {
             try {
                 var _type:int = MultilineComment;
                 var _channel:int = DEFAULT_TOKEN_CHANNEL;
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:272:2: ( '/*' ( options {greedy=false; } : . )* '*/' )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:272:4: '/*' ( options {greedy=false; } : . )* '*/'
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:286:2: ( '/*' ( options {greedy=false; } : . )* '*/' )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:286:4: '/*' ( options {greedy=false; } : . )* '*/'
                 {
                 matchString("/*"); 
 
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:272:9: ( options {greedy=false; } : . )*
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:286:9: ( options {greedy=false; } : . )*
                 loop3:
                 do {
                     var alt3:int=2;
@@ -1390,7 +1390,7 @@ package com.esoteric.expressions {
 
                     switch (alt3) {
                 	case 1 :
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:272:36: .
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:286:36: .
                 	    {
                 	    matchAny(); 
 
@@ -1423,14 +1423,14 @@ package com.esoteric.expressions {
             try {
                 var _type:int = NumberLiteral;
                 var _channel:int = DEFAULT_TOKEN_CHANNEL;
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:279:3: ( ( '-' )? ( '.' )? ( Digit )+ ( Exponent )? | ( '-' )? ( Digit )+ '.' ( Digit )+ ( Exponent )? | '0' ( 'x' | 'X' ) ( HexDigit )+ )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:293:3: ( ( '-' )? ( '.' )? ( Digit )+ ( Exponent )? | ( '-' )? ( Digit )+ '.' ( Digit )+ ( Exponent )? | '0' ( 'x' | 'X' ) ( HexDigit )+ )
                 var alt13:int=3;
                 alt13 = dfa13.predict(input);
                 switch (alt13) {
                     case 1 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:279:5: ( '-' )? ( '.' )? ( Digit )+ ( Exponent )?
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:293:5: ( '-' )? ( '.' )? ( Digit )+ ( Exponent )?
                         {
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:279:5: ( '-' )?
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:293:5: ( '-' )?
                         var alt4:int=2;
                         var LA4_0:int = input.LA(1);
 
@@ -1439,7 +1439,7 @@ package com.esoteric.expressions {
                         }
                         switch (alt4) {
                             case 1 :
-                                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:279:5: '-'
+                                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:293:5: '-'
                                 {
                                 match(45); 
 
@@ -1448,7 +1448,7 @@ package com.esoteric.expressions {
 
                         }
 
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:279:10: ( '.' )?
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:293:10: ( '.' )?
                         var alt5:int=2;
                         var LA5_0:int = input.LA(1);
 
@@ -1457,7 +1457,7 @@ package com.esoteric.expressions {
                         }
                         switch (alt5) {
                             case 1 :
-                                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:279:10: '.'
+                                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:293:10: '.'
                                 {
                                 match(46); 
 
@@ -1466,7 +1466,7 @@ package com.esoteric.expressions {
 
                         }
 
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:279:15: ( Digit )+
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:293:15: ( Digit )+
                         var cnt6:int=0;
                         loop6:
                         do {
@@ -1480,7 +1480,7 @@ package com.esoteric.expressions {
 
                             switch (alt6) {
                         	case 1 :
-                        	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:279:15: Digit
+                        	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:293:15: Digit
                         	    {
                         	    mDigit(); 
 
@@ -1495,7 +1495,7 @@ package com.esoteric.expressions {
                             cnt6++;
                         } while (true);
 
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:279:22: ( Exponent )?
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:293:22: ( Exponent )?
                         var alt7:int=2;
                         var LA7_0:int = input.LA(1);
 
@@ -1504,7 +1504,7 @@ package com.esoteric.expressions {
                         }
                         switch (alt7) {
                             case 1 :
-                                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:279:22: Exponent
+                                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:293:22: Exponent
                                 {
                                 mExponent(); 
 
@@ -1517,9 +1517,9 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 2 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:280:4: ( '-' )? ( Digit )+ '.' ( Digit )+ ( Exponent )?
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:294:4: ( '-' )? ( Digit )+ '.' ( Digit )+ ( Exponent )?
                         {
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:280:4: ( '-' )?
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:294:4: ( '-' )?
                         var alt8:int=2;
                         var LA8_0:int = input.LA(1);
 
@@ -1528,7 +1528,7 @@ package com.esoteric.expressions {
                         }
                         switch (alt8) {
                             case 1 :
-                                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:280:4: '-'
+                                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:294:4: '-'
                                 {
                                 match(45); 
 
@@ -1537,7 +1537,7 @@ package com.esoteric.expressions {
 
                         }
 
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:280:9: ( Digit )+
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:294:9: ( Digit )+
                         var cnt9:int=0;
                         loop9:
                         do {
@@ -1551,7 +1551,7 @@ package com.esoteric.expressions {
 
                             switch (alt9) {
                         	case 1 :
-                        	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:280:9: Digit
+                        	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:294:9: Digit
                         	    {
                         	    mDigit(); 
 
@@ -1567,7 +1567,7 @@ package com.esoteric.expressions {
                         } while (true);
 
                         match(46); 
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:280:20: ( Digit )+
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:294:20: ( Digit )+
                         var cnt10:int=0;
                         loop10:
                         do {
@@ -1581,7 +1581,7 @@ package com.esoteric.expressions {
 
                             switch (alt10) {
                         	case 1 :
-                        	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:280:20: Digit
+                        	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:294:20: Digit
                         	    {
                         	    mDigit(); 
 
@@ -1596,7 +1596,7 @@ package com.esoteric.expressions {
                             cnt10++;
                         } while (true);
 
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:280:28: ( Exponent )?
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:294:28: ( Exponent )?
                         var alt11:int=2;
                         var LA11_0:int = input.LA(1);
 
@@ -1605,7 +1605,7 @@ package com.esoteric.expressions {
                         }
                         switch (alt11) {
                             case 1 :
-                                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:280:28: Exponent
+                                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:294:28: Exponent
                                 {
                                 mExponent(); 
 
@@ -1618,7 +1618,7 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 3 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:281:4: '0' ( 'x' | 'X' ) ( HexDigit )+
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:295:4: '0' ( 'x' | 'X' ) ( HexDigit )+
                         {
                         match(48); 
                         if ( input.LA(1)==88||input.LA(1)==120 ) {
@@ -1629,7 +1629,7 @@ package com.esoteric.expressions {
                             throw recover(new MismatchedSetException(null,input));
                         }
 
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:281:22: ( HexDigit )+
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:295:22: ( HexDigit )+
                         var cnt12:int=0;
                         loop12:
                         do {
@@ -1643,7 +1643,7 @@ package com.esoteric.expressions {
 
                             switch (alt12) {
                         	case 1 :
-                        	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:281:22: HexDigit
+                        	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:295:22: HexDigit
                         	    {
                         	    mHexDigit(); 
 
@@ -1676,8 +1676,8 @@ package com.esoteric.expressions {
             try {
                 var _type:int = Exponent;
                 var _channel:int = DEFAULT_TOKEN_CHANNEL;
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:285:2: ( ( 'e' | 'E' ) ( '-' | '+' )? ( Digit )+ )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:285:4: ( 'e' | 'E' ) ( '-' | '+' )? ( Digit )+
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:299:2: ( ( 'e' | 'E' ) ( '-' | '+' )? ( Digit )+ )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:299:4: ( 'e' | 'E' ) ( '-' | '+' )? ( Digit )+
                 {
                 if ( input.LA(1)==69||input.LA(1)==101 ) {
                     input.consume();
@@ -1687,7 +1687,7 @@ package com.esoteric.expressions {
                     throw recover(new MismatchedSetException(null,input));
                 }
 
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:285:16: ( '-' | '+' )?
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:299:16: ( '-' | '+' )?
                 var alt14:int=2;
                 var LA14_0:int = input.LA(1);
 
@@ -1712,7 +1712,7 @@ package com.esoteric.expressions {
 
                 }
 
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:285:31: ( Digit )+
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:299:31: ( Digit )+
                 var cnt15:int=0;
                 loop15:
                 do {
@@ -1726,7 +1726,7 @@ package com.esoteric.expressions {
 
                     switch (alt15) {
                 	case 1 :
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:285:31: Digit
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:299:31: Digit
                 	    {
                 	    mDigit(); 
 
@@ -1757,7 +1757,7 @@ package com.esoteric.expressions {
             try {
                 var _type:int = StringLiteral;
                 var _channel:int = DEFAULT_TOKEN_CHANNEL;
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:290:2: ( '\"' ( EscapeSequence | ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\\"' ) )* '\"' | '\\'' ( EscapeSequence | ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\'' ) )* '\\'' )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:304:2: ( '\"' ( EscapeSequence | ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\\"' ) )* '\"' | '\\'' ( EscapeSequence | ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\'' ) )* '\\'' )
                 var alt18:int=2;
                 var LA18_0:int = input.LA(1);
 
@@ -1773,10 +1773,10 @@ package com.esoteric.expressions {
                 }
                 switch (alt18) {
                     case 1 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:290:4: '\"' ( EscapeSequence | ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\\"' ) )* '\"'
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:304:4: '\"' ( EscapeSequence | ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\\"' ) )* '\"'
                         {
                         match(34); 
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:290:8: ( EscapeSequence | ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\\"' ) )*
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:304:8: ( EscapeSequence | ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\\"' ) )*
                         loop16:
                         do {
                             var alt16:int=3;
@@ -1792,14 +1792,14 @@ package com.esoteric.expressions {
 
                             switch (alt16) {
                         	case 1 :
-                        	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:290:10: EscapeSequence
+                        	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:304:10: EscapeSequence
                         	    {
                         	    mEscapeSequence(); 
 
                         	    }
                         	    break;
                         	case 2 :
-                        	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:290:27: ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\\"' )
+                        	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:304:27: ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\\"' )
                         	    {
                         	    if ( (input.LA(1)>=32 && input.LA(1)<=33)||(input.LA(1)>=35 && input.LA(1)<=91)||(input.LA(1)>=93 && input.LA(1)<=65535) ) {
                         	        input.consume();
@@ -1823,10 +1823,10 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 2 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:291:4: '\\'' ( EscapeSequence | ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\'' ) )* '\\''
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:305:4: '\\'' ( EscapeSequence | ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\'' ) )* '\\''
                         {
                         match(39); 
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:291:9: ( EscapeSequence | ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\'' ) )*
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:305:9: ( EscapeSequence | ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\'' ) )*
                         loop17:
                         do {
                             var alt17:int=3;
@@ -1842,14 +1842,14 @@ package com.esoteric.expressions {
 
                             switch (alt17) {
                         	case 1 :
-                        	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:291:11: EscapeSequence
+                        	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:305:11: EscapeSequence
                         	    {
                         	    mEscapeSequence(); 
 
                         	    }
                         	    break;
                         	case 2 :
-                        	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:291:28: ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\'' )
+                        	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:305:28: ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\'' )
                         	    {
                         	    if ( (input.LA(1)>=32 && input.LA(1)<=38)||(input.LA(1)>=40 && input.LA(1)<=91)||(input.LA(1)>=93 && input.LA(1)<=65535) ) {
                         	        input.consume();
@@ -1887,10 +1887,10 @@ package com.esoteric.expressions {
             try {
                 var _type:int = WhiteSpace;
                 var _channel:int = DEFAULT_TOKEN_CHANNEL;
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:295:2: ( ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+ )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:295:4: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:309:2: ( ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+ )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:309:4: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
                 {
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:295:4: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:309:4: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
                 var cnt19:int=0;
                 loop19:
                 do {
@@ -1945,8 +1945,8 @@ package com.esoteric.expressions {
             try {
                 var _type:int = Identifier;
                 var _channel:int = DEFAULT_TOKEN_CHANNEL;
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:302:2: ( ( Letter | '_' ) ( Letter | Digit | '_' )* )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:302:4: ( Letter | '_' ) ( Letter | Digit | '_' )*
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:316:2: ( ( Letter | '_' ) ( Letter | Digit | '_' )* )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:316:4: ( Letter | '_' ) ( Letter | Digit | '_' )*
                 {
                 if ( (input.LA(1)>=65 && input.LA(1)<=90)||input.LA(1)==95||(input.LA(1)>=97 && input.LA(1)<=122) ) {
                     input.consume();
@@ -1956,7 +1956,7 @@ package com.esoteric.expressions {
                     throw recover(new MismatchedSetException(null,input));
                 }
 
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:302:21: ( Letter | Digit | '_' )*
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:316:21: ( Letter | Digit | '_' )*
                 loop20:
                 do {
                     var alt20:int=2;
@@ -2002,8 +2002,8 @@ package com.esoteric.expressions {
         // $ANTLR start Digit
         public final function mDigit():void {
             try {
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:306:2: ( '0' .. '9' )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:306:4: '0' .. '9'
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:320:2: ( '0' .. '9' )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:320:4: '0' .. '9'
                 {
                 matchRange(48,57); 
 
@@ -2018,7 +2018,7 @@ package com.esoteric.expressions {
         // $ANTLR start HexDigit
         public final function mHexDigit():void {
             try {
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:310:2: ( Digit | 'a' .. 'f' | 'A' .. 'F' )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:324:2: ( Digit | 'a' .. 'f' | 'A' .. 'F' )
                 // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:
                 {
                 if ( (input.LA(1)>=48 && input.LA(1)<=57)||(input.LA(1)>=65 && input.LA(1)<=70)||(input.LA(1)>=97 && input.LA(1)<=102) ) {
@@ -2041,7 +2041,7 @@ package com.esoteric.expressions {
         // $ANTLR start Letter
         public final function mLetter():void {
             try {
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:316:2: ( 'a' .. 'z' | 'A' .. 'Z' )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:330:2: ( 'a' .. 'z' | 'A' .. 'Z' )
                 // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:
                 {
                 if ( (input.LA(1)>=65 && input.LA(1)<=90)||(input.LA(1)>=97 && input.LA(1)<=122) ) {
@@ -2064,11 +2064,11 @@ package com.esoteric.expressions {
         // $ANTLR start EscapeSequence
         public final function mEscapeSequence():void {
             try {
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:321:2: ( '\\\\' ( UnicodeEscapeChar | 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:321:4: '\\\\' ( UnicodeEscapeChar | 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:335:2: ( '\\\\' ( UnicodeEscapeChar | 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:335:4: '\\\\' ( UnicodeEscapeChar | 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
                 {
                 match(92); 
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:321:9: ( UnicodeEscapeChar | 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:335:9: ( UnicodeEscapeChar | 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
                 var alt21:int=9;
                 switch ( input.LA(1) ) {
                 case 117:
@@ -2123,63 +2123,63 @@ package com.esoteric.expressions {
 
                 switch (alt21) {
                     case 1 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:321:10: UnicodeEscapeChar
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:335:10: UnicodeEscapeChar
                         {
                         mUnicodeEscapeChar(); 
 
                         }
                         break;
                     case 2 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:321:29: 'b'
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:335:29: 'b'
                         {
                         match(98); 
 
                         }
                         break;
                     case 3 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:321:33: 't'
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:335:33: 't'
                         {
                         match(116); 
 
                         }
                         break;
                     case 4 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:321:37: 'n'
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:335:37: 'n'
                         {
                         match(110); 
 
                         }
                         break;
                     case 5 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:321:41: 'f'
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:335:41: 'f'
                         {
                         match(102); 
 
                         }
                         break;
                     case 6 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:321:45: 'r'
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:335:45: 'r'
                         {
                         match(114); 
 
                         }
                         break;
                     case 7 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:321:49: '\\\"'
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:335:49: '\\\"'
                         {
                         match(34); 
 
                         }
                         break;
                     case 8 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:321:54: '\\''
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:335:54: '\\''
                         {
                         match(39); 
 
                         }
                         break;
                     case 9 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:321:59: '\\\\'
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:335:59: '\\\\'
                         {
                         match(92); 
 
@@ -2200,8 +2200,8 @@ package com.esoteric.expressions {
         // $ANTLR start UnicodeEscapeChar
         public final function mUnicodeEscapeChar():void {
             try {
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:325:2: ( 'u' HexDigit HexDigit HexDigit HexDigit )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:325:4: 'u' HexDigit HexDigit HexDigit HexDigit
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:339:2: ( 'u' HexDigit HexDigit HexDigit HexDigit )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:339:4: 'u' HexDigit HexDigit HexDigit HexDigit
                 {
                 match(117); 
                 mHexDigit(); 

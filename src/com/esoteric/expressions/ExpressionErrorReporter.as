@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿/*
 
-<!--
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	~                           Esoteric Framework                            ~
 	~                       framework.esotericorp.com                         ~
@@ -32,24 +31,81 @@
 	DEALINGS IN THE SOFTWARE.
 	
 	-----                                                                 -----
--->
+*/
 
-<Preloader>
-	
-	<Script>
-		<![CDATA[
+package com.esoteric.expressions 
+{
+	/**
+	 * Expression error reporter.
+	 * 
+	 * @author Stephan Florquin
+	 */
+	public class ExpressionErrorReporter implements IErrorReporter
+	{
+		
+		//---------------------------------------------------------------------
+		// Members
+		//---------------------------------------------------------------------
+		
+		/**
+		 * @private
+		 */
+		private var _expression:Expression;
+		
+		/**
+		 * @private
+		 */
+		private var _hasErrors:Boolean;
+		
+		//---------------------------------------------------------------------
+		// Constructor
+		//---------------------------------------------------------------------
+		
+		/**
+		 * Constructor
+		 * 
+		 * @param	expression	the expression
+		 */
+		function ExpressionErrorReporter(expression:Expression)
+		{
+			_expression = expression;
+		}
+		
+		//---------------------------------------------------------------------
+		// Interface implementation
+		//---------------------------------------------------------------------
+		
+		/**
+		 * @inheritDoc
+		 */
+		public function report(header:String, msg:String, line:int):void
+		{
+			var src:String = _expression.expression.split(/[\n\r]+/m)[line - 1].replace(/^\s+|\s+$/g, '');
 			
+			trace('expression error:', header, ':', src, ':', msg);
 			
-			
-		]]>
-	</Script>
-	
-	<Shape>
-		<SolidFill color="0xcccccc">
-			<Rectangle width="200" height="50" />
-		</SolidFill>
-	</Shape>
-	
-	<TextField color="0xffffff"><![CDATA[{stageWidth gt stageHeight}]]></TextField>
+			_hasErrors = true;
+		}
+		
+		//---------------------------------------------------------------------
+		// Methods
+		//---------------------------------------------------------------------
+		
+		/**
+		 * The expression.
+		 */
+		public function get expression():Expression { return _expression; }
+		
+		public function set expression(value:Expression):void 
+		{
+			_expression = value;
+		}
+		
+		/**
+		 * Whether errors were reported.
+		 */
+		public function get hasErrors():Boolean { return _hasErrors; }
+		
+	}
 
-</Preloader>
+}

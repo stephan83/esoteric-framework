@@ -218,20 +218,29 @@ package com.esoteric.expressions
 		
 		private function compile():void
 		{
+			var reporter = new ExpressionErrorReporter(this);
 			var lexer:ExpressionLexer = new ExpressionLexer(new ANTLRStringStream(_expression));
 			var tokens:CommonTokenStream = new CommonTokenStream(lexer);
 			var parser:ExpressionParser = new ExpressionParser(tokens);
+			parser.errorReporter = reporter;
 			var r:ParserRuleReturnScope = parser.main();
 			var root:Tree = Tree(r.tree);
 			
 			var nodes:CommonTreeNodeStream = new CommonTreeNodeStream(root);
 			nodes.tokenStream = tokens;
 			
-			var walker:ExpressionWalker = new ExpressionWalker(nodes);
-			
-			walker.main();
-			
-			_instructions = walker.instructions;
+			if (reporter.hasErrors)
+			{
+				_instructions = new Array();
+			}
+			else
+			{
+				var walker:ExpressionWalker = new ExpressionWalker(nodes);
+				
+				walker.main();
+				
+				_instructions = walker.instructions;
+			}
 		}
 		
 		private function destroyWatchers():void

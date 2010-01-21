@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿/*
 
-<!--
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	~                           Esoteric Framework                            ~
 	~                       framework.esotericorp.com                         ~
@@ -32,24 +31,28 @@
 	DEALINGS IN THE SOFTWARE.
 	
 	-----                                                                 -----
--->
+*/
 
-<Preloader>
+package com.esoteric.expressions 
+{
 	
-	<Script>
-		<![CDATA[
-			
-			
-			
-		]]>
-	</Script>
+	/**
+	 * Error reporter.
+	 * 
+	 * @author Stephan Florquin
+	 */
+	public interface IErrorReporter 
+	{
+		
+		/**
+		 * Reports an error.
+		 * 
+		 * @param	header	error header
+		 * @param	msg		error msg
+		 * @param	line	the line number
+		 */
+		function report(header:String, msg:String, line:int):void;
+		
+	}
 	
-	<Shape>
-		<SolidFill color="0xcccccc">
-			<Rectangle width="200" height="50" />
-		</SolidFill>
-	</Shape>
-	
-	<TextField color="0xffffff"><![CDATA[{stageWidth gt stageHeight}]]></TextField>
-
-</Preloader>
+}

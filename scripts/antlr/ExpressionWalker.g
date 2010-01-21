@@ -43,6 +43,7 @@ main	:	stmtList
 	;
 	
 stmtList:	^(StmtList stmt*)
+	|	EOF
 	;
 	
 stmt	:	expList

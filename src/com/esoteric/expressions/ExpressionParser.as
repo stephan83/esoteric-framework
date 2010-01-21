@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g 2010-01-21 14:33:45
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g 2010-01-21 16:04:27
 package com.esoteric.expressions {
     import org.antlr.runtime.*;
         
@@ -99,31 +99,31 @@ package com.esoteric.expressions {
                 super(input, state);
 
                 dfa5 = new DFA(this, 5,
-                            "()* loopback of 66:3: ( ';' exp | ';' )*",
+                            "()* loopback of 80:3: ( ';' exp | ';' )*",
                             DFA5_eot, DFA5_eof, DFA5_min,
                             DFA5_max, DFA5_accept, DFA5_special,
                             DFA5_transition, DFA5_specialStateTransition);
 
                 dfa6 = new DFA(this, 6,
-                            "72:1: exp : ( assignExp | condExp );",
+                            "86:1: exp : ( assignExp | condExp );",
                             DFA6_eot, DFA6_eof, DFA6_min,
                             DFA6_max, DFA6_accept, DFA6_special,
                             DFA6_transition, DFA6_specialStateTransition);
 
                 dfa17 = new DFA(this, 17,
-                            "()* loopback of 177:3: ( '+' multExp | '-' multExp )*",
+                            "()* loopback of 191:3: ( '+' multExp | '-' multExp )*",
                             DFA17_eot, DFA17_eof, DFA17_min,
                             DFA17_max, DFA17_accept, DFA17_special,
                             DFA17_transition, DFA17_specialStateTransition);
 
                 dfa23 = new DFA(this, 23,
-                            "()* loopback of 211:3: ( '[' e= exp ']' -> ^( PropExp $reference $e) | '.' i= Identifier -> ^( PropRef $reference $i) | '(' (p= params )? ')' '[' e= exp ']' -> ^( PropExp ^( FuncCall $reference $p) $e) | '(' (p= params )? ')' '.' i= Identifier -> ^( PropRef ^( FuncCall $reference $p) $i) )*",
+                            "()* loopback of 225:3: ( '[' e= exp ']' -> ^( PropExp $reference $e) | '.' i= Identifier -> ^( PropRef $reference $i) | '(' (p= params )? ')' '[' e= exp ']' -> ^( PropExp ^( FuncCall $reference $p) $e) | '(' (p= params )? ')' '.' i= Identifier -> ^( PropRef ^( FuncCall $reference $p) $i) )*",
                             DFA23_eot, DFA23_eof, DFA23_min,
                             DFA23_max, DFA23_accept, DFA23_special,
                             DFA23_transition, DFA23_specialStateTransition);
 
                 dfa24 = new DFA(this, 24,
-                            "()* loopback of 226:3: ( '[' e= exp ']' -> ^( PropExp $referenceOrFuncCall $e) | '.' i= Identifier -> ^( PropRef $referenceOrFuncCall $i) | '(' p= params ')' -> ^( FuncCall $referenceOrFuncCall $p) | '(' ')' -> ^( FuncCall $referenceOrFuncCall) )*",
+                            "()* loopback of 240:3: ( '[' e= exp ']' -> ^( PropExp $referenceOrFuncCall $e) | '.' i= Identifier -> ^( PropRef $referenceOrFuncCall $i) | '(' p= params ')' -> ^( FuncCall $referenceOrFuncCall $p) | '(' ')' -> ^( FuncCall $referenceOrFuncCall) )*",
                             DFA24_eot, DFA24_eof, DFA24_min,
                             DFA24_max, DFA24_accept, DFA24_special,
                             DFA24_transition, DFA24_specialStateTransition);
@@ -145,8 +145,21 @@ package com.esoteric.expressions {
         public override function get grammarFileName():String { return "C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g"; }
 
 
+        	private var _errorReporter:IErrorReporter;
+        	
+        	public function set errorReporter(reporter:IErrorReporter):void { _errorReporter = reporter; }
+        	
+        	override public function displayRecognitionError(tokenNames:Array, e:RecognitionException):void
+        	{
+        		var header:String = getErrorHeader(e);
+        		var msg:String = getErrorMessage(e, tokenNames);
+        		
+        		_errorReporter.report(header, msg, e.line);
+        	}
+
+
         // $ANTLR start main
-        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:32:1: main : ( stmtList EOF | EOF );
+        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:46:1: main : ( stmtList EOF | EOF );
         public final function main():ParserRuleReturnScope {
             var retval:ParserRuleReturnScope = new ParserRuleReturnScope();
             retval.start = input.LT(1);
@@ -163,7 +176,7 @@ package com.esoteric.expressions {
 
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 1) ) { return retval; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:33:2: ( stmtList EOF | EOF )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:47:2: ( stmtList EOF | EOF )
                 var alt1:int=2;
                 var LA1_0:int = input.LA(1);
 
@@ -180,26 +193,26 @@ package com.esoteric.expressions {
                 }
                 switch (alt1) {
                     case 1 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:33:4: stmtList EOF
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:47:4: stmtList EOF
                         {
                         root_0 = CommonTree(adaptor.nil());
 
-                        pushFollow(FOLLOW_stmtList_in_main114);
+                        pushFollow(FOLLOW_stmtList_in_main120);
                         stmtList1=stmtList();
 
                         state._fsp = state._fsp - 1;
                         if (this.state.failed) return retval;
                         if ( this.state.backtracking==0 ) root_0 = CommonTree(adaptor.becomeRoot(stmtList1.tree, root_0));
-                        EOF2=Token(matchStream(input,EOF,FOLLOW_EOF_in_main117)); if (this.state.failed) return retval;
+                        EOF2=Token(matchStream(input,EOF,FOLLOW_EOF_in_main123)); if (this.state.failed) return retval;
 
                         }
                         break;
                     case 2 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:34:4: EOF
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:48:4: EOF
                         {
                         root_0 = CommonTree(adaptor.nil());
 
-                        EOF3=Token(matchStream(input,EOF,FOLLOW_EOF_in_main123)); if (this.state.failed) return retval;
+                        EOF3=Token(matchStream(input,EOF,FOLLOW_EOF_in_main129)); if (this.state.failed) return retval;
                         if ( this.state.backtracking==0 ) {
                         EOF3_tree = CommonTree(adaptor.create(EOF3));
                         adaptor.addChild(root_0, EOF3_tree);
@@ -231,7 +244,7 @@ package com.esoteric.expressions {
         // $ANTLR end main
 
         // $ANTLR start stmtList
-        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:37:1: stmtList : stmt ( stmt )* -> ^( StmtList ( stmt )+ ) ;
+        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:51:1: stmtList : stmt ( stmt )* -> ^( StmtList ( stmt )+ ) ;
         public final function stmtList():ParserRuleReturnScope {
             var retval:ParserRuleReturnScope = new ParserRuleReturnScope();
             retval.start = input.LT(1);
@@ -246,16 +259,16 @@ package com.esoteric.expressions {
             var stream_stmt:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule stmt");
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 2) ) { return retval; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:38:2: ( stmt ( stmt )* -> ^( StmtList ( stmt )+ ) )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:38:4: stmt ( stmt )*
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:52:2: ( stmt ( stmt )* -> ^( StmtList ( stmt )+ ) )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:52:4: stmt ( stmt )*
                 {
-                pushFollow(FOLLOW_stmt_in_stmtList135);
+                pushFollow(FOLLOW_stmt_in_stmtList141);
                 stmt4=stmt();
 
                 state._fsp = state._fsp - 1;
                 if (this.state.failed) return retval;
                 if ( this.state.backtracking==0 ) stream_stmt.add(stmt4.tree);
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:39:3: ( stmt )*
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:53:3: ( stmt )*
                 loop2:
                 do {
                     var alt2:int=2;
@@ -268,9 +281,9 @@ package com.esoteric.expressions {
 
                     switch (alt2) {
                 	case 1 :
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:40:4: stmt
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:54:4: stmt
                 	    {
-                	    pushFollow(FOLLOW_stmt_in_stmtList144);
+                	    pushFollow(FOLLOW_stmt_in_stmtList150);
                 	    stmt5=stmt();
 
                 	    state._fsp = state._fsp - 1;
@@ -298,9 +311,9 @@ package com.esoteric.expressions {
                 var stream_retval:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                 root_0 = CommonTree(adaptor.nil());
-                // 41:10: -> ^( StmtList ( stmt )+ )
+                // 55:10: -> ^( StmtList ( stmt )+ )
                 {
-                    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:41:13: ^( StmtList ( stmt )+ )
+                    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:55:13: ^( StmtList ( stmt )+ )
                     {
                     var root_1:CommonTree = CommonTree(adaptor.nil());
                     root_1 = CommonTree(adaptor.becomeRoot(CommonTree(adaptor.create(StmtList, "StmtList")), root_1));
@@ -344,7 +357,7 @@ package com.esoteric.expressions {
         // $ANTLR end stmtList
 
         // $ANTLR start stmt
-        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:44:1: stmt : ( ifStmt | whileStmt | expList );
+        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:58:1: stmt : ( ifStmt | whileStmt | expList );
         public final function stmt():ParserRuleReturnScope {
             var retval:ParserRuleReturnScope = new ParserRuleReturnScope();
             retval.start = input.LT(1);
@@ -361,7 +374,7 @@ package com.esoteric.expressions {
 
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 3) ) { return retval; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:45:2: ( ifStmt | whileStmt | expList )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:59:2: ( ifStmt | whileStmt | expList )
                 var alt3:int=3;
                 switch ( input.LA(1) ) {
                 case 26:
@@ -397,11 +410,11 @@ package com.esoteric.expressions {
 
                 switch (alt3) {
                     case 1 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:45:4: ifStmt
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:59:4: ifStmt
                         {
                         root_0 = CommonTree(adaptor.nil());
 
-                        pushFollow(FOLLOW_ifStmt_in_stmt176);
+                        pushFollow(FOLLOW_ifStmt_in_stmt182);
                         ifStmt6=ifStmt();
 
                         state._fsp = state._fsp - 1;
@@ -411,11 +424,11 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 2 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:46:4: whileStmt
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:60:4: whileStmt
                         {
                         root_0 = CommonTree(adaptor.nil());
 
-                        pushFollow(FOLLOW_whileStmt_in_stmt182);
+                        pushFollow(FOLLOW_whileStmt_in_stmt188);
                         whileStmt7=whileStmt();
 
                         state._fsp = state._fsp - 1;
@@ -425,11 +438,11 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 3 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:47:4: expList
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:61:4: expList
                         {
                         root_0 = CommonTree(adaptor.nil());
 
-                        pushFollow(FOLLOW_expList_in_stmt188);
+                        pushFollow(FOLLOW_expList_in_stmt194);
                         expList8=expList();
 
                         state._fsp = state._fsp - 1;
@@ -462,7 +475,7 @@ package com.esoteric.expressions {
         // $ANTLR end stmt
 
         // $ANTLR start ifStmt
-        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:50:1: ifStmt : ( 'if' '(' exp ')' l= block 'else' r= block -> ^( IfStmt exp $l $r) | 'if' '(' exp ')' block 'else' ifStmt -> ^( IfStmt exp block ifStmt ) | 'if' '(' exp ')' block -> ^( IfStmt exp block ) );
+        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:64:1: ifStmt : ( 'if' '(' exp ')' l= block 'else' r= block -> ^( IfStmt exp $l $r) | 'if' '(' exp ')' block 'else' ifStmt -> ^( IfStmt exp block ifStmt ) | 'if' '(' exp ')' block -> ^( IfStmt exp block ) );
         public final function ifStmt():ParserRuleReturnScope {
             var retval:ParserRuleReturnScope = new ParserRuleReturnScope();
             retval.start = input.LT(1);
@@ -517,7 +530,7 @@ package com.esoteric.expressions {
             var stream_ifStmt:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule ifStmt");
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 4) ) { return retval; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:51:2: ( 'if' '(' exp ')' l= block 'else' r= block -> ^( IfStmt exp $l $r) | 'if' '(' exp ')' block 'else' ifStmt -> ^( IfStmt exp block ifStmt ) | 'if' '(' exp ')' block -> ^( IfStmt exp block ) )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:65:2: ( 'if' '(' exp ')' l= block 'else' r= block -> ^( IfStmt exp $l $r) | 'if' '(' exp ')' block 'else' ifStmt -> ^( IfStmt exp block ifStmt ) | 'if' '(' exp ')' block -> ^( IfStmt exp block ) )
                 var alt4:int=3;
                 var LA4_0:int = input.LA(1);
 
@@ -546,33 +559,33 @@ package com.esoteric.expressions {
                 }
                 switch (alt4) {
                     case 1 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:51:4: 'if' '(' exp ')' l= block 'else' r= block
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:65:4: 'if' '(' exp ')' l= block 'else' r= block
                         {
-                        string_literal9=Token(matchStream(input,26,FOLLOW_26_in_ifStmt201)); if (this.state.failed) return retval; 
+                        string_literal9=Token(matchStream(input,26,FOLLOW_26_in_ifStmt207)); if (this.state.failed) return retval; 
                         if ( this.state.backtracking==0 ) stream_26.add(string_literal9);
 
-                        char_literal10=Token(matchStream(input,27,FOLLOW_27_in_ifStmt203)); if (this.state.failed) return retval; 
+                        char_literal10=Token(matchStream(input,27,FOLLOW_27_in_ifStmt209)); if (this.state.failed) return retval; 
                         if ( this.state.backtracking==0 ) stream_27.add(char_literal10);
 
-                        pushFollow(FOLLOW_exp_in_ifStmt205);
+                        pushFollow(FOLLOW_exp_in_ifStmt211);
                         exp11=exp();
 
                         state._fsp = state._fsp - 1;
                         if (this.state.failed) return retval;
                         if ( this.state.backtracking==0 ) stream_exp.add(exp11.tree);
-                        char_literal12=Token(matchStream(input,28,FOLLOW_28_in_ifStmt207)); if (this.state.failed) return retval; 
+                        char_literal12=Token(matchStream(input,28,FOLLOW_28_in_ifStmt213)); if (this.state.failed) return retval; 
                         if ( this.state.backtracking==0 ) stream_28.add(char_literal12);
 
-                        pushFollow(FOLLOW_block_in_ifStmt211);
+                        pushFollow(FOLLOW_block_in_ifStmt217);
                         l=block();
 
                         state._fsp = state._fsp - 1;
                         if (this.state.failed) return retval;
                         if ( this.state.backtracking==0 ) stream_block.add(l.tree);
-                        string_literal13=Token(matchStream(input,29,FOLLOW_29_in_ifStmt213)); if (this.state.failed) return retval; 
+                        string_literal13=Token(matchStream(input,29,FOLLOW_29_in_ifStmt219)); if (this.state.failed) return retval; 
                         if ( this.state.backtracking==0 ) stream_29.add(string_literal13);
 
-                        pushFollow(FOLLOW_block_in_ifStmt217);
+                        pushFollow(FOLLOW_block_in_ifStmt223);
                         r=block();
 
                         state._fsp = state._fsp - 1;
@@ -581,7 +594,7 @@ package com.esoteric.expressions {
 
 
                         // AST REWRITE
-                        // elements: exp, r, l
+                        // elements: r, l, exp
                         // token labels: 
                         // rule labels: retval, r, l
                         // token list labels: 
@@ -593,9 +606,9 @@ package com.esoteric.expressions {
                         var stream_l:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule l",l!=null?l.tree:null);
 
                         root_0 = CommonTree(adaptor.nil());
-                        // 51:44: -> ^( IfStmt exp $l $r)
+                        // 65:44: -> ^( IfStmt exp $l $r)
                         {
-                            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:51:47: ^( IfStmt exp $l $r)
+                            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:65:47: ^( IfStmt exp $l $r)
                             {
                             var root_1:CommonTree = CommonTree(adaptor.nil());
                             root_1 = CommonTree(adaptor.becomeRoot(CommonTree(adaptor.create(IfStmt, "IfStmt")), root_1));
@@ -613,33 +626,33 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 2 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:52:4: 'if' '(' exp ')' block 'else' ifStmt
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:66:4: 'if' '(' exp ')' block 'else' ifStmt
                         {
-                        string_literal14=Token(matchStream(input,26,FOLLOW_26_in_ifStmt236)); if (this.state.failed) return retval; 
+                        string_literal14=Token(matchStream(input,26,FOLLOW_26_in_ifStmt242)); if (this.state.failed) return retval; 
                         if ( this.state.backtracking==0 ) stream_26.add(string_literal14);
 
-                        char_literal15=Token(matchStream(input,27,FOLLOW_27_in_ifStmt238)); if (this.state.failed) return retval; 
+                        char_literal15=Token(matchStream(input,27,FOLLOW_27_in_ifStmt244)); if (this.state.failed) return retval; 
                         if ( this.state.backtracking==0 ) stream_27.add(char_literal15);
 
-                        pushFollow(FOLLOW_exp_in_ifStmt240);
+                        pushFollow(FOLLOW_exp_in_ifStmt246);
                         exp16=exp();
 
                         state._fsp = state._fsp - 1;
                         if (this.state.failed) return retval;
                         if ( this.state.backtracking==0 ) stream_exp.add(exp16.tree);
-                        char_literal17=Token(matchStream(input,28,FOLLOW_28_in_ifStmt242)); if (this.state.failed) return retval; 
+                        char_literal17=Token(matchStream(input,28,FOLLOW_28_in_ifStmt248)); if (this.state.failed) return retval; 
                         if ( this.state.backtracking==0 ) stream_28.add(char_literal17);
 
-                        pushFollow(FOLLOW_block_in_ifStmt244);
+                        pushFollow(FOLLOW_block_in_ifStmt250);
                         block18=block();
 
                         state._fsp = state._fsp - 1;
                         if (this.state.failed) return retval;
                         if ( this.state.backtracking==0 ) stream_block.add(block18.tree);
-                        string_literal19=Token(matchStream(input,29,FOLLOW_29_in_ifStmt246)); if (this.state.failed) return retval; 
+                        string_literal19=Token(matchStream(input,29,FOLLOW_29_in_ifStmt252)); if (this.state.failed) return retval; 
                         if ( this.state.backtracking==0 ) stream_29.add(string_literal19);
 
-                        pushFollow(FOLLOW_ifStmt_in_ifStmt248);
+                        pushFollow(FOLLOW_ifStmt_in_ifStmt254);
                         ifStmt20=ifStmt();
 
                         state._fsp = state._fsp - 1;
@@ -648,7 +661,7 @@ package com.esoteric.expressions {
 
 
                         // AST REWRITE
-                        // elements: block, exp, ifStmt
+                        // elements: exp, ifStmt, block
                         // token labels: 
                         // rule labels: retval
                         // token list labels: 
@@ -658,9 +671,9 @@ package com.esoteric.expressions {
                         var stream_retval:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                         root_0 = CommonTree(adaptor.nil());
-                        // 52:41: -> ^( IfStmt exp block ifStmt )
+                        // 66:41: -> ^( IfStmt exp block ifStmt )
                         {
-                            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:52:44: ^( IfStmt exp block ifStmt )
+                            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:66:44: ^( IfStmt exp block ifStmt )
                             {
                             var root_1:CommonTree = CommonTree(adaptor.nil());
                             root_1 = CommonTree(adaptor.becomeRoot(CommonTree(adaptor.create(IfStmt, "IfStmt")), root_1));
@@ -678,24 +691,24 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 3 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:53:4: 'if' '(' exp ')' block
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:67:4: 'if' '(' exp ')' block
                         {
-                        string_literal21=Token(matchStream(input,26,FOLLOW_26_in_ifStmt265)); if (this.state.failed) return retval; 
+                        string_literal21=Token(matchStream(input,26,FOLLOW_26_in_ifStmt271)); if (this.state.failed) return retval; 
                         if ( this.state.backtracking==0 ) stream_26.add(string_literal21);
 
-                        char_literal22=Token(matchStream(input,27,FOLLOW_27_in_ifStmt267)); if (this.state.failed) return retval; 
+                        char_literal22=Token(matchStream(input,27,FOLLOW_27_in_ifStmt273)); if (this.state.failed) return retval; 
                         if ( this.state.backtracking==0 ) stream_27.add(char_literal22);
 
-                        pushFollow(FOLLOW_exp_in_ifStmt269);
+                        pushFollow(FOLLOW_exp_in_ifStmt275);
                         exp23=exp();
 
                         state._fsp = state._fsp - 1;
                         if (this.state.failed) return retval;
                         if ( this.state.backtracking==0 ) stream_exp.add(exp23.tree);
-                        char_literal24=Token(matchStream(input,28,FOLLOW_28_in_ifStmt271)); if (this.state.failed) return retval; 
+                        char_literal24=Token(matchStream(input,28,FOLLOW_28_in_ifStmt277)); if (this.state.failed) return retval; 
                         if ( this.state.backtracking==0 ) stream_28.add(char_literal24);
 
-                        pushFollow(FOLLOW_block_in_ifStmt273);
+                        pushFollow(FOLLOW_block_in_ifStmt279);
                         block25=block();
 
                         state._fsp = state._fsp - 1;
@@ -704,7 +717,7 @@ package com.esoteric.expressions {
 
 
                         // AST REWRITE
-                        // elements: block, exp
+                        // elements: exp, block
                         // token labels: 
                         // rule labels: retval
                         // token list labels: 
@@ -714,9 +727,9 @@ package com.esoteric.expressions {
                         var stream_retval:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                         root_0 = CommonTree(adaptor.nil());
-                        // 53:29: -> ^( IfStmt exp block )
+                        // 67:29: -> ^( IfStmt exp block )
                         {
-                            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:53:32: ^( IfStmt exp block )
+                            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:67:32: ^( IfStmt exp block )
                             {
                             var root_1:CommonTree = CommonTree(adaptor.nil());
                             root_1 = CommonTree(adaptor.becomeRoot(CommonTree(adaptor.create(IfStmt, "IfStmt")), root_1));
@@ -756,7 +769,7 @@ package com.esoteric.expressions {
         // $ANTLR end ifStmt
 
         // $ANTLR start whileStmt
-        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:56:1: whileStmt : 'while' '(' exp ')' block -> ^( WhileStmt exp block ) ;
+        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:70:1: whileStmt : 'while' '(' exp ')' block -> ^( WhileStmt exp block ) ;
         public final function whileStmt():ParserRuleReturnScope {
             var retval:ParserRuleReturnScope = new ParserRuleReturnScope();
             retval.start = input.LT(1);
@@ -781,25 +794,25 @@ package com.esoteric.expressions {
             var stream_block:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule block");
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 5) ) { return retval; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:57:2: ( 'while' '(' exp ')' block -> ^( WhileStmt exp block ) )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:57:4: 'while' '(' exp ')' block
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:71:2: ( 'while' '(' exp ')' block -> ^( WhileStmt exp block ) )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:71:4: 'while' '(' exp ')' block
                 {
-                string_literal26=Token(matchStream(input,30,FOLLOW_30_in_whileStmt297)); if (this.state.failed) return retval; 
+                string_literal26=Token(matchStream(input,30,FOLLOW_30_in_whileStmt303)); if (this.state.failed) return retval; 
                 if ( this.state.backtracking==0 ) stream_30.add(string_literal26);
 
-                char_literal27=Token(matchStream(input,27,FOLLOW_27_in_whileStmt299)); if (this.state.failed) return retval; 
+                char_literal27=Token(matchStream(input,27,FOLLOW_27_in_whileStmt305)); if (this.state.failed) return retval; 
                 if ( this.state.backtracking==0 ) stream_27.add(char_literal27);
 
-                pushFollow(FOLLOW_exp_in_whileStmt301);
+                pushFollow(FOLLOW_exp_in_whileStmt307);
                 exp28=exp();
 
                 state._fsp = state._fsp - 1;
                 if (this.state.failed) return retval;
                 if ( this.state.backtracking==0 ) stream_exp.add(exp28.tree);
-                char_literal29=Token(matchStream(input,28,FOLLOW_28_in_whileStmt303)); if (this.state.failed) return retval; 
+                char_literal29=Token(matchStream(input,28,FOLLOW_28_in_whileStmt309)); if (this.state.failed) return retval; 
                 if ( this.state.backtracking==0 ) stream_28.add(char_literal29);
 
-                pushFollow(FOLLOW_block_in_whileStmt305);
+                pushFollow(FOLLOW_block_in_whileStmt311);
                 block30=block();
 
                 state._fsp = state._fsp - 1;
@@ -808,7 +821,7 @@ package com.esoteric.expressions {
 
 
                 // AST REWRITE
-                // elements: exp, block
+                // elements: block, exp
                 // token labels: 
                 // rule labels: retval
                 // token list labels: 
@@ -818,9 +831,9 @@ package com.esoteric.expressions {
                 var stream_retval:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                 root_0 = CommonTree(adaptor.nil());
-                // 57:31: -> ^( WhileStmt exp block )
+                // 71:31: -> ^( WhileStmt exp block )
                 {
-                    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:57:34: ^( WhileStmt exp block )
+                    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:71:34: ^( WhileStmt exp block )
                     {
                     var root_1:CommonTree = CommonTree(adaptor.nil());
                     root_1 = CommonTree(adaptor.becomeRoot(CommonTree(adaptor.create(WhileStmt, "WhileStmt")), root_1));
@@ -858,7 +871,7 @@ package com.esoteric.expressions {
         // $ANTLR end whileStmt
 
         // $ANTLR start block
-        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:60:1: block : '{' stmtList '}' -> ^( stmtList ) ;
+        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:74:1: block : '{' stmtList '}' -> ^( stmtList ) ;
         public final function block():ParserRuleReturnScope {
             var retval:ParserRuleReturnScope = new ParserRuleReturnScope();
             retval.start = input.LT(1);
@@ -877,19 +890,19 @@ package com.esoteric.expressions {
             var stream_stmtList:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule stmtList");
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 6) ) { return retval; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:61:2: ( '{' stmtList '}' -> ^( stmtList ) )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:61:4: '{' stmtList '}'
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:75:2: ( '{' stmtList '}' -> ^( stmtList ) )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:75:4: '{' stmtList '}'
                 {
-                char_literal31=Token(matchStream(input,31,FOLLOW_31_in_block328)); if (this.state.failed) return retval; 
+                char_literal31=Token(matchStream(input,31,FOLLOW_31_in_block334)); if (this.state.failed) return retval; 
                 if ( this.state.backtracking==0 ) stream_31.add(char_literal31);
 
-                pushFollow(FOLLOW_stmtList_in_block330);
+                pushFollow(FOLLOW_stmtList_in_block336);
                 stmtList32=stmtList();
 
                 state._fsp = state._fsp - 1;
                 if (this.state.failed) return retval;
                 if ( this.state.backtracking==0 ) stream_stmtList.add(stmtList32.tree);
-                char_literal33=Token(matchStream(input,32,FOLLOW_32_in_block332)); if (this.state.failed) return retval; 
+                char_literal33=Token(matchStream(input,32,FOLLOW_32_in_block338)); if (this.state.failed) return retval; 
                 if ( this.state.backtracking==0 ) stream_32.add(char_literal33);
 
 
@@ -905,9 +918,9 @@ package com.esoteric.expressions {
                 var stream_retval:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                 root_0 = CommonTree(adaptor.nil());
-                // 61:23: -> ^( stmtList )
+                // 75:23: -> ^( stmtList )
                 {
-                    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:61:26: ^( stmtList )
+                    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:75:26: ^( stmtList )
                     {
                     var root_1:CommonTree = CommonTree(adaptor.nil());
                     root_1 = CommonTree(adaptor.becomeRoot(stream_stmtList.nextNode(), root_1));
@@ -942,7 +955,7 @@ package com.esoteric.expressions {
         // $ANTLR end block
 
         // $ANTLR start expList
-        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:64:1: expList : exp ( ';' exp | ';' )* -> ^( ExpList ( exp )+ ) ;
+        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:78:1: expList : exp ( ';' exp | ';' )* -> ^( ExpList ( exp )+ ) ;
         public final function expList():ParserRuleReturnScope {
             var retval:ParserRuleReturnScope = new ParserRuleReturnScope();
             retval.start = input.LT(1);
@@ -962,28 +975,28 @@ package com.esoteric.expressions {
             var stream_exp:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule exp");
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 7) ) { return retval; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:65:2: ( exp ( ';' exp | ';' )* -> ^( ExpList ( exp )+ ) )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:65:4: exp ( ';' exp | ';' )*
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:79:2: ( exp ( ';' exp | ';' )* -> ^( ExpList ( exp )+ ) )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:79:4: exp ( ';' exp | ';' )*
                 {
-                pushFollow(FOLLOW_exp_in_expList351);
+                pushFollow(FOLLOW_exp_in_expList357);
                 exp34=exp();
 
                 state._fsp = state._fsp - 1;
                 if (this.state.failed) return retval;
                 if ( this.state.backtracking==0 ) stream_exp.add(exp34.tree);
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:66:3: ( ';' exp | ';' )*
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:80:3: ( ';' exp | ';' )*
                 loop5:
                 do {
                     var alt5:int=3;
                     alt5 = dfa5.predict(input);
                     switch (alt5) {
                 	case 1 :
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:67:4: ';' exp
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:81:4: ';' exp
                 	    {
-                	    char_literal35=Token(matchStream(input,33,FOLLOW_33_in_expList360)); if (this.state.failed) return retval; 
+                	    char_literal35=Token(matchStream(input,33,FOLLOW_33_in_expList366)); if (this.state.failed) return retval; 
                 	    if ( this.state.backtracking==0 ) stream_33.add(char_literal35);
 
-                	    pushFollow(FOLLOW_exp_in_expList362);
+                	    pushFollow(FOLLOW_exp_in_expList368);
                 	    exp36=exp();
 
                 	    state._fsp = state._fsp - 1;
@@ -993,9 +1006,9 @@ package com.esoteric.expressions {
                 	    }
                 	    break;
                 	case 2 :
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:68:5: ';'
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:82:5: ';'
                 	    {
-                	    char_literal37=Token(matchStream(input,33,FOLLOW_33_in_expList368)); if (this.state.failed) return retval; 
+                	    char_literal37=Token(matchStream(input,33,FOLLOW_33_in_expList374)); if (this.state.failed) return retval; 
                 	    if ( this.state.backtracking==0 ) stream_33.add(char_literal37);
 
 
@@ -1020,9 +1033,9 @@ package com.esoteric.expressions {
                 var stream_retval:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                 root_0 = CommonTree(adaptor.nil());
-                // 69:10: -> ^( ExpList ( exp )+ )
+                // 83:10: -> ^( ExpList ( exp )+ )
                 {
-                    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:69:13: ^( ExpList ( exp )+ )
+                    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:83:13: ^( ExpList ( exp )+ )
                     {
                     var root_1:CommonTree = CommonTree(adaptor.nil());
                     root_1 = CommonTree(adaptor.becomeRoot(CommonTree(adaptor.create(ExpList, "ExpList")), root_1));
@@ -1066,7 +1079,7 @@ package com.esoteric.expressions {
         // $ANTLR end expList
 
         // $ANTLR start exp
-        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:72:1: exp : ( assignExp | condExp );
+        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:86:1: exp : ( assignExp | condExp );
         public final function exp():ParserRuleReturnScope {
             var retval:ParserRuleReturnScope = new ParserRuleReturnScope();
             retval.start = input.LT(1);
@@ -1081,16 +1094,16 @@ package com.esoteric.expressions {
 
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 8) ) { return retval; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:73:2: ( assignExp | condExp )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:87:2: ( assignExp | condExp )
                 var alt6:int=2;
                 alt6 = dfa6.predict(input);
                 switch (alt6) {
                     case 1 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:73:4: assignExp
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:87:4: assignExp
                         {
                         root_0 = CommonTree(adaptor.nil());
 
-                        pushFollow(FOLLOW_assignExp_in_exp398);
+                        pushFollow(FOLLOW_assignExp_in_exp404);
                         assignExp38=assignExp();
 
                         state._fsp = state._fsp - 1;
@@ -1100,11 +1113,11 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 2 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:74:4: condExp
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:88:4: condExp
                         {
                         root_0 = CommonTree(adaptor.nil());
 
-                        pushFollow(FOLLOW_condExp_in_exp404);
+                        pushFollow(FOLLOW_condExp_in_exp410);
                         condExp39=condExp();
 
                         state._fsp = state._fsp - 1;
@@ -1137,7 +1150,7 @@ package com.esoteric.expressions {
         // $ANTLR end exp
 
         // $ANTLR start assignExp
-        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:77:1: assignExp : reference ( '=' exp -> ^( '=' exp reference ) | '*=' exp -> ^( '*=' exp reference ) | '/=' exp -> ^( '/=' exp reference ) | '%=' exp -> ^( '%=' exp reference ) | '+=' exp -> ^( '+=' exp reference ) | '-=' exp -> ^( '-=' exp reference ) | '<<=' exp -> ^( '<<=' exp reference ) | '>>=' exp -> ^( '>>=' exp reference ) | '>>>=' exp -> ^( '>>>=' exp reference ) | '&=' exp -> ^( '&=' exp reference ) | '^=' exp -> ^( '^=' exp reference ) | '|=' exp -> ^( '|=' exp reference ) ) ;
+        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:91:1: assignExp : reference ( '=' exp -> ^( '=' exp reference ) | '*=' exp -> ^( '*=' exp reference ) | '/=' exp -> ^( '/=' exp reference ) | '%=' exp -> ^( '%=' exp reference ) | '+=' exp -> ^( '+=' exp reference ) | '-=' exp -> ^( '-=' exp reference ) | '<<=' exp -> ^( '<<=' exp reference ) | '>>=' exp -> ^( '>>=' exp reference ) | '>>>=' exp -> ^( '>>>=' exp reference ) | '&=' exp -> ^( '&=' exp reference ) | '^=' exp -> ^( '^=' exp reference ) | '|=' exp -> ^( '|=' exp reference ) ) ;
         public final function assignExp():ParserRuleReturnScope {
             var retval:ParserRuleReturnScope = new ParserRuleReturnScope();
             retval.start = input.LT(1);
@@ -1211,16 +1224,16 @@ package com.esoteric.expressions {
             var stream_reference:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule reference");
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 9) ) { return retval; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:78:2: ( reference ( '=' exp -> ^( '=' exp reference ) | '*=' exp -> ^( '*=' exp reference ) | '/=' exp -> ^( '/=' exp reference ) | '%=' exp -> ^( '%=' exp reference ) | '+=' exp -> ^( '+=' exp reference ) | '-=' exp -> ^( '-=' exp reference ) | '<<=' exp -> ^( '<<=' exp reference ) | '>>=' exp -> ^( '>>=' exp reference ) | '>>>=' exp -> ^( '>>>=' exp reference ) | '&=' exp -> ^( '&=' exp reference ) | '^=' exp -> ^( '^=' exp reference ) | '|=' exp -> ^( '|=' exp reference ) ) )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:78:4: reference ( '=' exp -> ^( '=' exp reference ) | '*=' exp -> ^( '*=' exp reference ) | '/=' exp -> ^( '/=' exp reference ) | '%=' exp -> ^( '%=' exp reference ) | '+=' exp -> ^( '+=' exp reference ) | '-=' exp -> ^( '-=' exp reference ) | '<<=' exp -> ^( '<<=' exp reference ) | '>>=' exp -> ^( '>>=' exp reference ) | '>>>=' exp -> ^( '>>>=' exp reference ) | '&=' exp -> ^( '&=' exp reference ) | '^=' exp -> ^( '^=' exp reference ) | '|=' exp -> ^( '|=' exp reference ) )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:92:2: ( reference ( '=' exp -> ^( '=' exp reference ) | '*=' exp -> ^( '*=' exp reference ) | '/=' exp -> ^( '/=' exp reference ) | '%=' exp -> ^( '%=' exp reference ) | '+=' exp -> ^( '+=' exp reference ) | '-=' exp -> ^( '-=' exp reference ) | '<<=' exp -> ^( '<<=' exp reference ) | '>>=' exp -> ^( '>>=' exp reference ) | '>>>=' exp -> ^( '>>>=' exp reference ) | '&=' exp -> ^( '&=' exp reference ) | '^=' exp -> ^( '^=' exp reference ) | '|=' exp -> ^( '|=' exp reference ) ) )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:92:4: reference ( '=' exp -> ^( '=' exp reference ) | '*=' exp -> ^( '*=' exp reference ) | '/=' exp -> ^( '/=' exp reference ) | '%=' exp -> ^( '%=' exp reference ) | '+=' exp -> ^( '+=' exp reference ) | '-=' exp -> ^( '-=' exp reference ) | '<<=' exp -> ^( '<<=' exp reference ) | '>>=' exp -> ^( '>>=' exp reference ) | '>>>=' exp -> ^( '>>>=' exp reference ) | '&=' exp -> ^( '&=' exp reference ) | '^=' exp -> ^( '^=' exp reference ) | '|=' exp -> ^( '|=' exp reference ) )
                 {
-                pushFollow(FOLLOW_reference_in_assignExp417);
+                pushFollow(FOLLOW_reference_in_assignExp423);
                 reference40=reference();
 
                 state._fsp = state._fsp - 1;
                 if (this.state.failed) return retval;
                 if ( this.state.backtracking==0 ) stream_reference.add(reference40.tree);
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:79:3: ( '=' exp -> ^( '=' exp reference ) | '*=' exp -> ^( '*=' exp reference ) | '/=' exp -> ^( '/=' exp reference ) | '%=' exp -> ^( '%=' exp reference ) | '+=' exp -> ^( '+=' exp reference ) | '-=' exp -> ^( '-=' exp reference ) | '<<=' exp -> ^( '<<=' exp reference ) | '>>=' exp -> ^( '>>=' exp reference ) | '>>>=' exp -> ^( '>>>=' exp reference ) | '&=' exp -> ^( '&=' exp reference ) | '^=' exp -> ^( '^=' exp reference ) | '|=' exp -> ^( '|=' exp reference ) )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:93:3: ( '=' exp -> ^( '=' exp reference ) | '*=' exp -> ^( '*=' exp reference ) | '/=' exp -> ^( '/=' exp reference ) | '%=' exp -> ^( '%=' exp reference ) | '+=' exp -> ^( '+=' exp reference ) | '-=' exp -> ^( '-=' exp reference ) | '<<=' exp -> ^( '<<=' exp reference ) | '>>=' exp -> ^( '>>=' exp reference ) | '>>>=' exp -> ^( '>>>=' exp reference ) | '&=' exp -> ^( '&=' exp reference ) | '^=' exp -> ^( '^=' exp reference ) | '|=' exp -> ^( '|=' exp reference ) )
                 var alt7:int=12;
                 switch ( input.LA(1) ) {
                 case 34:
@@ -1291,12 +1304,12 @@ package com.esoteric.expressions {
 
                 switch (alt7) {
                     case 1 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:80:4: '=' exp
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:94:4: '=' exp
                         {
-                        char_literal41=Token(matchStream(input,34,FOLLOW_34_in_assignExp426)); if (this.state.failed) return retval; 
+                        char_literal41=Token(matchStream(input,34,FOLLOW_34_in_assignExp432)); if (this.state.failed) return retval; 
                         if ( this.state.backtracking==0 ) stream_34.add(char_literal41);
 
-                        pushFollow(FOLLOW_exp_in_assignExp428);
+                        pushFollow(FOLLOW_exp_in_assignExp434);
                         exp42=exp();
 
                         state._fsp = state._fsp - 1;
@@ -1305,7 +1318,7 @@ package com.esoteric.expressions {
 
 
                         // AST REWRITE
-                        // elements: reference, exp, 34
+                        // elements: reference, 34, exp
                         // token labels: 
                         // rule labels: retval
                         // token list labels: 
@@ -1315,9 +1328,9 @@ package com.esoteric.expressions {
                         var stream_retval:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                         root_0 = CommonTree(adaptor.nil());
-                        // 80:15: -> ^( '=' exp reference )
+                        // 94:15: -> ^( '=' exp reference )
                         {
-                            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:80:18: ^( '=' exp reference )
+                            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:94:18: ^( '=' exp reference )
                             {
                             var root_1:CommonTree = CommonTree(adaptor.nil());
                             root_1 = CommonTree(adaptor.becomeRoot(stream_34.nextNode(), root_1));
@@ -1334,12 +1347,12 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 2 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:81:5: '*=' exp
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:95:5: '*=' exp
                         {
-                        string_literal43=Token(matchStream(input,35,FOLLOW_35_in_assignExp447)); if (this.state.failed) return retval; 
+                        string_literal43=Token(matchStream(input,35,FOLLOW_35_in_assignExp453)); if (this.state.failed) return retval; 
                         if ( this.state.backtracking==0 ) stream_35.add(string_literal43);
 
-                        pushFollow(FOLLOW_exp_in_assignExp449);
+                        pushFollow(FOLLOW_exp_in_assignExp455);
                         exp44=exp();
 
                         state._fsp = state._fsp - 1;
@@ -1358,9 +1371,9 @@ package com.esoteric.expressions {
                         var stream_retval:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                         root_0 = CommonTree(adaptor.nil());
-                        // 81:16: -> ^( '*=' exp reference )
+                        // 95:16: -> ^( '*=' exp reference )
                         {
-                            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:81:19: ^( '*=' exp reference )
+                            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:95:19: ^( '*=' exp reference )
                             {
                             var root_1:CommonTree = CommonTree(adaptor.nil());
                             root_1 = CommonTree(adaptor.becomeRoot(stream_35.nextNode(), root_1));
@@ -1377,12 +1390,12 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 3 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:82:5: '/=' exp
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:96:5: '/=' exp
                         {
-                        string_literal45=Token(matchStream(input,36,FOLLOW_36_in_assignExp467)); if (this.state.failed) return retval; 
+                        string_literal45=Token(matchStream(input,36,FOLLOW_36_in_assignExp473)); if (this.state.failed) return retval; 
                         if ( this.state.backtracking==0 ) stream_36.add(string_literal45);
 
-                        pushFollow(FOLLOW_exp_in_assignExp469);
+                        pushFollow(FOLLOW_exp_in_assignExp475);
                         exp46=exp();
 
                         state._fsp = state._fsp - 1;
@@ -1391,7 +1404,7 @@ package com.esoteric.expressions {
 
 
                         // AST REWRITE
-                        // elements: 36, exp, reference
+                        // elements: exp, 36, reference
                         // token labels: 
                         // rule labels: retval
                         // token list labels: 
@@ -1401,9 +1414,9 @@ package com.esoteric.expressions {
                         var stream_retval:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                         root_0 = CommonTree(adaptor.nil());
-                        // 82:16: -> ^( '/=' exp reference )
+                        // 96:16: -> ^( '/=' exp reference )
                         {
-                            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:82:19: ^( '/=' exp reference )
+                            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:96:19: ^( '/=' exp reference )
                             {
                             var root_1:CommonTree = CommonTree(adaptor.nil());
                             root_1 = CommonTree(adaptor.becomeRoot(stream_36.nextNode(), root_1));
@@ -1420,12 +1433,12 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 4 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:83:5: '%=' exp
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:97:5: '%=' exp
                         {
-                        string_literal47=Token(matchStream(input,37,FOLLOW_37_in_assignExp487)); if (this.state.failed) return retval; 
+                        string_literal47=Token(matchStream(input,37,FOLLOW_37_in_assignExp493)); if (this.state.failed) return retval; 
                         if ( this.state.backtracking==0 ) stream_37.add(string_literal47);
 
-                        pushFollow(FOLLOW_exp_in_assignExp489);
+                        pushFollow(FOLLOW_exp_in_assignExp495);
                         exp48=exp();
 
                         state._fsp = state._fsp - 1;
@@ -1434,7 +1447,7 @@ package com.esoteric.expressions {
 
 
                         // AST REWRITE
-                        // elements: 37, reference, exp
+                        // elements: reference, 37, exp
                         // token labels: 
                         // rule labels: retval
                         // token list labels: 
@@ -1444,9 +1457,9 @@ package com.esoteric.expressions {
                         var stream_retval:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                         root_0 = CommonTree(adaptor.nil());
-                        // 83:16: -> ^( '%=' exp reference )
+                        // 97:16: -> ^( '%=' exp reference )
                         {
-                            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:83:19: ^( '%=' exp reference )
+                            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:97:19: ^( '%=' exp reference )
                             {
                             var root_1:CommonTree = CommonTree(adaptor.nil());
                             root_1 = CommonTree(adaptor.becomeRoot(stream_37.nextNode(), root_1));
@@ -1463,12 +1476,12 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 5 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:84:5: '+=' exp
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:98:5: '+=' exp
                         {
-                        string_literal49=Token(matchStream(input,38,FOLLOW_38_in_assignExp507)); if (this.state.failed) return retval; 
+                        string_literal49=Token(matchStream(input,38,FOLLOW_38_in_assignExp513)); if (this.state.failed) return retval; 
                         if ( this.state.backtracking==0 ) stream_38.add(string_literal49);
 
-                        pushFollow(FOLLOW_exp_in_assignExp509);
+                        pushFollow(FOLLOW_exp_in_assignExp515);
                         exp50=exp();
 
                         state._fsp = state._fsp - 1;
@@ -1477,7 +1490,7 @@ package com.esoteric.expressions {
 
 
                         // AST REWRITE
-                        // elements: 38, exp, reference
+                        // elements: reference, 38, exp
                         // token labels: 
                         // rule labels: retval
                         // token list labels: 
@@ -1487,9 +1500,9 @@ package com.esoteric.expressions {
                         var stream_retval:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                         root_0 = CommonTree(adaptor.nil());
-                        // 84:16: -> ^( '+=' exp reference )
+                        // 98:16: -> ^( '+=' exp reference )
                         {
-                            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:84:19: ^( '+=' exp reference )
+                            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:98:19: ^( '+=' exp reference )
                             {
                             var root_1:CommonTree = CommonTree(adaptor.nil());
                             root_1 = CommonTree(adaptor.becomeRoot(stream_38.nextNode(), root_1));
@@ -1506,12 +1519,12 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 6 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:85:5: '-=' exp
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:99:5: '-=' exp
                         {
-                        string_literal51=Token(matchStream(input,39,FOLLOW_39_in_assignExp527)); if (this.state.failed) return retval; 
+                        string_literal51=Token(matchStream(input,39,FOLLOW_39_in_assignExp533)); if (this.state.failed) return retval; 
                         if ( this.state.backtracking==0 ) stream_39.add(string_literal51);
 
-                        pushFollow(FOLLOW_exp_in_assignExp529);
+                        pushFollow(FOLLOW_exp_in_assignExp535);
                         exp52=exp();
 
                         state._fsp = state._fsp - 1;
@@ -1520,7 +1533,7 @@ package com.esoteric.expressions {
 
 
                         // AST REWRITE
-                        // elements: reference, exp, 39
+                        // elements: reference, 39, exp
                         // token labels: 
                         // rule labels: retval
                         // token list labels: 
@@ -1530,9 +1543,9 @@ package com.esoteric.expressions {
                         var stream_retval:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                         root_0 = CommonTree(adaptor.nil());
-                        // 85:16: -> ^( '-=' exp reference )
+                        // 99:16: -> ^( '-=' exp reference )
                         {
-                            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:85:19: ^( '-=' exp reference )
+                            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:99:19: ^( '-=' exp reference )
                             {
                             var root_1:CommonTree = CommonTree(adaptor.nil());
                             root_1 = CommonTree(adaptor.becomeRoot(stream_39.nextNode(), root_1));
@@ -1549,12 +1562,12 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 7 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:86:5: '<<=' exp
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:100:5: '<<=' exp
                         {
-                        string_literal53=Token(matchStream(input,40,FOLLOW_40_in_assignExp547)); if (this.state.failed) return retval; 
+                        string_literal53=Token(matchStream(input,40,FOLLOW_40_in_assignExp553)); if (this.state.failed) return retval; 
                         if ( this.state.backtracking==0 ) stream_40.add(string_literal53);
 
-                        pushFollow(FOLLOW_exp_in_assignExp549);
+                        pushFollow(FOLLOW_exp_in_assignExp555);
                         exp54=exp();
 
                         state._fsp = state._fsp - 1;
@@ -1563,7 +1576,7 @@ package com.esoteric.expressions {
 
 
                         // AST REWRITE
-                        // elements: 40, exp, reference
+                        // elements: reference, 40, exp
                         // token labels: 
                         // rule labels: retval
                         // token list labels: 
@@ -1573,9 +1586,9 @@ package com.esoteric.expressions {
                         var stream_retval:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                         root_0 = CommonTree(adaptor.nil());
-                        // 86:17: -> ^( '<<=' exp reference )
+                        // 100:17: -> ^( '<<=' exp reference )
                         {
-                            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:86:20: ^( '<<=' exp reference )
+                            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:100:20: ^( '<<=' exp reference )
                             {
                             var root_1:CommonTree = CommonTree(adaptor.nil());
                             root_1 = CommonTree(adaptor.becomeRoot(stream_40.nextNode(), root_1));
@@ -1592,12 +1605,12 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 8 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:87:5: '>>=' exp
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:101:5: '>>=' exp
                         {
-                        string_literal55=Token(matchStream(input,41,FOLLOW_41_in_assignExp567)); if (this.state.failed) return retval; 
+                        string_literal55=Token(matchStream(input,41,FOLLOW_41_in_assignExp573)); if (this.state.failed) return retval; 
                         if ( this.state.backtracking==0 ) stream_41.add(string_literal55);
 
-                        pushFollow(FOLLOW_exp_in_assignExp569);
+                        pushFollow(FOLLOW_exp_in_assignExp575);
                         exp56=exp();
 
                         state._fsp = state._fsp - 1;
@@ -1606,7 +1619,7 @@ package com.esoteric.expressions {
 
 
                         // AST REWRITE
-                        // elements: 41, reference, exp
+                        // elements: reference, exp, 41
                         // token labels: 
                         // rule labels: retval
                         // token list labels: 
@@ -1616,9 +1629,9 @@ package com.esoteric.expressions {
                         var stream_retval:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                         root_0 = CommonTree(adaptor.nil());
-                        // 87:17: -> ^( '>>=' exp reference )
+                        // 101:17: -> ^( '>>=' exp reference )
                         {
-                            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:87:20: ^( '>>=' exp reference )
+                            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:101:20: ^( '>>=' exp reference )
                             {
                             var root_1:CommonTree = CommonTree(adaptor.nil());
                             root_1 = CommonTree(adaptor.becomeRoot(stream_41.nextNode(), root_1));
@@ -1635,12 +1648,12 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 9 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:88:5: '>>>=' exp
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:102:5: '>>>=' exp
                         {
-                        string_literal57=Token(matchStream(input,42,FOLLOW_42_in_assignExp587)); if (this.state.failed) return retval; 
+                        string_literal57=Token(matchStream(input,42,FOLLOW_42_in_assignExp593)); if (this.state.failed) return retval; 
                         if ( this.state.backtracking==0 ) stream_42.add(string_literal57);
 
-                        pushFollow(FOLLOW_exp_in_assignExp589);
+                        pushFollow(FOLLOW_exp_in_assignExp595);
                         exp58=exp();
 
                         state._fsp = state._fsp - 1;
@@ -1649,7 +1662,7 @@ package com.esoteric.expressions {
 
 
                         // AST REWRITE
-                        // elements: exp, 42, reference
+                        // elements: exp, reference, 42
                         // token labels: 
                         // rule labels: retval
                         // token list labels: 
@@ -1659,9 +1672,9 @@ package com.esoteric.expressions {
                         var stream_retval:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                         root_0 = CommonTree(adaptor.nil());
-                        // 88:18: -> ^( '>>>=' exp reference )
+                        // 102:18: -> ^( '>>>=' exp reference )
                         {
-                            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:88:21: ^( '>>>=' exp reference )
+                            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:102:21: ^( '>>>=' exp reference )
                             {
                             var root_1:CommonTree = CommonTree(adaptor.nil());
                             root_1 = CommonTree(adaptor.becomeRoot(stream_42.nextNode(), root_1));
@@ -1678,12 +1691,12 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 10 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:89:5: '&=' exp
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:103:5: '&=' exp
                         {
-                        string_literal59=Token(matchStream(input,43,FOLLOW_43_in_assignExp607)); if (this.state.failed) return retval; 
+                        string_literal59=Token(matchStream(input,43,FOLLOW_43_in_assignExp613)); if (this.state.failed) return retval; 
                         if ( this.state.backtracking==0 ) stream_43.add(string_literal59);
 
-                        pushFollow(FOLLOW_exp_in_assignExp609);
+                        pushFollow(FOLLOW_exp_in_assignExp615);
                         exp60=exp();
 
                         state._fsp = state._fsp - 1;
@@ -1702,9 +1715,9 @@ package com.esoteric.expressions {
                         var stream_retval:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                         root_0 = CommonTree(adaptor.nil());
-                        // 89:16: -> ^( '&=' exp reference )
+                        // 103:16: -> ^( '&=' exp reference )
                         {
-                            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:89:19: ^( '&=' exp reference )
+                            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:103:19: ^( '&=' exp reference )
                             {
                             var root_1:CommonTree = CommonTree(adaptor.nil());
                             root_1 = CommonTree(adaptor.becomeRoot(stream_43.nextNode(), root_1));
@@ -1721,12 +1734,12 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 11 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:90:5: '^=' exp
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:104:5: '^=' exp
                         {
-                        string_literal61=Token(matchStream(input,44,FOLLOW_44_in_assignExp627)); if (this.state.failed) return retval; 
+                        string_literal61=Token(matchStream(input,44,FOLLOW_44_in_assignExp633)); if (this.state.failed) return retval; 
                         if ( this.state.backtracking==0 ) stream_44.add(string_literal61);
 
-                        pushFollow(FOLLOW_exp_in_assignExp629);
+                        pushFollow(FOLLOW_exp_in_assignExp635);
                         exp62=exp();
 
                         state._fsp = state._fsp - 1;
@@ -1745,9 +1758,9 @@ package com.esoteric.expressions {
                         var stream_retval:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                         root_0 = CommonTree(adaptor.nil());
-                        // 90:16: -> ^( '^=' exp reference )
+                        // 104:16: -> ^( '^=' exp reference )
                         {
-                            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:90:19: ^( '^=' exp reference )
+                            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:104:19: ^( '^=' exp reference )
                             {
                             var root_1:CommonTree = CommonTree(adaptor.nil());
                             root_1 = CommonTree(adaptor.becomeRoot(stream_44.nextNode(), root_1));
@@ -1764,12 +1777,12 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 12 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:91:5: '|=' exp
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:105:5: '|=' exp
                         {
-                        string_literal63=Token(matchStream(input,45,FOLLOW_45_in_assignExp647)); if (this.state.failed) return retval; 
+                        string_literal63=Token(matchStream(input,45,FOLLOW_45_in_assignExp653)); if (this.state.failed) return retval; 
                         if ( this.state.backtracking==0 ) stream_45.add(string_literal63);
 
-                        pushFollow(FOLLOW_exp_in_assignExp649);
+                        pushFollow(FOLLOW_exp_in_assignExp655);
                         exp64=exp();
 
                         state._fsp = state._fsp - 1;
@@ -1788,9 +1801,9 @@ package com.esoteric.expressions {
                         var stream_retval:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                         root_0 = CommonTree(adaptor.nil());
-                        // 91:16: -> ^( '|=' exp reference )
+                        // 105:16: -> ^( '|=' exp reference )
                         {
-                            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:91:19: ^( '|=' exp reference )
+                            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:105:19: ^( '|=' exp reference )
                             {
                             var root_1:CommonTree = CommonTree(adaptor.nil());
                             root_1 = CommonTree(adaptor.becomeRoot(stream_45.nextNode(), root_1));
@@ -1834,7 +1847,7 @@ package com.esoteric.expressions {
         // $ANTLR end assignExp
 
         // $ANTLR start condExp
-        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:95:1: condExp : (l= logicalOr -> $l) ( '?' e1= exp ':' e2= exp -> ^( CondExp $condExp $e1 $e2) )* ;
+        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:109:1: condExp : (l= logicalOr -> $l) ( '?' e1= exp ':' e2= exp -> ^( CondExp $condExp $e1 $e2) )* ;
         public final function condExp():ParserRuleReturnScope {
             var retval:ParserRuleReturnScope = new ParserRuleReturnScope();
             retval.start = input.LT(1);
@@ -1858,13 +1871,13 @@ package com.esoteric.expressions {
             var stream_logicalOr:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule logicalOr");
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 10) ) { return retval; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:96:2: ( (l= logicalOr -> $l) ( '?' e1= exp ':' e2= exp -> ^( CondExp $condExp $e1 $e2) )* )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:96:4: (l= logicalOr -> $l) ( '?' e1= exp ':' e2= exp -> ^( CondExp $condExp $e1 $e2) )*
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:110:2: ( (l= logicalOr -> $l) ( '?' e1= exp ':' e2= exp -> ^( CondExp $condExp $e1 $e2) )* )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:110:4: (l= logicalOr -> $l) ( '?' e1= exp ':' e2= exp -> ^( CondExp $condExp $e1 $e2) )*
                 {
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:96:4: (l= logicalOr -> $l)
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:96:5: l= logicalOr
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:110:4: (l= logicalOr -> $l)
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:110:5: l= logicalOr
                 {
-                pushFollow(FOLLOW_logicalOr_in_condExp680);
+                pushFollow(FOLLOW_logicalOr_in_condExp686);
                 l=logicalOr();
 
                 state._fsp = state._fsp - 1;
@@ -1884,7 +1897,7 @@ package com.esoteric.expressions {
                 var stream_l:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule l",l!=null?l.tree:null);
 
                 root_0 = CommonTree(adaptor.nil());
-                // 96:20: -> $l
+                // 110:20: -> $l
                 {
                     adaptor.addChild(root_0, stream_l.nextTree());
 
@@ -1893,7 +1906,7 @@ package com.esoteric.expressions {
                 retval.tree = root_0;}
                 }
 
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:97:3: ( '?' e1= exp ':' e2= exp -> ^( CondExp $condExp $e1 $e2) )*
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:111:3: ( '?' e1= exp ':' e2= exp -> ^( CondExp $condExp $e1 $e2) )*
                 loop8:
                 do {
                     var alt8:int=2;
@@ -1912,21 +1925,21 @@ package com.esoteric.expressions {
 
                     switch (alt8) {
                 	case 1 :
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:98:4: '?' e1= exp ':' e2= exp
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:112:4: '?' e1= exp ':' e2= exp
                 	    {
-                	    char_literal65=Token(matchStream(input,46,FOLLOW_46_in_condExp698)); if (this.state.failed) return retval; 
+                	    char_literal65=Token(matchStream(input,46,FOLLOW_46_in_condExp704)); if (this.state.failed) return retval; 
                 	    if ( this.state.backtracking==0 ) stream_46.add(char_literal65);
 
-                	    pushFollow(FOLLOW_exp_in_condExp705);
+                	    pushFollow(FOLLOW_exp_in_condExp711);
                 	    e1=exp();
 
                 	    state._fsp = state._fsp - 1;
                 	    if (this.state.failed) return retval;
                 	    if ( this.state.backtracking==0 ) stream_exp.add(e1.tree);
-                	    char_literal66=Token(matchStream(input,47,FOLLOW_47_in_condExp710)); if (this.state.failed) return retval; 
+                	    char_literal66=Token(matchStream(input,47,FOLLOW_47_in_condExp716)); if (this.state.failed) return retval; 
                 	    if ( this.state.backtracking==0 ) stream_47.add(char_literal66);
 
-                	    pushFollow(FOLLOW_exp_in_condExp717);
+                	    pushFollow(FOLLOW_exp_in_condExp723);
                 	    e2=exp();
 
                 	    state._fsp = state._fsp - 1;
@@ -1947,9 +1960,9 @@ package com.esoteric.expressions {
                 	    var stream_e2:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule e2",e2!=null?e2.tree:null);
 
                 	    root_0 = CommonTree(adaptor.nil());
-                	    // 101:14: -> ^( CondExp $condExp $e1 $e2)
+                	    // 115:14: -> ^( CondExp $condExp $e1 $e2)
                 	    {
-                	        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:101:17: ^( CondExp $condExp $e1 $e2)
+                	        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:115:17: ^( CondExp $condExp $e1 $e2)
                 	        {
                 	        var root_1:CommonTree = CommonTree(adaptor.nil());
                 	        root_1 = CommonTree(adaptor.becomeRoot(CommonTree(adaptor.create(CondExp, "CondExp")), root_1));
@@ -1997,7 +2010,7 @@ package com.esoteric.expressions {
         // $ANTLR end condExp
 
         // $ANTLR start logicalOr
-        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:105:1: logicalOr : logicalAnd ( '||' logicalAnd | 'or' logicalAnd )* ;
+        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:119:1: logicalOr : logicalAnd ( '||' logicalAnd | 'or' logicalAnd )* ;
         public final function logicalOr():ParserRuleReturnScope {
             var retval:ParserRuleReturnScope = new ParserRuleReturnScope();
             retval.start = input.LT(1);
@@ -2018,18 +2031,18 @@ package com.esoteric.expressions {
 
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 11) ) { return retval; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:106:2: ( logicalAnd ( '||' logicalAnd | 'or' logicalAnd )* )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:106:4: logicalAnd ( '||' logicalAnd | 'or' logicalAnd )*
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:120:2: ( logicalAnd ( '||' logicalAnd | 'or' logicalAnd )* )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:120:4: logicalAnd ( '||' logicalAnd | 'or' logicalAnd )*
                 {
                 root_0 = CommonTree(adaptor.nil());
 
-                pushFollow(FOLLOW_logicalAnd_in_logicalOr751);
+                pushFollow(FOLLOW_logicalAnd_in_logicalOr757);
                 logicalAnd67=logicalAnd();
 
                 state._fsp = state._fsp - 1;
                 if (this.state.failed) return retval;
                 if ( this.state.backtracking==0 ) adaptor.addChild(root_0, logicalAnd67.tree);
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:107:3: ( '||' logicalAnd | 'or' logicalAnd )*
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:121:3: ( '||' logicalAnd | 'or' logicalAnd )*
                 loop9:
                 do {
                     var alt9:int=3;
@@ -2045,14 +2058,14 @@ package com.esoteric.expressions {
 
                     switch (alt9) {
                 	case 1 :
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:108:4: '||' logicalAnd
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:122:4: '||' logicalAnd
                 	    {
-                	    string_literal68=Token(matchStream(input,48,FOLLOW_48_in_logicalOr760)); if (this.state.failed) return retval;
+                	    string_literal68=Token(matchStream(input,48,FOLLOW_48_in_logicalOr766)); if (this.state.failed) return retval;
                 	    if ( this.state.backtracking==0 ) {
                 	    string_literal68_tree = CommonTree(adaptor.create(string_literal68));
                 	    root_0 = CommonTree(adaptor.becomeRoot(string_literal68_tree, root_0));
                 	    }
-                	    pushFollow(FOLLOW_logicalAnd_in_logicalOr763);
+                	    pushFollow(FOLLOW_logicalAnd_in_logicalOr769);
                 	    logicalAnd69=logicalAnd();
 
                 	    state._fsp = state._fsp - 1;
@@ -2062,14 +2075,14 @@ package com.esoteric.expressions {
                 	    }
                 	    break;
                 	case 2 :
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:109:5: 'or' logicalAnd
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:123:5: 'or' logicalAnd
                 	    {
-                	    string_literal70=Token(matchStream(input,49,FOLLOW_49_in_logicalOr769)); if (this.state.failed) return retval;
+                	    string_literal70=Token(matchStream(input,49,FOLLOW_49_in_logicalOr775)); if (this.state.failed) return retval;
                 	    if ( this.state.backtracking==0 ) {
                 	    string_literal70_tree = CommonTree(adaptor.create(string_literal70));
                 	    root_0 = CommonTree(adaptor.becomeRoot(string_literal70_tree, root_0));
                 	    }
-                	    pushFollow(FOLLOW_logicalAnd_in_logicalOr772);
+                	    pushFollow(FOLLOW_logicalAnd_in_logicalOr778);
                 	    logicalAnd71=logicalAnd();
 
                 	    state._fsp = state._fsp - 1;
@@ -2109,7 +2122,7 @@ package com.esoteric.expressions {
         // $ANTLR end logicalOr
 
         // $ANTLR start logicalAnd
-        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:113:1: logicalAnd : bitwiseOr ( '&&' bitwiseOr | 'and' bitwiseOr )* ;
+        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:127:1: logicalAnd : bitwiseOr ( '&&' bitwiseOr | 'and' bitwiseOr )* ;
         public final function logicalAnd():ParserRuleReturnScope {
             var retval:ParserRuleReturnScope = new ParserRuleReturnScope();
             retval.start = input.LT(1);
@@ -2130,18 +2143,18 @@ package com.esoteric.expressions {
 
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 12) ) { return retval; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:114:2: ( bitwiseOr ( '&&' bitwiseOr | 'and' bitwiseOr )* )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:114:4: bitwiseOr ( '&&' bitwiseOr | 'and' bitwiseOr )*
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:128:2: ( bitwiseOr ( '&&' bitwiseOr | 'and' bitwiseOr )* )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:128:4: bitwiseOr ( '&&' bitwiseOr | 'and' bitwiseOr )*
                 {
                 root_0 = CommonTree(adaptor.nil());
 
-                pushFollow(FOLLOW_bitwiseOr_in_logicalAnd789);
+                pushFollow(FOLLOW_bitwiseOr_in_logicalAnd795);
                 bitwiseOr72=bitwiseOr();
 
                 state._fsp = state._fsp - 1;
                 if (this.state.failed) return retval;
                 if ( this.state.backtracking==0 ) adaptor.addChild(root_0, bitwiseOr72.tree);
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:115:3: ( '&&' bitwiseOr | 'and' bitwiseOr )*
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:129:3: ( '&&' bitwiseOr | 'and' bitwiseOr )*
                 loop10:
                 do {
                     var alt10:int=3;
@@ -2157,14 +2170,14 @@ package com.esoteric.expressions {
 
                     switch (alt10) {
                 	case 1 :
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:116:4: '&&' bitwiseOr
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:130:4: '&&' bitwiseOr
                 	    {
-                	    string_literal73=Token(matchStream(input,50,FOLLOW_50_in_logicalAnd798)); if (this.state.failed) return retval;
+                	    string_literal73=Token(matchStream(input,50,FOLLOW_50_in_logicalAnd804)); if (this.state.failed) return retval;
                 	    if ( this.state.backtracking==0 ) {
                 	    string_literal73_tree = CommonTree(adaptor.create(string_literal73));
                 	    root_0 = CommonTree(adaptor.becomeRoot(string_literal73_tree, root_0));
                 	    }
-                	    pushFollow(FOLLOW_bitwiseOr_in_logicalAnd801);
+                	    pushFollow(FOLLOW_bitwiseOr_in_logicalAnd807);
                 	    bitwiseOr74=bitwiseOr();
 
                 	    state._fsp = state._fsp - 1;
@@ -2174,14 +2187,14 @@ package com.esoteric.expressions {
                 	    }
                 	    break;
                 	case 2 :
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:117:5: 'and' bitwiseOr
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:131:5: 'and' bitwiseOr
                 	    {
-                	    string_literal75=Token(matchStream(input,51,FOLLOW_51_in_logicalAnd807)); if (this.state.failed) return retval;
+                	    string_literal75=Token(matchStream(input,51,FOLLOW_51_in_logicalAnd813)); if (this.state.failed) return retval;
                 	    if ( this.state.backtracking==0 ) {
                 	    string_literal75_tree = CommonTree(adaptor.create(string_literal75));
                 	    root_0 = CommonTree(adaptor.becomeRoot(string_literal75_tree, root_0));
                 	    }
-                	    pushFollow(FOLLOW_bitwiseOr_in_logicalAnd810);
+                	    pushFollow(FOLLOW_bitwiseOr_in_logicalAnd816);
                 	    bitwiseOr76=bitwiseOr();
 
                 	    state._fsp = state._fsp - 1;
@@ -2221,7 +2234,7 @@ package com.esoteric.expressions {
         // $ANTLR end logicalAnd
 
         // $ANTLR start bitwiseOr
-        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:121:1: bitwiseOr : bitwiseXor ( '|' bitwiseXor )* ;
+        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:135:1: bitwiseOr : bitwiseXor ( '|' bitwiseXor )* ;
         public final function bitwiseOr():ParserRuleReturnScope {
             var retval:ParserRuleReturnScope = new ParserRuleReturnScope();
             retval.start = input.LT(1);
@@ -2238,18 +2251,18 @@ package com.esoteric.expressions {
 
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 13) ) { return retval; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:122:2: ( bitwiseXor ( '|' bitwiseXor )* )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:122:4: bitwiseXor ( '|' bitwiseXor )*
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:136:2: ( bitwiseXor ( '|' bitwiseXor )* )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:136:4: bitwiseXor ( '|' bitwiseXor )*
                 {
                 root_0 = CommonTree(adaptor.nil());
 
-                pushFollow(FOLLOW_bitwiseXor_in_bitwiseOr826);
+                pushFollow(FOLLOW_bitwiseXor_in_bitwiseOr832);
                 bitwiseXor77=bitwiseXor();
 
                 state._fsp = state._fsp - 1;
                 if (this.state.failed) return retval;
                 if ( this.state.backtracking==0 ) adaptor.addChild(root_0, bitwiseXor77.tree);
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:123:3: ( '|' bitwiseXor )*
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:137:3: ( '|' bitwiseXor )*
                 loop11:
                 do {
                     var alt11:int=2;
@@ -2262,14 +2275,14 @@ package com.esoteric.expressions {
 
                     switch (alt11) {
                 	case 1 :
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:124:4: '|' bitwiseXor
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:138:4: '|' bitwiseXor
                 	    {
-                	    char_literal78=Token(matchStream(input,52,FOLLOW_52_in_bitwiseOr835)); if (this.state.failed) return retval;
+                	    char_literal78=Token(matchStream(input,52,FOLLOW_52_in_bitwiseOr841)); if (this.state.failed) return retval;
                 	    if ( this.state.backtracking==0 ) {
                 	    char_literal78_tree = CommonTree(adaptor.create(char_literal78));
                 	    root_0 = CommonTree(adaptor.becomeRoot(char_literal78_tree, root_0));
                 	    }
-                	    pushFollow(FOLLOW_bitwiseXor_in_bitwiseOr838);
+                	    pushFollow(FOLLOW_bitwiseXor_in_bitwiseOr844);
                 	    bitwiseXor79=bitwiseXor();
 
                 	    state._fsp = state._fsp - 1;
@@ -2309,7 +2322,7 @@ package com.esoteric.expressions {
         // $ANTLR end bitwiseOr
 
         // $ANTLR start bitwiseXor
-        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:128:1: bitwiseXor : bitwiseAnd ( '^' bitwiseAnd )? ;
+        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:142:1: bitwiseXor : bitwiseAnd ( '^' bitwiseAnd )? ;
         public final function bitwiseXor():ParserRuleReturnScope {
             var retval:ParserRuleReturnScope = new ParserRuleReturnScope();
             retval.start = input.LT(1);
@@ -2326,18 +2339,18 @@ package com.esoteric.expressions {
 
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 14) ) { return retval; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:129:2: ( bitwiseAnd ( '^' bitwiseAnd )? )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:129:4: bitwiseAnd ( '^' bitwiseAnd )?
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:143:2: ( bitwiseAnd ( '^' bitwiseAnd )? )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:143:4: bitwiseAnd ( '^' bitwiseAnd )?
                 {
                 root_0 = CommonTree(adaptor.nil());
 
-                pushFollow(FOLLOW_bitwiseAnd_in_bitwiseXor854);
+                pushFollow(FOLLOW_bitwiseAnd_in_bitwiseXor860);
                 bitwiseAnd80=bitwiseAnd();
 
                 state._fsp = state._fsp - 1;
                 if (this.state.failed) return retval;
                 if ( this.state.backtracking==0 ) adaptor.addChild(root_0, bitwiseAnd80.tree);
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:130:3: ( '^' bitwiseAnd )?
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:144:3: ( '^' bitwiseAnd )?
                 var alt12:int=2;
                 var LA12_0:int = input.LA(1);
 
@@ -2346,14 +2359,14 @@ package com.esoteric.expressions {
                 }
                 switch (alt12) {
                     case 1 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:131:4: '^' bitwiseAnd
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:145:4: '^' bitwiseAnd
                         {
-                        char_literal81=Token(matchStream(input,53,FOLLOW_53_in_bitwiseXor863)); if (this.state.failed) return retval;
+                        char_literal81=Token(matchStream(input,53,FOLLOW_53_in_bitwiseXor869)); if (this.state.failed) return retval;
                         if ( this.state.backtracking==0 ) {
                         char_literal81_tree = CommonTree(adaptor.create(char_literal81));
                         root_0 = CommonTree(adaptor.becomeRoot(char_literal81_tree, root_0));
                         }
-                        pushFollow(FOLLOW_bitwiseAnd_in_bitwiseXor866);
+                        pushFollow(FOLLOW_bitwiseAnd_in_bitwiseXor872);
                         bitwiseAnd82=bitwiseAnd();
 
                         state._fsp = state._fsp - 1;
@@ -2390,7 +2403,7 @@ package com.esoteric.expressions {
         // $ANTLR end bitwiseXor
 
         // $ANTLR start bitwiseAnd
-        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:135:1: bitwiseAnd : equalExp ( '&' equalExp )* ;
+        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:149:1: bitwiseAnd : equalExp ( '&' equalExp )* ;
         public final function bitwiseAnd():ParserRuleReturnScope {
             var retval:ParserRuleReturnScope = new ParserRuleReturnScope();
             retval.start = input.LT(1);
@@ -2407,18 +2420,18 @@ package com.esoteric.expressions {
 
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 15) ) { return retval; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:136:2: ( equalExp ( '&' equalExp )* )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:136:4: equalExp ( '&' equalExp )*
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:150:2: ( equalExp ( '&' equalExp )* )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:150:4: equalExp ( '&' equalExp )*
                 {
                 root_0 = CommonTree(adaptor.nil());
 
-                pushFollow(FOLLOW_equalExp_in_bitwiseAnd882);
+                pushFollow(FOLLOW_equalExp_in_bitwiseAnd888);
                 equalExp83=equalExp();
 
                 state._fsp = state._fsp - 1;
                 if (this.state.failed) return retval;
                 if ( this.state.backtracking==0 ) adaptor.addChild(root_0, equalExp83.tree);
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:137:3: ( '&' equalExp )*
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:151:3: ( '&' equalExp )*
                 loop13:
                 do {
                     var alt13:int=2;
@@ -2431,14 +2444,14 @@ package com.esoteric.expressions {
 
                     switch (alt13) {
                 	case 1 :
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:138:4: '&' equalExp
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:152:4: '&' equalExp
                 	    {
-                	    char_literal84=Token(matchStream(input,54,FOLLOW_54_in_bitwiseAnd891)); if (this.state.failed) return retval;
+                	    char_literal84=Token(matchStream(input,54,FOLLOW_54_in_bitwiseAnd897)); if (this.state.failed) return retval;
                 	    if ( this.state.backtracking==0 ) {
                 	    char_literal84_tree = CommonTree(adaptor.create(char_literal84));
                 	    root_0 = CommonTree(adaptor.becomeRoot(char_literal84_tree, root_0));
                 	    }
-                	    pushFollow(FOLLOW_equalExp_in_bitwiseAnd894);
+                	    pushFollow(FOLLOW_equalExp_in_bitwiseAnd900);
                 	    equalExp85=equalExp();
 
                 	    state._fsp = state._fsp - 1;
@@ -2478,7 +2491,7 @@ package com.esoteric.expressions {
         // $ANTLR end bitwiseAnd
 
         // $ANTLR start equalExp
-        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:142:1: equalExp : relExp ( '==' relExp | '!=' relExp | '===' relExp | '!==' relExp )* ;
+        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:156:1: equalExp : relExp ( '==' relExp | '!=' relExp | '===' relExp | '!==' relExp )* ;
         public final function equalExp():ParserRuleReturnScope {
             var retval:ParserRuleReturnScope = new ParserRuleReturnScope();
             retval.start = input.LT(1);
@@ -2507,18 +2520,18 @@ package com.esoteric.expressions {
 
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 16) ) { return retval; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:143:2: ( relExp ( '==' relExp | '!=' relExp | '===' relExp | '!==' relExp )* )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:143:4: relExp ( '==' relExp | '!=' relExp | '===' relExp | '!==' relExp )*
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:157:2: ( relExp ( '==' relExp | '!=' relExp | '===' relExp | '!==' relExp )* )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:157:4: relExp ( '==' relExp | '!=' relExp | '===' relExp | '!==' relExp )*
                 {
                 root_0 = CommonTree(adaptor.nil());
 
-                pushFollow(FOLLOW_relExp_in_equalExp910);
+                pushFollow(FOLLOW_relExp_in_equalExp916);
                 relExp86=relExp();
 
                 state._fsp = state._fsp - 1;
                 if (this.state.failed) return retval;
                 if ( this.state.backtracking==0 ) adaptor.addChild(root_0, relExp86.tree);
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:144:3: ( '==' relExp | '!=' relExp | '===' relExp | '!==' relExp )*
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:158:3: ( '==' relExp | '!=' relExp | '===' relExp | '!==' relExp )*
                 loop14:
                 do {
                     var alt14:int=5;
@@ -2548,14 +2561,14 @@ package com.esoteric.expressions {
 
                     switch (alt14) {
                 	case 1 :
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:145:4: '==' relExp
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:159:4: '==' relExp
                 	    {
-                	    string_literal87=Token(matchStream(input,55,FOLLOW_55_in_equalExp919)); if (this.state.failed) return retval;
+                	    string_literal87=Token(matchStream(input,55,FOLLOW_55_in_equalExp925)); if (this.state.failed) return retval;
                 	    if ( this.state.backtracking==0 ) {
                 	    string_literal87_tree = CommonTree(adaptor.create(string_literal87));
                 	    root_0 = CommonTree(adaptor.becomeRoot(string_literal87_tree, root_0));
                 	    }
-                	    pushFollow(FOLLOW_relExp_in_equalExp922);
+                	    pushFollow(FOLLOW_relExp_in_equalExp928);
                 	    relExp88=relExp();
 
                 	    state._fsp = state._fsp - 1;
@@ -2565,14 +2578,14 @@ package com.esoteric.expressions {
                 	    }
                 	    break;
                 	case 2 :
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:146:5: '!=' relExp
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:160:5: '!=' relExp
                 	    {
-                	    string_literal89=Token(matchStream(input,56,FOLLOW_56_in_equalExp928)); if (this.state.failed) return retval;
+                	    string_literal89=Token(matchStream(input,56,FOLLOW_56_in_equalExp934)); if (this.state.failed) return retval;
                 	    if ( this.state.backtracking==0 ) {
                 	    string_literal89_tree = CommonTree(adaptor.create(string_literal89));
                 	    root_0 = CommonTree(adaptor.becomeRoot(string_literal89_tree, root_0));
                 	    }
-                	    pushFollow(FOLLOW_relExp_in_equalExp931);
+                	    pushFollow(FOLLOW_relExp_in_equalExp937);
                 	    relExp90=relExp();
 
                 	    state._fsp = state._fsp - 1;
@@ -2582,14 +2595,14 @@ package com.esoteric.expressions {
                 	    }
                 	    break;
                 	case 3 :
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:147:5: '===' relExp
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:161:5: '===' relExp
                 	    {
-                	    string_literal91=Token(matchStream(input,57,FOLLOW_57_in_equalExp937)); if (this.state.failed) return retval;
+                	    string_literal91=Token(matchStream(input,57,FOLLOW_57_in_equalExp943)); if (this.state.failed) return retval;
                 	    if ( this.state.backtracking==0 ) {
                 	    string_literal91_tree = CommonTree(adaptor.create(string_literal91));
                 	    root_0 = CommonTree(adaptor.becomeRoot(string_literal91_tree, root_0));
                 	    }
-                	    pushFollow(FOLLOW_relExp_in_equalExp940);
+                	    pushFollow(FOLLOW_relExp_in_equalExp946);
                 	    relExp92=relExp();
 
                 	    state._fsp = state._fsp - 1;
@@ -2599,14 +2612,14 @@ package com.esoteric.expressions {
                 	    }
                 	    break;
                 	case 4 :
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:148:5: '!==' relExp
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:162:5: '!==' relExp
                 	    {
-                	    string_literal93=Token(matchStream(input,58,FOLLOW_58_in_equalExp946)); if (this.state.failed) return retval;
+                	    string_literal93=Token(matchStream(input,58,FOLLOW_58_in_equalExp952)); if (this.state.failed) return retval;
                 	    if ( this.state.backtracking==0 ) {
                 	    string_literal93_tree = CommonTree(adaptor.create(string_literal93));
                 	    root_0 = CommonTree(adaptor.becomeRoot(string_literal93_tree, root_0));
                 	    }
-                	    pushFollow(FOLLOW_relExp_in_equalExp949);
+                	    pushFollow(FOLLOW_relExp_in_equalExp955);
                 	    relExp94=relExp();
 
                 	    state._fsp = state._fsp - 1;
@@ -2646,7 +2659,7 @@ package com.esoteric.expressions {
         // $ANTLR end equalExp
 
         // $ANTLR start relExp
-        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:152:1: relExp : shiftExp ( '<' shiftExp | 'lt' shiftExp | '>' shiftExp | 'gt' shiftExp | '<=' shiftExp | 'lte' shiftExp | '>=' shiftExp | 'gte' shiftExp )* ;
+        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:166:1: relExp : shiftExp ( '<' shiftExp | 'lt' shiftExp | '>' shiftExp | 'gt' shiftExp | '<=' shiftExp | 'lte' shiftExp | '>=' shiftExp | 'gte' shiftExp )* ;
         public final function relExp():ParserRuleReturnScope {
             var retval:ParserRuleReturnScope = new ParserRuleReturnScope();
             retval.start = input.LT(1);
@@ -2691,18 +2704,18 @@ package com.esoteric.expressions {
 
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 17) ) { return retval; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:153:2: ( shiftExp ( '<' shiftExp | 'lt' shiftExp | '>' shiftExp | 'gt' shiftExp | '<=' shiftExp | 'lte' shiftExp | '>=' shiftExp | 'gte' shiftExp )* )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:153:4: shiftExp ( '<' shiftExp | 'lt' shiftExp | '>' shiftExp | 'gt' shiftExp | '<=' shiftExp | 'lte' shiftExp | '>=' shiftExp | 'gte' shiftExp )*
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:167:2: ( shiftExp ( '<' shiftExp | 'lt' shiftExp | '>' shiftExp | 'gt' shiftExp | '<=' shiftExp | 'lte' shiftExp | '>=' shiftExp | 'gte' shiftExp )* )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:167:4: shiftExp ( '<' shiftExp | 'lt' shiftExp | '>' shiftExp | 'gt' shiftExp | '<=' shiftExp | 'lte' shiftExp | '>=' shiftExp | 'gte' shiftExp )*
                 {
                 root_0 = CommonTree(adaptor.nil());
 
-                pushFollow(FOLLOW_shiftExp_in_relExp966);
+                pushFollow(FOLLOW_shiftExp_in_relExp972);
                 shiftExp95=shiftExp();
 
                 state._fsp = state._fsp - 1;
                 if (this.state.failed) return retval;
                 if ( this.state.backtracking==0 ) adaptor.addChild(root_0, shiftExp95.tree);
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:154:3: ( '<' shiftExp | 'lt' shiftExp | '>' shiftExp | 'gt' shiftExp | '<=' shiftExp | 'lte' shiftExp | '>=' shiftExp | 'gte' shiftExp )*
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:168:3: ( '<' shiftExp | 'lt' shiftExp | '>' shiftExp | 'gt' shiftExp | '<=' shiftExp | 'lte' shiftExp | '>=' shiftExp | 'gte' shiftExp )*
                 loop15:
                 do {
                     var alt15:int=9;
@@ -2752,14 +2765,14 @@ package com.esoteric.expressions {
 
                     switch (alt15) {
                 	case 1 :
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:155:4: '<' shiftExp
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:169:4: '<' shiftExp
                 	    {
-                	    char_literal96=Token(matchStream(input,59,FOLLOW_59_in_relExp975)); if (this.state.failed) return retval;
+                	    char_literal96=Token(matchStream(input,59,FOLLOW_59_in_relExp981)); if (this.state.failed) return retval;
                 	    if ( this.state.backtracking==0 ) {
                 	    char_literal96_tree = CommonTree(adaptor.create(char_literal96));
                 	    root_0 = CommonTree(adaptor.becomeRoot(char_literal96_tree, root_0));
                 	    }
-                	    pushFollow(FOLLOW_shiftExp_in_relExp978);
+                	    pushFollow(FOLLOW_shiftExp_in_relExp984);
                 	    shiftExp97=shiftExp();
 
                 	    state._fsp = state._fsp - 1;
@@ -2769,14 +2782,14 @@ package com.esoteric.expressions {
                 	    }
                 	    break;
                 	case 2 :
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:156:5: 'lt' shiftExp
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:170:5: 'lt' shiftExp
                 	    {
-                	    string_literal98=Token(matchStream(input,60,FOLLOW_60_in_relExp984)); if (this.state.failed) return retval;
+                	    string_literal98=Token(matchStream(input,60,FOLLOW_60_in_relExp990)); if (this.state.failed) return retval;
                 	    if ( this.state.backtracking==0 ) {
                 	    string_literal98_tree = CommonTree(adaptor.create(string_literal98));
                 	    root_0 = CommonTree(adaptor.becomeRoot(string_literal98_tree, root_0));
                 	    }
-                	    pushFollow(FOLLOW_shiftExp_in_relExp987);
+                	    pushFollow(FOLLOW_shiftExp_in_relExp993);
                 	    shiftExp99=shiftExp();
 
                 	    state._fsp = state._fsp - 1;
@@ -2786,14 +2799,14 @@ package com.esoteric.expressions {
                 	    }
                 	    break;
                 	case 3 :
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:157:5: '>' shiftExp
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:171:5: '>' shiftExp
                 	    {
-                	    char_literal100=Token(matchStream(input,61,FOLLOW_61_in_relExp993)); if (this.state.failed) return retval;
+                	    char_literal100=Token(matchStream(input,61,FOLLOW_61_in_relExp999)); if (this.state.failed) return retval;
                 	    if ( this.state.backtracking==0 ) {
                 	    char_literal100_tree = CommonTree(adaptor.create(char_literal100));
                 	    root_0 = CommonTree(adaptor.becomeRoot(char_literal100_tree, root_0));
                 	    }
-                	    pushFollow(FOLLOW_shiftExp_in_relExp996);
+                	    pushFollow(FOLLOW_shiftExp_in_relExp1002);
                 	    shiftExp101=shiftExp();
 
                 	    state._fsp = state._fsp - 1;
@@ -2803,14 +2816,14 @@ package com.esoteric.expressions {
                 	    }
                 	    break;
                 	case 4 :
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:158:5: 'gt' shiftExp
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:172:5: 'gt' shiftExp
                 	    {
-                	    string_literal102=Token(matchStream(input,62,FOLLOW_62_in_relExp1002)); if (this.state.failed) return retval;
+                	    string_literal102=Token(matchStream(input,62,FOLLOW_62_in_relExp1008)); if (this.state.failed) return retval;
                 	    if ( this.state.backtracking==0 ) {
                 	    string_literal102_tree = CommonTree(adaptor.create(string_literal102));
                 	    root_0 = CommonTree(adaptor.becomeRoot(string_literal102_tree, root_0));
                 	    }
-                	    pushFollow(FOLLOW_shiftExp_in_relExp1005);
+                	    pushFollow(FOLLOW_shiftExp_in_relExp1011);
                 	    shiftExp103=shiftExp();
 
                 	    state._fsp = state._fsp - 1;
@@ -2820,14 +2833,14 @@ package com.esoteric.expressions {
                 	    }
                 	    break;
                 	case 5 :
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:159:5: '<=' shiftExp
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:173:5: '<=' shiftExp
                 	    {
-                	    string_literal104=Token(matchStream(input,63,FOLLOW_63_in_relExp1011)); if (this.state.failed) return retval;
+                	    string_literal104=Token(matchStream(input,63,FOLLOW_63_in_relExp1017)); if (this.state.failed) return retval;
                 	    if ( this.state.backtracking==0 ) {
                 	    string_literal104_tree = CommonTree(adaptor.create(string_literal104));
                 	    root_0 = CommonTree(adaptor.becomeRoot(string_literal104_tree, root_0));
                 	    }
-                	    pushFollow(FOLLOW_shiftExp_in_relExp1014);
+                	    pushFollow(FOLLOW_shiftExp_in_relExp1020);
                 	    shiftExp105=shiftExp();
 
                 	    state._fsp = state._fsp - 1;
@@ -2837,14 +2850,14 @@ package com.esoteric.expressions {
                 	    }
                 	    break;
                 	case 6 :
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:160:5: 'lte' shiftExp
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:174:5: 'lte' shiftExp
                 	    {
-                	    string_literal106=Token(matchStream(input,64,FOLLOW_64_in_relExp1020)); if (this.state.failed) return retval;
+                	    string_literal106=Token(matchStream(input,64,FOLLOW_64_in_relExp1026)); if (this.state.failed) return retval;
                 	    if ( this.state.backtracking==0 ) {
                 	    string_literal106_tree = CommonTree(adaptor.create(string_literal106));
                 	    root_0 = CommonTree(adaptor.becomeRoot(string_literal106_tree, root_0));
                 	    }
-                	    pushFollow(FOLLOW_shiftExp_in_relExp1023);
+                	    pushFollow(FOLLOW_shiftExp_in_relExp1029);
                 	    shiftExp107=shiftExp();
 
                 	    state._fsp = state._fsp - 1;
@@ -2854,14 +2867,14 @@ package com.esoteric.expressions {
                 	    }
                 	    break;
                 	case 7 :
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:161:5: '>=' shiftExp
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:175:5: '>=' shiftExp
                 	    {
-                	    string_literal108=Token(matchStream(input,65,FOLLOW_65_in_relExp1029)); if (this.state.failed) return retval;
+                	    string_literal108=Token(matchStream(input,65,FOLLOW_65_in_relExp1035)); if (this.state.failed) return retval;
                 	    if ( this.state.backtracking==0 ) {
                 	    string_literal108_tree = CommonTree(adaptor.create(string_literal108));
                 	    root_0 = CommonTree(adaptor.becomeRoot(string_literal108_tree, root_0));
                 	    }
-                	    pushFollow(FOLLOW_shiftExp_in_relExp1032);
+                	    pushFollow(FOLLOW_shiftExp_in_relExp1038);
                 	    shiftExp109=shiftExp();
 
                 	    state._fsp = state._fsp - 1;
@@ -2871,14 +2884,14 @@ package com.esoteric.expressions {
                 	    }
                 	    break;
                 	case 8 :
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:162:5: 'gte' shiftExp
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:176:5: 'gte' shiftExp
                 	    {
-                	    string_literal110=Token(matchStream(input,66,FOLLOW_66_in_relExp1038)); if (this.state.failed) return retval;
+                	    string_literal110=Token(matchStream(input,66,FOLLOW_66_in_relExp1044)); if (this.state.failed) return retval;
                 	    if ( this.state.backtracking==0 ) {
                 	    string_literal110_tree = CommonTree(adaptor.create(string_literal110));
                 	    root_0 = CommonTree(adaptor.becomeRoot(string_literal110_tree, root_0));
                 	    }
-                	    pushFollow(FOLLOW_shiftExp_in_relExp1041);
+                	    pushFollow(FOLLOW_shiftExp_in_relExp1047);
                 	    shiftExp111=shiftExp();
 
                 	    state._fsp = state._fsp - 1;
@@ -2918,7 +2931,7 @@ package com.esoteric.expressions {
         // $ANTLR end relExp
 
         // $ANTLR start shiftExp
-        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:166:1: shiftExp : addExp ( '<<' addExp | '>>' addExp | '>>>' addExp )* ;
+        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:180:1: shiftExp : addExp ( '<<' addExp | '>>' addExp | '>>>' addExp )* ;
         public final function shiftExp():ParserRuleReturnScope {
             var retval:ParserRuleReturnScope = new ParserRuleReturnScope();
             retval.start = input.LT(1);
@@ -2943,18 +2956,18 @@ package com.esoteric.expressions {
 
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 18) ) { return retval; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:167:2: ( addExp ( '<<' addExp | '>>' addExp | '>>>' addExp )* )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:167:4: addExp ( '<<' addExp | '>>' addExp | '>>>' addExp )*
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:181:2: ( addExp ( '<<' addExp | '>>' addExp | '>>>' addExp )* )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:181:4: addExp ( '<<' addExp | '>>' addExp | '>>>' addExp )*
                 {
                 root_0 = CommonTree(adaptor.nil());
 
-                pushFollow(FOLLOW_addExp_in_shiftExp1057);
+                pushFollow(FOLLOW_addExp_in_shiftExp1063);
                 addExp112=addExp();
 
                 state._fsp = state._fsp - 1;
                 if (this.state.failed) return retval;
                 if ( this.state.backtracking==0 ) adaptor.addChild(root_0, addExp112.tree);
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:168:3: ( '<<' addExp | '>>' addExp | '>>>' addExp )*
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:182:3: ( '<<' addExp | '>>' addExp | '>>>' addExp )*
                 loop16:
                 do {
                     var alt16:int=4;
@@ -2979,14 +2992,14 @@ package com.esoteric.expressions {
 
                     switch (alt16) {
                 	case 1 :
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:169:4: '<<' addExp
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:183:4: '<<' addExp
                 	    {
-                	    string_literal113=Token(matchStream(input,67,FOLLOW_67_in_shiftExp1066)); if (this.state.failed) return retval;
+                	    string_literal113=Token(matchStream(input,67,FOLLOW_67_in_shiftExp1072)); if (this.state.failed) return retval;
                 	    if ( this.state.backtracking==0 ) {
                 	    string_literal113_tree = CommonTree(adaptor.create(string_literal113));
                 	    root_0 = CommonTree(adaptor.becomeRoot(string_literal113_tree, root_0));
                 	    }
-                	    pushFollow(FOLLOW_addExp_in_shiftExp1069);
+                	    pushFollow(FOLLOW_addExp_in_shiftExp1075);
                 	    addExp114=addExp();
 
                 	    state._fsp = state._fsp - 1;
@@ -2996,14 +3009,14 @@ package com.esoteric.expressions {
                 	    }
                 	    break;
                 	case 2 :
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:170:5: '>>' addExp
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:184:5: '>>' addExp
                 	    {
-                	    string_literal115=Token(matchStream(input,68,FOLLOW_68_in_shiftExp1075)); if (this.state.failed) return retval;
+                	    string_literal115=Token(matchStream(input,68,FOLLOW_68_in_shiftExp1081)); if (this.state.failed) return retval;
                 	    if ( this.state.backtracking==0 ) {
                 	    string_literal115_tree = CommonTree(adaptor.create(string_literal115));
                 	    root_0 = CommonTree(adaptor.becomeRoot(string_literal115_tree, root_0));
                 	    }
-                	    pushFollow(FOLLOW_addExp_in_shiftExp1078);
+                	    pushFollow(FOLLOW_addExp_in_shiftExp1084);
                 	    addExp116=addExp();
 
                 	    state._fsp = state._fsp - 1;
@@ -3013,14 +3026,14 @@ package com.esoteric.expressions {
                 	    }
                 	    break;
                 	case 3 :
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:171:5: '>>>' addExp
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:185:5: '>>>' addExp
                 	    {
-                	    string_literal117=Token(matchStream(input,69,FOLLOW_69_in_shiftExp1084)); if (this.state.failed) return retval;
+                	    string_literal117=Token(matchStream(input,69,FOLLOW_69_in_shiftExp1090)); if (this.state.failed) return retval;
                 	    if ( this.state.backtracking==0 ) {
                 	    string_literal117_tree = CommonTree(adaptor.create(string_literal117));
                 	    root_0 = CommonTree(adaptor.becomeRoot(string_literal117_tree, root_0));
                 	    }
-                	    pushFollow(FOLLOW_addExp_in_shiftExp1087);
+                	    pushFollow(FOLLOW_addExp_in_shiftExp1093);
                 	    addExp118=addExp();
 
                 	    state._fsp = state._fsp - 1;
@@ -3060,7 +3073,7 @@ package com.esoteric.expressions {
         // $ANTLR end shiftExp
 
         // $ANTLR start addExp
-        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:175:1: addExp : multExp ( '+' multExp | '-' multExp )* ;
+        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:189:1: addExp : multExp ( '+' multExp | '-' multExp )* ;
         public final function addExp():ParserRuleReturnScope {
             var retval:ParserRuleReturnScope = new ParserRuleReturnScope();
             retval.start = input.LT(1);
@@ -3081,32 +3094,32 @@ package com.esoteric.expressions {
 
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 19) ) { return retval; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:176:2: ( multExp ( '+' multExp | '-' multExp )* )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:176:4: multExp ( '+' multExp | '-' multExp )*
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:190:2: ( multExp ( '+' multExp | '-' multExp )* )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:190:4: multExp ( '+' multExp | '-' multExp )*
                 {
                 root_0 = CommonTree(adaptor.nil());
 
-                pushFollow(FOLLOW_multExp_in_addExp1103);
+                pushFollow(FOLLOW_multExp_in_addExp1109);
                 multExp119=multExp();
 
                 state._fsp = state._fsp - 1;
                 if (this.state.failed) return retval;
                 if ( this.state.backtracking==0 ) adaptor.addChild(root_0, multExp119.tree);
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:177:3: ( '+' multExp | '-' multExp )*
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:191:3: ( '+' multExp | '-' multExp )*
                 loop17:
                 do {
                     var alt17:int=3;
                     alt17 = dfa17.predict(input);
                     switch (alt17) {
                 	case 1 :
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:178:4: '+' multExp
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:192:4: '+' multExp
                 	    {
-                	    char_literal120=Token(matchStream(input,70,FOLLOW_70_in_addExp1112)); if (this.state.failed) return retval;
+                	    char_literal120=Token(matchStream(input,70,FOLLOW_70_in_addExp1118)); if (this.state.failed) return retval;
                 	    if ( this.state.backtracking==0 ) {
                 	    char_literal120_tree = CommonTree(adaptor.create(char_literal120));
                 	    root_0 = CommonTree(adaptor.becomeRoot(char_literal120_tree, root_0));
                 	    }
-                	    pushFollow(FOLLOW_multExp_in_addExp1115);
+                	    pushFollow(FOLLOW_multExp_in_addExp1121);
                 	    multExp121=multExp();
 
                 	    state._fsp = state._fsp - 1;
@@ -3116,14 +3129,14 @@ package com.esoteric.expressions {
                 	    }
                 	    break;
                 	case 2 :
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:179:5: '-' multExp
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:193:5: '-' multExp
                 	    {
-                	    char_literal122=Token(matchStream(input,71,FOLLOW_71_in_addExp1121)); if (this.state.failed) return retval;
+                	    char_literal122=Token(matchStream(input,71,FOLLOW_71_in_addExp1127)); if (this.state.failed) return retval;
                 	    if ( this.state.backtracking==0 ) {
                 	    char_literal122_tree = CommonTree(adaptor.create(char_literal122));
                 	    root_0 = CommonTree(adaptor.becomeRoot(char_literal122_tree, root_0));
                 	    }
-                	    pushFollow(FOLLOW_multExp_in_addExp1124);
+                	    pushFollow(FOLLOW_multExp_in_addExp1130);
                 	    multExp123=multExp();
 
                 	    state._fsp = state._fsp - 1;
@@ -3163,7 +3176,7 @@ package com.esoteric.expressions {
         // $ANTLR end addExp
 
         // $ANTLR start multExp
-        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:183:1: multExp : unaryExp ( '*' unaryExp | '/' unaryExp | '%' unaryExp )* ;
+        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:197:1: multExp : unaryExp ( '*' unaryExp | '/' unaryExp | '%' unaryExp )* ;
         public final function multExp():ParserRuleReturnScope {
             var retval:ParserRuleReturnScope = new ParserRuleReturnScope();
             retval.start = input.LT(1);
@@ -3188,18 +3201,18 @@ package com.esoteric.expressions {
 
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 20) ) { return retval; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:184:2: ( unaryExp ( '*' unaryExp | '/' unaryExp | '%' unaryExp )* )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:184:5: unaryExp ( '*' unaryExp | '/' unaryExp | '%' unaryExp )*
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:198:2: ( unaryExp ( '*' unaryExp | '/' unaryExp | '%' unaryExp )* )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:198:5: unaryExp ( '*' unaryExp | '/' unaryExp | '%' unaryExp )*
                 {
                 root_0 = CommonTree(adaptor.nil());
 
-                pushFollow(FOLLOW_unaryExp_in_multExp1142);
+                pushFollow(FOLLOW_unaryExp_in_multExp1148);
                 unaryExp124=unaryExp();
 
                 state._fsp = state._fsp - 1;
                 if (this.state.failed) return retval;
                 if ( this.state.backtracking==0 ) adaptor.addChild(root_0, unaryExp124.tree);
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:185:3: ( '*' unaryExp | '/' unaryExp | '%' unaryExp )*
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:199:3: ( '*' unaryExp | '/' unaryExp | '%' unaryExp )*
                 loop18:
                 do {
                     var alt18:int=4;
@@ -3224,14 +3237,14 @@ package com.esoteric.expressions {
 
                     switch (alt18) {
                 	case 1 :
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:186:4: '*' unaryExp
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:200:4: '*' unaryExp
                 	    {
-                	    char_literal125=Token(matchStream(input,72,FOLLOW_72_in_multExp1151)); if (this.state.failed) return retval;
+                	    char_literal125=Token(matchStream(input,72,FOLLOW_72_in_multExp1157)); if (this.state.failed) return retval;
                 	    if ( this.state.backtracking==0 ) {
                 	    char_literal125_tree = CommonTree(adaptor.create(char_literal125));
                 	    root_0 = CommonTree(adaptor.becomeRoot(char_literal125_tree, root_0));
                 	    }
-                	    pushFollow(FOLLOW_unaryExp_in_multExp1154);
+                	    pushFollow(FOLLOW_unaryExp_in_multExp1160);
                 	    unaryExp126=unaryExp();
 
                 	    state._fsp = state._fsp - 1;
@@ -3241,14 +3254,14 @@ package com.esoteric.expressions {
                 	    }
                 	    break;
                 	case 2 :
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:187:5: '/' unaryExp
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:201:5: '/' unaryExp
                 	    {
-                	    char_literal127=Token(matchStream(input,73,FOLLOW_73_in_multExp1160)); if (this.state.failed) return retval;
+                	    char_literal127=Token(matchStream(input,73,FOLLOW_73_in_multExp1166)); if (this.state.failed) return retval;
                 	    if ( this.state.backtracking==0 ) {
                 	    char_literal127_tree = CommonTree(adaptor.create(char_literal127));
                 	    root_0 = CommonTree(adaptor.becomeRoot(char_literal127_tree, root_0));
                 	    }
-                	    pushFollow(FOLLOW_unaryExp_in_multExp1163);
+                	    pushFollow(FOLLOW_unaryExp_in_multExp1169);
                 	    unaryExp128=unaryExp();
 
                 	    state._fsp = state._fsp - 1;
@@ -3258,14 +3271,14 @@ package com.esoteric.expressions {
                 	    }
                 	    break;
                 	case 3 :
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:188:5: '%' unaryExp
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:202:5: '%' unaryExp
                 	    {
-                	    char_literal129=Token(matchStream(input,74,FOLLOW_74_in_multExp1169)); if (this.state.failed) return retval;
+                	    char_literal129=Token(matchStream(input,74,FOLLOW_74_in_multExp1175)); if (this.state.failed) return retval;
                 	    if ( this.state.backtracking==0 ) {
                 	    char_literal129_tree = CommonTree(adaptor.create(char_literal129));
                 	    root_0 = CommonTree(adaptor.becomeRoot(char_literal129_tree, root_0));
                 	    }
-                	    pushFollow(FOLLOW_unaryExp_in_multExp1172);
+                	    pushFollow(FOLLOW_unaryExp_in_multExp1178);
                 	    unaryExp130=unaryExp();
 
                 	    state._fsp = state._fsp - 1;
@@ -3305,7 +3318,7 @@ package com.esoteric.expressions {
         // $ANTLR end multExp
 
         // $ANTLR start unaryExp
-        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:192:1: unaryExp : ( '+' atom | '-' atom | '~' atom | '!' atom | atom );
+        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:206:1: unaryExp : ( '+' atom | '-' atom | '~' atom | '!' atom | atom );
         public final function unaryExp():ParserRuleReturnScope {
             var retval:ParserRuleReturnScope = new ParserRuleReturnScope();
             retval.start = input.LT(1);
@@ -3334,7 +3347,7 @@ package com.esoteric.expressions {
 
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 21) ) { return retval; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:193:2: ( '+' atom | '-' atom | '~' atom | '!' atom | atom )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:207:2: ( '+' atom | '-' atom | '~' atom | '!' atom | atom )
                 var alt19:int=5;
                 switch ( input.LA(1) ) {
                 case 70:
@@ -3376,16 +3389,16 @@ package com.esoteric.expressions {
 
                 switch (alt19) {
                     case 1 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:193:4: '+' atom
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:207:4: '+' atom
                         {
                         root_0 = CommonTree(adaptor.nil());
 
-                        char_literal131=Token(matchStream(input,70,FOLLOW_70_in_unaryExp1191)); if (this.state.failed) return retval;
+                        char_literal131=Token(matchStream(input,70,FOLLOW_70_in_unaryExp1197)); if (this.state.failed) return retval;
                         if ( this.state.backtracking==0 ) {
                         char_literal131_tree = CommonTree(adaptor.create(char_literal131));
                         root_0 = CommonTree(adaptor.becomeRoot(char_literal131_tree, root_0));
                         }
-                        pushFollow(FOLLOW_atom_in_unaryExp1194);
+                        pushFollow(FOLLOW_atom_in_unaryExp1200);
                         atom132=atom();
 
                         state._fsp = state._fsp - 1;
@@ -3395,16 +3408,16 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 2 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:194:4: '-' atom
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:208:4: '-' atom
                         {
                         root_0 = CommonTree(adaptor.nil());
 
-                        char_literal133=Token(matchStream(input,71,FOLLOW_71_in_unaryExp1199)); if (this.state.failed) return retval;
+                        char_literal133=Token(matchStream(input,71,FOLLOW_71_in_unaryExp1205)); if (this.state.failed) return retval;
                         if ( this.state.backtracking==0 ) {
                         char_literal133_tree = CommonTree(adaptor.create(char_literal133));
                         root_0 = CommonTree(adaptor.becomeRoot(char_literal133_tree, root_0));
                         }
-                        pushFollow(FOLLOW_atom_in_unaryExp1202);
+                        pushFollow(FOLLOW_atom_in_unaryExp1208);
                         atom134=atom();
 
                         state._fsp = state._fsp - 1;
@@ -3414,16 +3427,16 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 3 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:195:4: '~' atom
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:209:4: '~' atom
                         {
                         root_0 = CommonTree(adaptor.nil());
 
-                        char_literal135=Token(matchStream(input,75,FOLLOW_75_in_unaryExp1207)); if (this.state.failed) return retval;
+                        char_literal135=Token(matchStream(input,75,FOLLOW_75_in_unaryExp1213)); if (this.state.failed) return retval;
                         if ( this.state.backtracking==0 ) {
                         char_literal135_tree = CommonTree(adaptor.create(char_literal135));
                         root_0 = CommonTree(adaptor.becomeRoot(char_literal135_tree, root_0));
                         }
-                        pushFollow(FOLLOW_atom_in_unaryExp1210);
+                        pushFollow(FOLLOW_atom_in_unaryExp1216);
                         atom136=atom();
 
                         state._fsp = state._fsp - 1;
@@ -3433,16 +3446,16 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 4 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:196:4: '!' atom
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:210:4: '!' atom
                         {
                         root_0 = CommonTree(adaptor.nil());
 
-                        char_literal137=Token(matchStream(input,76,FOLLOW_76_in_unaryExp1215)); if (this.state.failed) return retval;
+                        char_literal137=Token(matchStream(input,76,FOLLOW_76_in_unaryExp1221)); if (this.state.failed) return retval;
                         if ( this.state.backtracking==0 ) {
                         char_literal137_tree = CommonTree(adaptor.create(char_literal137));
                         root_0 = CommonTree(adaptor.becomeRoot(char_literal137_tree, root_0));
                         }
-                        pushFollow(FOLLOW_atom_in_unaryExp1218);
+                        pushFollow(FOLLOW_atom_in_unaryExp1224);
                         atom138=atom();
 
                         state._fsp = state._fsp - 1;
@@ -3452,11 +3465,11 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 5 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:197:5: atom
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:211:5: atom
                         {
                         root_0 = CommonTree(adaptor.nil());
 
-                        pushFollow(FOLLOW_atom_in_unaryExp1224);
+                        pushFollow(FOLLOW_atom_in_unaryExp1230);
                         atom139=atom();
 
                         state._fsp = state._fsp - 1;
@@ -3489,7 +3502,7 @@ package com.esoteric.expressions {
         // $ANTLR end unaryExp
 
         // $ANTLR start atom
-        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:200:1: atom : ( NumberLiteral | StringLiteral | 'true' | 'false' | referenceOrFuncCall | '(' exp ')' );
+        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:214:1: atom : ( NumberLiteral | StringLiteral | 'true' | 'false' | referenceOrFuncCall | '(' exp ')' );
         public final function atom():ParserRuleReturnScope {
             var retval:ParserRuleReturnScope = new ParserRuleReturnScope();
             retval.start = input.LT(1);
@@ -3516,7 +3529,7 @@ package com.esoteric.expressions {
 
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 22) ) { return retval; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:201:2: ( NumberLiteral | StringLiteral | 'true' | 'false' | referenceOrFuncCall | '(' exp ')' )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:215:2: ( NumberLiteral | StringLiteral | 'true' | 'false' | referenceOrFuncCall | '(' exp ')' )
                 var alt20:int=6;
                 switch ( input.LA(1) ) {
                 case NumberLiteral:
@@ -3558,11 +3571,11 @@ package com.esoteric.expressions {
 
                 switch (alt20) {
                     case 1 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:201:4: NumberLiteral
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:215:4: NumberLiteral
                         {
                         root_0 = CommonTree(adaptor.nil());
 
-                        NumberLiteral140=Token(matchStream(input,NumberLiteral,FOLLOW_NumberLiteral_in_atom1236)); if (this.state.failed) return retval;
+                        NumberLiteral140=Token(matchStream(input,NumberLiteral,FOLLOW_NumberLiteral_in_atom1242)); if (this.state.failed) return retval;
                         if ( this.state.backtracking==0 ) {
                         NumberLiteral140_tree = CommonTree(adaptor.create(NumberLiteral140));
                         adaptor.addChild(root_0, NumberLiteral140_tree);
@@ -3571,11 +3584,11 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 2 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:202:4: StringLiteral
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:216:4: StringLiteral
                         {
                         root_0 = CommonTree(adaptor.nil());
 
-                        StringLiteral141=Token(matchStream(input,StringLiteral,FOLLOW_StringLiteral_in_atom1241)); if (this.state.failed) return retval;
+                        StringLiteral141=Token(matchStream(input,StringLiteral,FOLLOW_StringLiteral_in_atom1247)); if (this.state.failed) return retval;
                         if ( this.state.backtracking==0 ) {
                         StringLiteral141_tree = CommonTree(adaptor.create(StringLiteral141));
                         adaptor.addChild(root_0, StringLiteral141_tree);
@@ -3584,11 +3597,11 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 3 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:203:4: 'true'
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:217:4: 'true'
                         {
                         root_0 = CommonTree(adaptor.nil());
 
-                        string_literal142=Token(matchStream(input,77,FOLLOW_77_in_atom1246)); if (this.state.failed) return retval;
+                        string_literal142=Token(matchStream(input,77,FOLLOW_77_in_atom1252)); if (this.state.failed) return retval;
                         if ( this.state.backtracking==0 ) {
                         string_literal142_tree = CommonTree(adaptor.create(string_literal142));
                         adaptor.addChild(root_0, string_literal142_tree);
@@ -3597,11 +3610,11 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 4 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:204:4: 'false'
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:218:4: 'false'
                         {
                         root_0 = CommonTree(adaptor.nil());
 
-                        string_literal143=Token(matchStream(input,78,FOLLOW_78_in_atom1251)); if (this.state.failed) return retval;
+                        string_literal143=Token(matchStream(input,78,FOLLOW_78_in_atom1257)); if (this.state.failed) return retval;
                         if ( this.state.backtracking==0 ) {
                         string_literal143_tree = CommonTree(adaptor.create(string_literal143));
                         adaptor.addChild(root_0, string_literal143_tree);
@@ -3610,11 +3623,11 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 5 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:205:4: referenceOrFuncCall
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:219:4: referenceOrFuncCall
                         {
                         root_0 = CommonTree(adaptor.nil());
 
-                        pushFollow(FOLLOW_referenceOrFuncCall_in_atom1256);
+                        pushFollow(FOLLOW_referenceOrFuncCall_in_atom1262);
                         referenceOrFuncCall144=referenceOrFuncCall();
 
                         state._fsp = state._fsp - 1;
@@ -3624,18 +3637,18 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 6 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:206:4: '(' exp ')'
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:220:4: '(' exp ')'
                         {
                         root_0 = CommonTree(adaptor.nil());
 
-                        char_literal145=Token(matchStream(input,27,FOLLOW_27_in_atom1261)); if (this.state.failed) return retval;
-                        pushFollow(FOLLOW_exp_in_atom1264);
+                        char_literal145=Token(matchStream(input,27,FOLLOW_27_in_atom1267)); if (this.state.failed) return retval;
+                        pushFollow(FOLLOW_exp_in_atom1270);
                         exp146=exp();
 
                         state._fsp = state._fsp - 1;
                         if (this.state.failed) return retval;
                         if ( this.state.backtracking==0 ) adaptor.addChild(root_0, exp146.tree);
-                        char_literal147=Token(matchStream(input,28,FOLLOW_28_in_atom1266)); if (this.state.failed) return retval;
+                        char_literal147=Token(matchStream(input,28,FOLLOW_28_in_atom1272)); if (this.state.failed) return retval;
 
                         }
                         break;
@@ -3663,7 +3676,7 @@ package com.esoteric.expressions {
         // $ANTLR end atom
 
         // $ANTLR start reference
-        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:209:1: reference : (l= object -> $l) ( '[' e= exp ']' -> ^( PropExp $reference $e) | '.' i= Identifier -> ^( PropRef $reference $i) | '(' (p= params )? ')' '[' e= exp ']' -> ^( PropExp ^( FuncCall $reference $p) $e) | '(' (p= params )? ')' '.' i= Identifier -> ^( PropRef ^( FuncCall $reference $p) $i) )* ;
+        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:223:1: reference : (l= object -> $l) ( '[' e= exp ']' -> ^( PropExp $reference $e) | '.' i= Identifier -> ^( PropRef $reference $i) | '(' (p= params )? ')' '[' e= exp ']' -> ^( PropExp ^( FuncCall $reference $p) $e) | '(' (p= params )? ')' '.' i= Identifier -> ^( PropRef ^( FuncCall $reference $p) $i) )* ;
         public final function reference():ParserRuleReturnScope {
             var retval:ParserRuleReturnScope = new ParserRuleReturnScope();
             retval.start = input.LT(1);
@@ -3710,13 +3723,13 @@ package com.esoteric.expressions {
             var stream_params:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule params");
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 23) ) { return retval; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:210:2: ( (l= object -> $l) ( '[' e= exp ']' -> ^( PropExp $reference $e) | '.' i= Identifier -> ^( PropRef $reference $i) | '(' (p= params )? ')' '[' e= exp ']' -> ^( PropExp ^( FuncCall $reference $p) $e) | '(' (p= params )? ')' '.' i= Identifier -> ^( PropRef ^( FuncCall $reference $p) $i) )* )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:210:4: (l= object -> $l) ( '[' e= exp ']' -> ^( PropExp $reference $e) | '.' i= Identifier -> ^( PropRef $reference $i) | '(' (p= params )? ')' '[' e= exp ']' -> ^( PropExp ^( FuncCall $reference $p) $e) | '(' (p= params )? ')' '.' i= Identifier -> ^( PropRef ^( FuncCall $reference $p) $i) )*
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:224:2: ( (l= object -> $l) ( '[' e= exp ']' -> ^( PropExp $reference $e) | '.' i= Identifier -> ^( PropRef $reference $i) | '(' (p= params )? ')' '[' e= exp ']' -> ^( PropExp ^( FuncCall $reference $p) $e) | '(' (p= params )? ')' '.' i= Identifier -> ^( PropRef ^( FuncCall $reference $p) $i) )* )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:224:4: (l= object -> $l) ( '[' e= exp ']' -> ^( PropExp $reference $e) | '.' i= Identifier -> ^( PropRef $reference $i) | '(' (p= params )? ')' '[' e= exp ']' -> ^( PropExp ^( FuncCall $reference $p) $e) | '(' (p= params )? ')' '.' i= Identifier -> ^( PropRef ^( FuncCall $reference $p) $i) )*
                 {
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:210:4: (l= object -> $l)
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:210:5: l= object
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:224:4: (l= object -> $l)
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:224:5: l= object
                 {
-                pushFollow(FOLLOW_object_in_reference1281);
+                pushFollow(FOLLOW_object_in_reference1287);
                 l=object();
 
                 state._fsp = state._fsp - 1;
@@ -3736,7 +3749,7 @@ package com.esoteric.expressions {
                 var stream_l:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule l",l!=null?l.tree:null);
 
                 root_0 = CommonTree(adaptor.nil());
-                // 210:18: -> $l
+                // 224:18: -> $l
                 {
                     adaptor.addChild(root_0, stream_l.nextTree());
 
@@ -3745,25 +3758,25 @@ package com.esoteric.expressions {
                 retval.tree = root_0;}
                 }
 
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:211:3: ( '[' e= exp ']' -> ^( PropExp $reference $e) | '.' i= Identifier -> ^( PropRef $reference $i) | '(' (p= params )? ')' '[' e= exp ']' -> ^( PropExp ^( FuncCall $reference $p) $e) | '(' (p= params )? ')' '.' i= Identifier -> ^( PropRef ^( FuncCall $reference $p) $i) )*
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:225:3: ( '[' e= exp ']' -> ^( PropExp $reference $e) | '.' i= Identifier -> ^( PropRef $reference $i) | '(' (p= params )? ')' '[' e= exp ']' -> ^( PropExp ^( FuncCall $reference $p) $e) | '(' (p= params )? ')' '.' i= Identifier -> ^( PropRef ^( FuncCall $reference $p) $i) )*
                 loop23:
                 do {
                     var alt23:int=5;
                     alt23 = dfa23.predict(input);
                     switch (alt23) {
                 	case 1 :
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:212:4: '[' e= exp ']'
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:226:4: '[' e= exp ']'
                 	    {
-                	    char_literal148=Token(matchStream(input,79,FOLLOW_79_in_reference1300)); if (this.state.failed) return retval; 
+                	    char_literal148=Token(matchStream(input,79,FOLLOW_79_in_reference1306)); if (this.state.failed) return retval; 
                 	    if ( this.state.backtracking==0 ) stream_79.add(char_literal148);
 
-                	    pushFollow(FOLLOW_exp_in_reference1304);
+                	    pushFollow(FOLLOW_exp_in_reference1310);
                 	    e=exp();
 
                 	    state._fsp = state._fsp - 1;
                 	    if (this.state.failed) return retval;
                 	    if ( this.state.backtracking==0 ) stream_exp.add(e.tree);
-                	    char_literal149=Token(matchStream(input,80,FOLLOW_80_in_reference1306)); if (this.state.failed) return retval; 
+                	    char_literal149=Token(matchStream(input,80,FOLLOW_80_in_reference1312)); if (this.state.failed) return retval; 
                 	    if ( this.state.backtracking==0 ) stream_80.add(char_literal149);
 
 
@@ -3780,9 +3793,9 @@ package com.esoteric.expressions {
                 	    var stream_e:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule e",e!=null?e.tree:null);
 
                 	    root_0 = CommonTree(adaptor.nil());
-                	    // 212:20: -> ^( PropExp $reference $e)
+                	    // 226:20: -> ^( PropExp $reference $e)
                 	    {
-                	        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:212:23: ^( PropExp $reference $e)
+                	        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:226:23: ^( PropExp $reference $e)
                 	        {
                 	        var root_1:CommonTree = CommonTree(adaptor.nil());
                 	        root_1 = CommonTree(adaptor.becomeRoot(CommonTree(adaptor.create(PropExp, "PropExp")), root_1));
@@ -3799,18 +3812,18 @@ package com.esoteric.expressions {
                 	    }
                 	    break;
                 	case 2 :
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:214:5: '.' i= Identifier
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:228:5: '.' i= Identifier
                 	    {
-                	    char_literal150=Token(matchStream(input,81,FOLLOW_81_in_reference1330)); if (this.state.failed) return retval; 
+                	    char_literal150=Token(matchStream(input,81,FOLLOW_81_in_reference1336)); if (this.state.failed) return retval; 
                 	    if ( this.state.backtracking==0 ) stream_81.add(char_literal150);
 
-                	    i=Token(matchStream(input,Identifier,FOLLOW_Identifier_in_reference1334)); if (this.state.failed) return retval; 
+                	    i=Token(matchStream(input,Identifier,FOLLOW_Identifier_in_reference1340)); if (this.state.failed) return retval; 
                 	    if ( this.state.backtracking==0 ) stream_Identifier.add(i);
 
 
 
                 	    // AST REWRITE
-                	    // elements: reference, i
+                	    // elements: i, reference
                 	    // token labels: i
                 	    // rule labels: retval
                 	    // token list labels: 
@@ -3821,9 +3834,9 @@ package com.esoteric.expressions {
                 	    var stream_retval:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                 	    root_0 = CommonTree(adaptor.nil());
-                	    // 214:23: -> ^( PropRef $reference $i)
+                	    // 228:23: -> ^( PropRef $reference $i)
                 	    {
-                	        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:214:26: ^( PropRef $reference $i)
+                	        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:228:26: ^( PropRef $reference $i)
                 	        {
                 	        var root_1:CommonTree = CommonTree(adaptor.nil());
                 	        root_1 = CommonTree(adaptor.becomeRoot(CommonTree(adaptor.create(PropRef, "PropRef")), root_1));
@@ -3840,12 +3853,12 @@ package com.esoteric.expressions {
                 	    }
                 	    break;
                 	case 3 :
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:216:5: '(' (p= params )? ')' '[' e= exp ']'
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:230:5: '(' (p= params )? ')' '[' e= exp ']'
                 	    {
-                	    char_literal151=Token(matchStream(input,27,FOLLOW_27_in_reference1356)); if (this.state.failed) return retval; 
+                	    char_literal151=Token(matchStream(input,27,FOLLOW_27_in_reference1362)); if (this.state.failed) return retval; 
                 	    if ( this.state.backtracking==0 ) stream_27.add(char_literal151);
 
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:216:10: (p= params )?
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:230:10: (p= params )?
                 	    var alt21:int=2;
                 	    var LA21_0:int = input.LA(1);
 
@@ -3856,7 +3869,7 @@ package com.esoteric.expressions {
                 	        case 1 :
                 	            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:0:0: p= params
                 	            {
-                	            pushFollow(FOLLOW_params_in_reference1360);
+                	            pushFollow(FOLLOW_params_in_reference1366);
                 	            p=params();
 
                 	            state._fsp = state._fsp - 1;
@@ -3868,25 +3881,25 @@ package com.esoteric.expressions {
 
                 	    }
 
-                	    char_literal152=Token(matchStream(input,28,FOLLOW_28_in_reference1363)); if (this.state.failed) return retval; 
+                	    char_literal152=Token(matchStream(input,28,FOLLOW_28_in_reference1369)); if (this.state.failed) return retval; 
                 	    if ( this.state.backtracking==0 ) stream_28.add(char_literal152);
 
-                	    char_literal153=Token(matchStream(input,79,FOLLOW_79_in_reference1368)); if (this.state.failed) return retval; 
+                	    char_literal153=Token(matchStream(input,79,FOLLOW_79_in_reference1374)); if (this.state.failed) return retval; 
                 	    if ( this.state.backtracking==0 ) stream_79.add(char_literal153);
 
-                	    pushFollow(FOLLOW_exp_in_reference1372);
+                	    pushFollow(FOLLOW_exp_in_reference1378);
                 	    e=exp();
 
                 	    state._fsp = state._fsp - 1;
                 	    if (this.state.failed) return retval;
                 	    if ( this.state.backtracking==0 ) stream_exp.add(e.tree);
-                	    char_literal154=Token(matchStream(input,80,FOLLOW_80_in_reference1374)); if (this.state.failed) return retval; 
+                	    char_literal154=Token(matchStream(input,80,FOLLOW_80_in_reference1380)); if (this.state.failed) return retval; 
                 	    if ( this.state.backtracking==0 ) stream_80.add(char_literal154);
 
 
 
                 	    // AST REWRITE
-                	    // elements: p, reference, e
+                	    // elements: p, e, reference
                 	    // token labels: 
                 	    // rule labels: retval, e, p
                 	    // token list labels: 
@@ -3898,14 +3911,14 @@ package com.esoteric.expressions {
                 	    var stream_p:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule p",p!=null?p.tree:null);
 
                 	    root_0 = CommonTree(adaptor.nil());
-                	    // 217:20: -> ^( PropExp ^( FuncCall $reference $p) $e)
+                	    // 231:20: -> ^( PropExp ^( FuncCall $reference $p) $e)
                 	    {
-                	        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:217:23: ^( PropExp ^( FuncCall $reference $p) $e)
+                	        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:231:23: ^( PropExp ^( FuncCall $reference $p) $e)
                 	        {
                 	        var root_1:CommonTree = CommonTree(adaptor.nil());
                 	        root_1 = CommonTree(adaptor.becomeRoot(CommonTree(adaptor.create(PropExp, "PropExp")), root_1));
 
-                	        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:217:33: ^( FuncCall $reference $p)
+                	        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:231:33: ^( FuncCall $reference $p)
                 	        {
                 	        var root_2:CommonTree = CommonTree(adaptor.nil());
                 	        root_2 = CommonTree(adaptor.becomeRoot(CommonTree(adaptor.create(FuncCall, "FuncCall")), root_2));
@@ -3926,12 +3939,12 @@ package com.esoteric.expressions {
                 	    }
                 	    break;
                 	case 4 :
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:219:5: '(' (p= params )? ')' '.' i= Identifier
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:233:5: '(' (p= params )? ')' '.' i= Identifier
                 	    {
-                	    char_literal155=Token(matchStream(input,27,FOLLOW_27_in_reference1405)); if (this.state.failed) return retval; 
+                	    char_literal155=Token(matchStream(input,27,FOLLOW_27_in_reference1411)); if (this.state.failed) return retval; 
                 	    if ( this.state.backtracking==0 ) stream_27.add(char_literal155);
 
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:219:10: (p= params )?
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:233:10: (p= params )?
                 	    var alt22:int=2;
                 	    var LA22_0:int = input.LA(1);
 
@@ -3942,7 +3955,7 @@ package com.esoteric.expressions {
                 	        case 1 :
                 	            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:0:0: p= params
                 	            {
-                	            pushFollow(FOLLOW_params_in_reference1409);
+                	            pushFollow(FOLLOW_params_in_reference1415);
                 	            p=params();
 
                 	            state._fsp = state._fsp - 1;
@@ -3954,19 +3967,19 @@ package com.esoteric.expressions {
 
                 	    }
 
-                	    char_literal156=Token(matchStream(input,28,FOLLOW_28_in_reference1412)); if (this.state.failed) return retval; 
+                	    char_literal156=Token(matchStream(input,28,FOLLOW_28_in_reference1418)); if (this.state.failed) return retval; 
                 	    if ( this.state.backtracking==0 ) stream_28.add(char_literal156);
 
-                	    char_literal157=Token(matchStream(input,81,FOLLOW_81_in_reference1417)); if (this.state.failed) return retval; 
+                	    char_literal157=Token(matchStream(input,81,FOLLOW_81_in_reference1423)); if (this.state.failed) return retval; 
                 	    if ( this.state.backtracking==0 ) stream_81.add(char_literal157);
 
-                	    i=Token(matchStream(input,Identifier,FOLLOW_Identifier_in_reference1421)); if (this.state.failed) return retval; 
+                	    i=Token(matchStream(input,Identifier,FOLLOW_Identifier_in_reference1427)); if (this.state.failed) return retval; 
                 	    if ( this.state.backtracking==0 ) stream_Identifier.add(i);
 
 
 
                 	    // AST REWRITE
-                	    // elements: p, i, reference
+                	    // elements: i, p, reference
                 	    // token labels: i
                 	    // rule labels: retval, p
                 	    // token list labels: 
@@ -3978,14 +3991,14 @@ package com.esoteric.expressions {
                 	    var stream_p:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule p",p!=null?p.tree:null);
 
                 	    root_0 = CommonTree(adaptor.nil());
-                	    // 220:22: -> ^( PropRef ^( FuncCall $reference $p) $i)
+                	    // 234:22: -> ^( PropRef ^( FuncCall $reference $p) $i)
                 	    {
-                	        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:220:25: ^( PropRef ^( FuncCall $reference $p) $i)
+                	        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:234:25: ^( PropRef ^( FuncCall $reference $p) $i)
                 	        {
                 	        var root_1:CommonTree = CommonTree(adaptor.nil());
                 	        root_1 = CommonTree(adaptor.becomeRoot(CommonTree(adaptor.create(PropRef, "PropRef")), root_1));
 
-                	        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:220:35: ^( FuncCall $reference $p)
+                	        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:234:35: ^( FuncCall $reference $p)
                 	        {
                 	        var root_2:CommonTree = CommonTree(adaptor.nil());
                 	        root_2 = CommonTree(adaptor.becomeRoot(CommonTree(adaptor.create(FuncCall, "FuncCall")), root_2));
@@ -4036,7 +4049,7 @@ package com.esoteric.expressions {
         // $ANTLR end reference
 
         // $ANTLR start referenceOrFuncCall
-        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:224:1: referenceOrFuncCall : (l= object -> $l) ( '[' e= exp ']' -> ^( PropExp $referenceOrFuncCall $e) | '.' i= Identifier -> ^( PropRef $referenceOrFuncCall $i) | '(' p= params ')' -> ^( FuncCall $referenceOrFuncCall $p) | '(' ')' -> ^( FuncCall $referenceOrFuncCall) )* ;
+        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:238:1: referenceOrFuncCall : (l= object -> $l) ( '[' e= exp ']' -> ^( PropExp $referenceOrFuncCall $e) | '.' i= Identifier -> ^( PropRef $referenceOrFuncCall $i) | '(' p= params ')' -> ^( FuncCall $referenceOrFuncCall $p) | '(' ')' -> ^( FuncCall $referenceOrFuncCall) )* ;
         public final function referenceOrFuncCall():ParserRuleReturnScope {
             var retval:ParserRuleReturnScope = new ParserRuleReturnScope();
             retval.start = input.LT(1);
@@ -4077,13 +4090,13 @@ package com.esoteric.expressions {
             var stream_params:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule params");
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 24) ) { return retval; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:225:2: ( (l= object -> $l) ( '[' e= exp ']' -> ^( PropExp $referenceOrFuncCall $e) | '.' i= Identifier -> ^( PropRef $referenceOrFuncCall $i) | '(' p= params ')' -> ^( FuncCall $referenceOrFuncCall $p) | '(' ')' -> ^( FuncCall $referenceOrFuncCall) )* )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:225:4: (l= object -> $l) ( '[' e= exp ']' -> ^( PropExp $referenceOrFuncCall $e) | '.' i= Identifier -> ^( PropRef $referenceOrFuncCall $i) | '(' p= params ')' -> ^( FuncCall $referenceOrFuncCall $p) | '(' ')' -> ^( FuncCall $referenceOrFuncCall) )*
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:239:2: ( (l= object -> $l) ( '[' e= exp ']' -> ^( PropExp $referenceOrFuncCall $e) | '.' i= Identifier -> ^( PropRef $referenceOrFuncCall $i) | '(' p= params ')' -> ^( FuncCall $referenceOrFuncCall $p) | '(' ')' -> ^( FuncCall $referenceOrFuncCall) )* )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:239:4: (l= object -> $l) ( '[' e= exp ']' -> ^( PropExp $referenceOrFuncCall $e) | '.' i= Identifier -> ^( PropRef $referenceOrFuncCall $i) | '(' p= params ')' -> ^( FuncCall $referenceOrFuncCall $p) | '(' ')' -> ^( FuncCall $referenceOrFuncCall) )*
                 {
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:225:4: (l= object -> $l)
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:225:5: l= object
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:239:4: (l= object -> $l)
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:239:5: l= object
                 {
-                pushFollow(FOLLOW_object_in_referenceOrFuncCall1461);
+                pushFollow(FOLLOW_object_in_referenceOrFuncCall1467);
                 l=object();
 
                 state._fsp = state._fsp - 1;
@@ -4103,7 +4116,7 @@ package com.esoteric.expressions {
                 var stream_l:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule l",l!=null?l.tree:null);
 
                 root_0 = CommonTree(adaptor.nil());
-                // 225:18: -> $l
+                // 239:18: -> $l
                 {
                     adaptor.addChild(root_0, stream_l.nextTree());
 
@@ -4112,31 +4125,31 @@ package com.esoteric.expressions {
                 retval.tree = root_0;}
                 }
 
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:226:3: ( '[' e= exp ']' -> ^( PropExp $referenceOrFuncCall $e) | '.' i= Identifier -> ^( PropRef $referenceOrFuncCall $i) | '(' p= params ')' -> ^( FuncCall $referenceOrFuncCall $p) | '(' ')' -> ^( FuncCall $referenceOrFuncCall) )*
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:240:3: ( '[' e= exp ']' -> ^( PropExp $referenceOrFuncCall $e) | '.' i= Identifier -> ^( PropRef $referenceOrFuncCall $i) | '(' p= params ')' -> ^( FuncCall $referenceOrFuncCall $p) | '(' ')' -> ^( FuncCall $referenceOrFuncCall) )*
                 loop24:
                 do {
                     var alt24:int=5;
                     alt24 = dfa24.predict(input);
                     switch (alt24) {
                 	case 1 :
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:227:4: '[' e= exp ']'
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:241:4: '[' e= exp ']'
                 	    {
-                	    char_literal158=Token(matchStream(input,79,FOLLOW_79_in_referenceOrFuncCall1480)); if (this.state.failed) return retval; 
+                	    char_literal158=Token(matchStream(input,79,FOLLOW_79_in_referenceOrFuncCall1486)); if (this.state.failed) return retval; 
                 	    if ( this.state.backtracking==0 ) stream_79.add(char_literal158);
 
-                	    pushFollow(FOLLOW_exp_in_referenceOrFuncCall1484);
+                	    pushFollow(FOLLOW_exp_in_referenceOrFuncCall1490);
                 	    e=exp();
 
                 	    state._fsp = state._fsp - 1;
                 	    if (this.state.failed) return retval;
                 	    if ( this.state.backtracking==0 ) stream_exp.add(e.tree);
-                	    char_literal159=Token(matchStream(input,80,FOLLOW_80_in_referenceOrFuncCall1486)); if (this.state.failed) return retval; 
+                	    char_literal159=Token(matchStream(input,80,FOLLOW_80_in_referenceOrFuncCall1492)); if (this.state.failed) return retval; 
                 	    if ( this.state.backtracking==0 ) stream_80.add(char_literal159);
 
 
 
                 	    // AST REWRITE
-                	    // elements: referenceOrFuncCall, e
+                	    // elements: e, referenceOrFuncCall
                 	    // token labels: 
                 	    // rule labels: retval, e
                 	    // token list labels: 
@@ -4147,9 +4160,9 @@ package com.esoteric.expressions {
                 	    var stream_e:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule e",e!=null?e.tree:null);
 
                 	    root_0 = CommonTree(adaptor.nil());
-                	    // 227:20: -> ^( PropExp $referenceOrFuncCall $e)
+                	    // 241:20: -> ^( PropExp $referenceOrFuncCall $e)
                 	    {
-                	        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:227:23: ^( PropExp $referenceOrFuncCall $e)
+                	        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:241:23: ^( PropExp $referenceOrFuncCall $e)
                 	        {
                 	        var root_1:CommonTree = CommonTree(adaptor.nil());
                 	        root_1 = CommonTree(adaptor.becomeRoot(CommonTree(adaptor.create(PropExp, "PropExp")), root_1));
@@ -4166,12 +4179,12 @@ package com.esoteric.expressions {
                 	    }
                 	    break;
                 	case 2 :
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:228:5: '.' i= Identifier
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:242:5: '.' i= Identifier
                 	    {
-                	    char_literal160=Token(matchStream(input,81,FOLLOW_81_in_referenceOrFuncCall1506)); if (this.state.failed) return retval; 
+                	    char_literal160=Token(matchStream(input,81,FOLLOW_81_in_referenceOrFuncCall1512)); if (this.state.failed) return retval; 
                 	    if ( this.state.backtracking==0 ) stream_81.add(char_literal160);
 
-                	    i=Token(matchStream(input,Identifier,FOLLOW_Identifier_in_referenceOrFuncCall1510)); if (this.state.failed) return retval; 
+                	    i=Token(matchStream(input,Identifier,FOLLOW_Identifier_in_referenceOrFuncCall1516)); if (this.state.failed) return retval; 
                 	    if ( this.state.backtracking==0 ) stream_Identifier.add(i);
 
 
@@ -4188,9 +4201,9 @@ package com.esoteric.expressions {
                 	    var stream_retval:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                 	    root_0 = CommonTree(adaptor.nil());
-                	    // 228:23: -> ^( PropRef $referenceOrFuncCall $i)
+                	    // 242:23: -> ^( PropRef $referenceOrFuncCall $i)
                 	    {
-                	        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:228:26: ^( PropRef $referenceOrFuncCall $i)
+                	        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:242:26: ^( PropRef $referenceOrFuncCall $i)
                 	        {
                 	        var root_1:CommonTree = CommonTree(adaptor.nil());
                 	        root_1 = CommonTree(adaptor.becomeRoot(CommonTree(adaptor.create(PropRef, "PropRef")), root_1));
@@ -4207,18 +4220,18 @@ package com.esoteric.expressions {
                 	    }
                 	    break;
                 	case 3 :
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:229:5: '(' p= params ')'
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:243:5: '(' p= params ')'
                 	    {
-                	    char_literal161=Token(matchStream(input,27,FOLLOW_27_in_referenceOrFuncCall1529)); if (this.state.failed) return retval; 
+                	    char_literal161=Token(matchStream(input,27,FOLLOW_27_in_referenceOrFuncCall1535)); if (this.state.failed) return retval; 
                 	    if ( this.state.backtracking==0 ) stream_27.add(char_literal161);
 
-                	    pushFollow(FOLLOW_params_in_referenceOrFuncCall1533);
+                	    pushFollow(FOLLOW_params_in_referenceOrFuncCall1539);
                 	    p=params();
 
                 	    state._fsp = state._fsp - 1;
                 	    if (this.state.failed) return retval;
                 	    if ( this.state.backtracking==0 ) stream_params.add(p.tree);
-                	    char_literal162=Token(matchStream(input,28,FOLLOW_28_in_referenceOrFuncCall1535)); if (this.state.failed) return retval; 
+                	    char_literal162=Token(matchStream(input,28,FOLLOW_28_in_referenceOrFuncCall1541)); if (this.state.failed) return retval; 
                 	    if ( this.state.backtracking==0 ) stream_28.add(char_literal162);
 
 
@@ -4235,9 +4248,9 @@ package com.esoteric.expressions {
                 	    var stream_p:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule p",p!=null?p.tree:null);
 
                 	    root_0 = CommonTree(adaptor.nil());
-                	    // 229:23: -> ^( FuncCall $referenceOrFuncCall $p)
+                	    // 243:23: -> ^( FuncCall $referenceOrFuncCall $p)
                 	    {
-                	        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:229:26: ^( FuncCall $referenceOrFuncCall $p)
+                	        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:243:26: ^( FuncCall $referenceOrFuncCall $p)
                 	        {
                 	        var root_1:CommonTree = CommonTree(adaptor.nil());
                 	        root_1 = CommonTree(adaptor.becomeRoot(CommonTree(adaptor.create(FuncCall, "FuncCall")), root_1));
@@ -4254,12 +4267,12 @@ package com.esoteric.expressions {
                 	    }
                 	    break;
                 	case 4 :
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:230:5: '(' ')'
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:244:5: '(' ')'
                 	    {
-                	    char_literal163=Token(matchStream(input,27,FOLLOW_27_in_referenceOrFuncCall1554)); if (this.state.failed) return retval; 
+                	    char_literal163=Token(matchStream(input,27,FOLLOW_27_in_referenceOrFuncCall1560)); if (this.state.failed) return retval; 
                 	    if ( this.state.backtracking==0 ) stream_27.add(char_literal163);
 
-                	    char_literal164=Token(matchStream(input,28,FOLLOW_28_in_referenceOrFuncCall1556)); if (this.state.failed) return retval; 
+                	    char_literal164=Token(matchStream(input,28,FOLLOW_28_in_referenceOrFuncCall1562)); if (this.state.failed) return retval; 
                 	    if ( this.state.backtracking==0 ) stream_28.add(char_literal164);
 
 
@@ -4275,9 +4288,9 @@ package com.esoteric.expressions {
                 	    var stream_retval:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                 	    root_0 = CommonTree(adaptor.nil());
-                	    // 230:16: -> ^( FuncCall $referenceOrFuncCall)
+                	    // 244:16: -> ^( FuncCall $referenceOrFuncCall)
                 	    {
-                	        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:230:19: ^( FuncCall $referenceOrFuncCall)
+                	        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:244:19: ^( FuncCall $referenceOrFuncCall)
                 	        {
                 	        var root_1:CommonTree = CommonTree(adaptor.nil());
                 	        root_1 = CommonTree(adaptor.becomeRoot(CommonTree(adaptor.create(FuncCall, "FuncCall")), root_1));
@@ -4323,7 +4336,7 @@ package com.esoteric.expressions {
         // $ANTLR end referenceOrFuncCall
 
         // $ANTLR start object
-        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:234:1: object : ( Identifier | array );
+        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:248:1: object : ( Identifier | array );
         public final function object():ParserRuleReturnScope {
             var retval:ParserRuleReturnScope = new ParserRuleReturnScope();
             retval.start = input.LT(1);
@@ -4338,7 +4351,7 @@ package com.esoteric.expressions {
 
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 25) ) { return retval; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:235:2: ( Identifier | array )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:249:2: ( Identifier | array )
                 var alt25:int=2;
                 var LA25_0:int = input.LA(1);
 
@@ -4355,11 +4368,11 @@ package com.esoteric.expressions {
                 }
                 switch (alt25) {
                     case 1 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:235:4: Identifier
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:249:4: Identifier
                         {
                         root_0 = CommonTree(adaptor.nil());
 
-                        Identifier165=Token(matchStream(input,Identifier,FOLLOW_Identifier_in_object1585)); if (this.state.failed) return retval;
+                        Identifier165=Token(matchStream(input,Identifier,FOLLOW_Identifier_in_object1591)); if (this.state.failed) return retval;
                         if ( this.state.backtracking==0 ) {
                         Identifier165_tree = CommonTree(adaptor.create(Identifier165));
                         adaptor.addChild(root_0, Identifier165_tree);
@@ -4368,11 +4381,11 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 2 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:236:4: array
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:250:4: array
                         {
                         root_0 = CommonTree(adaptor.nil());
 
-                        pushFollow(FOLLOW_array_in_object1590);
+                        pushFollow(FOLLOW_array_in_object1596);
                         array166=array();
 
                         state._fsp = state._fsp - 1;
@@ -4405,7 +4418,7 @@ package com.esoteric.expressions {
         // $ANTLR end object
 
         // $ANTLR start params
-        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:239:1: params : exp ( ',' exp )* ;
+        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:253:1: params : exp ( ',' exp )* ;
         public final function params():ParserRuleReturnScope {
             var retval:ParserRuleReturnScope = new ParserRuleReturnScope();
             retval.start = input.LT(1);
@@ -4422,18 +4435,18 @@ package com.esoteric.expressions {
 
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 26) ) { return retval; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:240:2: ( exp ( ',' exp )* )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:240:4: exp ( ',' exp )*
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:254:2: ( exp ( ',' exp )* )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:254:4: exp ( ',' exp )*
                 {
                 root_0 = CommonTree(adaptor.nil());
 
-                pushFollow(FOLLOW_exp_in_params1602);
+                pushFollow(FOLLOW_exp_in_params1608);
                 exp167=exp();
 
                 state._fsp = state._fsp - 1;
                 if (this.state.failed) return retval;
                 if ( this.state.backtracking==0 ) adaptor.addChild(root_0, exp167.tree);
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:241:3: ( ',' exp )*
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:255:3: ( ',' exp )*
                 loop26:
                 do {
                     var alt26:int=2;
@@ -4446,10 +4459,10 @@ package com.esoteric.expressions {
 
                     switch (alt26) {
                 	case 1 :
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:242:4: ',' exp
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:256:4: ',' exp
                 	    {
-                	    char_literal168=Token(matchStream(input,82,FOLLOW_82_in_params1611)); if (this.state.failed) return retval;
-                	    pushFollow(FOLLOW_exp_in_params1617);
+                	    char_literal168=Token(matchStream(input,82,FOLLOW_82_in_params1617)); if (this.state.failed) return retval;
+                	    pushFollow(FOLLOW_exp_in_params1623);
                 	    exp169=exp();
 
                 	    state._fsp = state._fsp - 1;
@@ -4489,7 +4502,7 @@ package com.esoteric.expressions {
         // $ANTLR end params
 
         // $ANTLR start array
-        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:247:1: array : ( '[' i= items ']' -> ^( CreateArray $i) | '[' ']' -> ^( CreateArray ) );
+        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:261:1: array : ( '[' i= items ']' -> ^( CreateArray $i) | '[' ']' -> ^( CreateArray ) );
         public final function array():ParserRuleReturnScope {
             var retval:ParserRuleReturnScope = new ParserRuleReturnScope();
             retval.start = input.LT(1);
@@ -4512,7 +4525,7 @@ package com.esoteric.expressions {
             var stream_items:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule items");
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 27) ) { return retval; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:248:2: ( '[' i= items ']' -> ^( CreateArray $i) | '[' ']' -> ^( CreateArray ) )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:262:2: ( '[' i= items ']' -> ^( CreateArray $i) | '[' ']' -> ^( CreateArray ) )
                 var alt27:int=2;
                 var LA27_0:int = input.LA(1);
 
@@ -4538,18 +4551,18 @@ package com.esoteric.expressions {
                 }
                 switch (alt27) {
                     case 1 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:248:4: '[' i= items ']'
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:262:4: '[' i= items ']'
                         {
-                        char_literal170=Token(matchStream(input,79,FOLLOW_79_in_array1634)); if (this.state.failed) return retval; 
+                        char_literal170=Token(matchStream(input,79,FOLLOW_79_in_array1640)); if (this.state.failed) return retval; 
                         if ( this.state.backtracking==0 ) stream_79.add(char_literal170);
 
-                        pushFollow(FOLLOW_items_in_array1638);
+                        pushFollow(FOLLOW_items_in_array1644);
                         i=items();
 
                         state._fsp = state._fsp - 1;
                         if (this.state.failed) return retval;
                         if ( this.state.backtracking==0 ) stream_items.add(i.tree);
-                        char_literal171=Token(matchStream(input,80,FOLLOW_80_in_array1640)); if (this.state.failed) return retval; 
+                        char_literal171=Token(matchStream(input,80,FOLLOW_80_in_array1646)); if (this.state.failed) return retval; 
                         if ( this.state.backtracking==0 ) stream_80.add(char_literal171);
 
 
@@ -4566,9 +4579,9 @@ package com.esoteric.expressions {
                         var stream_i:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule i",i!=null?i.tree:null);
 
                         root_0 = CommonTree(adaptor.nil());
-                        // 248:22: -> ^( CreateArray $i)
+                        // 262:22: -> ^( CreateArray $i)
                         {
-                            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:248:25: ^( CreateArray $i)
+                            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:262:25: ^( CreateArray $i)
                             {
                             var root_1:CommonTree = CommonTree(adaptor.nil());
                             root_1 = CommonTree(adaptor.becomeRoot(CommonTree(adaptor.create(CreateArray, "CreateArray")), root_1));
@@ -4584,12 +4597,12 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 2 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:249:4: '[' ']'
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:263:4: '[' ']'
                         {
-                        char_literal172=Token(matchStream(input,79,FOLLOW_79_in_array1656)); if (this.state.failed) return retval; 
+                        char_literal172=Token(matchStream(input,79,FOLLOW_79_in_array1662)); if (this.state.failed) return retval; 
                         if ( this.state.backtracking==0 ) stream_79.add(char_literal172);
 
-                        char_literal173=Token(matchStream(input,80,FOLLOW_80_in_array1658)); if (this.state.failed) return retval; 
+                        char_literal173=Token(matchStream(input,80,FOLLOW_80_in_array1664)); if (this.state.failed) return retval; 
                         if ( this.state.backtracking==0 ) stream_80.add(char_literal173);
 
 
@@ -4605,9 +4618,9 @@ package com.esoteric.expressions {
                         var stream_retval:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                         root_0 = CommonTree(adaptor.nil());
-                        // 249:16: -> ^( CreateArray )
+                        // 263:16: -> ^( CreateArray )
                         {
-                            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:249:19: ^( CreateArray )
+                            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:263:19: ^( CreateArray )
                             {
                             var root_1:CommonTree = CommonTree(adaptor.nil());
                             root_1 = CommonTree(adaptor.becomeRoot(CommonTree(adaptor.create(CreateArray, "CreateArray")), root_1));
@@ -4644,7 +4657,7 @@ package com.esoteric.expressions {
         // $ANTLR end array
 
         // $ANTLR start items
-        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:252:1: items : exp ( ',' exp )* ;
+        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:266:1: items : exp ( ',' exp )* ;
         public final function items():ParserRuleReturnScope {
             var retval:ParserRuleReturnScope = new ParserRuleReturnScope();
             retval.start = input.LT(1);
@@ -4661,18 +4674,18 @@ package com.esoteric.expressions {
 
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 28) ) { return retval; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:253:2: ( exp ( ',' exp )* )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:253:4: exp ( ',' exp )*
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:267:2: ( exp ( ',' exp )* )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:267:4: exp ( ',' exp )*
                 {
                 root_0 = CommonTree(adaptor.nil());
 
-                pushFollow(FOLLOW_exp_in_items1680);
+                pushFollow(FOLLOW_exp_in_items1686);
                 exp174=exp();
 
                 state._fsp = state._fsp - 1;
                 if (this.state.failed) return retval;
                 if ( this.state.backtracking==0 ) adaptor.addChild(root_0, exp174.tree);
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:254:3: ( ',' exp )*
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:268:3: ( ',' exp )*
                 loop28:
                 do {
                     var alt28:int=2;
@@ -4685,10 +4698,10 @@ package com.esoteric.expressions {
 
                     switch (alt28) {
                 	case 1 :
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:255:4: ',' exp
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:269:4: ',' exp
                 	    {
-                	    char_literal175=Token(matchStream(input,82,FOLLOW_82_in_items1689)); if (this.state.failed) return retval;
-                	    pushFollow(FOLLOW_exp_in_items1695);
+                	    char_literal175=Token(matchStream(input,82,FOLLOW_82_in_items1695)); if (this.state.failed) return retval;
+                	    pushFollow(FOLLOW_exp_in_items1701);
                 	    exp176=exp();
 
                 	    state._fsp = state._fsp - 1;
@@ -4734,24 +4747,24 @@ package com.esoteric.expressions {
             var r:ParserRuleReturnScope = null;
 
 
-            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:51:4: ( 'if' '(' exp ')' l= block 'else' r= block )
-            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:51:4: 'if' '(' exp ')' l= block 'else' r= block
+            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:65:4: ( 'if' '(' exp ')' l= block 'else' r= block )
+            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:65:4: 'if' '(' exp ')' l= block 'else' r= block
             {
-            matchStream(input,26,FOLLOW_26_in_synpred5_Expression201); if (this.state.failed) return ;
-            matchStream(input,27,FOLLOW_27_in_synpred5_Expression203); if (this.state.failed) return ;
-            pushFollow(FOLLOW_exp_in_synpred5_Expression205);
+            matchStream(input,26,FOLLOW_26_in_synpred5_Expression207); if (this.state.failed) return ;
+            matchStream(input,27,FOLLOW_27_in_synpred5_Expression209); if (this.state.failed) return ;
+            pushFollow(FOLLOW_exp_in_synpred5_Expression211);
             exp();
 
             state._fsp = state._fsp - 1;
             if (this.state.failed) return ;
-            matchStream(input,28,FOLLOW_28_in_synpred5_Expression207); if (this.state.failed) return ;
-            pushFollow(FOLLOW_block_in_synpred5_Expression211);
+            matchStream(input,28,FOLLOW_28_in_synpred5_Expression213); if (this.state.failed) return ;
+            pushFollow(FOLLOW_block_in_synpred5_Expression217);
             l=block();
 
             state._fsp = state._fsp - 1;
             if (this.state.failed) return ;
-            matchStream(input,29,FOLLOW_29_in_synpred5_Expression213); if (this.state.failed) return ;
-            pushFollow(FOLLOW_block_in_synpred5_Expression217);
+            matchStream(input,29,FOLLOW_29_in_synpred5_Expression219); if (this.state.failed) return ;
+            pushFollow(FOLLOW_block_in_synpred5_Expression223);
             r=block();
 
             state._fsp = state._fsp - 1;
@@ -4763,24 +4776,24 @@ package com.esoteric.expressions {
 
         // $ANTLR start synpred6_Expression
         public final function synpred6_Expression_fragment():void {
-            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:52:4: ( 'if' '(' exp ')' block 'else' ifStmt )
-            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:52:4: 'if' '(' exp ')' block 'else' ifStmt
+            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:66:4: ( 'if' '(' exp ')' block 'else' ifStmt )
+            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:66:4: 'if' '(' exp ')' block 'else' ifStmt
             {
-            matchStream(input,26,FOLLOW_26_in_synpred6_Expression236); if (this.state.failed) return ;
-            matchStream(input,27,FOLLOW_27_in_synpred6_Expression238); if (this.state.failed) return ;
-            pushFollow(FOLLOW_exp_in_synpred6_Expression240);
+            matchStream(input,26,FOLLOW_26_in_synpred6_Expression242); if (this.state.failed) return ;
+            matchStream(input,27,FOLLOW_27_in_synpred6_Expression244); if (this.state.failed) return ;
+            pushFollow(FOLLOW_exp_in_synpred6_Expression246);
             exp();
 
             state._fsp = state._fsp - 1;
             if (this.state.failed) return ;
-            matchStream(input,28,FOLLOW_28_in_synpred6_Expression242); if (this.state.failed) return ;
-            pushFollow(FOLLOW_block_in_synpred6_Expression244);
+            matchStream(input,28,FOLLOW_28_in_synpred6_Expression248); if (this.state.failed) return ;
+            pushFollow(FOLLOW_block_in_synpred6_Expression250);
             block();
 
             state._fsp = state._fsp - 1;
             if (this.state.failed) return ;
-            matchStream(input,29,FOLLOW_29_in_synpred6_Expression246); if (this.state.failed) return ;
-            pushFollow(FOLLOW_ifStmt_in_synpred6_Expression248);
+            matchStream(input,29,FOLLOW_29_in_synpred6_Expression252); if (this.state.failed) return ;
+            pushFollow(FOLLOW_ifStmt_in_synpred6_Expression254);
             ifStmt();
 
             state._fsp = state._fsp - 1;
@@ -4792,11 +4805,11 @@ package com.esoteric.expressions {
 
         // $ANTLR start synpred7_Expression
         public final function synpred7_Expression_fragment():void {
-            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:67:4: ( ';' exp )
-            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:67:4: ';' exp
+            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:81:4: ( ';' exp )
+            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:81:4: ';' exp
             {
-            matchStream(input,33,FOLLOW_33_in_synpred7_Expression360); if (this.state.failed) return ;
-            pushFollow(FOLLOW_exp_in_synpred7_Expression362);
+            matchStream(input,33,FOLLOW_33_in_synpred7_Expression366); if (this.state.failed) return ;
+            pushFollow(FOLLOW_exp_in_synpred7_Expression368);
             exp();
 
             state._fsp = state._fsp - 1;
@@ -4808,10 +4821,10 @@ package com.esoteric.expressions {
 
         // $ANTLR start synpred8_Expression
         public final function synpred8_Expression_fragment():void {
-            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:68:5: ( ';' )
-            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:68:5: ';'
+            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:82:5: ( ';' )
+            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:82:5: ';'
             {
-            matchStream(input,33,FOLLOW_33_in_synpred8_Expression368); if (this.state.failed) return ;
+            matchStream(input,33,FOLLOW_33_in_synpred8_Expression374); if (this.state.failed) return ;
 
             }
         }
@@ -4819,10 +4832,10 @@ package com.esoteric.expressions {
 
         // $ANTLR start synpred9_Expression
         public final function synpred9_Expression_fragment():void {
-            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:73:4: ( assignExp )
-            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:73:4: assignExp
+            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:87:4: ( assignExp )
+            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:87:4: assignExp
             {
-            pushFollow(FOLLOW_assignExp_in_synpred9_Expression398);
+            pushFollow(FOLLOW_assignExp_in_synpred9_Expression404);
             assignExp();
 
             state._fsp = state._fsp - 1;
@@ -4839,17 +4852,17 @@ package com.esoteric.expressions {
             var e2:ParserRuleReturnScope = null;
 
 
-            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:98:4: ( '?' e1= exp ':' e2= exp )
-            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:98:4: '?' e1= exp ':' e2= exp
+            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:112:4: ( '?' e1= exp ':' e2= exp )
+            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:112:4: '?' e1= exp ':' e2= exp
             {
-            matchStream(input,46,FOLLOW_46_in_synpred21_Expression698); if (this.state.failed) return ;
-            pushFollow(FOLLOW_exp_in_synpred21_Expression705);
+            matchStream(input,46,FOLLOW_46_in_synpred21_Expression704); if (this.state.failed) return ;
+            pushFollow(FOLLOW_exp_in_synpred21_Expression711);
             e1=exp();
 
             state._fsp = state._fsp - 1;
             if (this.state.failed) return ;
-            matchStream(input,47,FOLLOW_47_in_synpred21_Expression710); if (this.state.failed) return ;
-            pushFollow(FOLLOW_exp_in_synpred21_Expression717);
+            matchStream(input,47,FOLLOW_47_in_synpred21_Expression716); if (this.state.failed) return ;
+            pushFollow(FOLLOW_exp_in_synpred21_Expression723);
             e2=exp();
 
             state._fsp = state._fsp - 1;
@@ -4861,11 +4874,11 @@ package com.esoteric.expressions {
 
         // $ANTLR start synpred44_Expression
         public final function synpred44_Expression_fragment():void {
-            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:178:4: ( '+' multExp )
-            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:178:4: '+' multExp
+            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:192:4: ( '+' multExp )
+            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:192:4: '+' multExp
             {
-            matchStream(input,70,FOLLOW_70_in_synpred44_Expression1112); if (this.state.failed) return ;
-            pushFollow(FOLLOW_multExp_in_synpred44_Expression1115);
+            matchStream(input,70,FOLLOW_70_in_synpred44_Expression1118); if (this.state.failed) return ;
+            pushFollow(FOLLOW_multExp_in_synpred44_Expression1121);
             multExp();
 
             state._fsp = state._fsp - 1;
@@ -4877,11 +4890,11 @@ package com.esoteric.expressions {
 
         // $ANTLR start synpred45_Expression
         public final function synpred45_Expression_fragment():void {
-            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:179:5: ( '-' multExp )
-            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:179:5: '-' multExp
+            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:193:5: ( '-' multExp )
+            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:193:5: '-' multExp
             {
-            matchStream(input,71,FOLLOW_71_in_synpred45_Expression1121); if (this.state.failed) return ;
-            pushFollow(FOLLOW_multExp_in_synpred45_Expression1124);
+            matchStream(input,71,FOLLOW_71_in_synpred45_Expression1127); if (this.state.failed) return ;
+            pushFollow(FOLLOW_multExp_in_synpred45_Expression1130);
             multExp();
 
             state._fsp = state._fsp - 1;
@@ -4898,11 +4911,11 @@ package com.esoteric.expressions {
             var e:ParserRuleReturnScope = null;
 
 
-            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:216:5: ( '(' (p= params )? ')' '[' e= exp ']' )
-            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:216:5: '(' (p= params )? ')' '[' e= exp ']'
+            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:230:5: ( '(' (p= params )? ')' '[' e= exp ']' )
+            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:230:5: '(' (p= params )? ')' '[' e= exp ']'
             {
-            matchStream(input,27,FOLLOW_27_in_synpred61_Expression1356); if (this.state.failed) return ;
-            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:216:10: (p= params )?
+            matchStream(input,27,FOLLOW_27_in_synpred61_Expression1362); if (this.state.failed) return ;
+            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:230:10: (p= params )?
             var alt29:int=2;
             var LA29_0:int = input.LA(1);
 
@@ -4913,7 +4926,7 @@ package com.esoteric.expressions {
                 case 1 :
                     // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:0:0: p= params
                     {
-                    pushFollow(FOLLOW_params_in_synpred61_Expression1360);
+                    pushFollow(FOLLOW_params_in_synpred61_Expression1366);
                     p=params();
 
                     state._fsp = state._fsp - 1;
@@ -4924,14 +4937,14 @@ package com.esoteric.expressions {
 
             }
 
-            matchStream(input,28,FOLLOW_28_in_synpred61_Expression1363); if (this.state.failed) return ;
-            matchStream(input,79,FOLLOW_79_in_synpred61_Expression1368); if (this.state.failed) return ;
-            pushFollow(FOLLOW_exp_in_synpred61_Expression1372);
+            matchStream(input,28,FOLLOW_28_in_synpred61_Expression1369); if (this.state.failed) return ;
+            matchStream(input,79,FOLLOW_79_in_synpred61_Expression1374); if (this.state.failed) return ;
+            pushFollow(FOLLOW_exp_in_synpred61_Expression1378);
             e=exp();
 
             state._fsp = state._fsp - 1;
             if (this.state.failed) return ;
-            matchStream(input,80,FOLLOW_80_in_synpred61_Expression1374); if (this.state.failed) return ;
+            matchStream(input,80,FOLLOW_80_in_synpred61_Expression1380); if (this.state.failed) return ;
 
             }
         }
@@ -4943,11 +4956,11 @@ package com.esoteric.expressions {
             var p:ParserRuleReturnScope = null;
 
 
-            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:219:5: ( '(' (p= params )? ')' '.' i= Identifier )
-            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:219:5: '(' (p= params )? ')' '.' i= Identifier
+            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:233:5: ( '(' (p= params )? ')' '.' i= Identifier )
+            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:233:5: '(' (p= params )? ')' '.' i= Identifier
             {
-            matchStream(input,27,FOLLOW_27_in_synpred63_Expression1405); if (this.state.failed) return ;
-            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:219:10: (p= params )?
+            matchStream(input,27,FOLLOW_27_in_synpred63_Expression1411); if (this.state.failed) return ;
+            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:233:10: (p= params )?
             var alt30:int=2;
             var LA30_0:int = input.LA(1);
 
@@ -4958,7 +4971,7 @@ package com.esoteric.expressions {
                 case 1 :
                     // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:0:0: p= params
                     {
-                    pushFollow(FOLLOW_params_in_synpred63_Expression1409);
+                    pushFollow(FOLLOW_params_in_synpred63_Expression1415);
                     p=params();
 
                     state._fsp = state._fsp - 1;
@@ -4969,9 +4982,9 @@ package com.esoteric.expressions {
 
             }
 
-            matchStream(input,28,FOLLOW_28_in_synpred63_Expression1412); if (this.state.failed) return ;
-            matchStream(input,81,FOLLOW_81_in_synpred63_Expression1417); if (this.state.failed) return ;
-            i=Token(matchStream(input,Identifier,FOLLOW_Identifier_in_synpred63_Expression1421)); if (this.state.failed) return ;
+            matchStream(input,28,FOLLOW_28_in_synpred63_Expression1418); if (this.state.failed) return ;
+            matchStream(input,81,FOLLOW_81_in_synpred63_Expression1423); if (this.state.failed) return ;
+            i=Token(matchStream(input,Identifier,FOLLOW_Identifier_in_synpred63_Expression1427)); if (this.state.failed) return ;
 
             }
         }
@@ -4982,16 +4995,16 @@ package com.esoteric.expressions {
             var e:ParserRuleReturnScope = null;
 
 
-            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:227:4: ( '[' e= exp ']' )
-            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:227:4: '[' e= exp ']'
+            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:241:4: ( '[' e= exp ']' )
+            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:241:4: '[' e= exp ']'
             {
-            matchStream(input,79,FOLLOW_79_in_synpred64_Expression1480); if (this.state.failed) return ;
-            pushFollow(FOLLOW_exp_in_synpred64_Expression1484);
+            matchStream(input,79,FOLLOW_79_in_synpred64_Expression1486); if (this.state.failed) return ;
+            pushFollow(FOLLOW_exp_in_synpred64_Expression1490);
             e=exp();
 
             state._fsp = state._fsp - 1;
             if (this.state.failed) return ;
-            matchStream(input,80,FOLLOW_80_in_synpred64_Expression1486); if (this.state.failed) return ;
+            matchStream(input,80,FOLLOW_80_in_synpred64_Expression1492); if (this.state.failed) return ;
 
             }
         }
@@ -5002,16 +5015,16 @@ package com.esoteric.expressions {
             var p:ParserRuleReturnScope = null;
 
 
-            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:229:5: ( '(' p= params ')' )
-            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:229:5: '(' p= params ')'
+            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:243:5: ( '(' p= params ')' )
+            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:243:5: '(' p= params ')'
             {
-            matchStream(input,27,FOLLOW_27_in_synpred66_Expression1529); if (this.state.failed) return ;
-            pushFollow(FOLLOW_params_in_synpred66_Expression1533);
+            matchStream(input,27,FOLLOW_27_in_synpred66_Expression1535); if (this.state.failed) return ;
+            pushFollow(FOLLOW_params_in_synpred66_Expression1539);
             p=params();
 
             state._fsp = state._fsp - 1;
             if (this.state.failed) return ;
-            matchStream(input,28,FOLLOW_28_in_synpred66_Expression1535); if (this.state.failed) return ;
+            matchStream(input,28,FOLLOW_28_in_synpred66_Expression1541); if (this.state.failed) return ;
 
             }
         }
@@ -5019,11 +5032,11 @@ package com.esoteric.expressions {
 
         // $ANTLR start synpred67_Expression
         public final function synpred67_Expression_fragment():void {
-            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:230:5: ( '(' ')' )
-            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:230:5: '(' ')'
+            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:244:5: ( '(' ')' )
+            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:244:5: '(' ')'
             {
-            matchStream(input,27,FOLLOW_27_in_synpred67_Expression1554); if (this.state.failed) return ;
-            matchStream(input,28,FOLLOW_28_in_synpred67_Expression1556); if (this.state.failed) return ;
+            matchStream(input,27,FOLLOW_27_in_synpred67_Expression1560); if (this.state.failed) return ;
+            matchStream(input,28,FOLLOW_28_in_synpred67_Expression1562); if (this.state.failed) return ;
 
             }
         }
@@ -5638,244 +5651,244 @@ package com.esoteric.expressions {
         protected var dfa24:DFA;  // initialized in constructor
      
 
-        public static const FOLLOW_stmtList_in_main114:BitSet = new BitSet([0x00000000, 0x00000000]);
-        public static const FOLLOW_EOF_in_main117:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_stmtList_in_main120:BitSet = new BitSet([0x00000000, 0x00000000]);
         public static const FOLLOW_EOF_in_main123:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_stmt_in_stmtList135:BitSet = new BitSet([0x4C01C002, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_stmt_in_stmtList144:BitSet = new BitSet([0x4C01C002, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_ifStmt_in_stmt176:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_whileStmt_in_stmt182:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_expList_in_stmt188:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_26_in_ifStmt201:BitSet = new BitSet([0x08000000, 0x00000000]);
-        public static const FOLLOW_27_in_ifStmt203:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_exp_in_ifStmt205:BitSet = new BitSet([0x10000000, 0x00000000]);
-        public static const FOLLOW_28_in_ifStmt207:BitSet = new BitSet([0x80000000, 0x00000000]);
-        public static const FOLLOW_block_in_ifStmt211:BitSet = new BitSet([0x20000000, 0x00000000]);
-        public static const FOLLOW_29_in_ifStmt213:BitSet = new BitSet([0x80000000, 0x00000000]);
-        public static const FOLLOW_block_in_ifStmt217:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_26_in_ifStmt236:BitSet = new BitSet([0x08000000, 0x00000000]);
-        public static const FOLLOW_27_in_ifStmt238:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_exp_in_ifStmt240:BitSet = new BitSet([0x10000000, 0x00000000]);
-        public static const FOLLOW_28_in_ifStmt242:BitSet = new BitSet([0x80000000, 0x00000000]);
-        public static const FOLLOW_block_in_ifStmt244:BitSet = new BitSet([0x20000000, 0x00000000]);
-        public static const FOLLOW_29_in_ifStmt246:BitSet = new BitSet([0x04000000, 0x00000000]);
-        public static const FOLLOW_ifStmt_in_ifStmt248:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_26_in_ifStmt265:BitSet = new BitSet([0x08000000, 0x00000000]);
-        public static const FOLLOW_27_in_ifStmt267:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_exp_in_ifStmt269:BitSet = new BitSet([0x10000000, 0x00000000]);
-        public static const FOLLOW_28_in_ifStmt271:BitSet = new BitSet([0x80000000, 0x00000000]);
-        public static const FOLLOW_block_in_ifStmt273:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_30_in_whileStmt297:BitSet = new BitSet([0x08000000, 0x00000000]);
-        public static const FOLLOW_27_in_whileStmt299:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_exp_in_whileStmt301:BitSet = new BitSet([0x10000000, 0x00000000]);
-        public static const FOLLOW_28_in_whileStmt303:BitSet = new BitSet([0x80000000, 0x00000000]);
-        public static const FOLLOW_block_in_whileStmt305:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_31_in_block328:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_stmtList_in_block330:BitSet = new BitSet([0x00000000, 0x00000001]);
-        public static const FOLLOW_32_in_block332:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_exp_in_expList351:BitSet = new BitSet([0x00000002, 0x00000002]);
-        public static const FOLLOW_33_in_expList360:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_exp_in_expList362:BitSet = new BitSet([0x00000002, 0x00000002]);
-        public static const FOLLOW_33_in_expList368:BitSet = new BitSet([0x00000002, 0x00000002]);
-        public static const FOLLOW_assignExp_in_exp398:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_condExp_in_exp404:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_reference_in_assignExp417:BitSet = new BitSet([0x00000000, 0x00003FFC]);
-        public static const FOLLOW_34_in_assignExp426:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_exp_in_assignExp428:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_35_in_assignExp447:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_exp_in_assignExp449:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_36_in_assignExp467:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_exp_in_assignExp469:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_37_in_assignExp487:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_exp_in_assignExp489:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_38_in_assignExp507:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_exp_in_assignExp509:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_39_in_assignExp527:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_exp_in_assignExp529:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_40_in_assignExp547:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_exp_in_assignExp549:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_41_in_assignExp567:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_exp_in_assignExp569:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_42_in_assignExp587:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_exp_in_assignExp589:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_43_in_assignExp607:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_exp_in_assignExp609:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_44_in_assignExp627:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_exp_in_assignExp629:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_45_in_assignExp647:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_exp_in_assignExp649:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_logicalOr_in_condExp680:BitSet = new BitSet([0x00000002, 0x00004000]);
-        public static const FOLLOW_46_in_condExp698:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_exp_in_condExp705:BitSet = new BitSet([0x00000000, 0x00008000]);
-        public static const FOLLOW_47_in_condExp710:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_exp_in_condExp717:BitSet = new BitSet([0x00000002, 0x00004000]);
-        public static const FOLLOW_logicalAnd_in_logicalOr751:BitSet = new BitSet([0x00000002, 0x00030000]);
-        public static const FOLLOW_48_in_logicalOr760:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_logicalAnd_in_logicalOr763:BitSet = new BitSet([0x00000002, 0x00030000]);
-        public static const FOLLOW_49_in_logicalOr769:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_logicalAnd_in_logicalOr772:BitSet = new BitSet([0x00000002, 0x00030000]);
-        public static const FOLLOW_bitwiseOr_in_logicalAnd789:BitSet = new BitSet([0x00000002, 0x000C0000]);
-        public static const FOLLOW_50_in_logicalAnd798:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_bitwiseOr_in_logicalAnd801:BitSet = new BitSet([0x00000002, 0x000C0000]);
-        public static const FOLLOW_51_in_logicalAnd807:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_bitwiseOr_in_logicalAnd810:BitSet = new BitSet([0x00000002, 0x000C0000]);
-        public static const FOLLOW_bitwiseXor_in_bitwiseOr826:BitSet = new BitSet([0x00000002, 0x00100000]);
-        public static const FOLLOW_52_in_bitwiseOr835:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_bitwiseXor_in_bitwiseOr838:BitSet = new BitSet([0x00000002, 0x00100000]);
-        public static const FOLLOW_bitwiseAnd_in_bitwiseXor854:BitSet = new BitSet([0x00000002, 0x00200000]);
-        public static const FOLLOW_53_in_bitwiseXor863:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_bitwiseAnd_in_bitwiseXor866:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_equalExp_in_bitwiseAnd882:BitSet = new BitSet([0x00000002, 0x00400000]);
-        public static const FOLLOW_54_in_bitwiseAnd891:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_equalExp_in_bitwiseAnd894:BitSet = new BitSet([0x00000002, 0x00400000]);
-        public static const FOLLOW_relExp_in_equalExp910:BitSet = new BitSet([0x00000002, 0x07800000]);
-        public static const FOLLOW_55_in_equalExp919:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_relExp_in_equalExp922:BitSet = new BitSet([0x00000002, 0x07800000]);
-        public static const FOLLOW_56_in_equalExp928:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_relExp_in_equalExp931:BitSet = new BitSet([0x00000002, 0x07800000]);
-        public static const FOLLOW_57_in_equalExp937:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_relExp_in_equalExp940:BitSet = new BitSet([0x00000002, 0x07800000]);
-        public static const FOLLOW_58_in_equalExp946:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_relExp_in_equalExp949:BitSet = new BitSet([0x00000002, 0x07800000]);
-        public static const FOLLOW_shiftExp_in_relExp966:BitSet = new BitSet([0x00000002, 0xF8000000, 0x00000007, 0x00000000]);
-        public static const FOLLOW_59_in_relExp975:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_shiftExp_in_relExp978:BitSet = new BitSet([0x00000002, 0xF8000000, 0x00000007, 0x00000000]);
-        public static const FOLLOW_60_in_relExp984:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_shiftExp_in_relExp987:BitSet = new BitSet([0x00000002, 0xF8000000, 0x00000007, 0x00000000]);
-        public static const FOLLOW_61_in_relExp993:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_shiftExp_in_relExp996:BitSet = new BitSet([0x00000002, 0xF8000000, 0x00000007, 0x00000000]);
-        public static const FOLLOW_62_in_relExp1002:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_shiftExp_in_relExp1005:BitSet = new BitSet([0x00000002, 0xF8000000, 0x00000007, 0x00000000]);
-        public static const FOLLOW_63_in_relExp1011:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_shiftExp_in_relExp1014:BitSet = new BitSet([0x00000002, 0xF8000000, 0x00000007, 0x00000000]);
-        public static const FOLLOW_64_in_relExp1020:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_shiftExp_in_relExp1023:BitSet = new BitSet([0x00000002, 0xF8000000, 0x00000007, 0x00000000]);
-        public static const FOLLOW_65_in_relExp1029:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_shiftExp_in_relExp1032:BitSet = new BitSet([0x00000002, 0xF8000000, 0x00000007, 0x00000000]);
-        public static const FOLLOW_66_in_relExp1038:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_shiftExp_in_relExp1041:BitSet = new BitSet([0x00000002, 0xF8000000, 0x00000007, 0x00000000]);
-        public static const FOLLOW_addExp_in_shiftExp1057:BitSet = new BitSet([0x00000002, 0x00000000, 0x00000038, 0x00000000]);
-        public static const FOLLOW_67_in_shiftExp1066:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_addExp_in_shiftExp1069:BitSet = new BitSet([0x00000002, 0x00000000, 0x00000038, 0x00000000]);
-        public static const FOLLOW_68_in_shiftExp1075:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_addExp_in_shiftExp1078:BitSet = new BitSet([0x00000002, 0x00000000, 0x00000038, 0x00000000]);
-        public static const FOLLOW_69_in_shiftExp1084:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_addExp_in_shiftExp1087:BitSet = new BitSet([0x00000002, 0x00000000, 0x00000038, 0x00000000]);
-        public static const FOLLOW_multExp_in_addExp1103:BitSet = new BitSet([0x00000002, 0x00000000, 0x000000C0, 0x00000000]);
-        public static const FOLLOW_70_in_addExp1112:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_multExp_in_addExp1115:BitSet = new BitSet([0x00000002, 0x00000000, 0x000000C0, 0x00000000]);
-        public static const FOLLOW_71_in_addExp1121:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_multExp_in_addExp1124:BitSet = new BitSet([0x00000002, 0x00000000, 0x000000C0, 0x00000000]);
-        public static const FOLLOW_unaryExp_in_multExp1142:BitSet = new BitSet([0x00000002, 0x00000000, 0x00000700, 0x00000000]);
-        public static const FOLLOW_72_in_multExp1151:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_unaryExp_in_multExp1154:BitSet = new BitSet([0x00000002, 0x00000000, 0x00000700, 0x00000000]);
-        public static const FOLLOW_73_in_multExp1160:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_unaryExp_in_multExp1163:BitSet = new BitSet([0x00000002, 0x00000000, 0x00000700, 0x00000000]);
-        public static const FOLLOW_74_in_multExp1169:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_unaryExp_in_multExp1172:BitSet = new BitSet([0x00000002, 0x00000000, 0x00000700, 0x00000000]);
-        public static const FOLLOW_70_in_unaryExp1191:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_atom_in_unaryExp1194:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_71_in_unaryExp1199:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_atom_in_unaryExp1202:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_75_in_unaryExp1207:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_atom_in_unaryExp1210:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_76_in_unaryExp1215:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_atom_in_unaryExp1218:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_EOF_in_main129:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_stmt_in_stmtList141:BitSet = new BitSet([0x4C01C002, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_stmt_in_stmtList150:BitSet = new BitSet([0x4C01C002, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_ifStmt_in_stmt182:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_whileStmt_in_stmt188:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_expList_in_stmt194:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_26_in_ifStmt207:BitSet = new BitSet([0x08000000, 0x00000000]);
+        public static const FOLLOW_27_in_ifStmt209:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_exp_in_ifStmt211:BitSet = new BitSet([0x10000000, 0x00000000]);
+        public static const FOLLOW_28_in_ifStmt213:BitSet = new BitSet([0x80000000, 0x00000000]);
+        public static const FOLLOW_block_in_ifStmt217:BitSet = new BitSet([0x20000000, 0x00000000]);
+        public static const FOLLOW_29_in_ifStmt219:BitSet = new BitSet([0x80000000, 0x00000000]);
+        public static const FOLLOW_block_in_ifStmt223:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_26_in_ifStmt242:BitSet = new BitSet([0x08000000, 0x00000000]);
+        public static const FOLLOW_27_in_ifStmt244:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_exp_in_ifStmt246:BitSet = new BitSet([0x10000000, 0x00000000]);
+        public static const FOLLOW_28_in_ifStmt248:BitSet = new BitSet([0x80000000, 0x00000000]);
+        public static const FOLLOW_block_in_ifStmt250:BitSet = new BitSet([0x20000000, 0x00000000]);
+        public static const FOLLOW_29_in_ifStmt252:BitSet = new BitSet([0x04000000, 0x00000000]);
+        public static const FOLLOW_ifStmt_in_ifStmt254:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_26_in_ifStmt271:BitSet = new BitSet([0x08000000, 0x00000000]);
+        public static const FOLLOW_27_in_ifStmt273:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_exp_in_ifStmt275:BitSet = new BitSet([0x10000000, 0x00000000]);
+        public static const FOLLOW_28_in_ifStmt277:BitSet = new BitSet([0x80000000, 0x00000000]);
+        public static const FOLLOW_block_in_ifStmt279:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_30_in_whileStmt303:BitSet = new BitSet([0x08000000, 0x00000000]);
+        public static const FOLLOW_27_in_whileStmt305:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_exp_in_whileStmt307:BitSet = new BitSet([0x10000000, 0x00000000]);
+        public static const FOLLOW_28_in_whileStmt309:BitSet = new BitSet([0x80000000, 0x00000000]);
+        public static const FOLLOW_block_in_whileStmt311:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_31_in_block334:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_stmtList_in_block336:BitSet = new BitSet([0x00000000, 0x00000001]);
+        public static const FOLLOW_32_in_block338:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_exp_in_expList357:BitSet = new BitSet([0x00000002, 0x00000002]);
+        public static const FOLLOW_33_in_expList366:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_exp_in_expList368:BitSet = new BitSet([0x00000002, 0x00000002]);
+        public static const FOLLOW_33_in_expList374:BitSet = new BitSet([0x00000002, 0x00000002]);
+        public static const FOLLOW_assignExp_in_exp404:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_condExp_in_exp410:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_reference_in_assignExp423:BitSet = new BitSet([0x00000000, 0x00003FFC]);
+        public static const FOLLOW_34_in_assignExp432:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_exp_in_assignExp434:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_35_in_assignExp453:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_exp_in_assignExp455:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_36_in_assignExp473:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_exp_in_assignExp475:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_37_in_assignExp493:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_exp_in_assignExp495:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_38_in_assignExp513:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_exp_in_assignExp515:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_39_in_assignExp533:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_exp_in_assignExp535:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_40_in_assignExp553:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_exp_in_assignExp555:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_41_in_assignExp573:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_exp_in_assignExp575:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_42_in_assignExp593:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_exp_in_assignExp595:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_43_in_assignExp613:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_exp_in_assignExp615:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_44_in_assignExp633:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_exp_in_assignExp635:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_45_in_assignExp653:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_exp_in_assignExp655:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_logicalOr_in_condExp686:BitSet = new BitSet([0x00000002, 0x00004000]);
+        public static const FOLLOW_46_in_condExp704:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_exp_in_condExp711:BitSet = new BitSet([0x00000000, 0x00008000]);
+        public static const FOLLOW_47_in_condExp716:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_exp_in_condExp723:BitSet = new BitSet([0x00000002, 0x00004000]);
+        public static const FOLLOW_logicalAnd_in_logicalOr757:BitSet = new BitSet([0x00000002, 0x00030000]);
+        public static const FOLLOW_48_in_logicalOr766:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_logicalAnd_in_logicalOr769:BitSet = new BitSet([0x00000002, 0x00030000]);
+        public static const FOLLOW_49_in_logicalOr775:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_logicalAnd_in_logicalOr778:BitSet = new BitSet([0x00000002, 0x00030000]);
+        public static const FOLLOW_bitwiseOr_in_logicalAnd795:BitSet = new BitSet([0x00000002, 0x000C0000]);
+        public static const FOLLOW_50_in_logicalAnd804:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_bitwiseOr_in_logicalAnd807:BitSet = new BitSet([0x00000002, 0x000C0000]);
+        public static const FOLLOW_51_in_logicalAnd813:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_bitwiseOr_in_logicalAnd816:BitSet = new BitSet([0x00000002, 0x000C0000]);
+        public static const FOLLOW_bitwiseXor_in_bitwiseOr832:BitSet = new BitSet([0x00000002, 0x00100000]);
+        public static const FOLLOW_52_in_bitwiseOr841:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_bitwiseXor_in_bitwiseOr844:BitSet = new BitSet([0x00000002, 0x00100000]);
+        public static const FOLLOW_bitwiseAnd_in_bitwiseXor860:BitSet = new BitSet([0x00000002, 0x00200000]);
+        public static const FOLLOW_53_in_bitwiseXor869:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_bitwiseAnd_in_bitwiseXor872:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_equalExp_in_bitwiseAnd888:BitSet = new BitSet([0x00000002, 0x00400000]);
+        public static const FOLLOW_54_in_bitwiseAnd897:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_equalExp_in_bitwiseAnd900:BitSet = new BitSet([0x00000002, 0x00400000]);
+        public static const FOLLOW_relExp_in_equalExp916:BitSet = new BitSet([0x00000002, 0x07800000]);
+        public static const FOLLOW_55_in_equalExp925:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_relExp_in_equalExp928:BitSet = new BitSet([0x00000002, 0x07800000]);
+        public static const FOLLOW_56_in_equalExp934:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_relExp_in_equalExp937:BitSet = new BitSet([0x00000002, 0x07800000]);
+        public static const FOLLOW_57_in_equalExp943:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_relExp_in_equalExp946:BitSet = new BitSet([0x00000002, 0x07800000]);
+        public static const FOLLOW_58_in_equalExp952:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_relExp_in_equalExp955:BitSet = new BitSet([0x00000002, 0x07800000]);
+        public static const FOLLOW_shiftExp_in_relExp972:BitSet = new BitSet([0x00000002, 0xF8000000, 0x00000007, 0x00000000]);
+        public static const FOLLOW_59_in_relExp981:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_shiftExp_in_relExp984:BitSet = new BitSet([0x00000002, 0xF8000000, 0x00000007, 0x00000000]);
+        public static const FOLLOW_60_in_relExp990:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_shiftExp_in_relExp993:BitSet = new BitSet([0x00000002, 0xF8000000, 0x00000007, 0x00000000]);
+        public static const FOLLOW_61_in_relExp999:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_shiftExp_in_relExp1002:BitSet = new BitSet([0x00000002, 0xF8000000, 0x00000007, 0x00000000]);
+        public static const FOLLOW_62_in_relExp1008:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_shiftExp_in_relExp1011:BitSet = new BitSet([0x00000002, 0xF8000000, 0x00000007, 0x00000000]);
+        public static const FOLLOW_63_in_relExp1017:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_shiftExp_in_relExp1020:BitSet = new BitSet([0x00000002, 0xF8000000, 0x00000007, 0x00000000]);
+        public static const FOLLOW_64_in_relExp1026:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_shiftExp_in_relExp1029:BitSet = new BitSet([0x00000002, 0xF8000000, 0x00000007, 0x00000000]);
+        public static const FOLLOW_65_in_relExp1035:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_shiftExp_in_relExp1038:BitSet = new BitSet([0x00000002, 0xF8000000, 0x00000007, 0x00000000]);
+        public static const FOLLOW_66_in_relExp1044:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_shiftExp_in_relExp1047:BitSet = new BitSet([0x00000002, 0xF8000000, 0x00000007, 0x00000000]);
+        public static const FOLLOW_addExp_in_shiftExp1063:BitSet = new BitSet([0x00000002, 0x00000000, 0x00000038, 0x00000000]);
+        public static const FOLLOW_67_in_shiftExp1072:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_addExp_in_shiftExp1075:BitSet = new BitSet([0x00000002, 0x00000000, 0x00000038, 0x00000000]);
+        public static const FOLLOW_68_in_shiftExp1081:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_addExp_in_shiftExp1084:BitSet = new BitSet([0x00000002, 0x00000000, 0x00000038, 0x00000000]);
+        public static const FOLLOW_69_in_shiftExp1090:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_addExp_in_shiftExp1093:BitSet = new BitSet([0x00000002, 0x00000000, 0x00000038, 0x00000000]);
+        public static const FOLLOW_multExp_in_addExp1109:BitSet = new BitSet([0x00000002, 0x00000000, 0x000000C0, 0x00000000]);
+        public static const FOLLOW_70_in_addExp1118:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_multExp_in_addExp1121:BitSet = new BitSet([0x00000002, 0x00000000, 0x000000C0, 0x00000000]);
+        public static const FOLLOW_71_in_addExp1127:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_multExp_in_addExp1130:BitSet = new BitSet([0x00000002, 0x00000000, 0x000000C0, 0x00000000]);
+        public static const FOLLOW_unaryExp_in_multExp1148:BitSet = new BitSet([0x00000002, 0x00000000, 0x00000700, 0x00000000]);
+        public static const FOLLOW_72_in_multExp1157:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_unaryExp_in_multExp1160:BitSet = new BitSet([0x00000002, 0x00000000, 0x00000700, 0x00000000]);
+        public static const FOLLOW_73_in_multExp1166:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_unaryExp_in_multExp1169:BitSet = new BitSet([0x00000002, 0x00000000, 0x00000700, 0x00000000]);
+        public static const FOLLOW_74_in_multExp1175:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_unaryExp_in_multExp1178:BitSet = new BitSet([0x00000002, 0x00000000, 0x00000700, 0x00000000]);
+        public static const FOLLOW_70_in_unaryExp1197:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_atom_in_unaryExp1200:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_71_in_unaryExp1205:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_atom_in_unaryExp1208:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_75_in_unaryExp1213:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_atom_in_unaryExp1216:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_76_in_unaryExp1221:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
         public static const FOLLOW_atom_in_unaryExp1224:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_NumberLiteral_in_atom1236:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_StringLiteral_in_atom1241:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_77_in_atom1246:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_78_in_atom1251:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_referenceOrFuncCall_in_atom1256:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_27_in_atom1261:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_exp_in_atom1264:BitSet = new BitSet([0x10000000, 0x00000000]);
-        public static const FOLLOW_28_in_atom1266:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_object_in_reference1281:BitSet = new BitSet([0x08000002, 0x00000000, 0x00028000, 0x00000000]);
-        public static const FOLLOW_79_in_reference1300:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_exp_in_reference1304:BitSet = new BitSet([0x00000000, 0x00000000, 0x00010000, 0x00000000]);
-        public static const FOLLOW_80_in_reference1306:BitSet = new BitSet([0x08000002, 0x00000000, 0x00028000, 0x00000000]);
-        public static const FOLLOW_81_in_reference1330:BitSet = new BitSet([0x00010000, 0x00000000]);
-        public static const FOLLOW_Identifier_in_reference1334:BitSet = new BitSet([0x08000002, 0x00000000, 0x00028000, 0x00000000]);
-        public static const FOLLOW_27_in_reference1356:BitSet = new BitSet([0x5C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_params_in_reference1360:BitSet = new BitSet([0x10000000, 0x00000000]);
-        public static const FOLLOW_28_in_reference1363:BitSet = new BitSet([0x00000000, 0x00000000, 0x00008000, 0x00000000]);
-        public static const FOLLOW_79_in_reference1368:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_exp_in_reference1372:BitSet = new BitSet([0x00000000, 0x00000000, 0x00010000, 0x00000000]);
-        public static const FOLLOW_80_in_reference1374:BitSet = new BitSet([0x08000002, 0x00000000, 0x00028000, 0x00000000]);
-        public static const FOLLOW_27_in_reference1405:BitSet = new BitSet([0x5C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_params_in_reference1409:BitSet = new BitSet([0x10000000, 0x00000000]);
-        public static const FOLLOW_28_in_reference1412:BitSet = new BitSet([0x00000000, 0x00000000, 0x00020000, 0x00000000]);
-        public static const FOLLOW_81_in_reference1417:BitSet = new BitSet([0x00010000, 0x00000000]);
-        public static const FOLLOW_Identifier_in_reference1421:BitSet = new BitSet([0x08000002, 0x00000000, 0x00028000, 0x00000000]);
-        public static const FOLLOW_object_in_referenceOrFuncCall1461:BitSet = new BitSet([0x08000002, 0x00000000, 0x00028000, 0x00000000]);
-        public static const FOLLOW_79_in_referenceOrFuncCall1480:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_exp_in_referenceOrFuncCall1484:BitSet = new BitSet([0x00000000, 0x00000000, 0x00010000, 0x00000000]);
-        public static const FOLLOW_80_in_referenceOrFuncCall1486:BitSet = new BitSet([0x08000002, 0x00000000, 0x00028000, 0x00000000]);
-        public static const FOLLOW_81_in_referenceOrFuncCall1506:BitSet = new BitSet([0x00010000, 0x00000000]);
-        public static const FOLLOW_Identifier_in_referenceOrFuncCall1510:BitSet = new BitSet([0x08000002, 0x00000000, 0x00028000, 0x00000000]);
-        public static const FOLLOW_27_in_referenceOrFuncCall1529:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_params_in_referenceOrFuncCall1533:BitSet = new BitSet([0x10000000, 0x00000000]);
-        public static const FOLLOW_28_in_referenceOrFuncCall1535:BitSet = new BitSet([0x08000002, 0x00000000, 0x00028000, 0x00000000]);
-        public static const FOLLOW_27_in_referenceOrFuncCall1554:BitSet = new BitSet([0x10000000, 0x00000000]);
-        public static const FOLLOW_28_in_referenceOrFuncCall1556:BitSet = new BitSet([0x08000002, 0x00000000, 0x00028000, 0x00000000]);
-        public static const FOLLOW_Identifier_in_object1585:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_array_in_object1590:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_exp_in_params1602:BitSet = new BitSet([0x00000002, 0x00000000, 0x00040000, 0x00000000]);
-        public static const FOLLOW_82_in_params1611:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_exp_in_params1617:BitSet = new BitSet([0x00000002, 0x00000000, 0x00040000, 0x00000000]);
-        public static const FOLLOW_79_in_array1634:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_items_in_array1638:BitSet = new BitSet([0x00000000, 0x00000000, 0x00010000, 0x00000000]);
-        public static const FOLLOW_80_in_array1640:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_79_in_array1656:BitSet = new BitSet([0x00000000, 0x00000000, 0x00010000, 0x00000000]);
-        public static const FOLLOW_80_in_array1658:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_exp_in_items1680:BitSet = new BitSet([0x00000002, 0x00000000, 0x00040000, 0x00000000]);
-        public static const FOLLOW_82_in_items1689:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_exp_in_items1695:BitSet = new BitSet([0x00000002, 0x00000000, 0x00040000, 0x00000000]);
-        public static const FOLLOW_26_in_synpred5_Expression201:BitSet = new BitSet([0x08000000, 0x00000000]);
-        public static const FOLLOW_27_in_synpred5_Expression203:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_exp_in_synpred5_Expression205:BitSet = new BitSet([0x10000000, 0x00000000]);
-        public static const FOLLOW_28_in_synpred5_Expression207:BitSet = new BitSet([0x80000000, 0x00000000]);
-        public static const FOLLOW_block_in_synpred5_Expression211:BitSet = new BitSet([0x20000000, 0x00000000]);
-        public static const FOLLOW_29_in_synpred5_Expression213:BitSet = new BitSet([0x80000000, 0x00000000]);
-        public static const FOLLOW_block_in_synpred5_Expression217:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_26_in_synpred6_Expression236:BitSet = new BitSet([0x08000000, 0x00000000]);
-        public static const FOLLOW_27_in_synpred6_Expression238:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_exp_in_synpred6_Expression240:BitSet = new BitSet([0x10000000, 0x00000000]);
-        public static const FOLLOW_28_in_synpred6_Expression242:BitSet = new BitSet([0x80000000, 0x00000000]);
-        public static const FOLLOW_block_in_synpred6_Expression244:BitSet = new BitSet([0x20000000, 0x00000000]);
-        public static const FOLLOW_29_in_synpred6_Expression246:BitSet = new BitSet([0x04000000, 0x00000000]);
-        public static const FOLLOW_ifStmt_in_synpred6_Expression248:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_33_in_synpred7_Expression360:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_exp_in_synpred7_Expression362:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_33_in_synpred8_Expression368:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_assignExp_in_synpred9_Expression398:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_46_in_synpred21_Expression698:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_exp_in_synpred21_Expression705:BitSet = new BitSet([0x00000000, 0x00008000]);
-        public static const FOLLOW_47_in_synpred21_Expression710:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_exp_in_synpred21_Expression717:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_70_in_synpred44_Expression1112:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_multExp_in_synpred44_Expression1115:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_71_in_synpred45_Expression1121:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_multExp_in_synpred45_Expression1124:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_27_in_synpred61_Expression1356:BitSet = new BitSet([0x5C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_params_in_synpred61_Expression1360:BitSet = new BitSet([0x10000000, 0x00000000]);
-        public static const FOLLOW_28_in_synpred61_Expression1363:BitSet = new BitSet([0x00000000, 0x00000000, 0x00008000, 0x00000000]);
-        public static const FOLLOW_79_in_synpred61_Expression1368:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_exp_in_synpred61_Expression1372:BitSet = new BitSet([0x00000000, 0x00000000, 0x00010000, 0x00000000]);
-        public static const FOLLOW_80_in_synpred61_Expression1374:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_27_in_synpred63_Expression1405:BitSet = new BitSet([0x5C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_params_in_synpred63_Expression1409:BitSet = new BitSet([0x10000000, 0x00000000]);
-        public static const FOLLOW_28_in_synpred63_Expression1412:BitSet = new BitSet([0x00000000, 0x00000000, 0x00020000, 0x00000000]);
-        public static const FOLLOW_81_in_synpred63_Expression1417:BitSet = new BitSet([0x00010000, 0x00000000]);
-        public static const FOLLOW_Identifier_in_synpred63_Expression1421:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_79_in_synpred64_Expression1480:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_exp_in_synpred64_Expression1484:BitSet = new BitSet([0x00000000, 0x00000000, 0x00010000, 0x00000000]);
-        public static const FOLLOW_80_in_synpred64_Expression1486:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_27_in_synpred66_Expression1529:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
-        public static const FOLLOW_params_in_synpred66_Expression1533:BitSet = new BitSet([0x10000000, 0x00000000]);
-        public static const FOLLOW_28_in_synpred66_Expression1535:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_27_in_synpred67_Expression1554:BitSet = new BitSet([0x10000000, 0x00000000]);
-        public static const FOLLOW_28_in_synpred67_Expression1556:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_atom_in_unaryExp1230:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_NumberLiteral_in_atom1242:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_StringLiteral_in_atom1247:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_77_in_atom1252:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_78_in_atom1257:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_referenceOrFuncCall_in_atom1262:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_27_in_atom1267:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_exp_in_atom1270:BitSet = new BitSet([0x10000000, 0x00000000]);
+        public static const FOLLOW_28_in_atom1272:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_object_in_reference1287:BitSet = new BitSet([0x08000002, 0x00000000, 0x00028000, 0x00000000]);
+        public static const FOLLOW_79_in_reference1306:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_exp_in_reference1310:BitSet = new BitSet([0x00000000, 0x00000000, 0x00010000, 0x00000000]);
+        public static const FOLLOW_80_in_reference1312:BitSet = new BitSet([0x08000002, 0x00000000, 0x00028000, 0x00000000]);
+        public static const FOLLOW_81_in_reference1336:BitSet = new BitSet([0x00010000, 0x00000000]);
+        public static const FOLLOW_Identifier_in_reference1340:BitSet = new BitSet([0x08000002, 0x00000000, 0x00028000, 0x00000000]);
+        public static const FOLLOW_27_in_reference1362:BitSet = new BitSet([0x5C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_params_in_reference1366:BitSet = new BitSet([0x10000000, 0x00000000]);
+        public static const FOLLOW_28_in_reference1369:BitSet = new BitSet([0x00000000, 0x00000000, 0x00008000, 0x00000000]);
+        public static const FOLLOW_79_in_reference1374:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_exp_in_reference1378:BitSet = new BitSet([0x00000000, 0x00000000, 0x00010000, 0x00000000]);
+        public static const FOLLOW_80_in_reference1380:BitSet = new BitSet([0x08000002, 0x00000000, 0x00028000, 0x00000000]);
+        public static const FOLLOW_27_in_reference1411:BitSet = new BitSet([0x5C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_params_in_reference1415:BitSet = new BitSet([0x10000000, 0x00000000]);
+        public static const FOLLOW_28_in_reference1418:BitSet = new BitSet([0x00000000, 0x00000000, 0x00020000, 0x00000000]);
+        public static const FOLLOW_81_in_reference1423:BitSet = new BitSet([0x00010000, 0x00000000]);
+        public static const FOLLOW_Identifier_in_reference1427:BitSet = new BitSet([0x08000002, 0x00000000, 0x00028000, 0x00000000]);
+        public static const FOLLOW_object_in_referenceOrFuncCall1467:BitSet = new BitSet([0x08000002, 0x00000000, 0x00028000, 0x00000000]);
+        public static const FOLLOW_79_in_referenceOrFuncCall1486:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_exp_in_referenceOrFuncCall1490:BitSet = new BitSet([0x00000000, 0x00000000, 0x00010000, 0x00000000]);
+        public static const FOLLOW_80_in_referenceOrFuncCall1492:BitSet = new BitSet([0x08000002, 0x00000000, 0x00028000, 0x00000000]);
+        public static const FOLLOW_81_in_referenceOrFuncCall1512:BitSet = new BitSet([0x00010000, 0x00000000]);
+        public static const FOLLOW_Identifier_in_referenceOrFuncCall1516:BitSet = new BitSet([0x08000002, 0x00000000, 0x00028000, 0x00000000]);
+        public static const FOLLOW_27_in_referenceOrFuncCall1535:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_params_in_referenceOrFuncCall1539:BitSet = new BitSet([0x10000000, 0x00000000]);
+        public static const FOLLOW_28_in_referenceOrFuncCall1541:BitSet = new BitSet([0x08000002, 0x00000000, 0x00028000, 0x00000000]);
+        public static const FOLLOW_27_in_referenceOrFuncCall1560:BitSet = new BitSet([0x10000000, 0x00000000]);
+        public static const FOLLOW_28_in_referenceOrFuncCall1562:BitSet = new BitSet([0x08000002, 0x00000000, 0x00028000, 0x00000000]);
+        public static const FOLLOW_Identifier_in_object1591:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_array_in_object1596:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_exp_in_params1608:BitSet = new BitSet([0x00000002, 0x00000000, 0x00040000, 0x00000000]);
+        public static const FOLLOW_82_in_params1617:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_exp_in_params1623:BitSet = new BitSet([0x00000002, 0x00000000, 0x00040000, 0x00000000]);
+        public static const FOLLOW_79_in_array1640:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_items_in_array1644:BitSet = new BitSet([0x00000000, 0x00000000, 0x00010000, 0x00000000]);
+        public static const FOLLOW_80_in_array1646:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_79_in_array1662:BitSet = new BitSet([0x00000000, 0x00000000, 0x00010000, 0x00000000]);
+        public static const FOLLOW_80_in_array1664:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_exp_in_items1686:BitSet = new BitSet([0x00000002, 0x00000000, 0x00040000, 0x00000000]);
+        public static const FOLLOW_82_in_items1695:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_exp_in_items1701:BitSet = new BitSet([0x00000002, 0x00000000, 0x00040000, 0x00000000]);
+        public static const FOLLOW_26_in_synpred5_Expression207:BitSet = new BitSet([0x08000000, 0x00000000]);
+        public static const FOLLOW_27_in_synpred5_Expression209:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_exp_in_synpred5_Expression211:BitSet = new BitSet([0x10000000, 0x00000000]);
+        public static const FOLLOW_28_in_synpred5_Expression213:BitSet = new BitSet([0x80000000, 0x00000000]);
+        public static const FOLLOW_block_in_synpred5_Expression217:BitSet = new BitSet([0x20000000, 0x00000000]);
+        public static const FOLLOW_29_in_synpred5_Expression219:BitSet = new BitSet([0x80000000, 0x00000000]);
+        public static const FOLLOW_block_in_synpred5_Expression223:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_26_in_synpred6_Expression242:BitSet = new BitSet([0x08000000, 0x00000000]);
+        public static const FOLLOW_27_in_synpred6_Expression244:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_exp_in_synpred6_Expression246:BitSet = new BitSet([0x10000000, 0x00000000]);
+        public static const FOLLOW_28_in_synpred6_Expression248:BitSet = new BitSet([0x80000000, 0x00000000]);
+        public static const FOLLOW_block_in_synpred6_Expression250:BitSet = new BitSet([0x20000000, 0x00000000]);
+        public static const FOLLOW_29_in_synpred6_Expression252:BitSet = new BitSet([0x04000000, 0x00000000]);
+        public static const FOLLOW_ifStmt_in_synpred6_Expression254:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_33_in_synpred7_Expression366:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_exp_in_synpred7_Expression368:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_33_in_synpred8_Expression374:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_assignExp_in_synpred9_Expression404:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_46_in_synpred21_Expression704:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_exp_in_synpred21_Expression711:BitSet = new BitSet([0x00000000, 0x00008000]);
+        public static const FOLLOW_47_in_synpred21_Expression716:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_exp_in_synpred21_Expression723:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_70_in_synpred44_Expression1118:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_multExp_in_synpred44_Expression1121:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_71_in_synpred45_Expression1127:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_multExp_in_synpred45_Expression1130:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_27_in_synpred61_Expression1362:BitSet = new BitSet([0x5C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_params_in_synpred61_Expression1366:BitSet = new BitSet([0x10000000, 0x00000000]);
+        public static const FOLLOW_28_in_synpred61_Expression1369:BitSet = new BitSet([0x00000000, 0x00000000, 0x00008000, 0x00000000]);
+        public static const FOLLOW_79_in_synpred61_Expression1374:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_exp_in_synpred61_Expression1378:BitSet = new BitSet([0x00000000, 0x00000000, 0x00010000, 0x00000000]);
+        public static const FOLLOW_80_in_synpred61_Expression1380:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_27_in_synpred63_Expression1411:BitSet = new BitSet([0x5C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_params_in_synpred63_Expression1415:BitSet = new BitSet([0x10000000, 0x00000000]);
+        public static const FOLLOW_28_in_synpred63_Expression1418:BitSet = new BitSet([0x00000000, 0x00000000, 0x00020000, 0x00000000]);
+        public static const FOLLOW_81_in_synpred63_Expression1423:BitSet = new BitSet([0x00010000, 0x00000000]);
+        public static const FOLLOW_Identifier_in_synpred63_Expression1427:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_79_in_synpred64_Expression1486:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_exp_in_synpred64_Expression1490:BitSet = new BitSet([0x00000000, 0x00000000, 0x00010000, 0x00000000]);
+        public static const FOLLOW_80_in_synpred64_Expression1492:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_27_in_synpred66_Expression1535:BitSet = new BitSet([0x4C01C000, 0x00000000, 0x0000F8C0, 0x00000000]);
+        public static const FOLLOW_params_in_synpred66_Expression1539:BitSet = new BitSet([0x10000000, 0x00000000]);
+        public static const FOLLOW_28_in_synpred66_Expression1541:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_27_in_synpred67_Expression1560:BitSet = new BitSet([0x10000000, 0x00000000]);
+        public static const FOLLOW_28_in_synpred67_Expression1562:BitSet = new BitSet([0x00000002, 0x00000000]);
 
     }
 }
