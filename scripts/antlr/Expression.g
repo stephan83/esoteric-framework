@@ -22,6 +22,7 @@ tokens {
 	ForStmt;
 	FuncDef;
 	Return;
+	Local;
 }
 
 @parser::package {com.esoteric.expressions}
@@ -92,6 +93,7 @@ instr
 		
 exp
 	:	assignExp^
+	|	local^
 	|	condExp^
 	;
 	
@@ -111,6 +113,10 @@ assignExp
 		|	'^=' exp			-> ^('^=' exp reference)
 		|	'|=' exp			-> ^('|=' exp reference)
 		)
+	;
+		
+local	:	'var' i=Identifier			-> ^(Local $i)
+	|	'var' i=Identifier '=' exp		-> ^(Local exp $i)
 	;
 	
 condExp

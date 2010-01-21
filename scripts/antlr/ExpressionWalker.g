@@ -89,6 +89,7 @@ instr	:	exp
 	;
 
 exp	:	set
+	|	local
 	|	value
 	;
 	
@@ -96,6 +97,15 @@ set	:	^(
 			o=('=' | '*=' | '/=' | '%=' | '+=' | '-=' | '<<=' | '>>=' | '>>>=' | '&=' | '^=' | '|=')
 			exp (seti | sete | setr)
 		)							{ _codegen.save($o.text); }
+	;
+
+local	:	^(
+			Local
+			(
+				exp i=Identifier			{ _codegen.local($i.text, true) }
+			|	i=Identifier				{ _codegen.local($i.text, false) }
+			)
+		)
 	;
 
 seti	:	i=Identifier						{ _codegen.pushc();  }

@@ -57,6 +57,7 @@ package com.esoteric.expressions
 		 */
 		public static var instructionTypes:Object = {
 			save:		"save",
+			local:		"local",
 			pushc:		"pushc",
 			push:		"push",
 			binop:		"binop",
@@ -75,7 +76,7 @@ package com.esoteric.expressions
 		// MEMBERS
 		//---------------------------------------------------------------------
 		
-		private var _debug:Boolean = true;
+		private var _debug:Boolean = false;
 		private var _stack:Array = new Array(32);
 		private var _top:int = -1;
 		private var context:Object;
@@ -215,6 +216,20 @@ package com.esoteric.expressions
 						
 						_top -= 2;
 						
+						break;
+					}
+					
+					case instructionTypes.local:
+					{
+						if (instruction[2])
+						{
+							closure.setLocal(instruction[1], _stack[_top]);
+						}
+						else
+						{
+							closure.setLocal(instruction[1], undefined);
+							_stack[++_top] = undefined;
+						}
 						break;
 					}
 					
