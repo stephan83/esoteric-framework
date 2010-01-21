@@ -39,17 +39,17 @@
 	<Script>
 		<![CDATA[
 			
-			a = function(test) { trace(test); };
+			print = function(msg1, msg2)
+			{ 
+				concat = function(a, b) {
+					a + b;
+				}
+				
+				trace(concat(msg1, msg2));
+			};
 			
+			print('Hello', 'World!');
 		]]>
 	</Script>
-	
-	<Shape>
-		<SolidFill color="0xcccccc">
-			<Rectangle width="200" height="50" />
-		</SolidFill>
-	</Shape>
-	
-	<TextField color="0xffffff"><![CDATA[{stageWidth gt stageHeight}]]></TextField>
 
 </Preloader>

@@ -72,6 +72,7 @@ package com.esoteric.core
 			
 			_closure.current.stageWidth = stage.stageWidth;
 			_closure.current.stageHeight = stage.stageHeight;
+			_closure.current.trace = trace;
 			
 			_stage.addEventListener(Event.RESIZE, resizeHandler);
 		}

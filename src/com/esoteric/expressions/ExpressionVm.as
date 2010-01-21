@@ -36,6 +36,7 @@ package com.esoteric.expressions
 {
 	import com.esoteric.events.ExpressionEvent;
 	import com.esoteric.utils.BindableArray;
+	import com.esoteric.utils.BindableObject;
 	import com.esoteric.utils.IBindable;
 	import com.esoteric.utils.ICloneable;
 	import flash.events.EventDispatcher;
@@ -64,14 +65,16 @@ package com.esoteric.expressions
 			load:		"load",
 			jump:		"jump",
 			jumpc:		"jumpc",
-			array:		"array"
+			array:		"array",
+			func:		"func",
+			arg:		"arg"
 		}
 		
 		//---------------------------------------------------------------------
 		// MEMBERS
 		//---------------------------------------------------------------------
 		
-		private var _debug:Boolean = false;
+		private var _debug:Boolean = true;
 		private var _stack:Array = new Array(32);
 		private var _top:int = -1;
 		private var context:Object;
@@ -464,6 +467,19 @@ package com.esoteric.expressions
 						_stack[_top] = BindableArray.fromArray(_stack.slice(_top, _top + instruction[1]));
 						break;
 					}
+					
+					case instructionTypes.func:
+					{
+						_stack[++_top] = makeFunc(instruction[1], context, bind);
+						break;
+					}
+					
+					case instructionTypes.arg:
+					{
+						context[instruction[1]] = _stack[_top];
+						_top--;
+						break;
+					}
 				}
 				
 				if (_debug)
@@ -490,6 +506,22 @@ package com.esoteric.expressions
 		public function bindsTo(bindable:IBindable, property:*):void
 		{
 			dispatchEvent(new ExpressionEvent(ExpressionEvent.BINDABLE_PROPERTY_LOADED, false, false, bindable, property));
+		}
+		
+		private function makeFunc(instructions:Array, context:Object, bind:Boolean):Function
+		{
+			return function(...args):* {
+				args.reverse();
+				
+				var header:Array = new Array();
+				
+				for each (var arg:* in args) 
+				{
+					header.push([instructionTypes.push, arg]);
+				}
+				
+				return eval(header.concat(instructions), context, bind);
+			}
 		}
 		
 		//---------------------------------------------------------------------

@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g 2010-01-21 16:47:13
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g 2010-01-21 17:46:53
 package com.esoteric.expressions {
     import org.antlr.runtime.*;
         import org.antlr.runtime.tree.*;    
@@ -103,7 +103,7 @@ package com.esoteric.expressions {
                             DFA10_max, DFA10_accept, DFA10_special,
                             DFA10_transition, DFA10_specialStateTransition);
 
-                this.state.ruleMemo = new Array(78+1);
+                this.state.ruleMemo = new Array(79+1);
                  
             }
             
@@ -1204,15 +1204,13 @@ package com.esoteric.expressions {
         // $ANTLR end value
 
         // $ANTLR start funcDef
-        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:145:1: funcDef : ^( FuncDef (i= Identifier )* stmtList ) ;
+        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:145:1: funcDef : ^( FuncDef ( arg )* stmtList ) ;
         public final function funcDef():void {
             var funcDef_StartIndex:int = input.index;
-            var i:Object=null;
-
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 13) ) { return ; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:145:9: ( ^( FuncDef (i= Identifier )* stmtList ) )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:145:11: ^( FuncDef (i= Identifier )* stmtList )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:145:9: ( ^( FuncDef ( arg )* stmtList ) )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:145:11: ^( FuncDef ( arg )* stmtList )
                 {
                 matchStream(input,FuncDef,FOLLOW_FuncDef_in_funcDef961); if (this.state.failed) return ;
 
@@ -1221,7 +1219,7 @@ package com.esoteric.expressions {
                 }
 
                 matchStream(input, TokenConstants.DOWN, null); if (this.state.failed) return ;
-                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:147:5: (i= Identifier )*
+                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:147:4: ( arg )*
                 loop11:
                 do {
                     var alt11:int=2;
@@ -1234,9 +1232,13 @@ package com.esoteric.expressions {
 
                     switch (alt11) {
                 	case 1 :
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:0:0: i= Identifier
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:0:0: arg
                 	    {
-                	    i=Object(matchStream(input,Identifier,FOLLOW_Identifier_in_funcDef975)); if (this.state.failed) return ;
+                	    pushFollow(FOLLOW_arg_in_funcDef973);
+                	    arg();
+
+                	    state._fsp = state._fsp - 1;
+                	    if (this.state.failed) return ;
 
                 	    }
                 	    break;
@@ -1246,10 +1248,7 @@ package com.esoteric.expressions {
                     }
                 } while (true);
 
-                if ( this.state.backtracking==0 ) {
-                   _codegen.arg((i!=null?i.text:null)) 
-                }
-                pushFollow(FOLLOW_stmtList_in_funcDef987);
+                pushFollow(FOLLOW_stmtList_in_funcDef979);
                 stmtList();
 
                 state._fsp = state._fsp - 1;
@@ -1273,6 +1272,36 @@ package com.esoteric.expressions {
             return ;
         }
         // $ANTLR end funcDef
+
+        // $ANTLR start arg
+        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:152:1: arg : i= Identifier ;
+        public final function arg():void {
+            var arg_StartIndex:int = input.index;
+            var i:Object=null;
+
+            try {
+                if ( this.state.backtracking>0 && alreadyParsedRule(input, 14) ) { return ; }
+                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:152:5: (i= Identifier )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:152:7: i= Identifier
+                {
+                i=Object(matchStream(input,Identifier,FOLLOW_Identifier_in_arg1002)); if (this.state.failed) return ;
+                if ( this.state.backtracking==0 ) {
+                   _codegen.arg((i!=null?i.text:null)) 
+                }
+
+                }
+
+            }
+            catch (re:RecognitionException) {
+                reportError(re);
+                recoverStream(input,re);
+            }
+            finally {
+                if ( this.state.backtracking>0 ) { memoize(input, 14, arg_StartIndex); }
+            }
+            return ;
+        }
+        // $ANTLR end arg
 
         // $ANTLR start synpred6_ExpressionWalker
         public final function synpred6_ExpressionWalker_fragment():void {
@@ -1586,8 +1615,9 @@ package com.esoteric.expressions {
         public static const FOLLOW_exp_in_value932:BitSet = new BitSet([0x0003C7C8, 0xFFFE7FF8, 0x0000FFFF, 0x00000000]);
         public static const FOLLOW_funcDef_in_value945:BitSet = new BitSet([0x00000002, 0x00000000]);
         public static const FOLLOW_FuncDef_in_funcDef961:BitSet = new BitSet([0x00000004, 0x00000000]);
-        public static const FOLLOW_Identifier_in_funcDef975:BitSet = new BitSet([0x00020010, 0x00000000]);
-        public static const FOLLOW_stmtList_in_funcDef987:BitSet = new BitSet([0x00000008, 0x00000000]);
+        public static const FOLLOW_arg_in_funcDef973:BitSet = new BitSet([0x00020010, 0x00000000]);
+        public static const FOLLOW_stmtList_in_funcDef979:BitSet = new BitSet([0x00000008, 0x00000000]);
+        public static const FOLLOW_Identifier_in_arg1002:BitSet = new BitSet([0x00000002, 0x00000000]);
         public static const FOLLOW_IfStmt_in_synpred6_ExpressionWalker136:BitSet = new BitSet([0x00000004, 0x00000000]);
         public static const FOLLOW_exp_in_synpred6_ExpressionWalker141:BitSet = new BitSet([0x00000010, 0x00000000]);
         public static const FOLLOW_stmtList_in_synpred6_ExpressionWalker153:BitSet = new BitSet([0x00000010, 0x00000000]);

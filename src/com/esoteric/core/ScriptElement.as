@@ -73,7 +73,8 @@ package com.esoteric.core
 			
 			if (value)
 			{
-				expression = new Expression(value, context.vm, null, false, false);
+				expression = new Expression(value, context.vm, context.closure, false, false);
+				context.expQueue.add(expression);
 			}
 			
 			super.text = value;

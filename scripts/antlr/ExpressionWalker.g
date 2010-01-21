@@ -144,8 +144,10 @@ value	:	^(
 	
 funcDef	:	^(
 			FuncDef						{ _codegen.beginfunc() }
-			i=Identifier*					{ _codegen.arg($i.text) }
+			arg*
 			stmtList					{ _codegen.endfunc() }
 		)
 	;
 	
+arg	:	i=Identifier						{ _codegen.arg($i.text) }
+	;

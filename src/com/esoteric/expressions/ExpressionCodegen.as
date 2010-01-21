@@ -56,7 +56,8 @@ package com.esoteric.expressions
 		private var _stateStacks:Object = {
 			"if":	new Array(),
 			"else":	new Array(),
-			"while": new Array()
+			"while": new Array(),
+			"func": new Array()
 		};
 		
 		//---------------------------------------------------------------------
@@ -189,17 +190,24 @@ package com.esoteric.expressions
 		
 		public function beginfunc():void
 		{
-			trace('begin func');
+			pushStateStack("func");
+			pushState("func");
 		}
 		
 		public function endfunc():void
 		{
-			trace('end func');
+			popState();
+			var instructions:Array = popStateStack("func");
+			
+			addInstruction([ExpressionVm.instructionTypes.func, instructions]);
 		}
 		
 		public function arg(identifier:String):void
 		{
-			trace(identifier);
+			if (identifier)
+			{
+				addInstruction([ExpressionVm.instructionTypes.arg, identifier]);
+			}
 		}
 		
 		//---------------------------------------------------------------------
