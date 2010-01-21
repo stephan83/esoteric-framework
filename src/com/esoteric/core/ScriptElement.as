@@ -36,6 +36,7 @@ package com.esoteric.core
 {
 	import com.esoteric.core.IElement;
 	import com.esoteric.core.Context;
+	import com.esoteric.expressions.Closure;
 	import com.esoteric.expressions.Expression;
 	
 	/**
@@ -63,6 +64,19 @@ package com.esoteric.core
 		/**
 		 * @inheritDoc
 		 */
+		override public function initialize():void
+		{
+			super.initialize();
+			
+			if (expression)
+			{
+				context.expQueue.add(expression);
+			}
+		}
+		
+		/**
+		 * @inheritDoc
+		 */
 		override public function set text(value:String):void
 		{
 			if (expression)
@@ -74,10 +88,25 @@ package com.esoteric.core
 			if (value)
 			{
 				expression = new Expression(value, context.vm, context.closure, false, false);
-				context.expQueue.add(expression);
 			}
 			
 			super.text = value;
+		}
+		
+		
+		/**
+		 * @inheritDoc
+		 */
+		override protected function createClosure():Closure
+		{trace(parent);
+			if (parent)
+			{
+				return parent.closure;
+			}
+			else
+			{
+				return new Closure(context.closure);
+			}
 		}
 		
 		/**

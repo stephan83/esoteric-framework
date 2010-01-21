@@ -40,6 +40,7 @@ package com.esoteric.core
 	import com.esoteric.events.LoadEvent;
 	import com.esoteric.events.ProgressEvent;
 	import com.esoteric.events.PropertyChangeEvent;
+	import com.esoteric.expressions.Closure;
 	import com.esoteric.utils.BindableObject;
 	import com.esoteric.utils.Enumerator;
 	import com.esoteric.utils.ICloneable;
@@ -139,6 +140,13 @@ package com.esoteric.core
 		{
 			_element.text = value;
 		}
+		
+		/**
+		 * @inheritDoc
+		 */
+		public function get closure():Closure { return _element.closure; }
+		
+		public function set closure(value:Closure):void { _element.closure = value; }
 		
 		/**
 		 * @inheritDoc

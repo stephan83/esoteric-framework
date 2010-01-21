@@ -34,7 +34,7 @@
 	-----                                                                 -----
 -->
 
-<Preloader>
+<Preloader mouseEnabled="true" buttonMode="true" useHandCursor="true">
 	
 	<Script>
 		<![CDATA[
@@ -50,6 +50,8 @@
 				
 				concat = function(a, b) {
 					return a + b;
+					
+					return b + a;
 				}
 				
 				trace(concat(msg1, msg2));
@@ -58,6 +60,19 @@
 			print('Hello', 'World!');
 			trace(a);
 			trace(msg1);
+			trace(print);
+			
+			addEventListener('click', function(e) {
+				trace('click');
+			});
+		]]>
+	</Script>
+	
+	<Script>
+		<![CDATA[
+			
+			trace('in second script');
+			print('will this ', + 'work???');
 		]]>
 	</Script>
 

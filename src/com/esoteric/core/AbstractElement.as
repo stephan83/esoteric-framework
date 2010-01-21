@@ -40,6 +40,7 @@ package com.esoteric.core
 	import com.esoteric.events.LoadEvent;
 	import com.esoteric.events.ProgressEvent;
 	import com.esoteric.events.PropertyChangeEvent;
+	import com.esoteric.expressions.Closure;
 	import com.esoteric.utils.List;
 	import fl.motion.easing.Bounce;
 	import fl.motion.easing.Cubic;
@@ -152,6 +153,11 @@ package com.esoteric.core
 		/**
 		 * @private
 		 */
+		private var _closure:Closure;
+		
+		/**
+		 * @private
+		 */
 		private var _uid:String;
 		
 		/**
@@ -213,7 +219,7 @@ package com.esoteric.core
 		 */
 		public function initialize():void
 		{
-			
+			_closure = createClosure();
 		}
 		
 		/**
@@ -291,6 +297,8 @@ package com.esoteric.core
 					_parent.addChild(_target);
 				}
 				
+				_closure = createClosure();
+				
 				_target.dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'parent', oldValue, value));
 			}
 		}
@@ -323,6 +331,19 @@ package com.esoteric.core
 			_target.dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'text', oldValue, value)); 
 			
 			_context.renderQueue.add(_target);
+		}
+		
+		/**
+		 * @inheritDoc
+		 */
+		public function get closure():Closure { return _closure; }
+		
+		/**
+		 * @inheritDoc
+		 */
+		public function set closure(value:Closure):void 
+		{
+			_closure = value;
 		}
 		
 		/**
@@ -437,6 +458,23 @@ package com.esoteric.core
 		 * @return	the total number of elements
 		 */
 		public static function get numElements():int { return _numElements; }
+		
+		/**
+		 * Creates the closure of the element.
+		 * 
+		 * @return	the closure
+		 */
+		protected function createClosure():Closure
+		{
+			if (_parent)
+			{
+				return new Closure(_parent.closure);
+			}
+			else
+			{
+				return new Closure(_context.closure);
+			}
+		}
 		 
 		/**
 		 * Handles when a child is added to this element.

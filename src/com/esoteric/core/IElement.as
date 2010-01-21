@@ -35,6 +35,7 @@
 package com.esoteric.core 
 {
 	import com.esoteric.core.Context;
+	import com.esoteric.expressions.Closure;
 	import com.esoteric.utils.IBindable;
 	import com.esoteric.utils.IDestroyable;
 	import flash.events.Event;
@@ -81,6 +82,13 @@ package com.esoteric.core
 		function get text():String;
 		
 		function set text(value:String):void;
+		
+		/**
+		 * The closure.
+		 */
+		function get closure():Closure;
+		
+		function set closure(value:Closure):void;
 		
 		/**
 		 * The unique ID of the element.

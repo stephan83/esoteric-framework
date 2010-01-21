@@ -79,6 +79,8 @@ package com.esoteric.core
 				trace(e);
 			}
 			
+			element.initialize();
+			
 			return element;
 		}
 		

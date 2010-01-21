@@ -140,8 +140,6 @@ package com.esoteric.core
 				{
 					element = _unknownBuilder.build(context, kind);
 					
-					element.initialize();
-					
 					return element;
 				}
 				

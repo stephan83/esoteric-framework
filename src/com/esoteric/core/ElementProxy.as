@@ -40,6 +40,7 @@ package com.esoteric.core
 	import com.esoteric.events.ElementEvent;
 	import com.esoteric.events.ExpressionEvent;
 	import com.esoteric.events.PropertyChangeEvent;
+	import com.esoteric.expressions.Closure;
 	import com.esoteric.expressions.Expression;
 	import com.esoteric.expressions.ExpressionVm;
 	import com.esoteric.utils.Enumerator;
@@ -88,7 +89,6 @@ package com.esoteric.core
 		private var _expressions:Dictionary = new Dictionary();
 		
 		/**
-		 * @private
 		 * @private
 		 */
 		private var _watchers:Dictionary = new Dictionary();
@@ -175,6 +175,13 @@ package com.esoteric.core
 		{
 			enumerator::setProperty('text', value);
 		}
+		
+		/**
+		 * @inheritDoc
+		 */
+		public function get closure():Closure { return _element.closure; }
+		
+		public function set closure(value:Closure):void { _element.closure = value; }
 		
 		/**
 		 * @inheritDoc
@@ -278,7 +285,7 @@ package com.esoteric.core
 			
 			if (match)
 			{
-				_expressions[name] = new Expression(match[1], _element.context.vm, context.closure);
+				_expressions[name] = new Expression(match[1], _element.context.vm, _element.closure);
 				_watchers[name] = new Watcher(_expressions[name], "value", createExpressionValueHandler(name));
 				
 				_expressions[name].addEventListener(ExpressionEvent.OUTDATED, outdatedExpressionHandler);
