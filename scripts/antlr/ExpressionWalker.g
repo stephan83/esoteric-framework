@@ -139,5 +139,13 @@ value	:	^(
 									{ _codegen.load(); }
 									
 	|	^(a=CreateArray exp*)					{ _codegen.array($a.childCount); }
+	|	funcDef
+	;
+	
+funcDef	:	^(
+			FuncDef						{ _codegen.beginfunc() }
+			i=Identifier*					{ _codegen.arg($i.text) }
+			stmtList					{ _codegen.endfunc() }
+		)
 	;
 	

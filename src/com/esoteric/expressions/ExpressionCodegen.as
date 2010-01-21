@@ -187,6 +187,21 @@ package com.esoteric.expressions
 			addInstruction([ExpressionVm.instructionTypes.array, i]);
 		}
 		
+		public function beginfunc():void
+		{
+			trace('begin func');
+		}
+		
+		public function endfunc():void
+		{
+			trace('end func');
+		}
+		
+		public function arg(identifier:String):void
+		{
+			trace(identifier);
+		}
+		
 		//---------------------------------------------------------------------
 		// GETTERS & SETTERS
 		//---------------------------------------------------------------------

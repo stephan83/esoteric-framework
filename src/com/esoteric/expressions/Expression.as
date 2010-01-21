@@ -239,7 +239,7 @@ package com.esoteric.expressions
 				
 				walker.main();
 				
-				_instructions = walker.instructions;
+				_instructions = walker.instructions || new Array();
 			}
 		}
 		

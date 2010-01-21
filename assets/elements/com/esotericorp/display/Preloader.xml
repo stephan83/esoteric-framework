@@ -39,7 +39,7 @@
 	<Script>
 		<![CDATA[
 			
-			
+			a = function(test) { trace(test); };
 			
 		]]>
 	</Script>
