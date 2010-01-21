@@ -79,6 +79,8 @@ package com.esoteric.display
 		 */
 		public override function initialize():void
 		{
+			super.initialize();
+			
 			hiddenAncestor = !(parent is DisplayObjectElement);
 		}
 		

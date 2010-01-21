@@ -59,18 +59,25 @@ package com.esoteric.core
 		 * 
 		 * @param	xml				the node XML
 		 * @param	context			the context
+		 * @param	parent			the parent node
 		 * @return					the element
 		 */
-		public static function parseNode(xml:XML, context:Context):IElement
+		public static function parseNode(xml:XML, context:Context, parent:IElement = null):IElement
 		{
 			try
 			{
 				var element:IElement = context.factory.create(context, xml.name());
 				
+				if (parent)
+				{
+					parent.addChild(element);
+				}
+				
+				element.initialize();
+				
 				parseChildren(xml, context, element);
 				
 				parseAttributes(xml, element);
-				
 				element.dispatchEvent(new LoadEvent(LoadEvent.PARSED));
 			}
 			catch (e:Error)
@@ -78,8 +85,6 @@ package com.esoteric.core
 				trace(element);
 				trace(e);
 			}
-			
-			element.initialize();
 			
 			return element;
 		}
@@ -135,7 +140,7 @@ package com.esoteric.core
 			{
 				if (child.name())
 				{
-					element.addChild(parseNode(child, context));
+					var childElement:IElement = parseNode(child, context, element);
 				}
 			}
 		}

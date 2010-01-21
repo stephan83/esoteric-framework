@@ -67,11 +67,6 @@ package com.esoteric.core
 		override public function initialize():void
 		{
 			super.initialize();
-			
-			if (expression)
-			{
-				context.expQueue.add(expression);
-			}
 		}
 		
 		/**
@@ -87,26 +82,12 @@ package com.esoteric.core
 			
 			if (value)
 			{
-				expression = new Expression(value, context.vm, context.closure, false, false);
+				expression = new Expression(value, context.vm, parent ? parent.closure : closure, false, false);
 			}
 			
 			super.text = value;
-		}
-		
-		
-		/**
-		 * @inheritDoc
-		 */
-		override protected function createClosure():Closure
-		{trace(parent);
-			if (parent)
-			{
-				return parent.closure;
-			}
-			else
-			{
-				return new Closure(context.closure);
-			}
+			
+			context.expQueue.add(expression);
 		}
 		
 		/**

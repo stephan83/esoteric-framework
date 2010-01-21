@@ -68,7 +68,6 @@ package com.esoteric.core
 		public function AbstractElement(context:Context, kind:String, target:IElement = null) 
 		{
 			_context = context;
-			_parent = parent;
 			_kind = kind;
 			_uid = String(_nextUID++);
 			_target = target ? target : this;
@@ -219,7 +218,10 @@ package com.esoteric.core
 		 */
 		public function initialize():void
 		{
-			_closure = createClosure();
+			if (!_parent)
+			{
+				_closure = createClosure();
+			}
 		}
 		
 		/**
@@ -288,16 +290,15 @@ package com.esoteric.core
 		{
 			if (_parent != value)
 			{
-				var oldValue:IElement = value;
+				var oldValue:IElement = _parent;
 				
 				_parent = value;
+				_closure = createClosure();
 				
 				if (_parent)
 				{
 					_parent.addChild(_target);
 				}
-				
-				_closure = createClosure();
 				
 				_target.dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'parent', oldValue, value));
 			}
@@ -376,15 +377,12 @@ package com.esoteric.core
 		{
 			if (element.parent != _target)
 			{
-				// hack?
-				var oldValue:IElement = element.parent;
-				element['_parent'] = _target;
-				element.dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'parent', oldValue, _target));
+				element.parent = _target;
+			
+				_children.add(element);
+			
+				_target.dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, "numChildren", numChildren - 1, numChildren));
 			}
-			
-			_children.add(element);
-			
-			_target.dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, "numChildren", numChildren - 1, numChildren));
 		}
 		
 		/**

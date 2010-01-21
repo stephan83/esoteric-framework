@@ -62,9 +62,9 @@
 			trace(msg1);
 			trace(print);
 			
-			addEventListener('click', function(e) {
+			/*addEventListener('click', function(e) {
 				trace('click');
-			});
+			});*/
 		]]>
 	</Script>
 	
