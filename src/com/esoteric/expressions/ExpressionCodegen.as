@@ -210,6 +210,11 @@ package com.esoteric.expressions
 			}
 		}
 		
+		public function ret(hasValue:Boolean):void
+		{
+			addInstruction([ExpressionVm.instructionTypes.ret, hasValue]);
+		}
+		
 		//---------------------------------------------------------------------
 		// GETTERS & SETTERS
 		//---------------------------------------------------------------------

@@ -11,7 +11,7 @@ options {
 
 tokens {
 	StmtList;
-	ExpList;
+	InstrList;
 	FuncCall;
 	PropRef;
 	PropExp;
@@ -20,6 +20,8 @@ tokens {
 	IfStmt;
 	WhileStmt;
 	ForStmt;
+	FuncDef;
+	Return;
 }
 
 @parser::package {com.esoteric.expressions}
@@ -58,7 +60,7 @@ stmtList
 stmt		
 	:	ifStmt^
 	|	whileStmt^
-	|	expList^
+	|	instrList^
 	;
 	
 ifStmt
@@ -75,14 +77,19 @@ block
 	:	'{' stmtList '}'			-> ^(stmtList)
 	;
 
-expList
-	:	exp
+instrList
+	:	instr
 		(
-			';' exp
+			';' instr
 		|	';'
-		)*					-> ^(ExpList exp+)
+		)*					-> ^(InstrList instr+)
 	;
 	
+instr
+	:	exp
+	|	ret
+	;
+		
 exp
 	:	assignExp^
 	|	condExp^
@@ -216,7 +223,9 @@ atom
 	|	StringLiteral
 	|	'true'
 	|	'false'
+	|	'null'
 	|	referenceOrFuncCall
+	|	funcDef
 	|	'('! exp ')'!
 	;
 
@@ -245,6 +254,22 @@ referenceOrFuncCall
 		)*
 	;
 	
+funcDef
+	:	'function'
+		(
+			'(' a=args ')'	b=block		-> ^(FuncDef $a $b)	
+		|	'(' ')'	b=block			-> ^(FuncDef $b)
+		)
+	;
+	
+args
+	:	Identifier
+		(
+			','!
+			Identifier
+		)*
+	;
+	
 object
 	:	Identifier
 	|	array
@@ -269,6 +294,12 @@ items
 			','!
 			exp
 		)*
+	;
+
+ret
+	:
+		'return' e=exp			-> ^(Return $e)
+	|	'return'			-> ^(Return)
 	;
 
 //-----------------------------------------------------------------------------

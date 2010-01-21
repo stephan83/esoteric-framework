@@ -67,7 +67,8 @@ package com.esoteric.expressions
 			jumpc:		"jumpc",
 			array:		"array",
 			func:		"func",
-			arg:		"arg"
+			arg:		"arg",
+			ret:		"ret"
 		}
 		
 		//---------------------------------------------------------------------
@@ -478,6 +479,21 @@ package com.esoteric.expressions
 					{
 						context[instruction[1]] = _stack[_top];
 						_top--;
+						break;
+					}
+					
+					case instructionTypes.ret:
+					{
+						_top = initialTop;
+						
+						if (instruction[1])
+						{
+							return _stack[_top + 1];
+						}
+						else
+						{
+							return null;
+						}
 						break;
 					}
 				}

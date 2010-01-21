@@ -42,7 +42,7 @@
 			print = function(msg1, msg2)
 			{ 
 				concat = function(a, b) {
-					a + b;
+					return a + b;
 				}
 				
 				trace(concat(msg1, msg2));

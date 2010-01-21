@@ -46,12 +46,13 @@ stmtList:	^(StmtList stmt*)
 	|	EOF
 	;
 	
-stmt	:	expList
+stmt	:	instrList
 	|	ifStmt
 	|	whileStmt
 	;
 	
-expList	:	^(ExpList exp*)
+instrList
+	:	^(InstrList instr*)
 	;
 	
 ifStmt	:	^(
@@ -81,6 +82,10 @@ whileStmt
 			exp						{ _codegen.beginwhile() }
 			stmtList					{ _codegen.endwhile() }
 		)
+	;
+	
+instr	:	exp
+	|	ret
 	;
 
 exp	:	set
@@ -133,6 +138,7 @@ value	:	^(
 	
 	|	'true'							{ _codegen.push(true); }
 	|	'false'							{ _codegen.push(false); }
+	|	'null'							{ _codegen.push(null); }
 	
 	|	i=Identifier						{ _codegen.pushc(); }
 									{ _codegen.push($i.text); }
@@ -150,4 +156,10 @@ funcDef	:	^(
 	;
 	
 arg	:	i=Identifier						{ _codegen.arg($i.text) }
+	;
+
+ret
+	:
+		^(Return exp)						{ _codegen.ret(true) }
+	|	Return							{ _codegen.ret(false) }
 	;
