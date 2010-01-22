@@ -428,7 +428,9 @@ package com.esoteric.expressions
 							try
 							{
 								if (bind && target is IBindable && bindablePropertiesEnabled)
+								{
 									dispatchEvent(new ExpressionEvent(ExpressionEvent.BINDABLE_PROPERTY_LOADED, false, false, IBindable(target), prop));
+								}
 								
 								_stack[_top] = target[prop];
 							}

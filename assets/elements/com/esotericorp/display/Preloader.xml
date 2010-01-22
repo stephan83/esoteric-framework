@@ -37,17 +37,17 @@
 <Preloader>
 	
 	
-	<Sprite alpha="1" mouseEnabled="true" buttonMode="true" useHandCursor="true">
+	<Sprite alpha=".1" mouseEnabled="true" buttonMode="true" useHandCursor="true">
 		<Shape>
-			<SolidFill>
+			<SolidFill color="0xff0000">
 				<Rectangle width="{stageWidth}" height="{stageHeight}" />
 			</SolidFill>
 		</Shape>
 		
 		<Script>
 			<![CDATA[
-				this.addEventListener('click', function(e) {
-					trace('click');
+				this.addEventListener('move', function(e) {
+					trace(e.localX, e.globalX);
 				});
 			]]>
 		</Script>

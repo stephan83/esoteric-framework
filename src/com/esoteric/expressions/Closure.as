@@ -38,6 +38,7 @@ package com.esoteric.expressions
 	import com.esoteric.events.PropertyChangeEvent;
 	import com.esoteric.utils.BindableObject;
 	import com.esoteric.utils.Enumerator;
+	import com.esoteric.utils.IBindable;
 	import flash.utils.Dictionary;
 	
 	/**
@@ -45,7 +46,7 @@ package com.esoteric.expressions
 	 * 
 	 * @author Stephan Florquin
 	 */
-	public class Closure extends Enumerator
+	public class Closure extends Enumerator implements IBindable
 	{
 		
 		//---------------------------------------------------------------------

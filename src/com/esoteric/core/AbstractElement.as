@@ -230,6 +230,7 @@ package com.esoteric.core
 		public function render():void
 		{
 			
+			dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 		}
 		
 		/**
@@ -564,7 +565,7 @@ package com.esoteric.core
 		 */
 		private function childUpdatedHandler(e:ElementEvent):void 
 		{
-			
+			_context.renderQueue.add(_target);
 		}
 		
 		/**
