@@ -99,7 +99,16 @@ package com.esoteric.utils
 		
 		public function toString():String
 		{
-			return '[BindableArray]';
+			var s:String = '[';
+			
+			for each (var v:* in this) 
+			{
+				s += v + ',';
+			}
+			
+			s += ']';
+			
+			return s;
 		}
 		
 		public function hasEventListener(type:String):Boolean
