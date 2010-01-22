@@ -46,7 +46,7 @@
 		
 		<Script>
 			<![CDATA[
-				this.addEventListener('move', function(e) {
+				this.addEventListener('click', function(e) {
 					trace(e.localX, e.globalX);
 				});
 			]]>
@@ -58,6 +58,14 @@
 			
 			msg1 = 'this should not change';
 			a = 'global';
+			z = function() { };
+			var obj = {
+				x: 0,
+				y: 10,
+				z: function(a, b) { return a * b; }
+			};
+			
+			trace(obj.z(9, 7));
 			
 			print = function(msg1, msg2)
 			{
@@ -93,6 +101,17 @@
 			
 			trace(a);
 			
+			var rec = function(a) {
+				trace(a);
+				
+				if(a > 0)
+				{
+					rec(a - 1);
+				}
+			}
+			
+			rec(20);
+			
 			
 		]]>
 	</Script>
@@ -101,7 +120,7 @@
 		<![CDATA[
 			
 			trace('in second script');
-			print('will this ', + 'work???');
+			rec(20);
 		]]>
 	</Script>
 

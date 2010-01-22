@@ -70,7 +70,16 @@ package com.esoteric.utils
 		
 		public function toString():String
 		{
-			return '[BindableObject]';
+			var s:String = '{';
+			
+			for (var p:* in _object) 
+			{
+				s += p + ': ' + _object[p] + ', ';
+			}
+			
+			s += '}';
+			
+			return s;
 		}
 		
 		//---------------------------------------------------------------------

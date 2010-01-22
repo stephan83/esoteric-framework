@@ -103,7 +103,7 @@ package com.esoteric.utils
 			
 			for each (var v:* in this) 
 			{
-				s += v + ',';
+				s += v + ', ';
 			}
 			
 			s += ']';

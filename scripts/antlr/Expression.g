@@ -17,6 +17,7 @@ tokens {
 	PropExp;
 	CondExp;
 	CreateArray;
+	CreateObject;
 	IfStmt;
 	WhileStmt;
 	ForStmt;
@@ -52,10 +53,7 @@ main
 	;
 	
 stmtList
-	:	stmt
-		(
-			stmt
-		)*					-> ^(StmtList stmt+)
+	:	stmt*					-> ^(StmtList stmt*)
 	;
 	
 stmt		
@@ -279,6 +277,7 @@ args
 object
 	:	Identifier
 	|	array
+	|	createObj
 	;
 	
 params
@@ -299,6 +298,19 @@ items
 		(
 			','!
 			exp
+		)*
+	;
+	
+createObj
+	:	'{' o=objItems '}'			-> ^(CreateObject $o)
+	|	'{' '}'					-> ^(CreateObject $o)
+	;
+	
+objItems
+	:	(Identifier | StringLiteral) ':'! exp
+		(
+			','!
+			(Identifier | StringLiteral) ':'! exp
 		)*
 	;
 

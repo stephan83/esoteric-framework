@@ -67,6 +67,7 @@ package com.esoteric.expressions
 			jump:		"jump",
 			jumpc:		"jumpc",
 			array:		"array",
+			object:		"object",
 			func:		"func",
 			arg:		"arg",
 			ret:		"ret"
@@ -483,6 +484,21 @@ package com.esoteric.expressions
 					{
 						_top -= instruction[1] - 1;
 						_stack[_top] = BindableArray.fromArray(_stack.slice(_top, _top + instruction[1]));
+						break;
+					}
+					
+					case instructionTypes.object:
+					{
+						_top -= instruction[1] - 1;
+						
+						var object:BindableObject = new BindableObject();
+						
+						for (var offset:int = 0; offset < instruction[1]; offset += 2)
+						{
+							object[_stack[_top + offset + 1]] = _stack[_top + offset];
+						}
+						
+						_stack[_top] = object;
 						break;
 					}
 					

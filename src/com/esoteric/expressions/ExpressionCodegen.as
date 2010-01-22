@@ -51,7 +51,7 @@ package com.esoteric.expressions
 		private var _instructions:Array = new Array();
 		private var _currStateStack:Array = new Array();
 		private var _offsets:Array = new Array();
-		private var _debug:Boolean = false;
+		private var _debug:Boolean = true;
 		
 		private var _stateStacks:Object = {
 			"if":	new Array(),
@@ -191,6 +191,11 @@ package com.esoteric.expressions
 		public function array(i:int):void		
 		{
 			addInstruction([ExpressionVm.instructionTypes.array, i]);
+		}
+		
+		public function object(i:int):void		
+		{
+			addInstruction([ExpressionVm.instructionTypes.object, i]);
 		}
 		
 		public function beginfunc():void

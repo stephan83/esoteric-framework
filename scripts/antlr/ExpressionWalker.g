@@ -155,6 +155,13 @@ value	:	^(
 									{ _codegen.load(); }
 									
 	|	^(a=CreateArray exp*)					{ _codegen.array($a.childCount); }
+	|	^(
+			o=CreateObject
+			(
+				i=Identifier exp			{ _codegen.push($i.text) }
+			|	s=StringLiteral exp			{ _codegen.push(cleanUpString($s.text)) }
+			)*						{ _codegen.object($o.childCount) }
+		)
 	|	funcDef
 	;
 	
