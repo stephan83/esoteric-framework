@@ -460,7 +460,7 @@ package com.esoteric.expressions
 					{
 						_top -= instruction[1];
 						var f:Function = _stack[_top];
-						_stack[_top] = f.apply(null, _stack.slice(_top + 1, _top + instruction[1] + 1));
+						_stack[_top] = f.apply(closure, _stack.slice(_top + 1, _top + instruction[1] + 1));
 						break;
 					}
 					

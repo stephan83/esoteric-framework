@@ -62,6 +62,12 @@ package com.esoteric.core
 		// Constructor
 		//---------------------------------------------------------------------
 		
+		override public function addEventListener(type:String, listener:Function, useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean=false):void
+		{
+			trace('TEST', type);
+			super.addEventListener(type, listener, useCapture, priority, useWeakReference);
+		}
+		
 		/**
 		 * Constructor.
 		 */
@@ -469,14 +475,12 @@ package com.esoteric.core
 			
 			if (_parent)
 			{
-				closure = new Closure(_parent.closure);
+				closure = new Closure(_parent.closure, _target);
 			}
 			else
 			{
-				closure = new Closure(_context.closure);
+				closure = new Closure(_context.closure, _target);
 			}
-			
-			closure.setLocal('this', _target);
 			
 			return closure;
 		}
