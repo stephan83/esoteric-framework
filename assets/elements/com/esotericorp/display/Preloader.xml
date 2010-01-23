@@ -52,6 +52,8 @@
 			</SolidFill>
 		</Shape>
 	</Sprite>
+	
+	<TextField id="textField" color="0xffffff"></TextField>
 		
 	<Script>
 		<![CDATA[
@@ -60,11 +62,15 @@
 			
 			trace($('* [kind=SolidFill]').attr('color'));
 			
+			var string = 'Hello, World!';
+			
+			$('#textField').attr('text', '{string}');
+			
 			$('* [kind=Sprite]').click(function(e) {
-				trace(e.localX, e.localY);
+				string = e.localX + ';' + e.localY;
 			});
 			
-			//$('#test').attr('scaleX', '{someExpression + someExpression}');
+			$('#textField').attr('text', '{string}');
 		]]>
 	</Script>
 
