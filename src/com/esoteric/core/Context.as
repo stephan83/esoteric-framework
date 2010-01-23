@@ -76,7 +76,9 @@ package com.esoteric.core
 			_closure['trace'] = trace;
 			
 			// enable eQuery
-			_closure['$'] = EQuery.$;
+			_closure['$'] = function(query:String, context:* = null):* {
+				EQuery.$(query, context || _root);
+			}
 			
 			_stage.addEventListener(Event.RESIZE, resizeHandler);
 		}
@@ -84,6 +86,11 @@ package com.esoteric.core
 		//---------------------------------------------------------------------
 		// Members
 		//---------------------------------------------------------------------
+		
+		/**
+		 * @private
+		 */
+		private var _root:IElement;
 		
 		/**
 		 * @private
@@ -192,6 +199,16 @@ package com.esoteric.core
 		public function set closure(value:Closure):void 
 		{
 			_closure = value;
+		}
+		
+		/**
+		 * The root element.
+		 */
+		public function get root():IElement { return _root; }
+		
+		public function set root(value:IElement):void 
+		{
+			_root = value;
 		}
 		
 		/**

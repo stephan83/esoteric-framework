@@ -60,9 +60,10 @@ package com.esoteric.core
 		 * @param	xml				the node XML
 		 * @param	context			the context
 		 * @param	parent			the parent node
+		 * @param	isRoot			whether element is root elements (parent must be null)
 		 * @return					the element
 		 */
-		public static function parseNode(xml:XML, context:Context, parent:IElement = null):IElement
+		public static function parseNode(xml:XML, context:Context, parent:IElement = null, isRoot:Boolean = false):IElement
 		{
 			try
 			{
@@ -71,6 +72,10 @@ package com.esoteric.core
 				if (parent)
 				{
 					parent.addChild(element);
+				}
+				else if (isRoot)
+				{
+					context.root = element;
 				}
 				
 				element.initialize();

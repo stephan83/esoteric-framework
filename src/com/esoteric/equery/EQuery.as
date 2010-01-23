@@ -84,18 +84,25 @@ package com.esoteric.equery
 			_query = value;
 		}
 		
-		public static function $(query:String, elements:Array):*
+		/**
+		 * Creates a query and evaluates it.
+		 * 
+		 * @param	query		the query
+		 * @param	context		the query context
+		 * @return	an array of elements, an element, or null
+		 */
+		public static function $(query:String, context:*):*
 		{
-			
+			return new EQuery(query).eval(context);
 		}
 		
 		/**
 		 * Evaluates the query on a array of elements.
 		 * 
-		 * @param	elements	the array of elements
+		 * @param	context		the query context (element or array of element)
 		 * @return	an array of elements, an element, or null
 		 */
-		public function eval(elements:Array):*
+		public function eval(context:*):*
 		{
 			var reporter = new EQueryErrorReporter(this);
 			var lexer:EQueryLexer = new EQueryLexer(new ANTLRStringStream(_query));
@@ -113,6 +120,7 @@ package com.esoteric.equery
 				return null;
 			}
 			
+			var elements:Array = context is Array ? Array(context) : [context];			
 			var elementSet:ElementSet = new ElementSet(elements);
 			var walker:EQueryWalker = new EQueryWalker(nodes);
 			

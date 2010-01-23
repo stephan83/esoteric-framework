@@ -46,9 +46,7 @@
 		
 		<Script>
 			<![CDATA[
-				addEventListener('click', function(e) {
-					trace(parent);
-				});
+				$('test');
 			]]>
 		</Script>
 	</Sprite>
