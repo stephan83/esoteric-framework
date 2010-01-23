@@ -47,19 +47,10 @@
 		<Script>
 			<![CDATA[
 				addEventListener('click', function(e) {
-					trace(e.localX, e.globalX);
+					trace(parent);
 				});
 			]]>
 		</Script>
 	</Sprite>
-	
-	<Script>
-		<![CDATA[
-			trace('!!!!!!!!!!!!!!!!!!!!!!!!!!');
-			addEventListener('click', function(e) {
-				trace(e.localX);
-			});
-		]]>
-	</Script>
 
 </Preloader>
