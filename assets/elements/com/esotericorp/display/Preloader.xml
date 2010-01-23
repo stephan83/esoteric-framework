@@ -37,18 +37,35 @@
 <Preloader>
 	
 	
-	<Sprite alpha=".1" mouseEnabled="true" buttonMode="true" useHandCursor="true">
+	<Sprite mouseEnabled="true" buttonMode="true" useHandCursor="true">
 		<Shape>
 			<SolidFill color="0xff0000">
 				<Rectangle width="{stageWidth}" height="{stageHeight}" />
 			</SolidFill>
 		</Shape>
-		
-		<Script>
-			<![CDATA[
-				trace($('>> [kind=Shape]'));
-			]]>
-		</Script>
 	</Sprite>
+	
+	<Sprite mouseEnabled="true" buttonMode="true" useHandCursor="true">
+		<Shape id="test">
+			<SolidFill color="0x00ff00">
+				<Rectangle width="{stageWidth / 4}" height="{stageHeight / 4}" />
+			</SolidFill>
+		</Shape>
+	</Sprite>
+		
+	<Script>
+		<![CDATA[
+			trace($('* [kind=SolidFill]').attr('color'));
+			$('> [kind=Sprite]').attr('alpha', .2).$('>>').attr('color', 0x0000ff);
+			
+			trace($('* [kind=SolidFill]').attr('color'));
+			
+			$('* [kind=Sprite]').click(function(e) {
+				trace(e.localX, e.localY);
+			});
+			
+			//$('#test').attr('scaleX', '{someExpression + someExpression}');
+		]]>
+	</Script>
 
 </Preloader>

@@ -35,7 +35,9 @@
 	
 package com.esoteric.core 
 {
+	import com.esoteric.equery.ElementSet;
 	import com.esoteric.equery.EQuery;
+	import com.esoteric.equery.EQueryObject;
 	import com.esoteric.expressions.Closure;
 	import com.esoteric.expressions.ExpressionVm;
 	import com.esoteric.net.Cache;
@@ -76,8 +78,8 @@ package com.esoteric.core
 			_closure['trace'] = trace;
 			
 			// enable eQuery
-			_closure['$'] = function(query:String, context:* = null):* {
-				return EQuery.$(query, context || _root);
+			_closure['$'] = function(query:String):EQueryObject {
+				return new EQueryObject(new ElementSet([_root])).$(query);
 			}
 			
 			_stage.addEventListener(Event.RESIZE, resizeHandler);

@@ -36,6 +36,7 @@
 package com.esoteric.equery 
 {
 	import com.esoteric.core.IElement;
+	
 	/**
 	 * An element set.
 	 * 
@@ -81,7 +82,29 @@ package com.esoteric.equery
 		 */
 		public function selectAll():void
 		{
+			_result = selectAllRec(_result);
+		}
+		
+		/**
+		 * @private
+		 */
+		private function selectAllRec(elements:Array):Array
+		{
+			var result:Array = elements;
 			
+			for each (var element:IElement in elements) 
+			{
+				var children:Array = new Array();
+				
+				for (var i:int = 0; i < element.numChildren; i++) 
+				{
+					children[children.length] = element.getChildAt(i);
+				}
+				
+				result = result.concat(selectAllRec(children));
+			}
+			
+			return result;
 		}
 		
 		/**
@@ -91,7 +114,46 @@ package com.esoteric.equery
 		 */
 		public function selectId(id:String):void
 		{
+			var result:IElement = selectIdRec(_result, id)
 			
+			if (result)
+			{
+				_result = [result];
+			}
+			else
+			{
+				_result = [];
+			}
+		}
+		
+		/**
+		 * @private
+		 */
+		private function selectIdRec(elements:Array, id:String):IElement
+		{
+			for each (var element:IElement in elements) 
+			{
+				if (element.id == id)
+				{
+					return element;
+				}
+				
+				var children:Array = new Array();
+				
+				for (var i:int = 0; i < element.numChildren; i++) 
+				{
+					children[children.length] = element.getChildAt(i);
+				}
+				
+				var result:IElement = selectIdRec(children, id);
+				
+				if (result)
+				{
+					return result;
+				}
+			}
+			
+			return null;
 		}
 		
 		/**
@@ -127,7 +189,10 @@ package com.esoteric.equery
 		 */
 		public function selectFirst():void
 		{
-			
+			if (_result.length)
+			{
+				_result = [_result[0]];
+			}
 		}
 		
 		/**
@@ -135,7 +200,10 @@ package com.esoteric.equery
 		 */
 		public function selectLast():void
 		{
-			
+			if (_result.length)
+			{
+				_result = [_result[_result.length - 1]];
+			}
 		}
 		
 		/**
@@ -238,12 +306,12 @@ package com.esoteric.equery
 			
 			var old:Array = _result;
 			_result = new Array();
-			trace(old);
+			
 			switch(op)
 			{
 				case '=': {
 					for each (var element:IElement in old) 
-					{trace(element[attr]);
+					{
 						if (element[attr] == s)
 						{
 							_result[_result.length] = element;
