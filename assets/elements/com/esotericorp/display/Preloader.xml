@@ -68,9 +68,12 @@
 			
 			$('* [kind=Sprite]').click(function(e) {
 				string = e.localX + ';' + e.localY;
+				trace(string);
 			});
 			
 			$('#textField').attr('text', '{string}');
+			
+			//var omg = '{string + 'test'}';
 		]]>
 	</Script>
 

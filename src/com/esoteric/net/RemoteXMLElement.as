@@ -105,8 +105,6 @@ package com.esoteric.net
 		 */
 		public function load():void
 		{
-			startLoading();
-			
 			try
 			{
 				_loader.close();
@@ -129,7 +127,6 @@ package com.esoteric.net
 				
 				request.method = URLRequestMethod.POST;
 				request.data = urlVariables;
-				//_loader.dataFormat = URLLoaderDataFormat.VARIABLES;
 			}
 			
 			_loader.load(request);
@@ -177,8 +174,6 @@ package com.esoteric.net
 					proxy[attributes[i].name().toString()] = value;
 				}
 			}
-			
-			finishLoading();
 		}
 		
 		/**
@@ -186,7 +181,7 @@ package com.esoteric.net
 		 */
 		private function ioErrorHandler(event:IOErrorEvent):void
 		{
-			errorLoading();
+			
 		}
 
 	}

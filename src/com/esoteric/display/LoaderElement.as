@@ -88,8 +88,6 @@ package com.esoteric.display
 			
 			if (value) 
 			{
-				startLoading();
-				
 				loader.load(new URLRequest(value));
 			}
 			
@@ -105,7 +103,7 @@ package com.esoteric.display
 		 */
 		private function completeHandler(e:Event):void 
 		{
-			finishLoading();
+			
 		}
 		
 	}

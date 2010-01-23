@@ -56,21 +56,14 @@ package com.esoteric.expressions
 		/**
 		 * Constructor.
 		 */
-		public function Closure(parent:Closure = null, base:IBindable = null) 
+		public function Closure(parent:Closure = null) 
 		{
 			_parent = parent;
-			_base = base;
 			
 			if (_parent)
 			{
 				_parent.addEventListener(PropertyChangeEvent.PROPERTY_ADDED, parentPropertyAddedHandler);
 				_parent.addEventListener(PropertyChangeEvent.PROPERTY_UPDATED, parentPropertyUpdatedHandler);
-			}
-			
-			if (_base)
-			{
-				_base.addEventListener(PropertyChangeEvent.PROPERTY_ADDED, parentPropertyAddedHandler);
-				_base.addEventListener(PropertyChangeEvent.PROPERTY_UPDATED, parentPropertyUpdatedHandler);
 			}
 		}
 		
@@ -82,11 +75,6 @@ package com.esoteric.expressions
 		 * @private
 		 */
 		private var _parent:Closure;
-		
-		/**
-		 * @private
-		 */
-		private var _base:IBindable;
 		
 		/**
 		 * @private
@@ -104,11 +92,6 @@ package com.esoteric.expressions
 		
 		override enumerator function getProperty(name:*):*
 		{
-			if (Object(_base).hasOwnProperty(name))
-			{
-				return _base[name];
-			}
-			
 			if (_dict.hasOwnProperty(name))
 			{
 				return _dict[name];
@@ -124,11 +107,7 @@ package com.esoteric.expressions
 		
 		override enumerator function setProperty(name:*, value:*):void
 		{
-			if (Object(_base).hasOwnProperty(name))
-			{
-				_base[name] = value;
-			}
-			else if (hasOwnProperty(name))
+			if (hasOwnProperty(name))
 			{
 				if (_dict.hasOwnProperty(name))
 				{
@@ -167,11 +146,6 @@ package com.esoteric.expressions
 		
 		override enumerator function hasProperty(name:*):Boolean
 		{
-			if (Object(_base).hasOwnProperty(name))
-			{
-				return true;
-			}
-			
 			if (_dict.hasOwnProperty(name))
 			{
 				return true;
@@ -208,71 +182,6 @@ package com.esoteric.expressions
 			return _items[index - 1];
 		}*/
 		
-		/**
-		 * @inheritDoc
-		 */
-		override public function hasEventListener(type:String):Boolean
-		{
-			if (type != PropertyChangeEvent.PROPERTY_ADDED && type != PropertyChangeEvent.PROPERTY_REMOVED && type != PropertyChangeEvent.PROPERTY_UPDATED)
-			{
-				return _base.hasEventListener(type);
-			}
-			
-			return super.hasEventListener(type);
-		}
-		
-		/**
-		 * @inheritDoc
-		 */
-		override public function willTrigger(type:String):Boolean
-		{
-			if (type != PropertyChangeEvent.PROPERTY_ADDED && type != PropertyChangeEvent.PROPERTY_REMOVED && type != PropertyChangeEvent.PROPERTY_UPDATED)
-			{
-				return _base.willTrigger(type);
-			}
-			
-			return super.willTrigger(type);
-		}
-
-		/**
-		 * @inheritDoc
-		 */
-		override public function addEventListener(type:String, listener:Function, useCapture:Boolean=false, priority:int=0.0, useWeakReference:Boolean=false):void
-		{
-			if (type != PropertyChangeEvent.PROPERTY_ADDED && type != PropertyChangeEvent.PROPERTY_REMOVED && type != PropertyChangeEvent.PROPERTY_UPDATED)
-			{
-				_base.addEventListener(type, listener, useCapture, priority, useWeakReference);
-			}
-			
-			super.addEventListener(type, listener, useCapture, priority, useWeakReference);
-		}
-
-		/**
-		 * @inheritDoc
-		 */
-		override public function removeEventListener(type:String, listener:Function, useCapture:Boolean=false):void
-		{
-			if (type != PropertyChangeEvent.PROPERTY_ADDED && type != PropertyChangeEvent.PROPERTY_REMOVED && type != PropertyChangeEvent.PROPERTY_UPDATED)
-			{
-				_base.removeEventListener(type, listener, useCapture);
-			}
-			
-			super.removeEventListener(type, listener, useCapture);
-		}
-
-		/**
-		 * @inheritDoc
-		 */
-		override public function dispatchEvent(event:Event):Boolean
-		{
-			if (event.type != PropertyChangeEvent.PROPERTY_ADDED && event.type != PropertyChangeEvent.PROPERTY_REMOVED && event.type != PropertyChangeEvent.PROPERTY_UPDATED)
-			{
-				return _base.dispatchEvent(event);
-			}
-			
-			return super.dispatchEvent(event);
-		}
-		
 		//---------------------------------------------------------------------
 		// Methods
 		//---------------------------------------------------------------------
@@ -286,11 +195,7 @@ package com.esoteric.expressions
 		 */
 		public function setLocal(name:*, value:*):void
 		{
-			if (Object(_base).hasOwnProperty(name))
-			{
-				_base[name] = value;
-			}
-			else if (_dict.hasOwnProperty(name))
+			if (_dict.hasOwnProperty(name))
 			{
 				var oldValue:* = _dict[name];
 			
@@ -332,22 +237,6 @@ package com.esoteric.expressions
 		 * @private
 		 */
 		private function parentPropertyAddedHandler(e:PropertyChangeEvent):void 
-		{
-			dispatchEvent(e.clone());
-		}
-		
-		/**
-		 * @private
-		 */
-		private function basePropertyUpdatedHandler(e:PropertyChangeEvent):void 
-		{
-			dispatchEvent(e.clone());
-		}
-		
-		/**
-		 * @private
-		 */
-		private function basePropertyAddedHandler(e:PropertyChangeEvent):void 
 		{
 			dispatchEvent(e.clone());
 		}

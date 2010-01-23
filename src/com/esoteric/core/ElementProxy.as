@@ -196,22 +196,9 @@ package com.esoteric.core
 		/**
 		 * @inheritDoc
 		 */
-		public function get loading():Boolean { return _element.loading; }
-		
-		/**
-		 * @inheritDoc
-		 */
 		public function getChildAt(index:int):IElement
 		{
 			return _element.getChildAt(index);
-		}
-		
-		/**
-		 * @inheritDoc
-		 */
-		public function findElements(property:String, value:String):Array
-		{
-			return _element.findElements(property, value);
 		}
 		
 		/**
@@ -236,14 +223,6 @@ package com.esoteric.core
 		public function render():void
 		{
 			_element.render();
-		}
-		
-		/**
-		 * @inheritDoc
-		 */
-		public function contains(element:IElement):Boolean
-		{
-			return _element.contains(element);
 		}
 		
 		//---------------------------------------------------------------------

@@ -100,11 +100,6 @@ package com.esoteric.core
 		 */
 		function get kind():String;
 		
-		/**
-		 * Whether the element is loading.
-		 */
-		function get loading():Boolean;
-		
 		//---------------------------------------------------------------------
 		// Methods
 		//---------------------------------------------------------------------
@@ -128,15 +123,6 @@ package com.esoteric.core
 		function getChildAt(index:int):IElement;
 		
 		/**
-		 * Returns an array of elements that have their property set to value.
-		 * 
-		 * @param	property	the property name
-		 * @param	value		the value
-		 * @return				the elements found
-		 */
-		function findElements(property:String, value:String):Array;
-		
-		/**
 		 * Adds a child.
 		 * 
 		 * @param	element	the element to add
@@ -149,14 +135,6 @@ package com.esoteric.core
 		 * @param	child	the child to remove
 		 */
 		function removeChild(child:IElement):void;
-		
-		/**
-		 * Returns whether the elements contains another element.
-		 * 
-		 * @param	element	the element
-		 * @return	whether the elements contains the other element
-		 */
-		function contains(element:IElement):Boolean;
 		
 	}
 	

@@ -84,9 +84,7 @@ package com.esoteric.display
 		override public function set url(value:String):void
 		{
 			if (value) 
-			{				
-				startLoading();
-				
+			{
 				var data:* = context.cache.get(value);
 				
 				if (data is ByteArray)
@@ -160,8 +158,6 @@ package com.esoteric.display
 		 */
 		private function ioErrorHandler(e:Event):void 
 		{
-			errorLoading();
-			
 			e.target.removeEventListener(Event.COMPLETE, completeHandler);
 			e.target.removeEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
 		}
@@ -195,8 +191,6 @@ package com.esoteric.display
 			
 			if(height != 0.0)
 				bitmap.height = height;
-				
-			finishLoading();
 		}
 		
 		/**
@@ -218,8 +212,6 @@ package com.esoteric.display
 			
 			if(height != 0.0)
 				bitmap.height = height;
-				
-			finishLoading();
 		}
 
 	}

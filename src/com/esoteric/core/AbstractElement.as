@@ -167,47 +167,12 @@ package com.esoteric.core
 		/**
 		 * @private
 		 */
-		private var _loadQueue:List = new List();
-		
-		/**
-		 * @private
-		 */
-		private var _total:int = 0;
-		
-		/**
-		 * @private
-		 */
 		private var _target:IElement;
 		
 		/**
 		 * @private
 		 */
-		private var _loading:Boolean = false;
-		
-		/**
-		 * @private
-		 */
-		private var _eventQueue:Array = new Array();
-		
-		/**
-		 * @private
-		 */
-		private var _nextFrameEventQueue:Array = new Array();
-		
-		/**
-		 * @private
-		 */
-		private var _rendering:Boolean = false;
-		
-		/**
-		 * @private
-		 */
 		private var _context:Context;
-		
-		/**
-		 * @private
-		 */
-		private var _errorLoading:Boolean;
 		
 		//---------------------------------------------------------------------
 		// Interface implementations
@@ -229,7 +194,6 @@ package com.esoteric.core
 		 */
 		public function render():void
 		{
-			
 			dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 		}
 		
@@ -252,15 +216,11 @@ package com.esoteric.core
 			_children.removeEventListener(PropertyChangeEvent.PROPERTY_REMOVED, childRemovedHandler);
 			
 			_children.destroy();
-			_loadQueue.destroy();
 			
 			_children = null;
 			_context = null;
-			_eventQueue = null;
 			_id = null;
 			_kind = null;
-			_loadQueue = null;
-			_nextFrameEventQueue = null;
 			_text = null;
 			_uid = null;
 			
@@ -361,11 +321,6 @@ package com.esoteric.core
 		/**
 		 * @inheritDoc
 		 */
-		public function get loading():Boolean { return _loading; };
-		
-		/**
-		 * @inheritDoc
-		 */
 		public function getChildAt(index:int):IElement
 		{
 			return _children[index];
@@ -397,57 +352,6 @@ package com.esoteric.core
 			_target.dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, "numChildren", numChildren + 1, numChildren));
 		}
 		
-		/**
-		 * @inheritDoc
-		 */
-		public function findElements(property:String, value:String):Array
-		{
-			var elements:Array = new Array();
-			
-			try
-			{
-				if (_target[property] == value)
-				{
-					elements.push(_target);
-				}
-			}
-			catch (e:Error)
-			{
-				
-			}
-			
-			for each(var child:IElement in _children)
-			{
-				
-				elements = elements.concat(child.findElements(property, value));
-			}
-			
-			return elements;
-		}
-		
-		/**
-		 * @inheritDoc
-		 */
-		public function contains(element:IElement):Boolean
-		{
-			if (element == _target)
-			{
-				return true;
-			}
-			
-			for each(var child:IElement in _children)
-			{
-				var match:Boolean = child.contains(element);
-				
-				if (match)
-				{
-					return true;
-				}
-			}
-			
-			return false;
-		}
-		
 		//---------------------------------------------------------------------
 		// Methods
 		//---------------------------------------------------------------------
@@ -469,11 +373,11 @@ package com.esoteric.core
 			
 			if (_parent)
 			{
-				closure = new Closure(_parent.closure, _target);
+				closure = new Closure(_parent.closure);
 			}
 			else
 			{
-				closure = new Closure(_context.closure, _target);
+				closure = new Closure(_context.closure);
 			}
 			
 			return closure;
@@ -487,13 +391,6 @@ package com.esoteric.core
 		protected function childAddedHandler(e:PropertyChangeEvent):void 
 		{	
 			e.newValue.addEventListener(ElementEvent.UPDATED, childUpdatedHandler);
-			
-			e.newValue.addEventListener(LoadEvent.BEGIN, childBeginHandler);
-			e.newValue.addEventListener(LoadEvent.FINISH, childFinishHandler);
-			e.newValue.addEventListener(LoadEvent.ERROR, childErrorHandler);
-			e.newValue.addEventListener(LoadEvent.DESCENDANT_BEGIN, childDescendantBeginHandler);
-			e.newValue.addEventListener(LoadEvent.DESCENDANT_FINISH, childDescendantFinishHandler);
-			e.newValue.addEventListener(LoadEvent.DESCENDANT_ERROR, childDescendantErrorHandler);
 		}
 		
 		/**
@@ -504,58 +401,6 @@ package com.esoteric.core
 		protected function childRemovedHandler(e:PropertyChangeEvent):void 
 		{
 			e.oldValue.removeEventListener(ElementEvent.UPDATED, childUpdatedHandler);
-			
-			e.oldValue.removeEventListener(LoadEvent.BEGIN, childBeginHandler);
-			e.oldValue.removeEventListener(LoadEvent.FINISH, childFinishHandler);
-			e.oldValue.removeEventListener(LoadEvent.ERROR, childErrorHandler);
-			e.oldValue.removeEventListener(LoadEvent.DESCENDANT_BEGIN, childDescendantBeginHandler);
-			e.oldValue.removeEventListener(LoadEvent.DESCENDANT_FINISH, childDescendantFinishHandler);
-			e.oldValue.removeEventListener(LoadEvent.DESCENDANT_ERROR, childDescendantErrorHandler);
-		}
-		
-		/**
-		 * This function should be called before the element starts loading.
-		 */
-		protected function startLoading():void
-		{
-			if (!_loading)
-			{
-				_loading = true;
-				
-				_target.dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'loading', false, true));
-				_target.dispatchEvent(new LoadEvent(LoadEvent.BEGIN, false, false, [_target]));
-			}
-		}
-		
-		/**
-		 * This function should be called after the element is done loading.
-		 */
-		protected function finishLoading():void
-		{
-			if (_loading)
-			{
-				_loading = false;
-				
-				// Force event to be dispatched next frame because sometimes things loads instantly and mess things up.
-				_target.dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'loading', true, false));
-				_target.dispatchEvent(new LoadEvent(LoadEvent.FINISH, false, false, [_target]));
-			}
-		}
-		
-		/**
-		 * This function should be called after the element failed loading.
-		 */
-		protected function errorLoading():void
-		{
-			if (_loading)
-			{
-				_loading = false;
-				_errorLoading = true;
-				
-				// Force event to be dispatched next frame because sometimes things loads instantly and mess things up.
-				_target.dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'loading', true, false));
-				_target.dispatchEvent(new LoadEvent(LoadEvent.ERROR, false, false, [_target]));
-			}
 		}
 		
 		/**
@@ -564,118 +409,6 @@ package com.esoteric.core
 		private function childUpdatedHandler(e:ElementEvent):void 
 		{
 			_context.renderQueue.add(_target);
-		}
-		
-		/**
-		 * @private
-		 */
-		private function childFinishHandler(e:LoadEvent):void 
-		{
-			_loadQueue.removeArray(e.elements);
-			
-			_target.dispatchEvent(new LoadEvent(LoadEvent.DESCENDANT_FINISH, false, false, e.elements));
-			
-			_target.dispatchEvent(new ProgressEvent(ProgressEvent.PROGRESS, false, false, _total - _loadQueue.length, _total));
-			
-			if (!_loadQueue.length)
-			{
-				_target.dispatchEvent(new ProgressEvent(_errorLoading ? ProgressEvent.INCOMPLETE : ProgressEvent.COMPLETE));
-			}
-		}
-		
-		/**
-		 * @private
-		 */
-		private function childErrorHandler(e:LoadEvent):void 
-		{
-			_errorLoading = true;
-			
-			_loadQueue.removeArray(e.elements);
-			
-			_target.dispatchEvent(new LoadEvent(LoadEvent.DESCENDANT_ERROR, false, false, e.elements));
-			
-			_target.dispatchEvent(new ProgressEvent(ProgressEvent.PROGRESS, false, false, _total - _loadQueue.length, _total));
-			
-			if (!_loadQueue.length)
-			{
-				_target.dispatchEvent(new ProgressEvent(ProgressEvent.INCOMPLETE));
-			}
-		}
-		
-		/**
-		 * @private
-		 */
-		private function childBeginHandler(e:LoadEvent):void 
-		{
-			if (!_loadQueue.length)
-			{
-				_target.dispatchEvent(new ProgressEvent(ProgressEvent.START));
-				_errorLoading = false;
-				_total = 0;
-			}
-			
-			_total++;
-			
-			_loadQueue.addArray(e.elements);
-			
-			_target.dispatchEvent(new LoadEvent(LoadEvent.DESCENDANT_BEGIN, false, false, [e.target]));
-		}
-		
-		/**
-		 * @private
-		 */
-		private function childDescendantFinishHandler(e:LoadEvent):void 
-		{
-			_loadQueue.removeArray(e.elements);
-			
-			var _remaining:int = _total - _loadQueue.length;
-			
-			_target.dispatchEvent(new ProgressEvent(ProgressEvent.PROGRESS, false, false, _total - _loadQueue.length, _total));
-			
-			if (!_loadQueue.length)
-			{
-				_target.dispatchEvent(new ProgressEvent(_errorLoading ? ProgressEvent.INCOMPLETE : ProgressEvent.COMPLETE));
-			}
-			
-			_target.dispatchEvent(new LoadEvent(LoadEvent.DESCENDANT_FINISH, false, false, e.elements));
-		}
-		
-		/**
-		 * @private
-		 */
-		private function childDescendantErrorHandler(e:LoadEvent):void 
-		{
-			_errorLoading = true;
-			
-			_loadQueue.removeArray(e.elements);
-			
-			_target.dispatchEvent(new LoadEvent(LoadEvent.DESCENDANT_ERROR, false, false, e.elements));
-			
-			_target.dispatchEvent(new ProgressEvent(ProgressEvent.PROGRESS, false, false, _total - _loadQueue.length, _total));
-			
-			if (!_loadQueue.length)
-			{
-				_target.dispatchEvent(new ProgressEvent(ProgressEvent.INCOMPLETE));
-			}
-		}
-		
-		/**
-		 * @private
-		 */
-		private function childDescendantBeginHandler(e:LoadEvent):void 
-		{
-			if (!_loadQueue.length)
-			{
-				_target.dispatchEvent(new ProgressEvent(ProgressEvent.START));
-				_errorLoading = false;
-				_total = 0;
-			}
-			
-			_total++;
-			
-			_loadQueue.addArray(e.elements);
-			
-			_target.dispatchEvent(new LoadEvent(LoadEvent.DESCENDANT_BEGIN, false, false, e.elements));
 		}
 		
 	}

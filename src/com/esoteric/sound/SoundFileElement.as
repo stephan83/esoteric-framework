@@ -200,8 +200,6 @@ package com.esoteric.sound
 		 */
 		private function load(url:String):void
 		{
-			startLoading();
-			
 			var data:* = context.cache.get(url);
 			
 			if (data)
@@ -214,8 +212,6 @@ package com.esoteric.sound
 				}
 				
 				_ready = true;
-				
-				finishLoading();
 			}
 			else
 			{	
@@ -275,8 +271,6 @@ package com.esoteric.sound
 			}
 			
 			_ready = true;
-			
-			finishLoading();
 		}
 		
 		/**

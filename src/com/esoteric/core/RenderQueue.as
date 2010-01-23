@@ -58,7 +58,7 @@ package com.esoteric.core
 				{
 					for (i = 0; i < _nextIElements.length; i++) 
 					{
-						if (_nextIElements[i].contains(element))
+						if (descendant(_nextIElements[i], element))
 						{
 							_nextIElements.splice(i, 0, element);
 							
@@ -75,7 +75,7 @@ package com.esoteric.core
 				{
 					for (i = 0; i < _elements.length; i++) 
 					{
-						if (_elements[i].contains(element))
+						if (descendant(_elements[i], element))
 						{
 							_elements.splice(i, 0, element);
 							
@@ -169,6 +169,24 @@ package com.esoteric.core
 				return _elements.shift();
 			
 			return null;
+		}
+		
+		private function descendant(target:IElement, test:IElement):Boolean
+		{
+			if (target == test)
+			{
+				return true;
+			}
+			
+			for (var i:int = 0; i < target.numChildren; i++) 
+			{
+				if (descendant(target.getChildAt(i), test))
+				{
+					return true;
+				}
+			}
+			
+			return false;
 		}
 		
 	}
