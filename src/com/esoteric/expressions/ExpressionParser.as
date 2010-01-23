@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g 2010-01-22 17:17:57
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g 2010-01-23 13:04:29
 package com.esoteric.expressions {
     import org.antlr.runtime.*;
         
@@ -609,7 +609,7 @@ package com.esoteric.expressions {
 
 
                         // AST REWRITE
-                        // elements: r, l, exp
+                        // elements: exp, r, l
                         // token labels: 
                         // rule labels: retval, r, l
                         // token list labels: 
@@ -676,7 +676,7 @@ package com.esoteric.expressions {
 
 
                         // AST REWRITE
-                        // elements: block, exp, ifStmt
+                        // elements: block, ifStmt, exp
                         // token labels: 
                         // rule labels: retval
                         // token list labels: 
@@ -1475,7 +1475,7 @@ package com.esoteric.expressions {
 
 
                         // AST REWRITE
-                        // elements: 39, reference, exp
+                        // elements: reference, exp, 39
                         // token labels: 
                         // rule labels: retval
                         // token list labels: 
@@ -1518,7 +1518,7 @@ package com.esoteric.expressions {
 
 
                         // AST REWRITE
-                        // elements: exp, 40, reference
+                        // elements: reference, 40, exp
                         // token labels: 
                         // rule labels: retval
                         // token list labels: 
@@ -1561,7 +1561,7 @@ package com.esoteric.expressions {
 
 
                         // AST REWRITE
-                        // elements: 41, reference, exp
+                        // elements: reference, 41, exp
                         // token labels: 
                         // rule labels: retval
                         // token list labels: 
@@ -1604,7 +1604,7 @@ package com.esoteric.expressions {
 
 
                         // AST REWRITE
-                        // elements: exp, reference, 42
+                        // elements: exp, 42, reference
                         // token labels: 
                         // rule labels: retval
                         // token list labels: 
@@ -1647,7 +1647,7 @@ package com.esoteric.expressions {
 
 
                         // AST REWRITE
-                        // elements: exp, reference, 43
+                        // elements: reference, exp, 43
                         // token labels: 
                         // rule labels: retval
                         // token list labels: 
@@ -1733,7 +1733,7 @@ package com.esoteric.expressions {
 
 
                         // AST REWRITE
-                        // elements: exp, 45, reference
+                        // elements: 45, reference, exp
                         // token labels: 
                         // rule labels: retval
                         // token list labels: 
@@ -1776,7 +1776,7 @@ package com.esoteric.expressions {
 
 
                         // AST REWRITE
-                        // elements: exp, reference, 46
+                        // elements: reference, exp, 46
                         // token labels: 
                         // rule labels: retval
                         // token list labels: 
@@ -1819,7 +1819,7 @@ package com.esoteric.expressions {
 
 
                         // AST REWRITE
-                        // elements: 47, reference, exp
+                        // elements: exp, reference, 47
                         // token labels: 
                         // rule labels: retval
                         // token list labels: 
@@ -1862,7 +1862,7 @@ package com.esoteric.expressions {
 
 
                         // AST REWRITE
-                        // elements: reference, 48, exp
+                        // elements: exp, 48, reference
                         // token labels: 
                         // rule labels: retval
                         // token list labels: 
@@ -1905,7 +1905,7 @@ package com.esoteric.expressions {
 
 
                         // AST REWRITE
-                        // elements: 49, reference, exp
+                        // elements: reference, exp, 49
                         // token labels: 
                         // rule labels: retval
                         // token list labels: 
@@ -2080,7 +2080,7 @@ package com.esoteric.expressions {
 
 
                         // AST REWRITE
-                        // elements: i, exp
+                        // elements: exp, i
                         // token labels: i
                         // rule labels: retval
                         // token list labels: 
@@ -4154,7 +4154,7 @@ package com.esoteric.expressions {
 
 
                 	    // AST REWRITE
-                	    // elements: reference, i
+                	    // elements: i, reference
                 	    // token labels: i
                 	    // rule labels: retval
                 	    // token list labels: 
@@ -4230,7 +4230,7 @@ package com.esoteric.expressions {
 
 
                 	    // AST REWRITE
-                	    // elements: e, p, reference
+                	    // elements: reference, p, e
                 	    // token labels: 
                 	    // rule labels: retval, e, p
                 	    // token list labels: 
@@ -4310,7 +4310,7 @@ package com.esoteric.expressions {
 
 
                 	    // AST REWRITE
-                	    // elements: reference, i, p
+                	    // elements: reference, p, i
                 	    // token labels: i
                 	    // rule labels: retval, p
                 	    // token list labels: 
@@ -4568,7 +4568,7 @@ package com.esoteric.expressions {
 
 
                 	    // AST REWRITE
-                	    // elements: p, referenceOrFuncCall
+                	    // elements: referenceOrFuncCall, p
                 	    // token labels: 
                 	    // rule labels: retval, p
                 	    // token list labels: 

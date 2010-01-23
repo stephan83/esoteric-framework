@@ -362,7 +362,7 @@ WhiteSpace
 	;
 	
 Identifier
-	:	( Letter | '_' ) ( Letter | Digit | '_' )*
+	:	( Letter | '_' | '$' ) ( Letter | Digit | '_' )*
 	;
 	
 fragment Digit

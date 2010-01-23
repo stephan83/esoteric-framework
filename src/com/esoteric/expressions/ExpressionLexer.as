@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g 2010-01-22 17:17:57
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g 2010-01-23 13:04:29
 package com.esoteric.expressions {
     import org.antlr.runtime.*;
         
@@ -2037,10 +2037,10 @@ package com.esoteric.expressions {
             try {
                 var _type:int = Identifier;
                 var _channel:int = DEFAULT_TOKEN_CHANNEL;
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:365:2: ( ( Letter | '_' ) ( Letter | Digit | '_' )* )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:365:4: ( Letter | '_' ) ( Letter | Digit | '_' )*
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:365:2: ( ( Letter | '_' | '$' ) ( Letter | Digit | '_' )* )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:365:4: ( Letter | '_' | '$' ) ( Letter | Digit | '_' )*
                 {
-                if ( (input.LA(1)>=65 && input.LA(1)<=90)||input.LA(1)==95||(input.LA(1)>=97 && input.LA(1)<=122) ) {
+                if ( input.LA(1)==36||(input.LA(1)>=65 && input.LA(1)<=90)||input.LA(1)==95||(input.LA(1)>=97 && input.LA(1)<=122) ) {
                     input.consume();
 
                 }
@@ -2048,7 +2048,7 @@ package com.esoteric.expressions {
                     throw recover(new MismatchedSetException(null,input));
                 }
 
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:365:21: ( Letter | Digit | '_' )*
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:365:27: ( Letter | Digit | '_' )*
                 loop20:
                 do {
                     var alt20:int=2;
@@ -2897,15 +2897,15 @@ package com.esoteric.expressions {
             DFA.unpackEncodedString("\x8c\u80ff\xff");
         private const DFA22_transition:Array = [
                 DFA.unpackEncodedString("\x02\x28\x01\u80ff\xff\x02\x28"+
-                "\x12\u80ff\xff\x01\x28\x01\x19\x01\x27\x02\u80ff\xff\x01"+
-                "\x0c\x01\x11\x01\x27\x01\x02\x01\x03\x01\x0a\x01\x0d\x01"+
-                "\x23\x01\x0e\x01\x22\x01\x0b\x0a\x25\x01\x16\x01\x08\x01"+
-                "\x0f\x01\x09\x01\x10\x01\x15\x01\u80ff\xff\x04\x29\x01\x26"+
-                "\x15\x29\x01\x20\x01\u80ff\xff\x01\x21\x01\x12\x01\x29\x01"+
-                "\u80ff\xff\x01\x18\x03\x29\x01\x04\x01\x1e\x01\x1b\x01\x29"+
-                "\x01\x01\x02\x29\x01\x1a\x01\x29\x01\x1f\x01\x17\x02\x29"+
-                "\x01\x24\x01\x29\x01\x1d\x01\x29\x01\x14\x01\x05\x03\x29"+
-                "\x01\x06\x01\x13\x01\x07\x01\x1c"),
+                "\x12\u80ff\xff\x01\x28\x01\x19\x01\x27\x01\u80ff\xff\x01"+
+                "\x29\x01\x0c\x01\x11\x01\x27\x01\x02\x01\x03\x01\x0a\x01"+
+                "\x0d\x01\x23\x01\x0e\x01\x22\x01\x0b\x0a\x25\x01\x16\x01"+
+                "\x08\x01\x0f\x01\x09\x01\x10\x01\x15\x01\u80ff\xff\x04\x29"+
+                "\x01\x26\x15\x29\x01\x20\x01\u80ff\xff\x01\x21\x01\x12\x01"+
+                "\x29\x01\u80ff\xff\x01\x18\x03\x29\x01\x04\x01\x1e\x01\x1b"+
+                "\x01\x29\x01\x01\x02\x29\x01\x1a\x01\x29\x01\x1f\x01\x17"+
+                "\x02\x29\x01\x24\x01\x29\x01\x1d\x01\x29\x01\x14\x01\x05"+
+                "\x03\x29\x01\x06\x01\x13\x01\x07\x01\x1c"),
                 DFA.unpackEncodedString("\x01\x2a"),
                 DFA.unpackEncodedString(""),
                 DFA.unpackEncodedString(""),
