@@ -47,6 +47,7 @@ main	:	^(Query selector*)
 	
 selector
 	:	allSelector
+	|	kindSelector
 	|	idSelector
 	|	childSelector
 	|	classSelector
@@ -58,6 +59,12 @@ selector
 allSelector
 	:	^(
 			AllSelector					{ _elementSet.selectAll() }
+		)
+	;
+	
+kindSelector
+	:	^(
+			KindSelector Identifier				{ _elementSet.selectKind($text) }
 		)
 	;
 	
@@ -96,9 +103,9 @@ attrSelector
 			AttrSelector i=Identifier
 			o=('=' | '!=' | '<' | '<=' | '>' | '>=')
 			(
-				n=NumberLiteral				{ _elementSet.selectAttrNum($i.text, $o.text, Number($n.text)) }
-			|	s=StringLiteral				{ _elementSet.selectAttrStr($i.text, $o.text, cleanUpString($s.text)) }
-			|	v=Identifier				{ _elementSet.selectAttrStr($i.text, $o.text, $v.text) }
+				n=NumberLiteral				{ _elementSet.selectAttr($i.text, $o.text, Number($n.text)) }
+			|	s=StringLiteral				{ _elementSet.selectAttr($i.text, $o.text, cleanUpString($s.text)) }
+			|	v=Identifier				{ _elementSet.selectAttr($i.text, $o.text, $v.text) }
 			)
 		)
 	;

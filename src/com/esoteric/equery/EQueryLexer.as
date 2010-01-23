@@ -1,41 +1,42 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g 2010-01-23 17:39:21
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g 2010-01-23 21:57:51
 package com.esoteric.equery {
     import org.antlr.runtime.*;
         
 
     public class EQueryLexer extends Lexer {
         public static const T__29:int=29;
-        public static const ClassSelector:int=8;
+        public static const ClassSelector:int=9;
         public static const T__28:int=28;
         public static const T__27:int=27;
         public static const Query:int=4;
         public static const T__26:int=26;
         public static const T__25:int=25;
-        public static const UnicodeEscapeChar:int=21;
+        public static const UnicodeEscapeChar:int=22;
         public static const T__24:int=24;
-        public static const NumberLiteral:int=13;
+        public static const NumberLiteral:int=14;
+        public static const IdSelector:int=7;
         public static const T__23:int=23;
-        public static const IdSelector:int=6;
-        public static const AttrSelector:int=11;
-        public static const T__22:int=22;
-        public static const ChildSelector:int=7;
-        public static const Exponent:int=16;
-        public static const Digit:int=15;
+        public static const AttrSelector:int=12;
+        public static const ChildSelector:int=8;
+        public static const KindSelector:int=6;
+        public static const Exponent:int=17;
+        public static const Digit:int=16;
         public static const EOF:int=-1;
-        public static const HexDigit:int=17;
-        public static const Identifier:int=12;
-        public static const StringLiteral:int=14;
+        public static const HexDigit:int=18;
+        public static const Identifier:int=13;
+        public static const StringLiteral:int=15;
         public static const T__30:int=30;
         public static const T__31:int=31;
         public static const T__32:int=32;
-        public static const FirstSelector:int=9;
+        public static const FirstSelector:int=10;
         public static const T__33:int=33;
         public static const T__34:int=34;
-        public static const LastSelector:int=10;
+        public static const LastSelector:int=11;
         public static const AllSelector:int=5;
-        public static const WhiteSpace:int=19;
-        public static const EscapeSequence:int=18;
-        public static const Letter:int=20;
+        public static const T__35:int=35;
+        public static const WhiteSpace:int=20;
+        public static const EscapeSequence:int=19;
+        public static const Letter:int=21;
 
         // delegates
         // delegators
@@ -44,13 +45,13 @@ package com.esoteric.equery {
             super(input, state);
 
             dfa10 = new DFA(this, 10,
-                        "106:1: NumberLiteral : ( ( '-' )? ( '.' )? ( Digit )+ ( Exponent )? | ( '-' )? ( Digit )+ '.' ( Digit )+ ( Exponent )? | '0' ( 'x' | 'X' ) ( HexDigit )+ );",
+                        "112:1: NumberLiteral : ( ( '-' )? ( '.' )? ( Digit )+ ( Exponent )? | ( '-' )? ( Digit )+ '.' ( Digit )+ ( Exponent )? | '0' ( 'x' | 'X' ) ( HexDigit )+ );",
                         DFA10_eot, DFA10_eof, DFA10_min,
                         DFA10_max, DFA10_accept, DFA10_special,
                         DFA10_transition);
 
             dfa19 = new DFA(this, 19,
-                        "1:1: Tokens : ( T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | NumberLiteral | Exponent | StringLiteral | WhiteSpace | Identifier );",
+                        "1:1: Tokens : ( T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | NumberLiteral | Exponent | StringLiteral | WhiteSpace | Identifier );",
                         DFA19_eot, DFA19_eof, DFA19_min,
                         DFA19_max, DFA19_accept, DFA19_special,
                         DFA19_transition);
@@ -59,35 +60,15 @@ package com.esoteric.equery {
         }
         public override function get grammarFileName():String { return "C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g"; }
 
-        // $ANTLR start T__22
-        public final function mT__22():void {
-            try {
-                var _type:int = T__22;
-                var _channel:int = DEFAULT_TOKEN_CHANNEL;
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:9:7: ( '*' )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:9:9: '*'
-                {
-                match(42); 
-
-                }
-
-                this.state.type = _type;
-                this.state.channel = _channel;
-            }
-            finally {
-            }
-        }
-        // $ANTLR end T__22
-
         // $ANTLR start T__23
         public final function mT__23():void {
             try {
                 var _type:int = T__23;
                 var _channel:int = DEFAULT_TOKEN_CHANNEL;
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:10:7: ( '#' )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:10:9: '#'
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:9:7: ( '*' )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:9:9: '*'
                 {
-                match(35); 
+                match(42); 
 
                 }
 
@@ -104,10 +85,10 @@ package com.esoteric.equery {
             try {
                 var _type:int = T__24;
                 var _channel:int = DEFAULT_TOKEN_CHANNEL;
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:11:7: ( '>' )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:11:9: '>'
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:10:7: ( '#' )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:10:9: '#'
                 {
-                match(62); 
+                match(35); 
 
                 }
 
@@ -124,10 +105,10 @@ package com.esoteric.equery {
             try {
                 var _type:int = T__25;
                 var _channel:int = DEFAULT_TOKEN_CHANNEL;
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:12:7: ( '.' )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:12:9: '.'
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:11:7: ( '>' )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:11:9: '>'
                 {
-                match(46); 
+                match(62); 
 
                 }
 
@@ -144,11 +125,10 @@ package com.esoteric.equery {
             try {
                 var _type:int = T__26;
                 var _channel:int = DEFAULT_TOKEN_CHANNEL;
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:13:7: ( ':first-child' )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:13:9: ':first-child'
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:12:7: ( '.' )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:12:9: '.'
                 {
-                matchString(":first-child"); 
-
+                match(46); 
 
                 }
 
@@ -165,10 +145,10 @@ package com.esoteric.equery {
             try {
                 var _type:int = T__27;
                 var _channel:int = DEFAULT_TOKEN_CHANNEL;
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:14:7: ( ':last-child' )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:14:9: ':last-child'
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:13:7: ( ':first-child' )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:13:9: ':first-child'
                 {
-                matchString(":last-child"); 
+                matchString(":first-child"); 
 
 
                 }
@@ -186,10 +166,11 @@ package com.esoteric.equery {
             try {
                 var _type:int = T__28;
                 var _channel:int = DEFAULT_TOKEN_CHANNEL;
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:15:7: ( '[' )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:15:9: '['
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:14:7: ( ':last-child' )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:14:9: ':last-child'
                 {
-                match(91); 
+                matchString(":last-child"); 
+
 
                 }
 
@@ -206,10 +187,10 @@ package com.esoteric.equery {
             try {
                 var _type:int = T__29;
                 var _channel:int = DEFAULT_TOKEN_CHANNEL;
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:16:7: ( ']' )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:16:9: ']'
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:15:7: ( '[' )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:15:9: '['
                 {
-                match(93); 
+                match(91); 
 
                 }
 
@@ -226,10 +207,10 @@ package com.esoteric.equery {
             try {
                 var _type:int = T__30;
                 var _channel:int = DEFAULT_TOKEN_CHANNEL;
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:17:7: ( '=' )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:17:9: '='
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:16:7: ( ']' )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:16:9: ']'
                 {
-                match(61); 
+                match(93); 
 
                 }
 
@@ -246,11 +227,10 @@ package com.esoteric.equery {
             try {
                 var _type:int = T__31;
                 var _channel:int = DEFAULT_TOKEN_CHANNEL;
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:18:7: ( '!=' )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:18:9: '!='
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:17:7: ( '=' )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:17:9: '='
                 {
-                matchString("!="); 
-
+                match(61); 
 
                 }
 
@@ -267,10 +247,11 @@ package com.esoteric.equery {
             try {
                 var _type:int = T__32;
                 var _channel:int = DEFAULT_TOKEN_CHANNEL;
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:19:7: ( '<' )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:19:9: '<'
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:18:7: ( '!=' )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:18:9: '!='
                 {
-                match(60); 
+                matchString("!="); 
+
 
                 }
 
@@ -287,11 +268,10 @@ package com.esoteric.equery {
             try {
                 var _type:int = T__33;
                 var _channel:int = DEFAULT_TOKEN_CHANNEL;
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:20:7: ( '<=' )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:20:9: '<='
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:19:7: ( '<' )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:19:9: '<'
                 {
-                matchString("<="); 
-
+                match(60); 
 
                 }
 
@@ -308,6 +288,27 @@ package com.esoteric.equery {
             try {
                 var _type:int = T__34;
                 var _channel:int = DEFAULT_TOKEN_CHANNEL;
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:20:7: ( '<=' )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:20:9: '<='
+                {
+                matchString("<="); 
+
+
+                }
+
+                this.state.type = _type;
+                this.state.channel = _channel;
+            }
+            finally {
+            }
+        }
+        // $ANTLR end T__34
+
+        // $ANTLR start T__35
+        public final function mT__35():void {
+            try {
+                var _type:int = T__35;
+                var _channel:int = DEFAULT_TOKEN_CHANNEL;
                 // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:21:7: ( '>=' )
                 // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:21:9: '>='
                 {
@@ -322,21 +323,21 @@ package com.esoteric.equery {
             finally {
             }
         }
-        // $ANTLR end T__34
+        // $ANTLR end T__35
 
         // $ANTLR start NumberLiteral
         public final function mNumberLiteral():void {
             try {
                 var _type:int = NumberLiteral;
                 var _channel:int = DEFAULT_TOKEN_CHANNEL;
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:107:3: ( ( '-' )? ( '.' )? ( Digit )+ ( Exponent )? | ( '-' )? ( Digit )+ '.' ( Digit )+ ( Exponent )? | '0' ( 'x' | 'X' ) ( HexDigit )+ )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:113:3: ( ( '-' )? ( '.' )? ( Digit )+ ( Exponent )? | ( '-' )? ( Digit )+ '.' ( Digit )+ ( Exponent )? | '0' ( 'x' | 'X' ) ( HexDigit )+ )
                 var alt10:int=3;
                 alt10 = dfa10.predict(input);
                 switch (alt10) {
                     case 1 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:107:5: ( '-' )? ( '.' )? ( Digit )+ ( Exponent )?
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:113:5: ( '-' )? ( '.' )? ( Digit )+ ( Exponent )?
                         {
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:107:5: ( '-' )?
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:113:5: ( '-' )?
                         var alt1:int=2;
                         var LA1_0:int = input.LA(1);
 
@@ -345,7 +346,7 @@ package com.esoteric.equery {
                         }
                         switch (alt1) {
                             case 1 :
-                                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:107:5: '-'
+                                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:113:5: '-'
                                 {
                                 match(45); 
 
@@ -354,7 +355,7 @@ package com.esoteric.equery {
 
                         }
 
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:107:10: ( '.' )?
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:113:10: ( '.' )?
                         var alt2:int=2;
                         var LA2_0:int = input.LA(1);
 
@@ -363,7 +364,7 @@ package com.esoteric.equery {
                         }
                         switch (alt2) {
                             case 1 :
-                                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:107:10: '.'
+                                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:113:10: '.'
                                 {
                                 match(46); 
 
@@ -372,7 +373,7 @@ package com.esoteric.equery {
 
                         }
 
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:107:15: ( Digit )+
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:113:15: ( Digit )+
                         var cnt3:int=0;
                         loop3:
                         do {
@@ -386,7 +387,7 @@ package com.esoteric.equery {
 
                             switch (alt3) {
                         	case 1 :
-                        	    // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:107:15: Digit
+                        	    // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:113:15: Digit
                         	    {
                         	    mDigit(); 
 
@@ -401,7 +402,7 @@ package com.esoteric.equery {
                             cnt3++;
                         } while (true);
 
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:107:22: ( Exponent )?
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:113:22: ( Exponent )?
                         var alt4:int=2;
                         var LA4_0:int = input.LA(1);
 
@@ -410,7 +411,7 @@ package com.esoteric.equery {
                         }
                         switch (alt4) {
                             case 1 :
-                                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:107:22: Exponent
+                                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:113:22: Exponent
                                 {
                                 mExponent(); 
 
@@ -423,9 +424,9 @@ package com.esoteric.equery {
                         }
                         break;
                     case 2 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:108:4: ( '-' )? ( Digit )+ '.' ( Digit )+ ( Exponent )?
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:114:4: ( '-' )? ( Digit )+ '.' ( Digit )+ ( Exponent )?
                         {
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:108:4: ( '-' )?
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:114:4: ( '-' )?
                         var alt5:int=2;
                         var LA5_0:int = input.LA(1);
 
@@ -434,7 +435,7 @@ package com.esoteric.equery {
                         }
                         switch (alt5) {
                             case 1 :
-                                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:108:4: '-'
+                                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:114:4: '-'
                                 {
                                 match(45); 
 
@@ -443,7 +444,7 @@ package com.esoteric.equery {
 
                         }
 
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:108:9: ( Digit )+
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:114:9: ( Digit )+
                         var cnt6:int=0;
                         loop6:
                         do {
@@ -457,7 +458,7 @@ package com.esoteric.equery {
 
                             switch (alt6) {
                         	case 1 :
-                        	    // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:108:9: Digit
+                        	    // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:114:9: Digit
                         	    {
                         	    mDigit(); 
 
@@ -473,7 +474,7 @@ package com.esoteric.equery {
                         } while (true);
 
                         match(46); 
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:108:20: ( Digit )+
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:114:20: ( Digit )+
                         var cnt7:int=0;
                         loop7:
                         do {
@@ -487,7 +488,7 @@ package com.esoteric.equery {
 
                             switch (alt7) {
                         	case 1 :
-                        	    // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:108:20: Digit
+                        	    // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:114:20: Digit
                         	    {
                         	    mDigit(); 
 
@@ -502,7 +503,7 @@ package com.esoteric.equery {
                             cnt7++;
                         } while (true);
 
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:108:28: ( Exponent )?
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:114:28: ( Exponent )?
                         var alt8:int=2;
                         var LA8_0:int = input.LA(1);
 
@@ -511,7 +512,7 @@ package com.esoteric.equery {
                         }
                         switch (alt8) {
                             case 1 :
-                                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:108:28: Exponent
+                                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:114:28: Exponent
                                 {
                                 mExponent(); 
 
@@ -524,7 +525,7 @@ package com.esoteric.equery {
                         }
                         break;
                     case 3 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:109:4: '0' ( 'x' | 'X' ) ( HexDigit )+
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:115:4: '0' ( 'x' | 'X' ) ( HexDigit )+
                         {
                         match(48); 
                         if ( input.LA(1)==88||input.LA(1)==120 ) {
@@ -535,7 +536,7 @@ package com.esoteric.equery {
                             throw recover(new MismatchedSetException(null,input));
                         }
 
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:109:22: ( HexDigit )+
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:115:22: ( HexDigit )+
                         var cnt9:int=0;
                         loop9:
                         do {
@@ -549,7 +550,7 @@ package com.esoteric.equery {
 
                             switch (alt9) {
                         	case 1 :
-                        	    // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:109:22: HexDigit
+                        	    // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:115:22: HexDigit
                         	    {
                         	    mHexDigit(); 
 
@@ -582,8 +583,8 @@ package com.esoteric.equery {
             try {
                 var _type:int = Exponent;
                 var _channel:int = DEFAULT_TOKEN_CHANNEL;
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:113:2: ( ( 'e' | 'E' ) ( '-' | '+' )? ( Digit )+ )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:113:4: ( 'e' | 'E' ) ( '-' | '+' )? ( Digit )+
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:119:2: ( ( 'e' | 'E' ) ( '-' | '+' )? ( Digit )+ )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:119:4: ( 'e' | 'E' ) ( '-' | '+' )? ( Digit )+
                 {
                 if ( input.LA(1)==69||input.LA(1)==101 ) {
                     input.consume();
@@ -593,7 +594,7 @@ package com.esoteric.equery {
                     throw recover(new MismatchedSetException(null,input));
                 }
 
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:113:16: ( '-' | '+' )?
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:119:16: ( '-' | '+' )?
                 var alt11:int=2;
                 var LA11_0:int = input.LA(1);
 
@@ -618,7 +619,7 @@ package com.esoteric.equery {
 
                 }
 
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:113:31: ( Digit )+
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:119:31: ( Digit )+
                 var cnt12:int=0;
                 loop12:
                 do {
@@ -632,7 +633,7 @@ package com.esoteric.equery {
 
                     switch (alt12) {
                 	case 1 :
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:113:31: Digit
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:119:31: Digit
                 	    {
                 	    mDigit(); 
 
@@ -663,7 +664,7 @@ package com.esoteric.equery {
             try {
                 var _type:int = StringLiteral;
                 var _channel:int = DEFAULT_TOKEN_CHANNEL;
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:118:2: ( '\"' ( EscapeSequence | ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\\"' ) )* '\"' | '\\'' ( EscapeSequence | ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\'' ) )* '\\'' )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:124:2: ( '\"' ( EscapeSequence | ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\\"' ) )* '\"' | '\\'' ( EscapeSequence | ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\'' ) )* '\\'' )
                 var alt15:int=2;
                 var LA15_0:int = input.LA(1);
 
@@ -679,10 +680,10 @@ package com.esoteric.equery {
                 }
                 switch (alt15) {
                     case 1 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:118:4: '\"' ( EscapeSequence | ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\\"' ) )* '\"'
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:124:4: '\"' ( EscapeSequence | ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\\"' ) )* '\"'
                         {
                         match(34); 
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:118:8: ( EscapeSequence | ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\\"' ) )*
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:124:8: ( EscapeSequence | ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\\"' ) )*
                         loop13:
                         do {
                             var alt13:int=3;
@@ -698,14 +699,14 @@ package com.esoteric.equery {
 
                             switch (alt13) {
                         	case 1 :
-                        	    // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:118:10: EscapeSequence
+                        	    // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:124:10: EscapeSequence
                         	    {
                         	    mEscapeSequence(); 
 
                         	    }
                         	    break;
                         	case 2 :
-                        	    // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:118:27: ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\\"' )
+                        	    // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:124:27: ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\\"' )
                         	    {
                         	    if ( (input.LA(1)>=32 && input.LA(1)<=33)||(input.LA(1)>=35 && input.LA(1)<=91)||(input.LA(1)>=93 && input.LA(1)<=65535) ) {
                         	        input.consume();
@@ -729,10 +730,10 @@ package com.esoteric.equery {
                         }
                         break;
                     case 2 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:119:4: '\\'' ( EscapeSequence | ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\'' ) )* '\\''
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:125:4: '\\'' ( EscapeSequence | ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\'' ) )* '\\''
                         {
                         match(39); 
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:119:9: ( EscapeSequence | ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\'' ) )*
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:125:9: ( EscapeSequence | ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\'' ) )*
                         loop14:
                         do {
                             var alt14:int=3;
@@ -748,14 +749,14 @@ package com.esoteric.equery {
 
                             switch (alt14) {
                         	case 1 :
-                        	    // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:119:11: EscapeSequence
+                        	    // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:125:11: EscapeSequence
                         	    {
                         	    mEscapeSequence(); 
 
                         	    }
                         	    break;
                         	case 2 :
-                        	    // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:119:28: ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\'' )
+                        	    // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:125:28: ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\'' )
                         	    {
                         	    if ( (input.LA(1)>=32 && input.LA(1)<=38)||(input.LA(1)>=40 && input.LA(1)<=91)||(input.LA(1)>=93 && input.LA(1)<=65535) ) {
                         	        input.consume();
@@ -793,10 +794,10 @@ package com.esoteric.equery {
             try {
                 var _type:int = WhiteSpace;
                 var _channel:int = DEFAULT_TOKEN_CHANNEL;
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:123:2: ( ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+ )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:123:4: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:129:2: ( ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+ )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:129:4: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
                 {
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:123:4: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:129:4: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
                 var cnt16:int=0;
                 loop16:
                 do {
@@ -851,8 +852,8 @@ package com.esoteric.equery {
             try {
                 var _type:int = Identifier;
                 var _channel:int = DEFAULT_TOKEN_CHANNEL;
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:130:2: ( ( Letter | '_' ) ( Letter | Digit | '_' )* )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:130:4: ( Letter | '_' ) ( Letter | Digit | '_' )*
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:136:2: ( ( Letter | '_' ) ( Letter | Digit | '_' )* )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:136:4: ( Letter | '_' ) ( Letter | Digit | '_' )*
                 {
                 if ( (input.LA(1)>=65 && input.LA(1)<=90)||input.LA(1)==95||(input.LA(1)>=97 && input.LA(1)<=122) ) {
                     input.consume();
@@ -862,7 +863,7 @@ package com.esoteric.equery {
                     throw recover(new MismatchedSetException(null,input));
                 }
 
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:130:21: ( Letter | Digit | '_' )*
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:136:21: ( Letter | Digit | '_' )*
                 loop17:
                 do {
                     var alt17:int=2;
@@ -908,8 +909,8 @@ package com.esoteric.equery {
         // $ANTLR start Digit
         public final function mDigit():void {
             try {
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:134:2: ( '0' .. '9' )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:134:4: '0' .. '9'
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:140:2: ( '0' .. '9' )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:140:4: '0' .. '9'
                 {
                 matchRange(48,57); 
 
@@ -924,7 +925,7 @@ package com.esoteric.equery {
         // $ANTLR start HexDigit
         public final function mHexDigit():void {
             try {
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:138:2: ( Digit | 'a' .. 'f' | 'A' .. 'F' )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:144:2: ( Digit | 'a' .. 'f' | 'A' .. 'F' )
                 // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:
                 {
                 if ( (input.LA(1)>=48 && input.LA(1)<=57)||(input.LA(1)>=65 && input.LA(1)<=70)||(input.LA(1)>=97 && input.LA(1)<=102) ) {
@@ -947,7 +948,7 @@ package com.esoteric.equery {
         // $ANTLR start Letter
         public final function mLetter():void {
             try {
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:144:2: ( 'a' .. 'z' | 'A' .. 'Z' )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:150:2: ( 'a' .. 'z' | 'A' .. 'Z' )
                 // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:
                 {
                 if ( (input.LA(1)>=65 && input.LA(1)<=90)||(input.LA(1)>=97 && input.LA(1)<=122) ) {
@@ -970,11 +971,11 @@ package com.esoteric.equery {
         // $ANTLR start EscapeSequence
         public final function mEscapeSequence():void {
             try {
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:149:2: ( '\\\\' ( UnicodeEscapeChar | 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:149:4: '\\\\' ( UnicodeEscapeChar | 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:155:2: ( '\\\\' ( UnicodeEscapeChar | 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:155:4: '\\\\' ( UnicodeEscapeChar | 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
                 {
                 match(92); 
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:149:9: ( UnicodeEscapeChar | 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:155:9: ( UnicodeEscapeChar | 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
                 var alt18:int=9;
                 switch ( input.LA(1) ) {
                 case 117:
@@ -1029,63 +1030,63 @@ package com.esoteric.equery {
 
                 switch (alt18) {
                     case 1 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:149:10: UnicodeEscapeChar
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:155:10: UnicodeEscapeChar
                         {
                         mUnicodeEscapeChar(); 
 
                         }
                         break;
                     case 2 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:149:29: 'b'
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:155:29: 'b'
                         {
                         match(98); 
 
                         }
                         break;
                     case 3 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:149:33: 't'
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:155:33: 't'
                         {
                         match(116); 
 
                         }
                         break;
                     case 4 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:149:37: 'n'
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:155:37: 'n'
                         {
                         match(110); 
 
                         }
                         break;
                     case 5 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:149:41: 'f'
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:155:41: 'f'
                         {
                         match(102); 
 
                         }
                         break;
                     case 6 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:149:45: 'r'
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:155:45: 'r'
                         {
                         match(114); 
 
                         }
                         break;
                     case 7 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:149:49: '\\\"'
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:155:49: '\\\"'
                         {
                         match(34); 
 
                         }
                         break;
                     case 8 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:149:54: '\\''
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:155:54: '\\''
                         {
                         match(39); 
 
                         }
                         break;
                     case 9 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:149:59: '\\\\'
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:155:59: '\\\\'
                         {
                         match(92); 
 
@@ -1106,8 +1107,8 @@ package com.esoteric.equery {
         // $ANTLR start UnicodeEscapeChar
         public final function mUnicodeEscapeChar():void {
             try {
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:153:2: ( 'u' HexDigit HexDigit HexDigit HexDigit )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:153:4: 'u' HexDigit HexDigit HexDigit HexDigit
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:159:2: ( 'u' HexDigit HexDigit HexDigit HexDigit )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:159:4: 'u' HexDigit HexDigit HexDigit HexDigit
                 {
                 match(117); 
                 mHexDigit(); 
@@ -1124,98 +1125,98 @@ package com.esoteric.equery {
         // $ANTLR end UnicodeEscapeChar
 
         public override function mTokens():void {
-            // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:1:8: ( T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | NumberLiteral | Exponent | StringLiteral | WhiteSpace | Identifier )
+            // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:1:8: ( T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | NumberLiteral | Exponent | StringLiteral | WhiteSpace | Identifier )
             var alt19:int=18;
             alt19 = dfa19.predict(input);
             switch (alt19) {
                 case 1 :
-                    // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:1:10: T__22
-                    {
-                    mT__22(); 
-
-                    }
-                    break;
-                case 2 :
-                    // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:1:16: T__23
+                    // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:1:10: T__23
                     {
                     mT__23(); 
 
                     }
                     break;
-                case 3 :
-                    // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:1:22: T__24
+                case 2 :
+                    // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:1:16: T__24
                     {
                     mT__24(); 
 
                     }
                     break;
-                case 4 :
-                    // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:1:28: T__25
+                case 3 :
+                    // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:1:22: T__25
                     {
                     mT__25(); 
 
                     }
                     break;
-                case 5 :
-                    // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:1:34: T__26
+                case 4 :
+                    // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:1:28: T__26
                     {
                     mT__26(); 
 
                     }
                     break;
-                case 6 :
-                    // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:1:40: T__27
+                case 5 :
+                    // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:1:34: T__27
                     {
                     mT__27(); 
 
                     }
                     break;
-                case 7 :
-                    // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:1:46: T__28
+                case 6 :
+                    // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:1:40: T__28
                     {
                     mT__28(); 
 
                     }
                     break;
-                case 8 :
-                    // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:1:52: T__29
+                case 7 :
+                    // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:1:46: T__29
                     {
                     mT__29(); 
 
                     }
                     break;
-                case 9 :
-                    // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:1:58: T__30
+                case 8 :
+                    // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:1:52: T__30
                     {
                     mT__30(); 
 
                     }
                     break;
-                case 10 :
-                    // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:1:64: T__31
+                case 9 :
+                    // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:1:58: T__31
                     {
                     mT__31(); 
 
                     }
                     break;
-                case 11 :
-                    // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:1:70: T__32
+                case 10 :
+                    // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:1:64: T__32
                     {
                     mT__32(); 
 
                     }
                     break;
-                case 12 :
-                    // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:1:76: T__33
+                case 11 :
+                    // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:1:70: T__33
                     {
                     mT__33(); 
 
                     }
                     break;
-                case 13 :
-                    // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:1:82: T__34
+                case 12 :
+                    // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:1:76: T__34
                     {
                     mT__34(); 
+
+                    }
+                    break;
+                case 13 :
+                    // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:1:82: T__35
+                    {
+                    mT__35(); 
 
                     }
                     break;

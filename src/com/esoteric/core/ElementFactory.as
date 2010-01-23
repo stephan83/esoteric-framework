@@ -120,7 +120,7 @@ package com.esoteric.core
 		 */
 		public function add(kind:String, builder:IElementBuilder):void
 		{
-			_builders[kind] = builder;
+			_builders[kind.toLowerCase()] = builder;
 		}
 		
 		/**
@@ -133,6 +133,8 @@ package com.esoteric.core
 		public function create(context:Context, kind:String):IElement
 		{
 			var element:IElement;
+			
+			kind = kind.toLowerCase();
 			
 			if (!_builders[kind])
 			{

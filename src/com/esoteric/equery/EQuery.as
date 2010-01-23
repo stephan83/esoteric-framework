@@ -35,6 +35,7 @@
 
 package com.esoteric.equery 
 {
+	import com.esoteric.utils.IDestroyable;
 	import org.antlr.runtime.ANTLRStringStream;
 	import org.antlr.runtime.CommonTokenStream;
 	import org.antlr.runtime.ParserRuleReturnScope;
@@ -45,7 +46,7 @@ package com.esoteric.equery
 	 * 
 	 * @author Stephan Florquin
 	 */
-	public class EQuery
+	public class EQuery implements IDestroyable
 	{
 		//---------------------------------------------------------------------
 		// Constructor
@@ -69,6 +70,18 @@ package com.esoteric.equery
 		 * @private
 		 */
 		private var _query:String;
+		
+		//---------------------------------------------------------------------
+		// Implementations
+		//---------------------------------------------------------------------
+		
+		/**
+		 * @inheritDoc
+		 */
+		public function destroy()
+		{
+			_query = null;
+		}
 		
 		//---------------------------------------------------------------------
 		// Methods

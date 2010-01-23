@@ -36,13 +36,14 @@
 package com.esoteric.equery 
 {
 	import com.esoteric.core.IElement;
+	import com.esoteric.utils.IDestroyable;
 	
 	/**
 	 * An element set.
 	 * 
 	 * @author Stephan Florquin
 	 */
-	public class ElementSet
+	public class ElementSet implements IDestroyable
 	{
 		
 		//---------------------------------------------------------------------
@@ -67,6 +68,18 @@ package com.esoteric.equery
 		 * @private
 		 */
 		private var _result:Array;
+		
+		//---------------------------------------------------------------------
+		// Implementations
+		//---------------------------------------------------------------------
+		
+		/**
+		 * @inheritDoc
+		 */
+		public function destroy()
+		{
+			_result = null;
+		}
 		
 		//---------------------------------------------------------------------
 		// Methods
@@ -105,6 +118,16 @@ package com.esoteric.equery
 			}
 			
 			return result;
+		}
+		
+		/**
+		 * Selects elements by kind.
+		 * 
+		 * @param	kind	the element kind
+		 */
+		public function selectKind(kind:String):void
+		{
+			selectAttr('kind', '=', kind.toLowerCase());
 		}
 		
 		/**
@@ -207,13 +230,13 @@ package com.esoteric.equery
 		}
 		
 		/**
-		 * Selects the elements by attributes that are set to specified number.
+		 * Selects the elements by attributes that are set to specified value.
 		 * 
 		 * @param	attr	the attribute name
 		 * @param	op		the operator
-		 * @param	n		the number
+		 * @param	v		the value
 		 */
-		public function selectAttrNum(attr:String, op:String, n:Number):void
+		public function selectAttr(attr:String, op:String, v:*):void
 		{
 			var old:Array = _result;
 			_result = new Array();
@@ -223,7 +246,7 @@ package com.esoteric.equery
 				case '=': {
 					for each (var element:IElement in old) 
 					{
-						if (element[attr] == n)
+						if (element[attr] == v)
 						{
 							_result[_result.length] = element;
 						}
@@ -235,7 +258,7 @@ package com.esoteric.equery
 				case '!=': {
 					for each (var element:IElement in old) 
 					{
-						if (element[attr] != n)
+						if (element[attr] != v)
 						{
 							_result[_result.length] = element;
 						}
@@ -247,7 +270,7 @@ package com.esoteric.equery
 				case '<': {
 					for each (var element:IElement in old) 
 					{
-						if (element[attr] < n)
+						if (element[attr] < v)
 						{
 							_result[_result.length] = element;
 						}
@@ -259,7 +282,7 @@ package com.esoteric.equery
 				case '<=': {
 					for each (var element:IElement in old) 
 					{
-						if (element[attr] <= n)
+						if (element[attr] <= v)
 						{
 							_result[_result.length] = element;
 						}
@@ -271,7 +294,7 @@ package com.esoteric.equery
 				case '>': {
 					for each (var element:IElement in old) 
 					{
-						if (element[attr] > n)
+						if (element[attr] > v)
 						{
 							_result[_result.length] = element;
 						}
@@ -283,96 +306,7 @@ package com.esoteric.equery
 				case '>=': {
 					for each (var element:IElement in old) 
 					{
-						if (element[attr] >= n)
-						{
-							_result[_result.length] = element;
-						}
-					}
-					
-					break
-				}
-			}
-		}
-		
-		/**
-		 * Selects the elements by attributes that are set to specified string.
-		 * 
-		 * @param	attr	the attribute name
-		 * @param	op		the operator
-		 * @param	s		the string
-		 */
-		public function selectAttrStr(attr:String, op:String, s:String):void
-		{
-			
-			var old:Array = _result;
-			_result = new Array();
-			
-			switch(op)
-			{
-				case '=': {
-					for each (var element:IElement in old) 
-					{
-						if (element[attr] == s)
-						{
-							_result[_result.length] = element;
-						}
-					}
-					
-					break
-				}
-				
-				case '!=': {
-					for each (var element:IElement in old) 
-					{
-						if (element[attr] != s)
-						{
-							_result[_result.length] = element;
-						}
-					}
-					
-					break
-				}
-				
-				case '<': {
-					for each (var element:IElement in old) 
-					{
-						if (element[attr] < s)
-						{
-							_result[_result.length] = element;
-						}
-					}
-					
-					break
-				}
-				
-				case '<=': {
-					for each (var element:IElement in old) 
-					{
-						if (element[attr] <= s)
-						{
-							_result[_result.length] = element;
-						}
-					}
-					
-					break
-				}
-				
-				case '>': {
-					for each (var element:IElement in old) 
-					{
-						if (element[attr] > s)
-						{
-							_result[_result.length] = element;
-						}
-					}
-					
-					break
-				}
-				
-				case '>=': {
-					for each (var element:IElement in old) 
-					{
-						if (element[attr] >= s)
+						if (element[attr] >= v)
 						{
 							_result[_result.length] = element;
 						}

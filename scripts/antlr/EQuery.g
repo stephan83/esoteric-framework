@@ -12,6 +12,7 @@ options {
 tokens {
 	Query;
 	AllSelector;
+	KindSelector;
 	IdSelector;
 	ChildSelector;
 	ClassSelector;
@@ -52,6 +53,7 @@ query
 	
 selector
 	:	allSelector
+	|	kindSelector
 	|	idSelector
 	|	childSelector
 	|	classSelector
@@ -66,6 +68,10 @@ allSelector
 	
 idSelector
 	:	'#' Identifier			-> ^(IdSelector Identifier)
+	;
+	
+kindSelector
+	:	Identifier			-> ^(KindSelector Identifier)
 	;
 	
 childSelector

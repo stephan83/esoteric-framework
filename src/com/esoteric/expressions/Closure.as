@@ -38,6 +38,7 @@ package com.esoteric.expressions
 	import com.esoteric.events.PropertyChangeEvent;
 	import com.esoteric.utils.Enumerator;
 	import com.esoteric.utils.IBindable;
+	import com.esoteric.utils.IDestroyable;
 	import flash.events.Event;
 	import flash.utils.Dictionary;
 	
@@ -46,7 +47,7 @@ package com.esoteric.expressions
 	 * 
 	 * @author Stephan Florquin
 	 */
-	public class Closure extends Enumerator implements IBindable
+	public class Closure extends Enumerator implements IBindable, IDestroyable
 	{
 		
 		//---------------------------------------------------------------------
@@ -80,6 +81,19 @@ package com.esoteric.expressions
 		 * @private
 		 */
 		private var _dict:Dictionary = new Dictionary();
+		
+		//---------------------------------------------------------------------
+		// Implementations
+		//---------------------------------------------------------------------
+		
+		/**
+		 * @inheritDoc
+		 */
+		public function destroy()
+		{
+			_parent = null;
+			_dict = null;
+		}
 		
 		//---------------------------------------------------------------------
 		// Overrides
