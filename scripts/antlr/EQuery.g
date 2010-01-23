@@ -69,7 +69,7 @@ idSelector
 	;
 	
 childSelector
-	:	'>'
+	:	'>'				-> ^(ChildSelector)
 	;
 	
 	

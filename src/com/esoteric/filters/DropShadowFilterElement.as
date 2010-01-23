@@ -49,7 +49,7 @@ package com.esoteric.filters
 		/**
 		 * Constructor.
 		 */
-		public function DropShadowFilterElement(context:Context, type:String) 
+		public function DropShadowFilterElement(context:Context, kind:String) 
 		{
 			super(context, kind);
 		}

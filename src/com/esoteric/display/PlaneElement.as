@@ -53,7 +53,7 @@ package com.esoteric.display
 		/**
 		 * Constructor.
 		 */
-		public function PlaneElement(context:Context, type:String) 
+		public function PlaneElement(context:Context, kind:String) 
 		{
 			super(context, kind);
 		}

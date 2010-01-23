@@ -46,7 +46,7 @@
 		
 		<Script>
 			<![CDATA[
-				$('test');
+				trace($('>> [kind=Shape]'));
 			]]>
 		</Script>
 	</Sprite>

@@ -96,9 +96,9 @@ attrSelector
 			AttrSelector i=Identifier
 			o=('=' | '!=' | '<' | '<=' | '>' | '>=')
 			(
-				NumberLiteral				{ _elementSet.selectAttrNum($i.text, $o.text, Number($text)) }
-			|	StringLiteral				{ _elementSet.selectAttrStr($i.text, $o.text, cleanUpString($text)) }
-			|	Identifier				{ _elementSet.selectAttrStr($i.text, $o.text, $text) }
+				n=NumberLiteral				{ _elementSet.selectAttrNum($i.text, $o.text, Number($n.text)) }
+			|	s=StringLiteral				{ _elementSet.selectAttrStr($i.text, $o.text, cleanUpString($s.text)) }
+			|	v=Identifier				{ _elementSet.selectAttrStr($i.text, $o.text, $v.text) }
 			)
 		)
 	;

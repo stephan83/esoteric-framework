@@ -53,7 +53,7 @@ package com.esoteric.display
 		/**
 		 * Constructor.
 		 */
-		public function MovieMaterialElement(context:Context, type:String) 
+		public function MovieMaterialElement(context:Context, kind:String) 
 		{
 			super(context, kind);
 			

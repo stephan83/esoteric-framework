@@ -36,7 +36,7 @@
 			var factory:ElementFactory = new ElementFactory();
 			factory.add('Preloader', new StaticElementBuilder(PreloaderElement));
 			_context = new Context(stage, factory);
-			var root:PreloaderElement = XMLParser.parseNode(<Preloader />, _context) as PreloaderElement;
+			var root:PreloaderElement = XMLParser.parseNode(<Preloader />, _context, null, true) as PreloaderElement;
 			
 			addChild(root.sprite);
 		}

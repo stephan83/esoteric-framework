@@ -55,7 +55,7 @@ package com.esoteric.display
 		/**
 		 * Constructor.
 		 */
-		public function InteractiveObjectElement(context:Context, type:String) 
+		public function InteractiveObjectElement(context:Context, kind:String) 
 		{
 			super(context, kind);
 			

@@ -50,7 +50,7 @@ package com.esoteric.display
 		/**
 		 * Constructor.
 		 */
-		public function LoaderElement(context:Context, type:String) 
+		public function LoaderElement(context:Context, kind:String) 
 		{
 			super(context, kind);
 			

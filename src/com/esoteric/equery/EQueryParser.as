@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g 2010-01-23 12:39:25
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g 2010-01-23 13:58:35
 package com.esoteric.equery {
     import org.antlr.runtime.*;
         
@@ -620,7 +620,7 @@ package com.esoteric.equery {
         // $ANTLR end idSelector
 
         // $ANTLR start childSelector
-        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:71:1: childSelector : '>' ;
+        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:71:1: childSelector : '>' -> ^( ChildSelector ) ;
         public final function childSelector():ParserRuleReturnScope {
             var retval:ParserRuleReturnScope = new ParserRuleReturnScope();
             retval.start = input.LT(1);
@@ -630,20 +630,42 @@ package com.esoteric.equery {
             var char_literal15:Token=null;
 
             var char_literal15_tree:CommonTree=null;
+            var stream_24:RewriteRuleTokenStream=new RewriteRuleTokenStream(adaptor,"token 24");
 
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 6) ) { return retval; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:72:2: ( '>' )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:72:2: ( '>' -> ^( ChildSelector ) )
                 // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:72:4: '>'
                 {
-                root_0 = CommonTree(adaptor.nil());
+                char_literal15=Token(matchStream(input,24,FOLLOW_24_in_childSelector243)); if (this.state.failed) return retval; 
+                if ( this.state.backtracking==0 ) stream_24.add(char_literal15);
 
-                char_literal15=Token(matchStream(input,24,FOLLOW_24_in_childSelector243)); if (this.state.failed) return retval;
+
+
+                // AST REWRITE
+                // elements: 
+                // token labels: 
+                // rule labels: retval
+                // token list labels: 
+                // rule list labels: 
                 if ( this.state.backtracking==0 ) {
-                char_literal15_tree = CommonTree(adaptor.create(char_literal15));
-                adaptor.addChild(root_0, char_literal15_tree);
+                retval.tree = root_0;
+                var stream_retval:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
+
+                root_0 = CommonTree(adaptor.nil());
+                // 72:11: -> ^( ChildSelector )
+                {
+                    // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:72:14: ^( ChildSelector )
+                    {
+                    var root_1:CommonTree = CommonTree(adaptor.nil());
+                    root_1 = CommonTree(adaptor.becomeRoot(CommonTree(adaptor.create(ChildSelector, "ChildSelector")), root_1));
+
+                    adaptor.addChild(root_0, root_1);
+                    }
+
                 }
 
+                retval.tree = root_0;}
                 }
 
                 retval.stop = input.LT(-1);
@@ -688,10 +710,10 @@ package com.esoteric.equery {
                 // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:77:2: ( '.' Identifier -> ^( ClassSelector Identifier ) )
                 // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:77:4: '.' Identifier
                 {
-                char_literal16=Token(matchStream(input,25,FOLLOW_25_in_classSelector257)); if (this.state.failed) return retval; 
+                char_literal16=Token(matchStream(input,25,FOLLOW_25_in_classSelector266)); if (this.state.failed) return retval; 
                 if ( this.state.backtracking==0 ) stream_25.add(char_literal16);
 
-                Identifier17=Token(matchStream(input,Identifier,FOLLOW_Identifier_in_classSelector259)); if (this.state.failed) return retval; 
+                Identifier17=Token(matchStream(input,Identifier,FOLLOW_Identifier_in_classSelector268)); if (this.state.failed) return retval; 
                 if ( this.state.backtracking==0 ) stream_Identifier.add(Identifier17);
 
 
@@ -763,7 +785,7 @@ package com.esoteric.equery {
                 // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:81:2: ( '.firstChild' -> ^( FirstSelector ) )
                 // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:81:4: '.firstChild'
                 {
-                string_literal18=Token(matchStream(input,26,FOLLOW_26_in_firstSelector281)); if (this.state.failed) return retval; 
+                string_literal18=Token(matchStream(input,26,FOLLOW_26_in_firstSelector290)); if (this.state.failed) return retval; 
                 if ( this.state.backtracking==0 ) stream_26.add(string_literal18);
 
 
@@ -833,7 +855,7 @@ package com.esoteric.equery {
                 // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:85:2: ( '.lastChild' -> ^( LastSelector ) )
                 // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:85:4: '.lastChild'
                 {
-                string_literal19=Token(matchStream(input,27,FOLLOW_27_in_lastSelector301)); if (this.state.failed) return retval; 
+                string_literal19=Token(matchStream(input,27,FOLLOW_27_in_lastSelector310)); if (this.state.failed) return retval; 
                 if ( this.state.backtracking==0 ) stream_27.add(string_literal19);
 
 
@@ -914,31 +936,31 @@ package com.esoteric.equery {
                 // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:89:2: ( '[' Identifier op exp ']' -> ^( AttrSelector Identifier op exp ) )
                 // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:89:4: '[' Identifier op exp ']'
                 {
-                char_literal20=Token(matchStream(input,28,FOLLOW_28_in_attrSelector321)); if (this.state.failed) return retval; 
+                char_literal20=Token(matchStream(input,28,FOLLOW_28_in_attrSelector330)); if (this.state.failed) return retval; 
                 if ( this.state.backtracking==0 ) stream_28.add(char_literal20);
 
-                Identifier21=Token(matchStream(input,Identifier,FOLLOW_Identifier_in_attrSelector323)); if (this.state.failed) return retval; 
+                Identifier21=Token(matchStream(input,Identifier,FOLLOW_Identifier_in_attrSelector332)); if (this.state.failed) return retval; 
                 if ( this.state.backtracking==0 ) stream_Identifier.add(Identifier21);
 
-                pushFollow(FOLLOW_op_in_attrSelector325);
+                pushFollow(FOLLOW_op_in_attrSelector334);
                 op22=op();
 
                 state._fsp = state._fsp - 1;
                 if (this.state.failed) return retval;
                 if ( this.state.backtracking==0 ) stream_op.add(op22.tree);
-                pushFollow(FOLLOW_exp_in_attrSelector327);
+                pushFollow(FOLLOW_exp_in_attrSelector336);
                 exp23=exp();
 
                 state._fsp = state._fsp - 1;
                 if (this.state.failed) return retval;
                 if ( this.state.backtracking==0 ) stream_exp.add(exp23.tree);
-                char_literal24=Token(matchStream(input,29,FOLLOW_29_in_attrSelector329)); if (this.state.failed) return retval; 
+                char_literal24=Token(matchStream(input,29,FOLLOW_29_in_attrSelector338)); if (this.state.failed) return retval; 
                 if ( this.state.backtracking==0 ) stream_29.add(char_literal24);
 
 
 
                 // AST REWRITE
-                // elements: op, Identifier, exp
+                // elements: exp, Identifier, op
                 // token labels: 
                 // rule labels: retval
                 // token list labels: 
@@ -1148,15 +1170,15 @@ package com.esoteric.equery {
         public static const FOLLOW_23_in_idSelector219:BitSet = new BitSet([0x00001000, 0x00000000]);
         public static const FOLLOW_Identifier_in_idSelector221:BitSet = new BitSet([0x00000002, 0x00000000]);
         public static const FOLLOW_24_in_childSelector243:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_25_in_classSelector257:BitSet = new BitSet([0x00001000, 0x00000000]);
-        public static const FOLLOW_Identifier_in_classSelector259:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_26_in_firstSelector281:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_27_in_lastSelector301:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_28_in_attrSelector321:BitSet = new BitSet([0x00001000, 0x00000000]);
-        public static const FOLLOW_Identifier_in_attrSelector323:BitSet = new BitSet([0xC1000000, 0x00000007]);
-        public static const FOLLOW_op_in_attrSelector325:BitSet = new BitSet([0x00007000, 0x00000000]);
-        public static const FOLLOW_exp_in_attrSelector327:BitSet = new BitSet([0x20000000, 0x00000000]);
-        public static const FOLLOW_29_in_attrSelector329:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_25_in_classSelector266:BitSet = new BitSet([0x00001000, 0x00000000]);
+        public static const FOLLOW_Identifier_in_classSelector268:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_26_in_firstSelector290:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_27_in_lastSelector310:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_28_in_attrSelector330:BitSet = new BitSet([0x00001000, 0x00000000]);
+        public static const FOLLOW_Identifier_in_attrSelector332:BitSet = new BitSet([0xC1000000, 0x00000007]);
+        public static const FOLLOW_op_in_attrSelector334:BitSet = new BitSet([0x00007000, 0x00000000]);
+        public static const FOLLOW_exp_in_attrSelector336:BitSet = new BitSet([0x20000000, 0x00000000]);
+        public static const FOLLOW_29_in_attrSelector338:BitSet = new BitSet([0x00000002, 0x00000000]);
         public static const FOLLOW_set_in_op0:BitSet = new BitSet([0x00000002, 0x00000000]);
         public static const FOLLOW_set_in_exp0:BitSet = new BitSet([0x00000002, 0x00000000]);
         public static const FOLLOW_query_in_synpred1_EQuery112:BitSet = new BitSet([0x00000000, 0x00000000]);

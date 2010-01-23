@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g 2010-01-23 12:39:25
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g 2010-01-23 13:58:35
 package com.esoteric.equery {
     import org.antlr.runtime.*;
         

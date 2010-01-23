@@ -49,7 +49,7 @@ package com.esoteric.filters
 		/**
 		 * Constructor.
 		 */
-		public function GlowFilterElement(context:Context, type:String) 
+		public function GlowFilterElement(context:Context, kind:String) 
 		{
 			super(context, kind);
 		}

@@ -35,6 +35,7 @@
 
 package com.esoteric.equery 
 {
+	import com.esoteric.core.IElement;
 	/**
 	 * An element set.
 	 * 
@@ -98,7 +99,17 @@ package com.esoteric.equery
 		 */
 		public function selectChild():void
 		{
+			var old:Array = _result;
 			
+			_result = new Array();
+			
+			for each (var element:IElement in old) 
+			{
+				for (var i:int = 0; i < element.numChildren; i++)
+				{
+					_result[_result.length] = element.getChildAt(i);
+				}
+			}
 		}
 		
 		/**
@@ -136,7 +147,83 @@ package com.esoteric.equery
 		 */
 		public function selectAttrNum(attr:String, op:String, n:Number):void
 		{
+			var old:Array = _result;
+			_result = new Array();
 			
+			switch(op)
+			{
+				case '=': {
+					for each (var element:IElement in old) 
+					{
+						if (element[attr] == n)
+						{
+							_result[_result.length] = element;
+						}
+					}
+					
+					break
+				}
+				
+				case '!=': {
+					for each (var element:IElement in old) 
+					{
+						if (element[attr] != n)
+						{
+							_result[_result.length] = element;
+						}
+					}
+					
+					break
+				}
+				
+				case '<': {
+					for each (var element:IElement in old) 
+					{
+						if (element[attr] < n)
+						{
+							_result[_result.length] = element;
+						}
+					}
+					
+					break
+				}
+				
+				case '<=': {
+					for each (var element:IElement in old) 
+					{
+						if (element[attr] <= n)
+						{
+							_result[_result.length] = element;
+						}
+					}
+					
+					break
+				}
+				
+				case '>': {
+					for each (var element:IElement in old) 
+					{
+						if (element[attr] > n)
+						{
+							_result[_result.length] = element;
+						}
+					}
+					
+					break
+				}
+				
+				case '>=': {
+					for each (var element:IElement in old) 
+					{
+						if (element[attr] >= n)
+						{
+							_result[_result.length] = element;
+						}
+					}
+					
+					break
+				}
+			}
 		}
 		
 		/**
@@ -149,6 +236,83 @@ package com.esoteric.equery
 		public function selectAttrStr(attr:String, op:String, s:String):void
 		{
 			
+			var old:Array = _result;
+			_result = new Array();
+			trace(old);
+			switch(op)
+			{
+				case '=': {
+					for each (var element:IElement in old) 
+					{trace(element[attr]);
+						if (element[attr] == s)
+						{
+							_result[_result.length] = element;
+						}
+					}
+					
+					break
+				}
+				
+				case '!=': {
+					for each (var element:IElement in old) 
+					{
+						if (element[attr] != s)
+						{
+							_result[_result.length] = element;
+						}
+					}
+					
+					break
+				}
+				
+				case '<': {
+					for each (var element:IElement in old) 
+					{
+						if (element[attr] < s)
+						{
+							_result[_result.length] = element;
+						}
+					}
+					
+					break
+				}
+				
+				case '<=': {
+					for each (var element:IElement in old) 
+					{
+						if (element[attr] <= s)
+						{
+							_result[_result.length] = element;
+						}
+					}
+					
+					break
+				}
+				
+				case '>': {
+					for each (var element:IElement in old) 
+					{
+						if (element[attr] > s)
+						{
+							_result[_result.length] = element;
+						}
+					}
+					
+					break
+				}
+				
+				case '>=': {
+					for each (var element:IElement in old) 
+					{
+						if (element[attr] >= s)
+						{
+							_result[_result.length] = element;
+						}
+					}
+					
+					break
+				}
+			}
 		}
 		
 	}

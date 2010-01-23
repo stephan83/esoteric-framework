@@ -51,7 +51,7 @@ package com.esoteric.display
 		/**
 		 * Constructor.
 		 */
-		public function Camera3DElement(context:Context, type:String) 
+		public function Camera3DElement(context:Context, kind:String) 
 		{
 			super(context, kind);
 		}

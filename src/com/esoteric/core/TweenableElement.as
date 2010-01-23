@@ -53,9 +53,9 @@ package com.esoteric.core
 		/**
 		 * Constructor.
 		 */
-		public function TweenableElement(context:Context, type:String) 
+		public function TweenableElement(context:Context, kind:String) 
 		{
-			super(context, type);
+			super(context, kind);
 			
 			_tweenableObject = new TweenableObject(this);
 			

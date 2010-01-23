@@ -49,7 +49,7 @@ package com.esoteric.filters
 		/**
 		 * Constructor.
 		 */
-		public function BlurFilterElement(context:Context, type:String) 
+		public function BlurFilterElement(context:Context, kind:String) 
 		{
 			super(context, kind);
 		}

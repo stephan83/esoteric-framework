@@ -55,7 +55,7 @@ package com.esoteric.text
 		/**
 		 * Constructor.
 		 */
-		public function TextFieldElement(context:Context, type:String) 
+		public function TextFieldElement(context:Context, kind:String) 
 		{
 			super(context, kind);
 			

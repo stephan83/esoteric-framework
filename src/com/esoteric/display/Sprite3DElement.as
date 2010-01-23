@@ -53,7 +53,7 @@ package com.esoteric.display
 		/**
 		 * Constructor
 		 */
-		public function Sprite3DElement(context:Context, type:String) 
+		public function Sprite3DElement(context:Context, kind:String) 
 		{
 			super(context, kind);
 			

@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Users\\Stephan\\Desktop\\compiler\\EQueryWalker.g 2010-01-23 13:41:51
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Users\\Stephan\\Desktop\\compiler\\EQueryWalker.g 2010-01-23 14:17:51
 package com.esoteric.equery {
     import org.antlr.runtime.*;
         import org.antlr.runtime.tree.*;    
@@ -516,34 +516,35 @@ package com.esoteric.equery {
         // $ANTLR end lastSelector
 
         // $ANTLR start attrSelector
-        // C:\\Users\\Stephan\\Desktop\\compiler\\EQueryWalker.g:94:1: attrSelector : ^( AttrSelector i= Identifier o= ( '=' | '!=' | '<' | '<=' | '>' | '>=' ) ( NumberLiteral | StringLiteral | Identifier ) ) ;
-        public final function attrSelector():TreeRuleReturnScope {
-            var retval:TreeRuleReturnScope = new TreeRuleReturnScope();
-            retval.start = input.LT(1);
+        // C:\\Users\\Stephan\\Desktop\\compiler\\EQueryWalker.g:94:1: attrSelector : ^( AttrSelector i= Identifier o= ( '=' | '!=' | '<' | '<=' | '>' | '>=' ) (n= NumberLiteral | s= StringLiteral | v= Identifier ) ) ;
+        public final function attrSelector():void {
             var attrSelector_StartIndex:int = input.index;
             var i:Object=null;
             var o:Object=null;
+            var n:Object=null;
+            var s:Object=null;
+            var v:Object=null;
 
             try {
-                if ( this.state.backtracking>0 && alreadyParsedRule(input, 9) ) { return retval; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQueryWalker.g:95:2: ( ^( AttrSelector i= Identifier o= ( '=' | '!=' | '<' | '<=' | '>' | '>=' ) ( NumberLiteral | StringLiteral | Identifier ) ) )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQueryWalker.g:95:4: ^( AttrSelector i= Identifier o= ( '=' | '!=' | '<' | '<=' | '>' | '>=' ) ( NumberLiteral | StringLiteral | Identifier ) )
+                if ( this.state.backtracking>0 && alreadyParsedRule(input, 9) ) { return ; }
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQueryWalker.g:95:2: ( ^( AttrSelector i= Identifier o= ( '=' | '!=' | '<' | '<=' | '>' | '>=' ) (n= NumberLiteral | s= StringLiteral | v= Identifier ) ) )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQueryWalker.g:95:4: ^( AttrSelector i= Identifier o= ( '=' | '!=' | '<' | '<=' | '>' | '>=' ) (n= NumberLiteral | s= StringLiteral | v= Identifier ) )
                 {
-                matchStream(input,AttrSelector,FOLLOW_AttrSelector_in_attrSelector305); if (this.state.failed) return retval;
+                matchStream(input,AttrSelector,FOLLOW_AttrSelector_in_attrSelector305); if (this.state.failed) return ;
 
-                matchStream(input, TokenConstants.DOWN, null); if (this.state.failed) return retval;
-                i=Object(matchStream(input,Identifier,FOLLOW_Identifier_in_attrSelector309)); if (this.state.failed) return retval;
+                matchStream(input, TokenConstants.DOWN, null); if (this.state.failed) return ;
+                i=Object(matchStream(input,Identifier,FOLLOW_Identifier_in_attrSelector309)); if (this.state.failed) return ;
                 o=Object(input.LT(1));
                 if ( input.LA(1)==24||(input.LA(1)>=30 && input.LA(1)<=34) ) {
                     input.consume();
                     this.state.errorRecovery=false;this.state.failed=false;
                 }
                 else {
-                    if (this.state.backtracking>0) {this.state.failed=true; return retval;}
+                    if (this.state.backtracking>0) {this.state.failed=true; return ;}
                     throw new MismatchedSetException(null,input);
                 }
 
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQueryWalker.g:98:4: ( NumberLiteral | StringLiteral | Identifier )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQueryWalker.g:98:4: (n= NumberLiteral | s= StringLiteral | v= Identifier )
                 var alt4:int=3;
                 switch ( input.LA(1) ) {
                 case NumberLiteral:
@@ -562,44 +563,38 @@ package com.esoteric.equery {
                     }
                     break;
                 default:
-                    if (this.state.backtracking>0) {this.state.failed=true; return retval;}
+                    if (this.state.backtracking>0) {this.state.failed=true; return ;}
                     throw new NoViableAltException("", 4, 0, input);
 
                 }
 
                 switch (alt4) {
                     case 1 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQueryWalker.g:99:5: NumberLiteral
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQueryWalker.g:99:5: n= NumberLiteral
                         {
-                        matchStream(input,NumberLiteral,FOLLOW_NumberLiteral_in_attrSelector349); if (this.state.failed) return retval;
+                        n=Object(matchStream(input,NumberLiteral,FOLLOW_NumberLiteral_in_attrSelector351)); if (this.state.failed) return ;
                         if ( this.state.backtracking==0 ) {
-                           _elementSet.selectAttrNum((i!=null?i.text:null), (o!=null?o.text:null), Number(input.tokenStream.toStringWithRange(
-                            input.treeAdaptor.getTokenStartIndex(retval.start),
-                            input.treeAdaptor.getTokenStopIndex(retval.start)))) 
+                           _elementSet.selectAttrNum((i!=null?i.text:null), (o!=null?o.text:null), Number((n!=null?n.text:null))) 
                         }
 
                         }
                         break;
                     case 2 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQueryWalker.g:100:6: StringLiteral
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQueryWalker.g:100:6: s= StringLiteral
                         {
-                        matchStream(input,StringLiteral,FOLLOW_StringLiteral_in_attrSelector361); if (this.state.failed) return retval;
+                        s=Object(matchStream(input,StringLiteral,FOLLOW_StringLiteral_in_attrSelector365)); if (this.state.failed) return ;
                         if ( this.state.backtracking==0 ) {
-                           _elementSet.selectAttrStr((i!=null?i.text:null), (o!=null?o.text:null), cleanUpString(input.tokenStream.toStringWithRange(
-                            input.treeAdaptor.getTokenStartIndex(retval.start),
-                            input.treeAdaptor.getTokenStopIndex(retval.start)))) 
+                           _elementSet.selectAttrStr((i!=null?i.text:null), (o!=null?o.text:null), cleanUpString((s!=null?s.text:null))) 
                         }
 
                         }
                         break;
                     case 3 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQueryWalker.g:101:6: Identifier
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\EQueryWalker.g:101:6: v= Identifier
                         {
-                        matchStream(input,Identifier,FOLLOW_Identifier_in_attrSelector373); if (this.state.failed) return retval;
+                        v=Object(matchStream(input,Identifier,FOLLOW_Identifier_in_attrSelector379)); if (this.state.failed) return ;
                         if ( this.state.backtracking==0 ) {
-                           _elementSet.selectAttrStr((i!=null?i.text:null), (o!=null?o.text:null), input.tokenStream.toStringWithRange(
-                            input.treeAdaptor.getTokenStartIndex(retval.start),
-                            input.treeAdaptor.getTokenStopIndex(retval.start))) 
+                           _elementSet.selectAttrStr((i!=null?i.text:null), (o!=null?o.text:null), (v!=null?v.text:null)) 
                         }
 
                         }
@@ -608,7 +603,7 @@ package com.esoteric.equery {
                 }
 
 
-                matchStream(input, TokenConstants.UP, null); if (this.state.failed) return retval;
+                matchStream(input, TokenConstants.UP, null); if (this.state.failed) return ;
 
                 }
 
@@ -620,7 +615,7 @@ package com.esoteric.equery {
             finally {
                 if ( this.state.backtracking>0 ) { memoize(input, 9, attrSelector_StartIndex); }
             }
-            return retval;
+            return ;
         }
         // $ANTLR end attrSelector
 
@@ -651,9 +646,9 @@ package com.esoteric.equery {
         public static const FOLLOW_AttrSelector_in_attrSelector305:BitSet = new BitSet([0x00000004, 0x00000000]);
         public static const FOLLOW_Identifier_in_attrSelector309:BitSet = new BitSet([0xC1000000, 0x00000007]);
         public static const FOLLOW_set_in_attrSelector316:BitSet = new BitSet([0x00007000, 0x00000000]);
-        public static const FOLLOW_NumberLiteral_in_attrSelector349:BitSet = new BitSet([0x00000008, 0x00000000]);
-        public static const FOLLOW_StringLiteral_in_attrSelector361:BitSet = new BitSet([0x00000008, 0x00000000]);
-        public static const FOLLOW_Identifier_in_attrSelector373:BitSet = new BitSet([0x00000008, 0x00000000]);
+        public static const FOLLOW_NumberLiteral_in_attrSelector351:BitSet = new BitSet([0x00000008, 0x00000000]);
+        public static const FOLLOW_StringLiteral_in_attrSelector365:BitSet = new BitSet([0x00000008, 0x00000000]);
+        public static const FOLLOW_Identifier_in_attrSelector379:BitSet = new BitSet([0x00000008, 0x00000000]);
 
     }
 }

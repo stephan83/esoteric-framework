@@ -48,7 +48,7 @@ package com.esoteric.display
 		/**
 		 * Constructor.
 		 */
-		public function ShapeElement(context:Context, type:String) 
+		public function ShapeElement(context:Context, kind:String) 
 		{
 			super(context, kind);
 		}
