@@ -68,7 +68,15 @@
 			
 			$('* [kind=Sprite] :last-child').click(function(e) {
 				string = e.localX + ';' + e.localY;
-				trace(string);
+				
+				i = 0;
+				
+				while (i < 100000)
+				{
+					i += 1;
+				}
+				
+				trace(i);
 			});
 			
 			$('#textField').attr('text', '{string}');

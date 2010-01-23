@@ -253,14 +253,20 @@ package com.esoteric.expressions
 							case "||":
 							case "or":
 							{
-								_stack[--_top] = _stack[_top] || _stack[_top + 1] ;
+								if (!_stack[--_top])
+								{
+									_stack[_top] = _stack[_top + 1];
+								}
 								break;
 							}
 							
 							case "&&":
 							case "and":
 							{
-								_stack[--_top] = _stack[_top] && _stack[_top + 1] ;
+								if (_stack[--_top])
+								{
+									_stack[_top] = _stack[_top + 1];
+								}
 								break;
 							}
 							
