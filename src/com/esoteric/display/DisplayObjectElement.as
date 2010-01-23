@@ -63,8 +63,6 @@ package com.esoteric.display
 		{
 			super(context, kind);
 			
-			displayObject = createDisplayObject();
-			
 			new Watcher(this, 'visible', visibleWatcher);
 			new Watcher(this, 'parent', parentWatcher);
 			new Watcher(this, 'hiddenAncestor', hiddenAncestorWatcher);
@@ -81,7 +79,9 @@ package com.esoteric.display
 		{
 			super.initialize();
 			
-			hiddenAncestor = !(parent is DisplayObjectElement);
+			displayObject = createDisplayObject();
+			
+			hiddenAncestor = !(parent is DisplayObjectElement || context.root == this);
 		}
 		
 		// The mask property is a little tricky so it is overridden.
@@ -250,7 +250,7 @@ package com.esoteric.display
 			}
 			else
 			{
-				hiddenAncestor = true;
+				hiddenAncestor =  context.root != this;
 			}
 		}
 		

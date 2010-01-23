@@ -118,7 +118,7 @@ package com.esoteric.display
 		 * @private
 		 */
 		private function addEventListeners():void
-		{
+		{trace('test');
 			interactiveObject.addEventListener(MouseEvent.CLICK, clickHandler, false, 0, true);
 			interactiveObject.addEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler, false, 0, true);
 			interactiveObject.addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler, false, 0, true);
@@ -135,7 +135,7 @@ package com.esoteric.display
 		 * @private
 		 */
 		private function removeEventListeners():void
-		{
+		{trace('nooo');
 			interactiveObject.removeEventListener(MouseEvent.CLICK, clickHandler);
 			interactiveObject.removeEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler);
 			interactiveObject.removeEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
@@ -156,7 +156,6 @@ package com.esoteric.display
 			var global:Point = new Point(e.stageX, e.stageY);
 			var local:Point = displayObject.globalToLocal(global);
 			
-			dispatchEvent(new PointInputEvent(PointInputEvent.CLICK_NOW, false, false, local.x, local.y, 0, e.stageX, e.stageY));
 			dispatchEvent(new PointInputEvent(PointInputEvent.CLICK, false, false, local.x, local.y, 0, e.stageX, e.stageY));
 		}
 		

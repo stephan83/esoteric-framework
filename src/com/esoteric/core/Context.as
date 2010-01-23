@@ -79,7 +79,7 @@ package com.esoteric.core
 			
 			// enable eQuery
 			_closure['$'] = function(query:String):EQueryObject {
-				return new EQueryObject(new ElementSet([_root])).$(query);
+				return new EQueryObject(new ElementSet([_root])).find(query);
 			}
 			
 			_stage.addEventListener(Event.RESIZE, resizeHandler);

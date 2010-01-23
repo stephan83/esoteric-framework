@@ -55,8 +55,6 @@ package com.esotericorp.display
 			super(context, kind);
 			
 			sprite = new _concreteLight() as Sprite;
-			
-			addEventListener('click', function(e:Event):void { trace('test'); } );
 		}
 
 	}

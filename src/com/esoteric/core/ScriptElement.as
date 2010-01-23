@@ -64,14 +64,6 @@ package com.esoteric.core
 		/**
 		 * @inheritDoc
 		 */
-		override public function initialize():void
-		{
-			super.initialize();
-		}
-		
-		/**
-		 * @inheritDoc
-		 */
 		override public function set text(value:String):void
 		{
 			if (expression)

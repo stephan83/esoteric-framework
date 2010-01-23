@@ -36,12 +36,21 @@
 
 <Preloader>
 	
-	<TextField id="textField" color="0xffffff"></TextField>
-		
 	<Script>
 		<![CDATA[
-			false || trace('world');
+			trace($this);
+			$this.attr('mouseEnabled', true);
+			$this.attr('buttonMode', true);
+			$this.attr('useHandCursor', true);
+			trace($this.attr('hiddenAncestor'));
+			trace($this.attr('mouseEnabled'));
+			trace($this.attr('buttonMode'));
+			trace($this.attr('useHandCursor'));
+			
+			$this.click(function(e) {
+				trace(e.localX, e.localY);
+			});
 		]]>
 	</Script>
-
+	
 </Preloader>

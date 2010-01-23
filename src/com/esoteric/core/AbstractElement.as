@@ -36,6 +36,8 @@ package com.esoteric.core
 {
 	import com.esoteric.core.RenderQueue;
 	import com.esoteric.core.Context;
+	import com.esoteric.equery.ElementSet;
+	import com.esoteric.equery.EQueryObject;
 	import com.esoteric.events.ElementEvent;
 	import com.esoteric.events.LoadEvent;
 	import com.esoteric.events.ProgressEvent;
@@ -183,7 +185,7 @@ package com.esoteric.core
 		 */
 		public function initialize():void
 		{
-			if (!_parent)
+			if (!_closure)
 			{
 				_closure = createClosure();
 			}
@@ -379,6 +381,9 @@ package com.esoteric.core
 			{
 				closure = new Closure(_context.closure);
 			}
+			
+			// enable eQuery $this
+			closure.setLocal('$this', new EQueryObject(new ElementSet([_target])));
 			
 			return closure;
 		}
