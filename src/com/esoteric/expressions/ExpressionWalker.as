@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g 2010-01-22 16:43:44
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g 2010-01-23 17:39:57
 package com.esoteric.expressions {
     import org.antlr.runtime.*;
         import org.antlr.runtime.tree.*;    
@@ -120,7 +120,7 @@ package com.esoteric.expressions {
 
         	private var _codegen:ExpressionCodegen = new ExpressionCodegen();
         	
-        	public function get instructions():Array { return _codegen.instructions; }
+        	public function get instructions():Vector.<Array> { return _codegen.instructions; }
         			
         	private function cleanUpString(s:String):String
         	{

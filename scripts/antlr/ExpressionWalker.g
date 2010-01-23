@@ -12,7 +12,7 @@ options {
 @treeparser::members {
 	private var _codegen:ExpressionCodegen = new ExpressionCodegen();
 	
-	public function get instructions():Array { return _codegen.instructions; }
+	public function get instructions():Vector.<Array> { return _codegen.instructions; }
 			
 	private function cleanUpString(s:String):String
 	{

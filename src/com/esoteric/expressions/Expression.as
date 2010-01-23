@@ -65,7 +65,7 @@ package com.esoteric.expressions
 		private var _paused:Boolean = false;
 		private var _evaluating:Boolean = false;
 		private var _closure:Closure;
-		private var _instructions:Array;
+		private var _instructions:Vector.<Array>;
 		private var _enableWatchers:Boolean;
 		private var _outdated:Boolean = true;
 		
@@ -231,7 +231,7 @@ package com.esoteric.expressions
 			
 			if (reporter.hasErrors)
 			{
-				_instructions = new Array();
+				_instructions = new Vector.<Array>();
 			}
 			else
 			{
@@ -239,7 +239,7 @@ package com.esoteric.expressions
 				
 				walker.main();
 				
-				_instructions = walker.instructions || new Array();
+				_instructions = walker.instructions || new Vector.<Array>();
 			}
 		}
 		

@@ -48,7 +48,7 @@ package com.esoteric.expressions
 		// MEMBERS
 		//---------------------------------------------------------------------
 		
-		private var _instructions:Array = new Array();
+		private var _instructions:Vector.<Array> = new Vector.<Array>();
 		private var _currStateStack:Array = new Array();
 		private var _offsets:Array = new Array();
 		private var _debug:Boolean = false;
@@ -69,7 +69,7 @@ package com.esoteric.expressions
 			var clone:ExpressionCodegen = new ExpressionCodegen();
 			var length:int = _instructions.length;
 			
-			clone._instructions = new Array(length);
+			clone._instructions = new Vector.<Array>(length);
 			
 			for (var i:int = 0; i < length; i++)
 			{
@@ -140,11 +140,11 @@ package com.esoteric.expressions
 		{
 			popState();
 			
-			var ifInstructions:Array = popStateStack("if");
+			var ifInstructions:Vector.<Array> = popStateStack("if");
 			
 			if (hasElse)
 			{
-				var elseInstructions:Array = popStateStack("else");
+				var elseInstructions:Vector.<Array> = popStateStack("else");
 				
 				addInstruction([ExpressionVm.instructionTypes.push, elseInstructions.length + 2]);
 				addInstruction([ExpressionVm.instructionTypes.jumpc]);
@@ -177,7 +177,7 @@ package com.esoteric.expressions
 		{
 			popState();
 			
-			var whileInstructions:Array = popStateStack("while");
+			var whileInstructions:Vector.<Array> = popStateStack("while");
 			var offset:int = popOffset();
 			
 			addInstruction([ExpressionVm.instructionTypes.unaryop, "!"]);
@@ -207,7 +207,7 @@ package com.esoteric.expressions
 		public function endfunc():void
 		{
 			popState();
-			var instructions:Array = popStateStack("func");
+			var instructions:Vector.<Array> = popStateStack("func");
 			
 			addInstruction([ExpressionVm.instructionTypes.func, instructions]);
 		}
@@ -234,7 +234,7 @@ package com.esoteric.expressions
 		 * 
 		 * @return	the instructions
 		 */
-		public function get instructions():Array { return _instructions; }
+		public function get instructions():Vector.<Array> { return _instructions; }
 		
 		//---------------------------------------------------------------------
 		// PRIVATE FUNCTIONS
@@ -260,7 +260,7 @@ package com.esoteric.expressions
 			}
 		}
 		
-		private function addInstructions(instructionList:Array):void
+		private function addInstructions(instructionList:Vector.<Array>):void
 		{
 			if (_currStateStack.length)
 			{
@@ -297,10 +297,10 @@ package com.esoteric.expressions
 		
 		private function pushStateStack(state:String):void
 		{
-			_stateStacks[state].push(new Array());
+			_stateStacks[state].push(new Vector.<Array>());
 		}
 		
-		private function popStateStack(state:String):Array
+		private function popStateStack(state:String):Vector.<Array>
 		{
 			return _stateStacks[state].pop();
 		}

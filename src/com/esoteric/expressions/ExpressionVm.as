@@ -113,7 +113,7 @@ package com.esoteric.expressions
 		// PUBLIC FUNCTIONS
 		//---------------------------------------------------------------------
 		
-		public function eval(instructions:Array, closure:Closure, bind:Boolean = true):*
+		public function eval(instructions:Vector.<Array>, closure:Closure, bind:Boolean = true):*
 		{
 			var initialTop:int = _top;
 			var length:int = instructions.length;
@@ -557,12 +557,12 @@ package com.esoteric.expressions
 			dispatchEvent(new ExpressionEvent(ExpressionEvent.BINDABLE_PROPERTY_LOADED, false, false, bindable, property));
 		}
 		
-		private function makeFunc(instructions:Array, closure:Closure, bind:Boolean):Function
+		private function makeFunc(instructions:Vector.<Array>, closure:Closure, bind:Boolean):Function
 		{
 			return function(...args):* {
 				args.reverse();
 				
-				var header:Array = new Array();
+				var header:Vector.<Array> = new Vector.<Array>();
 				
 				for each (var arg:* in args) 
 				{

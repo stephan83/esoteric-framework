@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g 2010-01-23 13:58:35
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g 2010-01-23 17:39:21
 package com.esoteric.equery {
     import org.antlr.runtime.*;
         
@@ -144,10 +144,10 @@ package com.esoteric.equery {
             try {
                 var _type:int = T__26;
                 var _channel:int = DEFAULT_TOKEN_CHANNEL;
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:13:7: ( '.firstChild' )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:13:9: '.firstChild'
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:13:7: ( ':first-child' )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:13:9: ':first-child'
                 {
-                matchString(".firstChild"); 
+                matchString(":first-child"); 
 
 
                 }
@@ -165,10 +165,10 @@ package com.esoteric.equery {
             try {
                 var _type:int = T__27;
                 var _channel:int = DEFAULT_TOKEN_CHANNEL;
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:14:7: ( '.lastChild' )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:14:9: '.lastChild'
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:14:7: ( ':last-child' )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:14:9: ':last-child'
                 {
-                matchString(".lastChild"); 
+                matchString(":last-child"); 
 
 
                 }
@@ -1290,49 +1290,46 @@ package com.esoteric.equery {
         protected var dfa10:DFA;  // initialized in constructor
 
         private const DFA19_eot:Array =
-            DFA.unpackEncodedString("\x03\u80ff\xff\x01\x10\x01\x13\x04"+
-            "\u80ff\xff\x01\x15\x01\u80ff\xff\x01\x0e\x0b\u80ff\xff\x01\x16");
+            DFA.unpackEncodedString("\x03\u80ff\xff\x01\x11\x01\x12\x05"+
+            "\u80ff\xff\x01\x16\x01\u80ff\xff\x01\x0f\x0b\u80ff\xff\x01\x17");
         private const DFA19_eof:Array =
-            DFA.unpackEncodedString("\x18\u80ff\xff");
+            DFA.unpackEncodedString("\x19\u80ff\xff");
         private const DFA19_min:Array =
             DFA.unpackEncodedString("\x01\x09\x02\u80ff\xff\x01\x3d\x01"+
-            "\x30\x04\u80ff\xff\x01\x3d\x01\u80ff\xff\x01\x2b\x0b\u80ff\xff"+
-            "\x01\x30", true);
+            "\x30\x01\x66\x04\u80ff\xff\x01\x3d\x01\u80ff\xff\x01\x2b\x0b"+
+            "\u80ff\xff\x01\x30", true);
         private const DFA19_max:Array =
             DFA.unpackEncodedString("\x01\x7a\x02\u80ff\xff\x01\x3d\x01"+
-            "\x6c\x04\u80ff\xff\x01\x3d\x01\u80ff\xff\x01\x39\x0b\u80ff\xff"+
-            "\x01\x7a", true);
+            "\x39\x01\x6c\x04\u80ff\xff\x01\x3d\x01\u80ff\xff\x01\x39\x0b"+
+            "\u80ff\xff\x01\x7a", true);
         private const DFA19_accept:Array =
-            DFA.unpackEncodedString("\x01\u80ff\xff\x01\x01\x01\x02\x02"+
+            DFA.unpackEncodedString("\x01\u80ff\xff\x01\x01\x01\x02\x03"+
             "\u80ff\xff\x01\x07\x01\x08\x01\x09\x01\x0a\x01\u80ff\xff\x01"+
             "\x0e\x01\u80ff\xff\x01\x10\x01\x11\x01\x12\x01\x0d\x01\x03\x01"+
-            "\x05\x01\x06\x01\x04\x01\x0c\x01\x0b\x01\x0f\x01\u80ff\xff");
+            "\x04\x01\x05\x01\x06\x01\x0c\x01\x0b\x01\x0f\x01\u80ff\xff");
         private const DFA19_special:Array =
-            DFA.unpackEncodedString("\x18\u80ff\xff");
+            DFA.unpackEncodedString("\x19\u80ff\xff");
         private const DFA19_transition:Array = [
-                DFA.unpackEncodedString("\x02\x0d\x01\u80ff\xff\x02\x0d"+
-                "\x12\u80ff\xff\x01\x0d\x01\x08\x01\x0c\x01\x02\x03\u80ff\xff"+
-                "\x01\x0c\x02\u80ff\xff\x01\x01\x02\u80ff\xff\x01\x0a\x01"+
-                "\x04\x01\u80ff\xff\x0a\x0a\x02\u80ff\xff\x01\x09\x01\x07"+
-                "\x01\x03\x02\u80ff\xff\x04\x0e\x01\x0b\x15\x0e\x01\x05\x01"+
-                "\u80ff\xff\x01\x06\x01\u80ff\xff\x01\x0e\x01\u80ff\xff\x04"+
-                "\x0e\x01\x0b\x15\x0e"),
+                DFA.unpackEncodedString("\x02\x0e\x01\u80ff\xff\x02\x0e"+
+                "\x12\u80ff\xff\x01\x0e\x01\x09\x01\x0d\x01\x02\x03\u80ff\xff"+
+                "\x01\x0d\x02\u80ff\xff\x01\x01\x02\u80ff\xff\x01\x0b\x01"+
+                "\x04\x01\u80ff\xff\x0a\x0b\x01\x05\x01\u80ff\xff\x01\x0a"+
+                "\x01\x08\x01\x03\x02\u80ff\xff\x04\x0f\x01\x0c\x15\x0f\x01"+
+                "\x06\x01\u80ff\xff\x01\x07\x01\u80ff\xff\x01\x0f\x01\u80ff\xff"+
+                "\x04\x0f\x01\x0c\x15\x0f"),
                 DFA.unpackEncodedString(""),
                 DFA.unpackEncodedString(""),
-                DFA.unpackEncodedString("\x01\x0f"),
-                DFA.unpackEncodedString("\x0a\x0a\x2c\u80ff\xff\x01\x11"+
-                "\x05\u80ff\xff\x01\x12"),
-                DFA.unpackEncodedString(""),
-                DFA.unpackEncodedString(""),
-                DFA.unpackEncodedString(""),
-                DFA.unpackEncodedString(""),
-                DFA.unpackEncodedString("\x01\x14"),
-                DFA.unpackEncodedString(""),
-                DFA.unpackEncodedString("\x01\x16\x01\u80ff\xff\x01\x16"+
-                "\x02\u80ff\xff\x0a\x17"),
+                DFA.unpackEncodedString("\x01\x10"),
+                DFA.unpackEncodedString("\x0a\x0b"),
+                DFA.unpackEncodedString("\x01\x13\x05\u80ff\xff\x01\x14"),
                 DFA.unpackEncodedString(""),
                 DFA.unpackEncodedString(""),
                 DFA.unpackEncodedString(""),
+                DFA.unpackEncodedString(""),
+                DFA.unpackEncodedString("\x01\x15"),
+                DFA.unpackEncodedString(""),
+                DFA.unpackEncodedString("\x01\x17\x01\u80ff\xff\x01\x17"+
+                "\x02\u80ff\xff\x0a\x18"),
                 DFA.unpackEncodedString(""),
                 DFA.unpackEncodedString(""),
                 DFA.unpackEncodedString(""),
@@ -1341,8 +1338,11 @@ package com.esoteric.equery {
                 DFA.unpackEncodedString(""),
                 DFA.unpackEncodedString(""),
                 DFA.unpackEncodedString(""),
-                DFA.unpackEncodedString("\x0a\x17\x07\u80ff\xff\x1a\x0e"+
-                "\x04\u80ff\xff\x01\x0e\x01\u80ff\xff\x1a\x0e")
+                DFA.unpackEncodedString(""),
+                DFA.unpackEncodedString(""),
+                DFA.unpackEncodedString(""),
+                DFA.unpackEncodedString("\x0a\x18\x07\u80ff\xff\x1a\x0f"+
+                "\x04\u80ff\xff\x01\x0f\x01\u80ff\xff\x1a\x0f")
         ];
         protected var dfa19:DFA;  // initialized in constructor
      

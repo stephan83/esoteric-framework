@@ -37,7 +37,7 @@
 <Preloader>
 	
 	
-	<Sprite mouseEnabled="true" buttonMode="true" useHandCursor="true">
+	<Sprite>
 		<Shape>
 			<SolidFill color="0xff0000">
 				<Rectangle width="{stageWidth}" height="{stageHeight}" />
@@ -66,14 +66,12 @@
 			
 			$('#textField').attr('text', '{string}');
 			
-			$('* [kind=Sprite]').click(function(e) {
+			$('* [kind=Sprite] :last-child').click(function(e) {
 				string = e.localX + ';' + e.localY;
 				trace(string);
 			});
 			
 			$('#textField').attr('text', '{string}');
-			
-			//var omg = '{string + 'test'}';
 		]]>
 	</Script>
 

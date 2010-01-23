@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g 2010-01-23 13:58:35
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g 2010-01-23 17:39:21
 package com.esoteric.equery {
     import org.antlr.runtime.*;
         
@@ -8,7 +8,7 @@ package com.esoteric.equery {
 
     public class EQueryParser extends Parser {
         public static const tokenNames:Array = [
-            "<invalid>", "<EOR>", "<DOWN>", "<UP>", "Query", "AllSelector", "IdSelector", "ChildSelector", "ClassSelector", "FirstSelector", "LastSelector", "AttrSelector", "Identifier", "NumberLiteral", "StringLiteral", "Digit", "Exponent", "HexDigit", "EscapeSequence", "WhiteSpace", "Letter", "UnicodeEscapeChar", "'*'", "'#'", "'>'", "'.'", "'.firstChild'", "'.lastChild'", "'['", "']'", "'='", "'!='", "'<'", "'<='", "'>='"
+            "<invalid>", "<EOR>", "<DOWN>", "<UP>", "Query", "AllSelector", "IdSelector", "ChildSelector", "ClassSelector", "FirstSelector", "LastSelector", "AttrSelector", "Identifier", "NumberLiteral", "StringLiteral", "Digit", "Exponent", "HexDigit", "EscapeSequence", "WhiteSpace", "Letter", "UnicodeEscapeChar", "'*'", "'#'", "'>'", "'.'", "':first-child'", "':last-child'", "'['", "']'", "'='", "'!='", "'<'", "'<='", "'>='"
         ];
         public static const ClassSelector:int=8;
         public static const T__29:int=29;
@@ -768,7 +768,7 @@ package com.esoteric.equery {
         // $ANTLR end classSelector
 
         // $ANTLR start firstSelector
-        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:80:1: firstSelector : '.firstChild' -> ^( FirstSelector ) ;
+        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:80:1: firstSelector : ':first-child' -> ^( FirstSelector ) ;
         public final function firstSelector():ParserRuleReturnScope {
             var retval:ParserRuleReturnScope = new ParserRuleReturnScope();
             retval.start = input.LT(1);
@@ -782,8 +782,8 @@ package com.esoteric.equery {
 
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 8) ) { return retval; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:81:2: ( '.firstChild' -> ^( FirstSelector ) )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:81:4: '.firstChild'
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:81:2: ( ':first-child' -> ^( FirstSelector ) )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:81:4: ':first-child'
                 {
                 string_literal18=Token(matchStream(input,26,FOLLOW_26_in_firstSelector290)); if (this.state.failed) return retval; 
                 if ( this.state.backtracking==0 ) stream_26.add(string_literal18);
@@ -801,9 +801,9 @@ package com.esoteric.equery {
                 var stream_retval:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                 root_0 = CommonTree(adaptor.nil());
-                // 81:20: -> ^( FirstSelector )
+                // 81:21: -> ^( FirstSelector )
                 {
-                    // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:81:23: ^( FirstSelector )
+                    // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:81:24: ^( FirstSelector )
                     {
                     var root_1:CommonTree = CommonTree(adaptor.nil());
                     root_1 = CommonTree(adaptor.becomeRoot(CommonTree(adaptor.create(FirstSelector, "FirstSelector")), root_1));
@@ -838,7 +838,7 @@ package com.esoteric.equery {
         // $ANTLR end firstSelector
 
         // $ANTLR start lastSelector
-        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:84:1: lastSelector : '.lastChild' -> ^( LastSelector ) ;
+        // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:84:1: lastSelector : ':last-child' -> ^( LastSelector ) ;
         public final function lastSelector():ParserRuleReturnScope {
             var retval:ParserRuleReturnScope = new ParserRuleReturnScope();
             retval.start = input.LT(1);
@@ -852,8 +852,8 @@ package com.esoteric.equery {
 
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 9) ) { return retval; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:85:2: ( '.lastChild' -> ^( LastSelector ) )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:85:4: '.lastChild'
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:85:2: ( ':last-child' -> ^( LastSelector ) )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:85:4: ':last-child'
                 {
                 string_literal19=Token(matchStream(input,27,FOLLOW_27_in_lastSelector310)); if (this.state.failed) return retval; 
                 if ( this.state.backtracking==0 ) stream_27.add(string_literal19);
@@ -871,9 +871,9 @@ package com.esoteric.equery {
                 var stream_retval:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                 root_0 = CommonTree(adaptor.nil());
-                // 85:19: -> ^( LastSelector )
+                // 85:20: -> ^( LastSelector )
                 {
-                    // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:85:22: ^( LastSelector )
+                    // C:\\Users\\Stephan\\Desktop\\compiler\\EQuery.g:85:23: ^( LastSelector )
                     {
                     var root_1:CommonTree = CommonTree(adaptor.nil());
                     root_1 = CommonTree(adaptor.becomeRoot(CommonTree(adaptor.create(LastSelector, "LastSelector")), root_1));
@@ -960,7 +960,7 @@ package com.esoteric.equery {
 
 
                 // AST REWRITE
-                // elements: exp, Identifier, op
+                // elements: Identifier, exp, op
                 // token labels: 
                 // rule labels: retval
                 // token list labels: 

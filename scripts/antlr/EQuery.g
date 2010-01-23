@@ -78,11 +78,11 @@ classSelector
 	;
 	
 firstSelector
-	:	'.firstChild'			-> ^(FirstSelector)
+	:	':first-child'			-> ^(FirstSelector)
 	;
 	
 lastSelector
-	:	'.lastChild'			-> ^(LastSelector)
+	:	':last-child'			-> ^(LastSelector)
 	;
 	
 attrSelector
