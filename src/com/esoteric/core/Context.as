@@ -35,6 +35,7 @@
 	
 package com.esoteric.core 
 {
+	import com.esoteric.equery.EQuery;
 	import com.esoteric.expressions.Closure;
 	import com.esoteric.expressions.ExpressionVm;
 	import com.esoteric.net.Cache;
@@ -73,6 +74,9 @@ package com.esoteric.core
 			_closure['stageWidth'] = stage.stageWidth;
 			_closure['stageHeight'] = stage.stageHeight;
 			_closure['trace'] = trace;
+			
+			// enable eQuery
+			_closure['$'] = EQuery.$;
 			
 			_stage.addEventListener(Event.RESIZE, resizeHandler);
 		}

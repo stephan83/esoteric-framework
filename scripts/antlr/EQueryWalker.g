@@ -14,7 +14,7 @@ options {
 	
 	public function get elementSet():ElementSet { return _elementSet; }
 	
-	public function set elementSet(value ElementSet):void { _elementSet = value; }
+	public function set elementSet(value:ElementSet):void { _elementSet = value; }
 			
 	private function cleanUpString(s:String):String
 	{
@@ -96,9 +96,9 @@ attrSelector
 			AttrSelector i=Identifier
 			o=('=' | '!=' | '<' | '<=' | '>' | '>=')
 			(
-				NumberLiteral				{ _elementSet.selectAttrNum(i, o, Number($text)) }
-			|	StringLiteral				{ _elementSet.selectAttrStr(i, o, cleanUpString($text)) }
-			|	Identifier				{ _elementSet.selectAttrStr(i, o, $text) }
+				NumberLiteral				{ _elementSet.selectAttrNum($i.text, $o.text, Number($text)) }
+			|	StringLiteral				{ _elementSet.selectAttrStr($i.text, $o.text, cleanUpString($text)) }
+			|	Identifier				{ _elementSet.selectAttrStr($i.text, $o.text, $text) }
 			)
 		)
 	;

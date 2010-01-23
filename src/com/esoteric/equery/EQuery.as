@@ -35,6 +35,11 @@
 
 package com.esoteric.equery 
 {
+	import org.antlr.runtime.ANTLRStringStream;
+	import org.antlr.runtime.CommonTokenStream;
+	import org.antlr.runtime.ParserRuleReturnScope;
+	import org.antlr.runtime.tree.CommonTreeNodeStream;
+	import org.antlr.runtime.tree.Tree;
 	/**
 	 * An eQuery.
 	 * 
@@ -77,6 +82,11 @@ package com.esoteric.equery
 		public function set query(value:String):void 
 		{
 			_query = value;
+		}
+		
+		public static function $(query:String, elements:Array):*
+		{
+			
 		}
 		
 		/**

@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Users\\Stephan\\Desktop\\compiler\\EQueryWalker.g 2010-01-23 13:01:58
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Users\\Stephan\\Desktop\\compiler\\EQueryWalker.g 2010-01-23 13:41:51
 package com.esoteric.equery {
     import org.antlr.runtime.*;
         import org.antlr.runtime.tree.*;    
@@ -59,7 +59,7 @@ package com.esoteric.equery {
         	
         	public function get elementSet():ElementSet { return _elementSet; }
         	
-        	public function set elementSet(value ElementSet):void { _elementSet = value; }
+        	public function set elementSet(value:ElementSet):void { _elementSet = value; }
         			
         	private function cleanUpString(s:String):String
         	{
@@ -573,7 +573,7 @@ package com.esoteric.equery {
                         {
                         matchStream(input,NumberLiteral,FOLLOW_NumberLiteral_in_attrSelector349); if (this.state.failed) return retval;
                         if ( this.state.backtracking==0 ) {
-                           _elementSet.selectAttrNum(i, o, Number(input.tokenStream.toStringWithRange(
+                           _elementSet.selectAttrNum((i!=null?i.text:null), (o!=null?o.text:null), Number(input.tokenStream.toStringWithRange(
                             input.treeAdaptor.getTokenStartIndex(retval.start),
                             input.treeAdaptor.getTokenStopIndex(retval.start)))) 
                         }
@@ -585,7 +585,7 @@ package com.esoteric.equery {
                         {
                         matchStream(input,StringLiteral,FOLLOW_StringLiteral_in_attrSelector361); if (this.state.failed) return retval;
                         if ( this.state.backtracking==0 ) {
-                           _elementSet.selectAttrStr(i, o, cleanUpString(input.tokenStream.toStringWithRange(
+                           _elementSet.selectAttrStr((i!=null?i.text:null), (o!=null?o.text:null), cleanUpString(input.tokenStream.toStringWithRange(
                             input.treeAdaptor.getTokenStartIndex(retval.start),
                             input.treeAdaptor.getTokenStopIndex(retval.start)))) 
                         }
@@ -597,7 +597,7 @@ package com.esoteric.equery {
                         {
                         matchStream(input,Identifier,FOLLOW_Identifier_in_attrSelector373); if (this.state.failed) return retval;
                         if ( this.state.backtracking==0 ) {
-                           _elementSet.selectAttrStr(i, o, input.tokenStream.toStringWithRange(
+                           _elementSet.selectAttrStr((i!=null?i.text:null), (o!=null?o.text:null), input.tokenStream.toStringWithRange(
                             input.treeAdaptor.getTokenStartIndex(retval.start),
                             input.treeAdaptor.getTokenStopIndex(retval.start))) 
                         }
