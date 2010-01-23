@@ -53,8 +53,15 @@ package com.esotericorp.display
 		public function PreloaderElement(context:Context, kind:String) 
 		{			
 			super(context, kind);
-			
-			sprite = new _concreteLight() as Sprite;
+		}
+		
+		//---------------------------------------------------------------------
+		// Overrides
+		//---------------------------------------------------------------------
+		
+		override protected function createSprite():Sprite
+		{
+			return new _concreteLight() as Sprite;
 		}
 
 	}

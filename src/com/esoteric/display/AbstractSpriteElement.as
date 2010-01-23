@@ -2,7 +2,7 @@
 	DO NOT MODIFY THIS FILE, THE CODE GENERATOR WILL ERASE ANY CHANGES MADE.
 	MAKE CHANGES TO THE DERIVED CLASS INSTEAD.
 
-	Last generated 2010-01-20 20:12:19.478000 UTC.
+	Last generated 2010-01-23 19:42:42.708000 UTC.
 
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	~                           Esoteric Framework                            ~
@@ -59,9 +59,6 @@ package com.esoteric.display
 		{
 			super(context, kind);
 			
-			sprite.mouseChildren = _mouseChildren;
-			sprite.useHandCursor = _useHandCursor;
-			sprite.buttonMode = _buttonMode;
 
 		}
 		
@@ -87,7 +84,7 @@ package com.esoteric.display
 		/**
 		 * @private
 		 */
-		private var _sprite:Sprite = new Sprite();
+		private var _sprite:Sprite = null;
 
 		/**
 		 * @private
@@ -110,9 +107,9 @@ package com.esoteric.display
 		//---------------------------------------------------------------------
 		
 		/**
-		 * The sprite object. [default = new Sprite()]
+		 * The sprite object. [default = null]
 		 *
-		 * @default	new Sprite()
+		 * @default	null
 		 */
 		public function get sprite():Sprite { return _sprite; }
 		

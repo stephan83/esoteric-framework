@@ -118,7 +118,7 @@ package com.esoteric.display
 		 * @private
 		 */
 		private function addEventListeners():void
-		{trace('test');
+		{
 			interactiveObject.addEventListener(MouseEvent.CLICK, clickHandler, false, 0, true);
 			interactiveObject.addEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler, false, 0, true);
 			interactiveObject.addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler, false, 0, true);

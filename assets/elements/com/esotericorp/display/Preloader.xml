@@ -36,9 +36,16 @@
 
 <Preloader>
 	
+	<Sprite id="light" x="{localX}" y="{localY}">
+		<Shape x="-50" y="-50">
+			<SolidFill color="0xffffff">
+				<Circle radius="50" />
+			</SolidFill>
+		</Shape>
+	</Sprite>
+	
 	<Script>
 		<![CDATA[
-			trace($this);
 			$this.attr('mouseEnabled', true);
 			$this.attr('buttonMode', true);
 			$this.attr('useHandCursor', true);

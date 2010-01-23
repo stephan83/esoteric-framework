@@ -39,6 +39,7 @@ package com.esoteric.display
 	import com.esoteric.core.Context;
 	import com.esoteric.events.PropertyChangeEvent;
 	import flash.display.InteractiveObject;
+	import flash.display.Sprite;
 	
 	/**
 	* Generated 2008-08-03 07:32:29.801000 UTC.
@@ -67,7 +68,7 @@ package com.esoteric.display
 		 */
 		override protected function createInteractiveObject():InteractiveObject
 		{
-			return sprite;
+			return sprite = createSprite();
 		}
 		
 		/**
@@ -119,6 +120,14 @@ package com.esoteric.display
 		public function stopDrag():void
 		{
 			sprite.stopDrag();
+		}
+		
+		/**
+		 * Creates the sprite.
+		 */
+		protected function createSprite():Sprite
+		{
+			return new Sprite();
 		}
 		
 	}

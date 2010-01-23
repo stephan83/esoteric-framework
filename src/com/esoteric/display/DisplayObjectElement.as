@@ -66,6 +66,8 @@ package com.esoteric.display
 			new Watcher(this, 'visible', visibleWatcher);
 			new Watcher(this, 'parent', parentWatcher);
 			new Watcher(this, 'hiddenAncestor', hiddenAncestorWatcher);
+			
+			displayObject = createDisplayObject();
 		}
 		
 		//---------------------------------------------------------------------
@@ -78,8 +80,6 @@ package com.esoteric.display
 		public override function initialize():void
 		{
 			super.initialize();
-			
-			displayObject = createDisplayObject();
 			
 			hiddenAncestor = !(parent is DisplayObjectElement || context.root == this);
 		}

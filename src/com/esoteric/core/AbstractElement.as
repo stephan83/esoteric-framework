@@ -107,10 +107,10 @@ package com.esoteric.core
 				_context[s] = root.extraContext[s];
 			}*/
 			
+			_numElements++;
+
 			_children.addEventListener(PropertyChangeEvent.PROPERTY_ADDED, childAddedHandler);
 			_children.addEventListener(PropertyChangeEvent.PROPERTY_REMOVED, childRemovedHandler);
-			
-			_numElements++;
 		}
 		
 		//---------------------------------------------------------------------

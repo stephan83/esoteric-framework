@@ -10,7 +10,6 @@
 	"properties": {
 		"sprite": {
 			"type":	"Sprite",
-			"default": "new Sprite()",
 			"desc": "The sprite object.",
 			"doc": false
 		}
