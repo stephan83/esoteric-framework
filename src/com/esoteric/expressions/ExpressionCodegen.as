@@ -51,7 +51,7 @@ package com.esoteric.expressions
 		private var _instructions:Vector.<Array> = new Vector.<Array>();
 		private var _currStateStack:Array = new Array();
 		private var _offsets:Array = new Array();
-		private var _debug:Boolean = false;
+		private var _debug:Boolean = true;
 		
 		private var _stateStacks:Object = {
 			"if":	new Array(),
@@ -110,7 +110,14 @@ package com.esoteric.expressions
 		
 		public function unaryop(op:String):void
 		{
-			addInstruction([ExpressionVm.instructionTypes.unaryop, op]);
+			if (op == '!' && _instructions[_instructions.length - 1][0] == ExpressionVm.instructionTypes.unaryop && _instructions[_instructions.length - 1][1] == '!')
+			{
+				removeInstruction();
+			}
+			else
+			{
+				addInstruction([ExpressionVm.instructionTypes.unaryop, op]); 
+			}
 		}
 		
 		public function call(i:int):void
@@ -136,7 +143,7 @@ package com.esoteric.expressions
 			pushState("else");
 		}
 		
-		public function endif(hasElse:Boolean = true):void
+		public function endif(hasElse:Boolean = true, andor:Boolean = false):void
 		{
 			popState();
 			
@@ -147,7 +154,7 @@ package com.esoteric.expressions
 				var elseInstructions:Vector.<Array> = popStateStack("else");
 				
 				addInstruction([ExpressionVm.instructionTypes.push, elseInstructions.length + 2]);
-				addInstruction([ExpressionVm.instructionTypes.jumpc]);
+				addInstruction([ExpressionVm.instructionTypes.jumpc, andor]);
 				addInstructions(elseInstructions);
 				addInstruction([ExpressionVm.instructionTypes.push, ifInstructions.length]);
 				addInstruction([ExpressionVm.instructionTypes.jump]);
@@ -155,9 +162,9 @@ package com.esoteric.expressions
 			}
 			else
 			{
-				addInstruction([ExpressionVm.instructionTypes.unaryop, "!"]);
+				unaryop('!');
 				addInstruction([ExpressionVm.instructionTypes.push, ifInstructions.length]);
-				addInstruction([ExpressionVm.instructionTypes.jumpc]);
+				addInstruction([ExpressionVm.instructionTypes.jumpc, andor]);
 				addInstructions(ifInstructions);
 			}
 		}
@@ -256,6 +263,25 @@ package com.esoteric.expressions
 						trace(ExpressionVm.instructionTypes[instruction[0]] + "\t" + instruction[1]);
 					else
 						trace(ExpressionVm.instructionTypes[instruction[0]]);
+				}
+			}
+		}
+		private function removeInstruction():void
+		{
+			if (_currStateStack.length)
+			{
+				_stateStacks[currState][_stateStacks[currState].length - 1].length--;
+			}
+			else
+			{
+				var instruction:Array = _instructions.pop();
+				
+				if (_debug)
+				{
+					if (instruction.length > 1)
+						trace('-', ExpressionVm.instructionTypes[instruction[0]] + "\t" + instruction[1]);
+					else
+						trace('-', ExpressionVm.instructionTypes[instruction[0]]);
 				}
 			}
 		}

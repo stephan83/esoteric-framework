@@ -250,7 +250,7 @@ package com.esoteric.expressions
 					{
 						switch(instruction[1])
 						{
-							case "||":
+							/*case "||":
 							case "or":
 							{
 								if (!_stack[--_top])
@@ -268,7 +268,7 @@ package com.esoteric.expressions
 									_stack[_top] = _stack[_top + 1];
 								}
 								break;
-							}
+							}*/
 							
 							case "|":
 							{
@@ -482,7 +482,7 @@ package com.esoteric.expressions
 						if (_stack[_top - 1])
 							i += _stack[_top];
 							
-						_top -= 2;
+						_top -= instruction[1] && _stack[_top - 1] ? 1 : 2;
 						break;
 					}
 					

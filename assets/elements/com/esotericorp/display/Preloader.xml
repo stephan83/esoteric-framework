@@ -36,50 +36,11 @@
 
 <Preloader>
 	
-	
-	<Sprite>
-		<Shape>
-			<SolidFill color="0xff0000">
-				<Rectangle width="{stageWidth}" height="{stageHeight}" />
-			</SolidFill>
-		</Shape>
-	</Sprite>
-	
-	<Sprite mouseEnabled="true" buttonMode="true" useHandCursor="true">
-		<Shape id="test">
-			<SolidFill color="0x00ff00">
-				<Rectangle width="{stageWidth / 4}" height="{stageHeight / 4}" />
-			</SolidFill>
-		</Shape>
-	</Sprite>
-	
 	<TextField id="textField" color="0xffffff"></TextField>
 		
 	<Script>
 		<![CDATA[
-			trace($('* [kind=SolidFill]').attr('color'));
-			$('> [kind=Sprite]').attr('alpha', .2).$('>>').attr('color', 0x0000ff);
-			
-			trace($('* [kind=SolidFill]').attr('color'));
-			
-			var string = 'Hello, World!';
-			
-			$('#textField').attr('text', '{string}');
-			
-			$('* [kind=Sprite] :last-child').click(function(e) {
-				string = e.localX + ';' + e.localY;
-				
-				i = 0;
-				
-				while (i < 100000)
-				{
-					i += 1;
-				}
-				
-				trace(i);
-			});
-			
-			$('#textField').attr('text', '{string}');
+			false || trace('world');
 		]]>
 	</Script>
 
