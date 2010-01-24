@@ -78,7 +78,7 @@ package com.esoteric.equery
 		/**
 		 * @inheritDoc
 		 */
-		public function destroy()
+		public function destroy():void
 		{
 			_query = null;
 		}

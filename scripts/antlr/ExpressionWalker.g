@@ -119,9 +119,61 @@ setr	:	^(PropRef exp i=Identifier)				{ _codegen.push($i.text);  }
 	;
 	
 value	:	^(
-			o=('||' | 'or' | '&&'| 'and' | '|' | '^' | '&' | '==' | '!=' | '===' | '!==' | '<' | 'lt' | '>' | 'gt' | '<=' | 'lte' | '>=' | 'gte' | '<<' | '>>' | '>>>' | '+' | '-' | '*' | '/' | '%')
-			exp exp
-		)							{ _codegen.binop($o.text) }
+			o=('|' | '^' | '&' | '==' | '!=' | '===' | '!==' | '<' | 'lt' | '>' | 'gt' | '<=' | 'lte' | '>=' | 'gte' | '<<' | '>>' | '>>>' | '+' | '-' | '*' | '/' | '%')
+			exp exp						{ _codegen.binop($o.text) }
+		)	
+				
+	|	^(
+			o=('||' | 'or')
+			exp						{ _codegen.unaryop('!'); _codegen.beginif(); }
+			exp						{ _codegen.endif(false, true) }
+		)
+				
+	|	^(
+			o=('&&' | 'and')
+			exp						{  _codegen.beginif(); }
+			exp						{ _codegen.endif(false, true) }
+		)
+	
+	|
+		^(
+			PreInc i=Identifier				{ _codegen.pushc(); _codegen.push($i.text); _codegen.preinc() }
+		)
+	
+	|
+		^(
+			PreInc ^(PropRef exp i=Identifier)		{ _codegen.push($i.text); _codegen.preinc() }
+		)
+	
+	|
+		^(
+			PreDec i=Identifier				{ _codegen.pushc(); _codegen.push($i.text); _codegen.predec() }
+		)
+	
+	|
+		^(
+			PreDec ^(PropRef exp i=Identifier)		{ _codegen.push($i.text); _codegen.predec() }
+		)
+	
+	|
+		^(
+			PostInc i=Identifier				{ _codegen.pushc(); _codegen.push($i.text); _codegen.postinc() }
+		)
+	
+	|
+		^(
+			PostInc ^(PropRef exp i=Identifier)		{ _codegen.push($i.text); _codegen.postinc() }
+		)
+	
+	|
+		^(
+			PostDec i=Identifier				{ _codegen.pushc(); _codegen.push($i.text); _codegen.postdec() }
+		)
+	
+	|
+		^(
+			PostDec ^(PropRef exp i=Identifier)		{ _codegen.push($i.text); _codegen.postdec() }
+		)
 		
 	|	^(
 			CondExp						

@@ -54,31 +54,11 @@
 	
 	<Script>
 		<![CDATA[
-			$this.attr('mouseEnabled', true);
-			$this.attr('buttonMode', true);
-			$this.attr('useHandCursor', true);
-			
-			trace($this.attr('hiddenAncestor'));
-			trace($this.attr('mouseEnabled'));
-			trace($this.attr('buttonMode'));
-			trace($this.attr('useHandCursor'));
-			
-			$this.click(function(e) {
-				trace(localX, localY);
-			});
-			
-			$('* rectangle').attr({
-				width: 200,
-				height: 200
-			})
-			
-			trace($('*').attr(['kind', 'uid']));
-			
-			area = function(rec) {
-				trace(rec.attr('width') * rec.attr('height'));
-			}
-			
-			$('* rectangle').free();
+			i = 0;
+			i++;
+			trace(++i);
+			trace(i);
+			trace(i++, i);
 		]]>
 	</Script>
 	

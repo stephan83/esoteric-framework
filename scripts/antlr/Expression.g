@@ -24,6 +24,10 @@ tokens {
 	FuncDef;
 	Return;
 	Local;
+	PreInc;
+	PostInc;
+	PreDec;
+	PostDec;
 }
 
 @parser::package {com.esoteric.expressions}
@@ -215,11 +219,19 @@ multExp
  	;
  	
 unaryExp
-	:	'+'^ atom
-	|	'-'^ atom
-	|	'~'^ atom
-	|	'!'^ atom
-	| 	atom
+	:	'+'^ postFix
+	|	'-'^ postFix
+	|	'~'^ postFix
+	|	'!'^ postFix
+	|	'++' reference				-> ^(PreInc reference)
+	|	'--' reference				-> ^(PreDec reference)
+	| 	postFix
+	;
+	
+postFix
+	:	reference '++'				-> ^(PostInc reference)
+	|	reference '--'				-> ^(PostDec reference)
+	|	atom
 	;
 	
 atom

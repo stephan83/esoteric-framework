@@ -89,7 +89,7 @@ package com.esoteric.expressions
 		/**
 		 * @inheritDoc
 		 */
-		public function destroy()
+		public function destroy():void
 		{
 			_parent = null;
 			_dict = null;

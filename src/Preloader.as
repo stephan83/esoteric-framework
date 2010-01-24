@@ -28,8 +28,8 @@
 		{
 			addEventListener(Event.ENTER_FRAME, checkFrame);
 			loaderInfo.addEventListener(ProgressEvent.PROGRESS, progress);
-			// show loader
 			
+			// show loader
 			stage.align = StageAlign.TOP_LEFT;
 			stage.scaleMode = StageScaleMode.NO_SCALE
 			

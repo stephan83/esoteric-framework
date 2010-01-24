@@ -70,7 +70,11 @@ package com.esoteric.expressions
 			object:		"object",
 			func:		"func",
 			arg:		"arg",
-			ret:		"ret"
+			ret:		"ret",
+			preinc:		"preinc",
+			predec:		"predec",
+			postinc:	"postinc",
+			postdec:	"postdec"
 		}
 		
 		//---------------------------------------------------------------------
@@ -80,7 +84,6 @@ package com.esoteric.expressions
 		private var _debug:Boolean = false;
 		private var _stack:Array = new Array(32);
 		private var _top:int = -1;
-		private var context:Object;
 		private var _bindablePropertiesEnabled:Boolean;
 		private var _instructionCounter:int;
 		
@@ -91,12 +94,10 @@ package com.esoteric.expressions
 		/**
 		 * Class constructor.
 		 * 
-		 * @param	context	the context used to resolve identifiers
 		 * @param	bindablePropertiesEnabled	whether to dispatch an event when a bindable property is detected
 		 */
-		public function ExpressionVm(context:Object = null, bindablePropertiesEnabled:Boolean = true)
+		public function ExpressionVm(bindablePropertiesEnabled:Boolean = true)
 		{
-			context = context;
 			_bindablePropertiesEnabled = bindablePropertiesEnabled;
 		}
 		
@@ -106,7 +107,7 @@ package com.esoteric.expressions
 		
 		public function clone():ICloneable
 		{
-			return new ExpressionVm(context, bindablePropertiesEnabled);
+			return new ExpressionVm(bindablePropertiesEnabled);
 		}
 		
 		//---------------------------------------------------------------------
@@ -250,26 +251,6 @@ package com.esoteric.expressions
 					{
 						switch(instruction[1])
 						{
-							/*case "||":
-							case "or":
-							{
-								if (!_stack[--_top])
-								{
-									_stack[_top] = _stack[_top + 1];
-								}
-								break;
-							}
-							
-							case "&&":
-							case "and":
-							{
-								if (_stack[--_top])
-								{
-									_stack[_top] = _stack[_top + 1];
-								}
-								break;
-							}*/
-							
 							case "|":
 							{
 								_stack[--_top] = _stack[_top] | _stack[_top + 1] ;
@@ -516,23 +497,38 @@ package com.esoteric.expressions
 					
 					case instructionTypes.arg:
 					{
-						closure.setLocal(instruction[1], _stack[_top]);
-						_top--;
+						closure.setLocal(instruction[1], _stack[_top--]);
 						break;
 					}
 					
 					case instructionTypes.ret:
 					{
 						_top = initialTop;
-						
-						if (instruction[1])
-						{
-							return _stack[_top + 1];
-						}
-						else
-						{
-							return null;
-						}
+						return instruction[1] ? _stack[_top + 1] : undefined;
+						break;
+					}
+					
+					case instructionTypes.preinc:
+					{
+						_stack[--_top] = ++_stack[_top][_stack[_top + 1]];
+						break;
+					}
+					
+					case instructionTypes.predec:
+					{
+						_stack[--_top] = --_stack[_top][_stack[_top + 1]];
+						break;
+					}
+					
+					case instructionTypes.postinc:
+					{
+						_stack[--_top] = _stack[_top][_stack[_top + 1]]++;
+						break;
+					}
+					
+					case instructionTypes.postdec:
+					{
+						_stack[--_top] = _stack[_top][_stack[_top + 1]]--;
 						break;
 					}
 				}

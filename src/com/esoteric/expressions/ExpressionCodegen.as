@@ -51,7 +51,7 @@ package com.esoteric.expressions
 		private var _instructions:Vector.<Array> = new Vector.<Array>();
 		private var _currStateStack:Array = new Array();
 		private var _offsets:Array = new Array();
-		private var _debug:Boolean = false;
+		private var _debug:Boolean = true;
 		
 		private var _stateStacks:Object = {
 			"if":	new Array(),
@@ -230,6 +230,26 @@ package com.esoteric.expressions
 		public function ret(hasValue:Boolean):void
 		{
 			addInstruction([ExpressionVm.instructionTypes.ret, hasValue]);
+		}
+		
+		public function preinc():void
+		{
+			addInstruction([ExpressionVm.instructionTypes.preinc]);
+		}
+		
+		public function predec():void
+		{
+			addInstruction([ExpressionVm.instructionTypes.predec]);
+		}
+		
+		public function postinc():void
+		{
+			addInstruction([ExpressionVm.instructionTypes.postinc]);
+		}
+		
+		public function postdec():void
+		{
+			addInstruction([ExpressionVm.instructionTypes.postdec]);
 		}
 		
 		//---------------------------------------------------------------------
