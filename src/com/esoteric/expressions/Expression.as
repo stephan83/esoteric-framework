@@ -68,15 +68,17 @@ package com.esoteric.expressions
 		private var _instructions:Vector.<Array>;
 		private var _enableWatchers:Boolean;
 		private var _outdated:Boolean = true;
+		private var _thisArg:*;
 		
 		//---------------------------------------------------------------------
 		// CONSTRUCTOR
 		//---------------------------------------------------------------------
 		
-		public function Expression(expression:String, vm:ExpressionVm, closure:Closure = null, paused:Boolean = false, enableWatchers:Boolean = true) 
+		public function Expression(expression:String, vm:ExpressionVm, closure:Closure, thisArg:*, paused:Boolean = false, enableWatchers:Boolean = true) 
 		{
 			_vm = vm;
 			_closure = closure;
+			_thisArg = thisArg;
 			_paused = paused;
 			_enableWatchers = enableWatchers;
 			this.expression = expression;
@@ -88,7 +90,7 @@ package com.esoteric.expressions
 		
 		public function clone():ICloneable
 		{
-			return new Expression(expression, _vm, _closure, _paused, _enableWatchers);
+			return new Expression(expression, _vm, _closure, _thisArg, _paused, _enableWatchers);
 		}
 		
 		//---------------------------------------------------------------------
@@ -106,6 +108,7 @@ package com.esoteric.expressions
 			_watchers = null;
 			_expression = null;
 			_instructions = null;
+			_thisArg = null;
 		}
 		
 		//---------------------------------------------------------------------
@@ -158,6 +161,13 @@ package com.esoteric.expressions
 		
 		public function get outdated():Boolean { return _outdated; }
 		
+		public function get thisArg():* { return _thisArg; }
+		
+		public function set thisArg(value:*):void 
+		{
+			_thisArg = value;
+		}
+		
 		public function eval():void
 		{
 			var oldValue:* = _value;
@@ -170,7 +180,7 @@ package com.esoteric.expressions
 			}
 			
 			_evaluating = true;
-			_value = _vm.eval(_instructions, _closure, _closure, _enableWatchers);
+			_value = _vm.eval(_instructions, _closure, _thisArg, _enableWatchers);
 			_evaluating = false;
 			
 			if (_enableWatchers)

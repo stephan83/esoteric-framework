@@ -74,7 +74,7 @@ package com.esoteric.core
 			
 			if (value)
 			{
-				expression = new Expression(value, context.vm, parent ? parent.closure : closure, false, false);
+				expression = new Expression(value, context.vm, parent ? parent.closure : closure, ElementProxyManager.getInstance(parent ? parent : this), false, false);
 			}
 			
 			super.text = value;

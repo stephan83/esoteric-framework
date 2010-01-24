@@ -34,46 +34,17 @@
 	-----                                                                 -----
 -->
 
-<Preloader>
+<Preloader mouseEnabled="true">
 	
-	<Sprite id="light" x="{localX}" y="{localY}">
-		<Shape x="-50" y="-50">
-			<SolidFill color="0xffffff">
-				<Rectangle width="100" height="100" />
-			</SolidFill>
-		</Shape>
-	</Sprite>
+	<Shape visible="{this.parent.pressed}" x="{this.parent.pressedX}" y="{this.parent.pressedY}">
+		<LineStyle thickness="2" color="0x000000" alpha=".6" />
+		<SolidFill color="0xffffff" alpha=".1">
+			<Rectangle width="{$('preloader').$().localX - $('preloader').$().pressedX}" height="{$('preloader').$().localY - $('preloader').$().pressedY}" />
+		</SolidFill>
+	</Shape>
 	
-	<Sprite x="500" y="0">
-		<Shape x="-50" y="-50">
-			<SolidFill color="0xffffff">
-				<Rectangle width="100" height="100" />
-			</SolidFill>
-		</Shape>
-	</Sprite>
-	
-	<Script>
-		<![CDATA[
-			t = function()
-			{
-				trace(this);
-				trace($this);
-			}
-			
-			t();
-			
-			o = {
-				f: function()
-				{
-					this.string = "Hello, World!";
-				}
-			};
-			
-			o.f();
-			
-			trace(o.string);
-			trace(this);
-		]]>
-	</Script>
+	<TextField color="0xffffff" width="{this.textWidth}" x="{this.parent.localX + 10}" y="{this.parent.localY + 15}" visible="{this.parent.pressed}">
+		<![CDATA[{this.parent.localX - this.parent.pressedX + ';' + (this.parent.localY - this.parent.pressedY)}]]>
+	</TextField>
 	
 </Preloader>

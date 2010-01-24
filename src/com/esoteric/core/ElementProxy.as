@@ -144,11 +144,18 @@ package com.esoteric.core
 		/**
 		 * @inheritDoc
 		 */
-		public function get parent():IElement { return _element.parent; }
+		public function get parent():IElement { return _element.parent ? ElementProxyManager.getInstance(_element.parent) : null; }
 		
 		public function set parent(value:IElement):void
 		{
-			_element.parent = value;
+			if (value is ElementProxy)
+			{
+				_element.parent = ElementProxy(value)._element;
+			}
+			else
+			{
+				_element.parent = value;
+			}
 		}
 		
 		/**
@@ -198,7 +205,7 @@ package com.esoteric.core
 		 */
 		public function getChildAt(index:int):IElement
 		{
-			return _element.getChildAt(index);
+			return ElementProxyManager.getInstance(_element.getChildAt(index));
 		}
 		
 		/**
@@ -206,7 +213,14 @@ package com.esoteric.core
 		 */
 		public function addChild(element:IElement):void
 		{
-			_element.addChild(element);
+			if (element is ElementProxy)
+			{
+				_element.addChild(ElementProxy(element)._element);
+			}
+			else
+			{
+				_element.addChild(element);
+			}
 		}
 		
 		/**
@@ -214,7 +228,14 @@ package com.esoteric.core
 		 */
 		public function removeChild(child:IElement):void
 		{
-			_element.removeChild(child);
+			if (child is ElementProxy)
+			{
+				_element.removeChild(ElementProxy(child)._element);
+			}
+			else
+			{
+				_element.removeChild(child);
+			}
 		}
 		
 		/**
@@ -264,7 +285,7 @@ package com.esoteric.core
 			
 			if (match)
 			{
-				_expressions[name] = new Expression(match[1], _element.context.vm, _element.closure);
+				_expressions[name] = new Expression(match[1], _element.context.vm, _element.closure, this);
 				_watchers[name] = new Watcher(_expressions[name], "value", createExpressionValueHandler(name));
 				
 				_expressions[name].addEventListener(ExpressionEvent.OUTDATED, outdatedExpressionHandler);
