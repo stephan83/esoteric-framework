@@ -41,6 +41,7 @@ package com.esoteric.core
 	import com.esoteric.expressions.Closure;
 	import com.esoteric.expressions.ExpressionVm;
 	import com.esoteric.net.Cache;
+	import fl.motion.easing.*;
 	import flash.display.Stage;
 	import flash.events.Event;
 	
@@ -80,7 +81,22 @@ package com.esoteric.core
 			// enable eQuery
 			_closure['$'] = function(query:String):EQueryObject {
 				return new EQueryObject(new ElementSet([_root])).$find(query);
-			}
+			};
+			
+			// add easing functions
+			_closure['easing'] = {
+				back:			Back,
+				bounce:			Bounce,
+				circular:		Circular,
+				cubic:			Cubic,
+				elastic:		Elastic,
+				exponential:	Exponential,
+				linear:			Linear,
+				quadratic:		Quadratic,
+				quartic:		Quartic,
+				quintic:		Quintic,
+				sine:			Sine
+			};
 			
 			_stage.addEventListener(Event.RESIZE, resizeHandler);
 		}
