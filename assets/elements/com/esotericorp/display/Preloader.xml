@@ -34,12 +34,12 @@
 	-----                                                                 -----
 -->
 
-<Preloader mouseEnabled="true">
+<Preloader mouseEnabled="true" scaleY="{this.scaleX}">
 	
 	<Script>
 		<![CDATA[
 			$this.$click(function(e) {
-				$this.startTween('alpha', 0, .5, easing.bounce.easeOut, true);
+				$this.$animate({alpha: 0, x: (Math.random() - .5) * 100, y: (Math.random() - .5) * 20, scaleX: .9}, .5, easing.bounce.easeOut, true);
 			});
 		]]>
 	</Script>

@@ -98,6 +98,9 @@ package com.esoteric.core
 				sine:			Sine
 			};
 			
+			// add math functions
+			_closure['Math'] = Math;
+			
 			_stage.addEventListener(Event.RESIZE, resizeHandler);
 		}
 		

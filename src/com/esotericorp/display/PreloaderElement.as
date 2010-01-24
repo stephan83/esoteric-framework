@@ -35,7 +35,8 @@
 package com.esotericorp.display
 {
 	import com.esoteric.core.Context;
-	import flash.display.Sprite;
+	import com.esoteric.utils.FlashTools;
+	import flash.display.DisplayObject;
 	import flash.events.Event;
 	
 	public class PreloaderElement extends AbstractPreloaderElement
@@ -59,9 +60,11 @@ package com.esotericorp.display
 		// Overrides
 		//---------------------------------------------------------------------
 		
-		override protected function createSprite():Sprite
+		override public function initialize():void 
 		{
-			return new _concreteLight() as Sprite;
+			FlashTools.loadSprite(new _concreteLight, this);
+			
+			super.initialize();
 		}
 
 	}
