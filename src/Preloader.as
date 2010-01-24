@@ -15,7 +15,7 @@
 	import flash.events.ProgressEvent;
 	import flash.utils.getDefinitionByName;
 	
-	[SWF(backgroundColor='#000000', frameRate='25')]
+	[SWF(backgroundColor='#000000', frameRate='60')]
 	
 	/**
 	 * ...

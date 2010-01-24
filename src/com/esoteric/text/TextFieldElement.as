@@ -59,7 +59,7 @@ package com.esoteric.text
 		{
 			super(context, kind);
 			
-			textField.addEventListener(Event.CHANGE, textInputHandler);
+			textField.addEventListener(Event.CHANGE, textInputHandler, false, 0, true);
 		}
 		
 		//---------------------------------------------------------------------

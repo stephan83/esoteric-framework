@@ -58,7 +58,7 @@ package com.esoteric.sound
 		{
 			super(context, kind);
 			
-			timer.addEventListener(TimerEvent.TIMER, timerHandler);
+			timer.addEventListener(TimerEvent.TIMER, timerHandler, false, 0, true);
 		}
 		
 		//---------------------------------------------------------------------
@@ -216,8 +216,8 @@ package com.esoteric.sound
 			else
 			{	
 				_sound = new Sound(new URLRequest(url));
-				_sound.addEventListener(Event.OPEN, openHandler);
-				_sound.addEventListener(Event.ID3, ID3Handler);
+				_sound.addEventListener(Event.OPEN, openHandler, false, 0, true);
+				_sound.addEventListener(Event.ID3, ID3Handler, false, 0, true);
 				
 				_ready = false;
 			}
@@ -229,7 +229,7 @@ package com.esoteric.sound
 		private function play():void
 		{
 			soundChannel = _sound.play(position, loops);
-			soundChannel.addEventListener(Event.SOUND_COMPLETE, soundCompleteHandler);
+			soundChannel.addEventListener(Event.SOUND_COMPLETE, soundCompleteHandler, false, 0, true);
 			
 			timer.reset();
 			timer.start();
@@ -257,7 +257,7 @@ package com.esoteric.sound
 			soundChannel.stop();
 			
 			soundChannel = _sound.play(position, loops);
-			soundChannel.addEventListener(Event.SOUND_COMPLETE, soundCompleteHandler);
+			soundChannel.addEventListener(Event.SOUND_COMPLETE, soundCompleteHandler, false, 0, true);
 		}
 		
 		/**

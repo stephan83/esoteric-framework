@@ -52,7 +52,7 @@ package com.esoteric.utils
 		{
 			super(context, kind);
 			
-			timer.addEventListener(TimerEvent.TIMER, timerHandler);
+			timer.addEventListener(TimerEvent.TIMER, timerHandler, false, 0, true);
 		}
 		
 		//---------------------------------------------------------------------

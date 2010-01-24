@@ -62,8 +62,8 @@ package com.esoteric.net
 		{
 			super(context, kind);
 			
-			_loader.addEventListener(Event.COMPLETE, completeHandler);
-			_loader.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
+			_loader.addEventListener(Event.COMPLETE, completeHandler, false, 0, true);
+			_loader.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler, false, 0, true);
 		}
 		
 		//---------------------------------------------------------------------

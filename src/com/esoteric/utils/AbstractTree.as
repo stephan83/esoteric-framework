@@ -67,9 +67,9 @@ package com.esoteric.utils
 			
 			_children = new List();
 			
-			_children.addEventListener(PropertyChangeEvent.PROPERTY_ADDED, childAddedHandler);
-			_children.addEventListener(PropertyChangeEvent.PROPERTY_REMOVED, childRemovedHandler);
-			_children.addEventListener(PropertyChangeEvent.PROPERTY_UPDATED, childUpdatedHandler);
+			_children.addEventListener(PropertyChangeEvent.PROPERTY_ADDED, childAddedHandler, false, 0, true);
+			_children.addEventListener(PropertyChangeEvent.PROPERTY_REMOVED, childRemovedHandler, false, 0, true);
+			_children.addEventListener(PropertyChangeEvent.PROPERTY_UPDATED, childUpdatedHandler, false, 0, true);
 		}
 		
 		//---------------------------------------------------------------------

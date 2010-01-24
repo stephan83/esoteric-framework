@@ -242,7 +242,7 @@ package com.esoteric.expressions
 			{
 				_properties[name].expression = new _expressionEngine(match[1], _vm, _context, !_enabled);
 				_properties[name].watcher = new Watcher(_properties[name].expression, "value", createExpressionValueHandler(name));
-				_properties[name].expression.addEventListener(ExpressionEvent.OUTDATED, outdatedExpressionHandler);
+				_properties[name].expression.addEventListener(ExpressionEvent.OUTDATED, outdatedExpressionHandler, false, 0, true);
 				_expressionQueue.add(_properties[name].expression);
 			}
 			else

@@ -120,8 +120,8 @@ package com.esoteric.net
 					
 				}
 				
-				_urlLoader.addEventListener(Event.COMPLETE, completeHandler);
-				_urlLoader.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
+				_urlLoader.addEventListener(Event.COMPLETE, completeHandler, false, 0, true);
+				_urlLoader.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler, false, 0, true);
 				_urlLoader.load(new URLRequest(_url));
 			}
 		}
@@ -134,8 +134,8 @@ package com.esoteric.net
 			if (_bitmapData)
 			{
 				_loader.loadBytes(ByteArray(_urlLoader.data));
-				_loader.contentLoaderInfo.addEventListener(Event.COMPLETE, bytesLoadedHandler);
-				_loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, bytesIoErrorHandler);
+				_loader.contentLoaderInfo.addEventListener(Event.COMPLETE, bytesLoadedHandler, false, 0, true);
+				_loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, bytesIoErrorHandler, false, 0, true);
 			}
 			else
 			{

@@ -63,8 +63,8 @@ package com.esoteric.expressions
 			
 			if (_parent)
 			{
-				_parent.addEventListener(PropertyChangeEvent.PROPERTY_ADDED, parentPropertyAddedHandler);
-				_parent.addEventListener(PropertyChangeEvent.PROPERTY_UPDATED, parentPropertyUpdatedHandler);
+				_parent.addEventListener(PropertyChangeEvent.PROPERTY_ADDED, parentPropertyAddedHandler, false, 0, true);
+				_parent.addEventListener(PropertyChangeEvent.PROPERTY_UPDATED, parentPropertyUpdatedHandler, false, 0, true);
 			}
 		}
 		
@@ -91,6 +91,12 @@ package com.esoteric.expressions
 		 */
 		public function destroy():void
 		{
+			if (_parent)
+			{
+				_parent.removeEventListener(PropertyChangeEvent.PROPERTY_ADDED, parentPropertyAddedHandler);
+				_parent.removeEventListener(PropertyChangeEvent.PROPERTY_UPDATED, parentPropertyUpdatedHandler);
+			}
+			
 			_parent = null;
 			_dict = null;
 		}

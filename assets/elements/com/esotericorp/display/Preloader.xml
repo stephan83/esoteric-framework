@@ -39,7 +39,7 @@
 	<Shape visible="{this.parent.pressed}" x="{this.parent.pressedX}" y="{this.parent.pressedY}">
 		<LineStyle thickness="2" color="0x000000" alpha=".6" />
 		<SolidFill color="0xffffff" alpha=".1">
-			<Rectangle width="{$('preloader').localX - $('preloader').pressedX}" height="{$('preloader').localY - $('preloader').pressedY}" />
+			<Rectangle width="{$('preloader').localX-$('preloader').pressedX}" height="{$('preloader').localY-$('preloader').pressedY }" />
 		</SolidFill>
 	</Shape>
 	
@@ -50,7 +50,7 @@
 	<Script>
 		<![CDATA[
 			$this.alpha = 0;
-			$this.startTween('alpha', 1, 3);
+			$this.startTween('alpha', 1, 20);
 		]]>
 	</Script>
 	

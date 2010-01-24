@@ -100,7 +100,7 @@ package com.esoteric.motion
 					
 					_tweens[prop] = new Tween(_obj, prop, easingFunc, _obj[prop], endValue, duration, true);
 					
-					_tweens[prop].addEventListener(fl.transitions.TweenEvent.MOTION_FINISH, tweenFinishHandler);
+					_tweens[prop].addEventListener(fl.transitions.TweenEvent.MOTION_FINISH, tweenFinishHandler, false, 0, true);
 					
 					_yoyo[prop] = yoyo;
 				}
