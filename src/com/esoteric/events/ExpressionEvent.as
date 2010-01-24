@@ -59,17 +59,23 @@ package com.esoteric.events
 		
 		private var _bindable:IBindable;
 		private var _property:*;
+		private var _instructions:Vector.<Array>;
+		private var _stack:Array;
+		private var _top:int;
 		
 		//---------------------------------------------------------------------
 		// CONSTRUCTOR
 		//---------------------------------------------------------------------
 		
-		public function ExpressionEvent(type:String, bubbles:Boolean = false, cancelable:Boolean = false, bindable:IBindable = null, property:* = null) 
+		public function ExpressionEvent(type:String, bubbles:Boolean = false, cancelable:Boolean = false, bindable:IBindable = null, property:* = null, instructions:Vector.<Array> = null, stack:Array = null, top:int = 0) 
 		{
 			super(type, bubbles, cancelable);
 			
 			_bindable = bindable;
 			_property = property;
+			_instructions = instructions;
+			_stack = stack;
+			_top = top;
 		}
 		
 		//---------------------------------------------------------------------
@@ -78,7 +84,7 @@ package com.esoteric.events
 		
 		public override function clone():Event
 		{
-			return new ExpressionEvent(type, bubbles, cancelable, _bindable, _property);
+			return new ExpressionEvent(type, bubbles, cancelable, _bindable, _property, _instructions, _stack, _top);
 		}
 		
 		//---------------------------------------------------------------------
@@ -97,6 +103,27 @@ package com.esoteric.events
 		public function set property(value:*):void 
 		{
 			_property = value;
+		}
+		
+		public function get instructions():Vector.<Array> { return _instructions; }
+		
+		public function set instructions(value:Vector.<Array>):void 
+		{
+			_instructions = value;
+		}
+		
+		public function get stack():Array { return _stack; }
+		
+		public function set stack(value:Array):void 
+		{
+			_stack = value;
+		}
+		
+		public function get top():int { return _top; }
+		
+		public function set top(value:int):void 
+		{
+			_top = value;
 		}
 		
 	}

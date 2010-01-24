@@ -179,7 +179,7 @@ package com.esoteric.display
 			// TODO: optimize visible
 			var element:IElementProxy = ElementProxyManager.getInstance(this);
 			
-			if ((!element.getExpression('visible') && !visible ) || hiddenAncestor || !parent)
+			if ((!element.getExpression('visible') && !visible ) || hiddenAncestor || (!parent && context.root != this))
 			{
 				this[prop] = endValue;
 				

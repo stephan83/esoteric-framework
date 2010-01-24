@@ -83,8 +83,6 @@ package com.esoteric.expressions
 		//---------------------------------------------------------------------
 		
 		private var _debug:Boolean = false;
-		private var _stack:Array = new Array(32);
-		private var _top:int = -1;
 		private var _bindablePropertiesEnabled:Boolean;
 		private var _instructionCounter:int;
 		
@@ -115,9 +113,9 @@ package com.esoteric.expressions
 		// PUBLIC FUNCTIONS
 		//---------------------------------------------------------------------
 		
-		public function eval(instructions:Vector.<Array>, closure:Closure, thisArg:*, bind:Boolean = true):*
+		public function eval(instructions:Vector.<Array>, closure:Closure, thisArg:*, bind:Boolean = true, stack:Array = null, top:int = -1):*
 		{
-			var initialTop:int = _top;
+			stack = stack || new Array(32);
 			var length:int = instructions.length;
 			
 			for (var i:int = 0; i < length; i++) 
@@ -134,90 +132,90 @@ package com.esoteric.expressions
 						{
 							case "=":
 							{
-								var r:* = _stack[_top - 1][_stack[_top]] = _stack[_top - 2];
-								_stack[_top - 2] = r;
+								var r:* = stack[top - 1][stack[top]] = stack[top - 2];
+								stack[top - 2] = r;
 								break;
 							}
 							
 							case "*=":
 							{
-								r = _stack[_top - 1][_stack[_top]] *= _stack[_top - 2];
-								_stack[_top - 2] = r;
+								r = stack[top - 1][stack[top]] *= stack[top - 2];
+								stack[top - 2] = r;
 								break;
 							}
 							
 							case "/=":
 							{
-								r = _stack[_top - 1][_stack[_top]] /= _stack[_top - 2];
-								_stack[_top - 2] = r;
+								r = stack[top - 1][stack[top]] /= stack[top - 2];
+								stack[top - 2] = r;
 								break;
 							}
 							
 							case "%=":
 							{
-								r = _stack[_top - 1][_stack[_top]] %= _stack[_top - 2];
-								_stack[_top - 2] = r;
+								r = stack[top - 1][stack[top]] %= stack[top - 2];
+								stack[top - 2] = r;
 								break;
 							}
 							
 							case "+=":
 							{
-								r = _stack[_top - 1][_stack[_top]] += _stack[_top - 2];
-								_stack[_top - 2] = r;
+								r = stack[top - 1][stack[top]] += stack[top - 2];
+								stack[top - 2] = r;
 								break;
 							}
 							
 							case "-=":
 							{
-								r = _stack[_top - 1][_stack[_top]] -= _stack[_top - 2];
-								_stack[_top - 2] = r;
+								r = stack[top - 1][stack[top]] -= stack[top - 2];
+								stack[top - 2] = r;
 								break;
 							}
 							
 							case "<<=":
 							{
-								r = _stack[_top - 1][_stack[_top]] <<= _stack[_top - 2];
-								_stack[_top - 2] = r;
+								r = stack[top - 1][stack[top]] <<= stack[top - 2];
+								stack[top - 2] = r;
 								break;
 							}
 							
 							case ">>=":
 							{
-								r = _stack[_top - 1][_stack[_top]] >>= _stack[_top - 2];
-								_stack[_top - 2] = r;
+								r = stack[top - 1][stack[top]] >>= stack[top - 2];
+								stack[top - 2] = r;
 								break;
 							}
 							
 							case ">>>=":
 							{
-								r = _stack[_top - 1][_stack[_top]] >>>= _stack[_top - 2];
-								_stack[_top - 2] = r;
+								r = stack[top - 1][stack[top]] >>>= stack[top - 2];
+								stack[top - 2] = r;
 								break;
 							}
 							
 							case "&=":
 							{
-								r = _stack[_top - 1][_stack[_top]] &= _stack[_top - 2];
-								_stack[_top - 2] = r;
+								r = stack[top - 1][stack[top]] &= stack[top - 2];
+								stack[top - 2] = r;
 								break;
 							}
 							
 							case "^=":
 							{
-								r = _stack[_top - 1][_stack[_top]] ^= _stack[_top - 2];
-								_stack[_top - 2] = r;
+								r = stack[top - 1][stack[top]] ^= stack[top - 2];
+								stack[top - 2] = r;
 								break;
 							}
 							
 							case "|=":
 							{
-								r = _stack[_top - 1][_stack[_top]] |= _stack[_top - 2];
-								_stack[_top - 2] = r;
+								r = stack[top - 1][stack[top]] |= stack[top - 2];
+								stack[top - 2] = r;
 								break;
 							}
 						}
 						
-						_top -= 2;
+						top -= 2;
 						
 						break;
 					}
@@ -226,31 +224,31 @@ package com.esoteric.expressions
 					{
 						if (instruction[2])
 						{
-							closure.setLocal(instruction[1], _stack[_top]);
+							closure.setLocal(instruction[1], stack[top]);
 						}
 						else
 						{
 							closure.setLocal(instruction[1], undefined);
-							_stack[++_top] = undefined;
+							stack[++top] = undefined;
 						}
 						break;
 					}
 					
 					case instructionTypes.pushc:
 					{
-						_stack[++_top] = closure;
+						stack[++top] = closure;
 						break;
 					}
 					
 					case instructionTypes.pusht:
 					{
-						_stack[++_top] = thisArg;
+						stack[++top] = thisArg;
 						break;
 					}
 					
 					case instructionTypes.push:
 					{
-						_stack[++_top] = instruction[1];
+						stack[++top] = instruction[1];
 						break;
 					}
 					
@@ -260,119 +258,119 @@ package com.esoteric.expressions
 						{
 							case "|":
 							{
-								_stack[--_top] = _stack[_top] | _stack[_top + 1] ;
+								stack[--top] = stack[top] | stack[top + 1] ;
 								break;
 							}
 							
 							case "^":
 							{
-								_stack[--_top] = _stack[_top] ^ _stack[_top + 1];
+								stack[--top] = stack[top] ^ stack[top + 1];
 								break;
 							}
 							
 							case "&":
 							{
-								_stack[--_top] = _stack[_top] & _stack[_top + 1];
+								stack[--top] = stack[top] & stack[top + 1];
 								break;
 							}
 							
 							case "==":
 							{
-								_stack[--_top] = _stack[_top] == _stack[_top + 1];
+								stack[--top] = stack[top] == stack[top + 1];
 								break;
 							}
 							
 							case "!=":
 							{
-								_stack[--_top] = _stack[_top] != _stack[_top + 1];
+								stack[--top] = stack[top] != stack[top + 1];
 								break;
 							}
 							
 							case "===":
 							{
-								_stack[--_top] = _stack[_top] === _stack[_top + 1];
+								stack[--top] = stack[top] === stack[top + 1];
 								break;
 							}
 							
 							case "!==":
 							{
-								_stack[--_top] = _stack[_top] !== _stack[_top + 1];
+								stack[--top] = stack[top] !== stack[top + 1];
 								break;
 							}
 							
 							case "<":
 							case "lt":
 							{
-								_stack[--_top] = _stack[_top] < _stack[_top + 1];
+								stack[--top] = stack[top] < stack[top + 1];
 								break;
 							}
 							
 							case ">":
 							case "gt":
 							{
-								_stack[--_top] = _stack[_top] > _stack[_top + 1];
+								stack[--top] = stack[top] > stack[top + 1];
 								break;
 							}
 							
 							case "<=":
 							case "lte":
 							{
-								_stack[--_top] = _stack[_top] <= _stack[_top + 1];
+								stack[--top] = stack[top] <= stack[top + 1];
 								break;
 							}
 							
 							case ">=":
 							case "gte":
 							{
-								_stack[--_top] = _stack[_top] >= _stack[_top + 1];
+								stack[--top] = stack[top] >= stack[top + 1];
 								break;
 							}
 							
 							case "<<":
 							{
-								_stack[--_top] = _stack[_top] << _stack[_top + 1];
+								stack[--top] = stack[top] << stack[top + 1];
 								break;
 							}
 							
 							case ">>":
 							{
-								_stack[--_top] = _stack[_top] >> _stack[_top + 1];
+								stack[--top] = stack[top] >> stack[top + 1];
 								break;
 							}
 							
 							case ">>>":
 							{
-								_stack[--_top] = _stack[_top] >>> _stack[_top + 1];
+								stack[--top] = stack[top] >>> stack[top + 1];
 								break;
 							}
 							
 							case "+":
 							{
-								_stack[--_top] = _stack[_top] + _stack[_top + 1];
+								stack[--top] = stack[top] + stack[top + 1];
 								break;
 							}
 							
 							case "-":
 							{
-								_stack[--_top] = _stack[_top] - _stack[_top + 1];
+								stack[--top] = stack[top] - stack[top + 1];
 								break;
 							}
 							
 							case "*":
 							{
-								_stack[--_top] = _stack[_top] * _stack[_top + 1];
+								stack[--top] = stack[top] * stack[top + 1];
 								break;
 							}
 							
 							case "/":
 							{
-								_stack[--_top] = _stack[_top] / _stack[_top + 1];
+								stack[--top] = stack[top] / stack[top + 1];
 								break;
 							}
 							
 							case "%":
 							{
-								_stack[--_top] = _stack[_top] % _stack[_top + 1];
+								stack[--top] = stack[top] % stack[top + 1];
 								break;
 							}
 						}
@@ -386,7 +384,7 @@ package com.esoteric.expressions
 						{
 							case "-":
 							{
-								_stack[_top] = -_stack[_top] ;
+								stack[top] = -stack[top] ;
 								break;
 							}
 							
@@ -397,13 +395,13 @@ package com.esoteric.expressions
 							
 							case "!":
 							{
-								_stack[_top] = !_stack[_top] ;
+								stack[top] = !stack[top] ;
 								break;
 							}
 							
 							case "~":
 							{
-								_stack[_top] = ~_stack[_top] ;
+								stack[top] = ~stack[top] ;
 								break;
 							}
 						}
@@ -413,10 +411,8 @@ package com.esoteric.expressions
 					
 					case instructionTypes.load:
 					{
-						var target:Object = _stack[_top - 1];
-						var prop:* = _stack[_top];
-						
-						_top--;
+						var target:Object = stack[top - 1];
+						var prop:* = stack[top];
 						
 						if (target)
 						{
@@ -424,27 +420,29 @@ package com.esoteric.expressions
 							{
 								if (bind && target is IBindable && bindablePropertiesEnabled)
 								{
-									dispatchEvent(new ExpressionEvent(ExpressionEvent.BINDABLE_PROPERTY_LOADED, false, false, IBindable(target), prop));
+									dispatchEvent(new ExpressionEvent(ExpressionEvent.BINDABLE_PROPERTY_LOADED, false, false, IBindable(target), prop, instructions.slice(i, instructions.length), stack.slice(0), top));
 								}
 								
-								_stack[_top] = target[prop];
+								top--;
+								
+								stack[top] = target[prop];
 							}
 							catch (error:Error)
 							{
-								_stack[_top] = null;
+								stack[top] = null;
 							}
 							/*if (target.hasOwnProperty(prop))
 							{
-								_stack[--_top] = target[prop];
+								stack[--top] = target[prop];
 							}
 							else
 							{
-								_stack[--_top] = null;
+								stack[--top] = null;
 							}*/
 						}
 						else
 						{
-							_stack[_top] = null;
+							stack[--top] = null;
 						}
 						
 						break;
@@ -452,90 +450,89 @@ package com.esoteric.expressions
 					
 					case instructionTypes.call:
 					{
-						_top -= instruction[1];
-						var f:Function = _stack[_top];
-						_stack[_top] = f.apply(target, _stack.slice(_top + 1, _top + instruction[1] + 1));
+						top -= instruction[1];
+						var f:Function = stack[top];
+						stack[top] = f.apply(target, stack.slice(top + 1, top + instruction[1] + 1));
 						break;
 					}
 					
 					case instructionTypes.jump:
 					{
-						i += _stack[_top];
-						_top--;
+						i += stack[top];
+						top--;
 						break;
 					}
 					
 					case instructionTypes.jumpc:
 					{
-						if (_stack[_top - 1])
-							i += _stack[_top];
+						if (stack[top - 1])
+							i += stack[top];
 							
-						_top -= instruction[1] && _stack[_top - 1] ? 1 : 2;
+						top -= instruction[1] && stack[top - 1] ? 1 : 2;
 						break;
 					}
 					
 					case instructionTypes.array:
 					{
-						_top -= instruction[1] - 1;
-						_stack[_top] = BindableArray.fromArray(_stack.slice(_top, _top + instruction[1]));
+						top -= instruction[1] - 1;
+						stack[top] = BindableArray.fromArray(stack.slice(top, top + instruction[1]));
 						break;
 					}
 					
 					case instructionTypes.object:
 					{
-						_top -= instruction[1] - 1;
+						top -= instruction[1] - 1;
 						
 						var object:BindableObject = new BindableObject();
 						
 						for (var offset:int = 0; offset < instruction[1]; offset += 2)
 						{
-							object[_stack[_top + offset + 1]] = _stack[_top + offset];
+							object[stack[top + offset + 1]] = stack[top + offset];
 						}
 						
-						_stack[_top] = object;
+						stack[top] = object;
 						break;
 					}
 					
 					case instructionTypes.func:
 					{
-						_stack[++_top] = makeFunc(instruction[1], new Closure(closure), bind);
+						stack[++top] = makeFunc(instruction[1], new Closure(closure), bind);
 						break;
 					}
 					
 					case instructionTypes.arg:
 					{
-						closure.setLocal(instruction[1], _stack[_top--]);
+						closure.setLocal(instruction[1], stack[top--]);
 						break;
 					}
 					
 					case instructionTypes.ret:
 					{
-						_top = initialTop;
-						return instruction[1] ? _stack[_top + 1] : undefined;
+						return instruction[1] ? stack[top] : undefined;
 						break;
 					}
 					
 					case instructionTypes.preinc:
 					{
-						_stack[--_top] = ++_stack[_top][_stack[_top + 1]];
+						stack[--top] = ++stack[top][stack[top + 1]];
 						break;
 					}
 					
 					case instructionTypes.predec:
 					{
-						_stack[--_top] = --_stack[_top][_stack[_top + 1]];
+						stack[--top] = --stack[top][stack[top + 1]];
 						break;
 					}
 					
 					case instructionTypes.postinc:
 					{
-						_stack[--_top] = _stack[_top][_stack[_top + 1]]++;
+						stack[--top] = stack[top][stack[top + 1]]++;
 						break;
 					}
 					
 					case instructionTypes.postdec:
 					{
-						_stack[--_top] = _stack[_top][_stack[_top + 1]]--;
+						stack[--top] = stack[top][stack[top + 1]]--;
 						break;
 					}
 				}
@@ -547,23 +544,16 @@ package com.esoteric.expressions
 					if (instruction.length > 1)
 						info += instruction[1] + "\t";
 					
-					for (var j:int = 0; j <= _top; j++)
+					for (var j:int = 0; j <= top; j++)
 					{
-						info += _stack[j] + ";";
+						info += stack[j] + ";";
 					}
 					
 					trace(info);
 				}
 			}
 			
-			_top = initialTop;
-			
-			return _stack[_top + 1];
-		}
-		
-		public function bindsTo(bindable:IBindable, property:*):void
-		{
-			dispatchEvent(new ExpressionEvent(ExpressionEvent.BINDABLE_PROPERTY_LOADED, false, false, bindable, property));
+			return top >= 0 ? stack[top] : null;
 		}
 		
 		private function makeFunc(instructions:Vector.<Array>, closure:Closure, bind:Boolean):Function

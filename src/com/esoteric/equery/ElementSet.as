@@ -36,14 +36,16 @@
 package com.esoteric.equery 
 {
 	import com.esoteric.core.IElement;
+	import com.esoteric.events.PropertyChangeEvent;
 	import com.esoteric.utils.IDestroyable;
+	import flash.events.EventDispatcher;
 	
 	/**
 	 * An element set.
 	 * 
 	 * @author Stephan Florquin
 	 */
-	public class ElementSet implements IDestroyable
+	public class ElementSet extends EventDispatcher implements IDestroyable
 	{
 		
 		//---------------------------------------------------------------------
@@ -95,7 +97,11 @@ package com.esoteric.equery
 		 */
 		public function selectAll():void
 		{
+			var old:Array = _result;
+			
 			_result = selectAllRec(_result);
+			
+			dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'result', old, _result));
 		}
 		
 		/**
@@ -127,7 +133,11 @@ package com.esoteric.equery
 		 */
 		public function selectKind(kind:String):void
 		{
+			var old:Array = _result;
+			
 			selectAttr('kind', '=', kind.toLowerCase());
+			
+			dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'result', old, _result));
 		}
 		
 		/**
@@ -137,6 +147,8 @@ package com.esoteric.equery
 		 */
 		public function selectId(id:String):void
 		{
+			var old:Array = _result;
+			
 			var result:IElement = selectIdRec(_result, id)
 			
 			if (result)
@@ -147,6 +159,8 @@ package com.esoteric.equery
 			{
 				_result = [];
 			}
+			
+			dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'result', old, _result));
 		}
 		
 		/**
@@ -195,6 +209,8 @@ package com.esoteric.equery
 					_result[_result.length] = element.getChildAt(i);
 				}
 			}
+			
+			dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'result', old, _result));
 		}
 		
 		/**
@@ -212,10 +228,14 @@ package com.esoteric.equery
 		 */
 		public function selectFirst():void
 		{
+			var old:Array = _result;
+			
 			if (_result.length)
 			{
 				_result = [_result[0]];
 			}
+			
+			dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'result', old, _result));
 		}
 		
 		/**
@@ -223,10 +243,14 @@ package com.esoteric.equery
 		 */
 		public function selectLast():void
 		{
+			var old:Array = _result;
+			
 			if (_result.length)
 			{
 				_result = [_result[_result.length - 1]];
 			}
+			
+			dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'result', old, _result));
 		}
 		
 		/**
@@ -315,6 +339,8 @@ package com.esoteric.equery
 					break
 				}
 			}
+			
+			dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'result', old, _result));
 		}
 		
 	}

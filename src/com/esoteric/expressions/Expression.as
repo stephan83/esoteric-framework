@@ -38,7 +38,6 @@ package com.esoteric.expressions
 	import com.esoteric.events.PropertyChangeEvent;
 	import com.esoteric.utils.IBindable;
 	import com.esoteric.utils.ICloneable;
-	import com.esoteric.utils.Watcher;
 	import flash.events.EventDispatcher;
 	import org.antlr.runtime.ANTLRStringStream;
 	import org.antlr.runtime.CommonTokenStream;
@@ -69,6 +68,9 @@ package com.esoteric.expressions
 		private var _enableWatchers:Boolean;
 		private var _outdated:Boolean = true;
 		private var _thisArg:*;
+		private var _savedInstructions:Vector.<Array>;
+		private var _savedStack:Array;
+		private var _savedTop:int;
 		
 		//---------------------------------------------------------------------
 		// CONSTRUCTOR
@@ -172,15 +174,22 @@ package com.esoteric.expressions
 		{
 			var oldValue:* = _value;
 			
-			destroyWatchers();
-			
 			if (_enableWatchers)
 			{
 				_vm.addEventListener(ExpressionEvent.BINDABLE_PROPERTY_LOADED, vmBindablePropertyHandler);
 			}
 			
 			_evaluating = true;
-			_value = _vm.eval(_instructions, _closure, _thisArg, _enableWatchers);
+			
+			if (_watchers.length)
+			{
+				_value = _vm.eval(_savedInstructions, _closure, _thisArg, _enableWatchers, _savedStack, _savedTop);
+			}
+			else
+			{
+				_value = _vm.eval(_instructions, _closure, _thisArg, _enableWatchers);
+			}
+			
 			_evaluating = false;
 			
 			if (_enableWatchers)
@@ -202,7 +211,7 @@ package com.esoteric.expressions
 			{
 				_paused = true;
 				
-				for each(var watcher:Watcher in _watchers)
+				for each(var watcher:ExpressionWatcher in _watchers)
 				{
 					watcher.pause();
 				}
@@ -215,7 +224,7 @@ package com.esoteric.expressions
 			{
 				_paused = false;
 				
-				for each(var watcher:Watcher in _watchers)
+				for each(var watcher:ExpressionWatcher in _watchers)
 				{
 					watcher.resume();
 				}
@@ -253,19 +262,46 @@ package com.esoteric.expressions
 			}
 		}
 		
-		private function destroyWatchers():void
+		private function destroyWatchers(target:Object = null, property:* = null):void
 		{
-			for each(var watcher:Watcher in _watchers)
+			if (target)
 			{
-				watcher.destroy();
+				var match:int = -1;
+				
+				for (var i:int = 0; i < _watchers.length; i++) 
+				{
+					var watcher:ExpressionWatcher = _watchers[i];
+					
+					if (match >= 0)
+					{
+						watcher.destroy();
+					}
+					else if(watcher.target == target && watcher.targetProperty == property)
+					{
+						_savedInstructions = watcher.instructions;
+						_savedStack = watcher.stack;
+						_savedTop = watcher.top;
+						watcher.destroy();
+						match = i;
+					}
+				}
+				
+				_watchers.splice(match);
 			}
-			
-			_watchers.splice(0);
+			else
+			{
+				for each(var watcher:ExpressionWatcher in _watchers)
+				{
+					watcher.destroy();
+				}
+				
+				_watchers.splice(0);
+			}
 		}
 		
 		private function isWatching(bindable:IBindable, property:*):Boolean
 		{
-			for each(var watcher:Watcher in _watchers)
+			for each(var watcher:ExpressionWatcher in _watchers)
 			{
 				if (watcher.target == bindable && watcher.targetProperty == property)
 					return true;
@@ -282,14 +318,13 @@ package com.esoteric.expressions
 		{
 			if (!isWatching(e.bindable, e.property))
 			{
-				_watchers.push(new Watcher(e.bindable, e.property, watcherHandler, _paused));
-				
-				dispatchEvent(e);
+				_watchers.push(new ExpressionWatcher(e.bindable, e.property, watcherHandler, _paused, false, e.instructions, e.stack, e.top));
 			}
 		}
 		
 		private function watcherHandler(e:PropertyChangeEvent):void
 		{
+			destroyWatchers(e.target, e.property);
 			_outdated = true;
 			
 			dispatchEvent(new ExpressionEvent(ExpressionEvent.OUTDATED));
