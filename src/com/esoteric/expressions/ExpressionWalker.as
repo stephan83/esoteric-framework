@@ -1,11 +1,11 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g 2010-01-24 02:21:50
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g 2010-01-24 12:59:38
 package com.esoteric.expressions {
     import org.antlr.runtime.*;
         import org.antlr.runtime.tree.*;    
 
     public class ExpressionWalker extends TreeParser {
         public static const tokenNames:Array = [
-            "<invalid>", "<EOR>", "<DOWN>", "<UP>", "StmtList", "InstrList", "FuncCall", "PropRef", "PropExp", "CondExp", "CreateArray", "CreateObject", "IfStmt", "WhileStmt", "ForStmt", "FuncDef", "Return", "Local", "PreInc", "PostInc", "PreDec", "PostDec", "Identifier", "NumberLiteral", "StringLiteral", "LineComment", "MultilineComment", "Digit", "Exponent", "HexDigit", "EscapeSequence", "WhiteSpace", "Letter", "UnicodeEscapeChar", "'if'", "'('", "')'", "'else'", "'while'", "'{'", "'}'", "';'", "'='", "'*='", "'/='", "'%='", "'+='", "'-='", "'<<='", "'>>='", "'>>>='", "'&='", "'^='", "'|='", "'var'", "'?'", "':'", "'||'", "'or'", "'&&'", "'and'", "'|'", "'^'", "'&'", "'=='", "'!='", "'==='", "'!=='", "'<'", "'lt'", "'>'", "'gt'", "'<='", "'lte'", "'>='", "'gte'", "'<<'", "'>>'", "'>>>'", "'+'", "'-'", "'*'", "'/'", "'%'", "'~'", "'!'", "'++'", "'--'", "'true'", "'false'", "'null'", "'['", "']'", "'.'", "'function'", "','", "'return'"
+            "<invalid>", "<EOR>", "<DOWN>", "<UP>", "StmtList", "InstrList", "FuncCall", "PropRef", "PropExp", "CondExp", "CreateArray", "CreateObject", "IfStmt", "WhileStmt", "ForStmt", "FuncDef", "Return", "Local", "PreInc", "PostInc", "PreDec", "PostDec", "Identifier", "NumberLiteral", "StringLiteral", "LineComment", "MultilineComment", "Digit", "Exponent", "HexDigit", "EscapeSequence", "WhiteSpace", "Letter", "UnicodeEscapeChar", "'if'", "'('", "')'", "'else'", "'while'", "'{'", "'}'", "';'", "'='", "'*='", "'/='", "'%='", "'+='", "'-='", "'<<='", "'>>='", "'>>>='", "'&='", "'^='", "'|='", "'var'", "'?'", "':'", "'||'", "'or'", "'&&'", "'and'", "'|'", "'^'", "'&'", "'=='", "'!='", "'==='", "'!=='", "'<'", "'lt'", "'>'", "'gt'", "'<='", "'lte'", "'>='", "'gte'", "'<<'", "'>>'", "'>>>'", "'+'", "'-'", "'*'", "'/'", "'%'", "'~'", "'!'", "'++'", "'--'", "'true'", "'false'", "'null'", "'['", "']'", "'.'", "'function'", "','", "'this'", "'return'"
         ];
         public static const StmtList:int=4;
         public static const CreateObject:int=11;
@@ -17,6 +17,7 @@ package com.esoteric.expressions {
         public static const T__92:int=92;
         public static const T__90:int=90;
         public static const WhiteSpace:int=31;
+        public static const T__97:int=97;
         public static const T__96:int=96;
         public static const T__95:int=95;
         public static const T__80:int=80;
@@ -53,8 +54,8 @@ package com.esoteric.expressions {
         public static const T__65:int=65;
         public static const T__62:int=62;
         public static const T__63:int=63;
-        public static const LineComment:int=25;
         public static const Exponent:int=28;
+        public static const LineComment:int=25;
         public static const T__61:int=61;
         public static const T__60:int=60;
         public static const HexDigit:int=29;
@@ -110,12 +111,12 @@ package com.esoteric.expressions {
                 super(input, state);
 
                 dfa13 = new DFA(this, 13,
-                            "121:1: value : ( ^(o= ( '|' | '^' | '&' | '==' | '!=' | '===' | '!==' | '<' | 'lt' | '>' | 'gt' | '<=' | 'lte' | '>=' | 'gte' | '<<' | '>>' | '>>>' | '+' | '-' | '*' | '/' | '%' ) exp exp ) | ^(o= ( '||' | 'or' ) exp exp ) | ^(o= ( '&&' | 'and' ) exp exp ) | ^( PreInc i= Identifier ) | ^( PreInc ^( PropRef exp i= Identifier ) ) | ^( PreDec i= Identifier ) | ^( PreDec ^( PropRef exp i= Identifier ) ) | ^( PostInc i= Identifier ) | ^( PostInc ^( PropRef exp i= Identifier ) ) | ^( PostDec i= Identifier ) | ^( PostDec ^( PropRef exp i= Identifier ) ) | ^( CondExp exp exp exp ) | ^(o= ( '-' | '+' | '~' | '!' ) exp ) | ^(f= FuncCall ( exp )+ ) | ^( PropRef exp i= Identifier ) | ^( PropExp exp exp ) | NumberLiteral | StringLiteral | 'true' | 'false' | 'null' | i= Identifier | ^(a= CreateArray ( exp )* ) | ^(o= CreateObject (i= Identifier exp | s= StringLiteral exp )* ) | funcDef );",
+                            "121:1: value : ( ^(o= ( '|' | '^' | '&' | '==' | '!=' | '===' | '!==' | '<' | 'lt' | '>' | 'gt' | '<=' | 'lte' | '>=' | 'gte' | '<<' | '>>' | '>>>' | '+' | '-' | '*' | '/' | '%' ) exp exp ) | ^(o= ( '||' | 'or' ) exp exp ) | ^(o= ( '&&' | 'and' ) exp exp ) | ^( PreInc i= Identifier ) | ^( PreInc ^( PropRef exp i= Identifier ) ) | ^( PreDec i= Identifier ) | ^( PreDec ^( PropRef exp i= Identifier ) ) | ^( PostInc i= Identifier ) | ^( PostInc ^( PropRef exp i= Identifier ) ) | ^( PostDec i= Identifier ) | ^( PostDec ^( PropRef exp i= Identifier ) ) | ^( CondExp exp exp exp ) | ^(o= ( '-' | '+' | '~' | '!' ) exp ) | ^(f= FuncCall ( exp )+ ) | ^( PropRef exp i= Identifier ) | ^( PropExp exp exp ) | NumberLiteral | StringLiteral | 'true' | 'false' | 'null' | 'this' | i= Identifier | ^(a= CreateArray ( exp )* ) | ^(o= CreateObject (i= Identifier exp | s= StringLiteral exp )* ) | funcDef );",
                             DFA13_eot, DFA13_eof, DFA13_min,
                             DFA13_max, DFA13_accept, DFA13_special,
                             DFA13_transition, DFA13_specialStateTransition);
 
-                this.state.ruleMemo = new Array(98+1);
+                this.state.ruleMemo = new Array(99+1);
                  
             }
             
@@ -360,7 +361,7 @@ package com.esoteric.expressions {
                         var alt4:int=2;
                         var LA4_0:int = input.LA(1);
 
-                        if ( ((LA4_0>=6 && LA4_0<=11)||(LA4_0>=15 && LA4_0<=24)||(LA4_0>=42 && LA4_0<=53)||(LA4_0>=57 && LA4_0<=85)||(LA4_0>=88 && LA4_0<=90)) ) {
+                        if ( ((LA4_0>=6 && LA4_0<=11)||(LA4_0>=15 && LA4_0<=24)||(LA4_0>=42 && LA4_0<=53)||(LA4_0>=57 && LA4_0<=85)||(LA4_0>=88 && LA4_0<=90)||LA4_0==96) ) {
                             alt4=1;
                         }
 
@@ -605,7 +606,7 @@ package com.esoteric.expressions {
                 var alt6:int=2;
                 var LA6_0:int = input.LA(1);
 
-                if ( ((LA6_0>=6 && LA6_0<=11)||LA6_0==15||(LA6_0>=17 && LA6_0<=24)||(LA6_0>=42 && LA6_0<=53)||(LA6_0>=57 && LA6_0<=83)||(LA6_0>=84 && LA6_0<=85)||(LA6_0>=88 && LA6_0<=90)) ) {
+                if ( ((LA6_0>=6 && LA6_0<=11)||LA6_0==15||(LA6_0>=17 && LA6_0<=24)||(LA6_0>=42 && LA6_0<=53)||(LA6_0>=57 && LA6_0<=83)||(LA6_0>=84 && LA6_0<=85)||(LA6_0>=88 && LA6_0<=90)||LA6_0==96) ) {
                     alt6=1;
                 }
                 else if ( (LA6_0==16) ) {
@@ -729,6 +730,7 @@ package com.esoteric.expressions {
                 case 88:
                 case 89:
                 case 90:
+                case 96:
                     {
                     alt7=3;
                     }
@@ -914,7 +916,7 @@ package com.esoteric.expressions {
                 var alt9:int=2;
                 var LA9_0:int = input.LA(1);
 
-                if ( ((LA9_0>=6 && LA9_0<=11)||LA9_0==15||(LA9_0>=17 && LA9_0<=21)||(LA9_0>=23 && LA9_0<=24)||(LA9_0>=42 && LA9_0<=53)||(LA9_0>=57 && LA9_0<=85)||(LA9_0>=88 && LA9_0<=90)) ) {
+                if ( ((LA9_0>=6 && LA9_0<=11)||LA9_0==15||(LA9_0>=17 && LA9_0<=21)||(LA9_0>=23 && LA9_0<=24)||(LA9_0>=42 && LA9_0<=53)||(LA9_0>=57 && LA9_0<=85)||(LA9_0>=88 && LA9_0<=90)||LA9_0==96) ) {
                     alt9=1;
                 }
                 else if ( (LA9_0==22) ) {
@@ -1099,7 +1101,7 @@ package com.esoteric.expressions {
         // $ANTLR end setr
 
         // $ANTLR start value
-        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:121:1: value : ( ^(o= ( '|' | '^' | '&' | '==' | '!=' | '===' | '!==' | '<' | 'lt' | '>' | 'gt' | '<=' | 'lte' | '>=' | 'gte' | '<<' | '>>' | '>>>' | '+' | '-' | '*' | '/' | '%' ) exp exp ) | ^(o= ( '||' | 'or' ) exp exp ) | ^(o= ( '&&' | 'and' ) exp exp ) | ^( PreInc i= Identifier ) | ^( PreInc ^( PropRef exp i= Identifier ) ) | ^( PreDec i= Identifier ) | ^( PreDec ^( PropRef exp i= Identifier ) ) | ^( PostInc i= Identifier ) | ^( PostInc ^( PropRef exp i= Identifier ) ) | ^( PostDec i= Identifier ) | ^( PostDec ^( PropRef exp i= Identifier ) ) | ^( CondExp exp exp exp ) | ^(o= ( '-' | '+' | '~' | '!' ) exp ) | ^(f= FuncCall ( exp )+ ) | ^( PropRef exp i= Identifier ) | ^( PropExp exp exp ) | NumberLiteral | StringLiteral | 'true' | 'false' | 'null' | i= Identifier | ^(a= CreateArray ( exp )* ) | ^(o= CreateObject (i= Identifier exp | s= StringLiteral exp )* ) | funcDef );
+        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:121:1: value : ( ^(o= ( '|' | '^' | '&' | '==' | '!=' | '===' | '!==' | '<' | 'lt' | '>' | 'gt' | '<=' | 'lte' | '>=' | 'gte' | '<<' | '>>' | '>>>' | '+' | '-' | '*' | '/' | '%' ) exp exp ) | ^(o= ( '||' | 'or' ) exp exp ) | ^(o= ( '&&' | 'and' ) exp exp ) | ^( PreInc i= Identifier ) | ^( PreInc ^( PropRef exp i= Identifier ) ) | ^( PreDec i= Identifier ) | ^( PreDec ^( PropRef exp i= Identifier ) ) | ^( PostInc i= Identifier ) | ^( PostInc ^( PropRef exp i= Identifier ) ) | ^( PostDec i= Identifier ) | ^( PostDec ^( PropRef exp i= Identifier ) ) | ^( CondExp exp exp exp ) | ^(o= ( '-' | '+' | '~' | '!' ) exp ) | ^(f= FuncCall ( exp )+ ) | ^( PropRef exp i= Identifier ) | ^( PropExp exp exp ) | NumberLiteral | StringLiteral | 'true' | 'false' | 'null' | 'this' | i= Identifier | ^(a= CreateArray ( exp )* ) | ^(o= CreateObject (i= Identifier exp | s= StringLiteral exp )* ) | funcDef );
         public final function value():TreeRuleReturnScope {
             var retval:TreeRuleReturnScope = new TreeRuleReturnScope();
             retval.start = input.LT(1);
@@ -1112,8 +1114,8 @@ package com.esoteric.expressions {
 
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 14) ) { return retval; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:121:7: ( ^(o= ( '|' | '^' | '&' | '==' | '!=' | '===' | '!==' | '<' | 'lt' | '>' | 'gt' | '<=' | 'lte' | '>=' | 'gte' | '<<' | '>>' | '>>>' | '+' | '-' | '*' | '/' | '%' ) exp exp ) | ^(o= ( '||' | 'or' ) exp exp ) | ^(o= ( '&&' | 'and' ) exp exp ) | ^( PreInc i= Identifier ) | ^( PreInc ^( PropRef exp i= Identifier ) ) | ^( PreDec i= Identifier ) | ^( PreDec ^( PropRef exp i= Identifier ) ) | ^( PostInc i= Identifier ) | ^( PostInc ^( PropRef exp i= Identifier ) ) | ^( PostDec i= Identifier ) | ^( PostDec ^( PropRef exp i= Identifier ) ) | ^( CondExp exp exp exp ) | ^(o= ( '-' | '+' | '~' | '!' ) exp ) | ^(f= FuncCall ( exp )+ ) | ^( PropRef exp i= Identifier ) | ^( PropExp exp exp ) | NumberLiteral | StringLiteral | 'true' | 'false' | 'null' | i= Identifier | ^(a= CreateArray ( exp )* ) | ^(o= CreateObject (i= Identifier exp | s= StringLiteral exp )* ) | funcDef )
-                var alt13:int=25;
+                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:121:7: ( ^(o= ( '|' | '^' | '&' | '==' | '!=' | '===' | '!==' | '<' | 'lt' | '>' | 'gt' | '<=' | 'lte' | '>=' | 'gte' | '<<' | '>>' | '>>>' | '+' | '-' | '*' | '/' | '%' ) exp exp ) | ^(o= ( '||' | 'or' ) exp exp ) | ^(o= ( '&&' | 'and' ) exp exp ) | ^( PreInc i= Identifier ) | ^( PreInc ^( PropRef exp i= Identifier ) ) | ^( PreDec i= Identifier ) | ^( PreDec ^( PropRef exp i= Identifier ) ) | ^( PostInc i= Identifier ) | ^( PostInc ^( PropRef exp i= Identifier ) ) | ^( PostDec i= Identifier ) | ^( PostDec ^( PropRef exp i= Identifier ) ) | ^( CondExp exp exp exp ) | ^(o= ( '-' | '+' | '~' | '!' ) exp ) | ^(f= FuncCall ( exp )+ ) | ^( PropRef exp i= Identifier ) | ^( PropExp exp exp ) | NumberLiteral | StringLiteral | 'true' | 'false' | 'null' | 'this' | i= Identifier | ^(a= CreateArray ( exp )* ) | ^(o= CreateObject (i= Identifier exp | s= StringLiteral exp )* ) | funcDef )
+                var alt13:int=26;
                 alt13 = dfa13.predict(input);
                 switch (alt13) {
                     case 1 :
@@ -1457,7 +1459,7 @@ package com.esoteric.expressions {
                             var alt10:int=2;
                             var LA10_0:int = input.LA(1);
 
-                            if ( ((LA10_0>=6 && LA10_0<=11)||LA10_0==15||(LA10_0>=17 && LA10_0<=24)||(LA10_0>=42 && LA10_0<=53)||(LA10_0>=57 && LA10_0<=83)||(LA10_0>=84 && LA10_0<=85)||(LA10_0>=88 && LA10_0<=90)) ) {
+                            if ( ((LA10_0>=6 && LA10_0<=11)||LA10_0==15||(LA10_0>=17 && LA10_0<=24)||(LA10_0>=42 && LA10_0<=53)||(LA10_0>=57 && LA10_0<=83)||(LA10_0>=84 && LA10_0<=85)||(LA10_0>=88 && LA10_0<=90)||LA10_0==96) ) {
                                 alt10=1;
                             }
 
@@ -1594,9 +1596,19 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 22 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:205:4: i= Identifier
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:205:4: 'this'
                         {
-                        i=Object(matchStream(input,Identifier,FOLLOW_Identifier_in_value1294)); if (this.state.failed) return retval;
+                        matchStream(input,96,FOLLOW_96_in_value1292); if (this.state.failed) return retval;
+                        if ( this.state.backtracking==0 ) {
+                           _codegen.pusht(); 
+                        }
+
+                        }
+                        break;
+                    case 23 :
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:207:4: i= Identifier
+                        {
+                        i=Object(matchStream(input,Identifier,FOLLOW_Identifier_in_value1309)); if (this.state.failed) return retval;
                         if ( this.state.backtracking==0 ) {
                            _codegen.pushc(); 
                         }
@@ -1609,20 +1621,20 @@ package com.esoteric.expressions {
 
                         }
                         break;
-                    case 23 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:209:4: ^(a= CreateArray ( exp )* )
+                    case 24 :
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:211:4: ^(a= CreateArray ( exp )* )
                         {
-                        a=Object(matchStream(input,CreateArray,FOLLOW_CreateArray_in_value1341)); if (this.state.failed) return retval;
+                        a=Object(matchStream(input,CreateArray,FOLLOW_CreateArray_in_value1356)); if (this.state.failed) return retval;
 
                         if ( input.LA(1)==TokenConstants.DOWN ) {
                             matchStream(input, TokenConstants.DOWN, null); if (this.state.failed) return retval;
-                            // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:209:20: ( exp )*
+                            // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:211:20: ( exp )*
                             loop11:
                             do {
                                 var alt11:int=2;
                                 var LA11_0:int = input.LA(1);
 
-                                if ( ((LA11_0>=6 && LA11_0<=11)||LA11_0==15||(LA11_0>=17 && LA11_0<=24)||(LA11_0>=42 && LA11_0<=53)||(LA11_0>=57 && LA11_0<=83)||(LA11_0>=84 && LA11_0<=85)||(LA11_0>=88 && LA11_0<=90)) ) {
+                                if ( ((LA11_0>=6 && LA11_0<=11)||LA11_0==15||(LA11_0>=17 && LA11_0<=24)||(LA11_0>=42 && LA11_0<=53)||(LA11_0>=57 && LA11_0<=83)||(LA11_0>=84 && LA11_0<=85)||(LA11_0>=88 && LA11_0<=90)||LA11_0==96) ) {
                                     alt11=1;
                                 }
 
@@ -1631,7 +1643,7 @@ package com.esoteric.expressions {
                             	case 1 :
                             	    // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:0:0: exp
                             	    {
-                            	    pushFollow(FOLLOW_exp_in_value1343);
+                            	    pushFollow(FOLLOW_exp_in_value1358);
                             	    exp();
 
                             	    state._fsp = state._fsp - 1;
@@ -1654,14 +1666,14 @@ package com.esoteric.expressions {
 
                         }
                         break;
-                    case 24 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:210:4: ^(o= CreateObject (i= Identifier exp | s= StringLiteral exp )* )
+                    case 25 :
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:212:4: ^(o= CreateObject (i= Identifier exp | s= StringLiteral exp )* )
                         {
-                        o=Object(matchStream(input,CreateObject,FOLLOW_CreateObject_in_value1363)); if (this.state.failed) return retval;
+                        o=Object(matchStream(input,CreateObject,FOLLOW_CreateObject_in_value1378)); if (this.state.failed) return retval;
 
                         if ( input.LA(1)==TokenConstants.DOWN ) {
                             matchStream(input, TokenConstants.DOWN, null); if (this.state.failed) return retval;
-                            // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:212:4: (i= Identifier exp | s= StringLiteral exp )*
+                            // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:214:4: (i= Identifier exp | s= StringLiteral exp )*
                             loop12:
                             do {
                                 var alt12:int=3;
@@ -1677,10 +1689,10 @@ package com.esoteric.expressions {
 
                                 switch (alt12) {
                             	case 1 :
-                            	    // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:213:5: i= Identifier exp
+                            	    // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:215:5: i= Identifier exp
                             	    {
-                            	    i=Object(matchStream(input,Identifier,FOLLOW_Identifier_in_value1376)); if (this.state.failed) return retval;
-                            	    pushFollow(FOLLOW_exp_in_value1378);
+                            	    i=Object(matchStream(input,Identifier,FOLLOW_Identifier_in_value1391)); if (this.state.failed) return retval;
+                            	    pushFollow(FOLLOW_exp_in_value1393);
                             	    exp();
 
                             	    state._fsp = state._fsp - 1;
@@ -1692,10 +1704,10 @@ package com.esoteric.expressions {
                             	    }
                             	    break;
                             	case 2 :
-                            	    // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:214:6: s= StringLiteral exp
+                            	    // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:216:6: s= StringLiteral exp
                             	    {
-                            	    s=Object(matchStream(input,StringLiteral,FOLLOW_StringLiteral_in_value1391)); if (this.state.failed) return retval;
-                            	    pushFollow(FOLLOW_exp_in_value1393);
+                            	    s=Object(matchStream(input,StringLiteral,FOLLOW_StringLiteral_in_value1406)); if (this.state.failed) return retval;
+                            	    pushFollow(FOLLOW_exp_in_value1408);
                             	    exp();
 
                             	    state._fsp = state._fsp - 1;
@@ -1721,10 +1733,10 @@ package com.esoteric.expressions {
 
                         }
                         break;
-                    case 25 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:217:4: funcDef
+                    case 26 :
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:219:4: funcDef
                         {
-                        pushFollow(FOLLOW_funcDef_in_value1419);
+                        pushFollow(FOLLOW_funcDef_in_value1434);
                         funcDef();
 
                         state._fsp = state._fsp - 1;
@@ -1747,22 +1759,22 @@ package com.esoteric.expressions {
         // $ANTLR end value
 
         // $ANTLR start funcDef
-        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:220:1: funcDef : ^( FuncDef ( arg )* stmtList ) ;
+        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:222:1: funcDef : ^( FuncDef ( arg )* stmtList ) ;
         public final function funcDef():void {
             var funcDef_StartIndex:int = input.index;
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 15) ) { return ; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:220:9: ( ^( FuncDef ( arg )* stmtList ) )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:220:11: ^( FuncDef ( arg )* stmtList )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:222:9: ( ^( FuncDef ( arg )* stmtList ) )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:222:11: ^( FuncDef ( arg )* stmtList )
                 {
-                matchStream(input,FuncDef,FOLLOW_FuncDef_in_funcDef1435); if (this.state.failed) return ;
+                matchStream(input,FuncDef,FOLLOW_FuncDef_in_funcDef1450); if (this.state.failed) return ;
 
                 if ( this.state.backtracking==0 ) {
                    _codegen.beginfunc() 
                 }
 
                 matchStream(input, TokenConstants.DOWN, null); if (this.state.failed) return ;
-                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:222:4: ( arg )*
+                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:224:4: ( arg )*
                 loop14:
                 do {
                     var alt14:int=2;
@@ -1777,7 +1789,7 @@ package com.esoteric.expressions {
                 	case 1 :
                 	    // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:0:0: arg
                 	    {
-                	    pushFollow(FOLLOW_arg_in_funcDef1447);
+                	    pushFollow(FOLLOW_arg_in_funcDef1462);
                 	    arg();
 
                 	    state._fsp = state._fsp - 1;
@@ -1791,7 +1803,7 @@ package com.esoteric.expressions {
                     }
                 } while (true);
 
-                pushFollow(FOLLOW_stmtList_in_funcDef1453);
+                pushFollow(FOLLOW_stmtList_in_funcDef1468);
                 stmtList();
 
                 state._fsp = state._fsp - 1;
@@ -1817,17 +1829,17 @@ package com.esoteric.expressions {
         // $ANTLR end funcDef
 
         // $ANTLR start arg
-        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:227:1: arg : i= Identifier ;
+        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:229:1: arg : i= Identifier ;
         public final function arg():void {
             var arg_StartIndex:int = input.index;
             var i:Object=null;
 
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 16) ) { return ; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:227:5: (i= Identifier )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:227:7: i= Identifier
+                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:229:5: (i= Identifier )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:229:7: i= Identifier
                 {
-                i=Object(matchStream(input,Identifier,FOLLOW_Identifier_in_arg1476)); if (this.state.failed) return ;
+                i=Object(matchStream(input,Identifier,FOLLOW_Identifier_in_arg1491)); if (this.state.failed) return ;
                 if ( this.state.backtracking==0 ) {
                    _codegen.arg((i!=null?i.text:null)) 
                 }
@@ -1847,12 +1859,12 @@ package com.esoteric.expressions {
         // $ANTLR end arg
 
         // $ANTLR start ret
-        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:230:1: ret : ( ^( Return exp ) | Return );
+        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:232:1: ret : ( ^( Return exp ) | Return );
         public final function ret():void {
             var ret_StartIndex:int = input.index;
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 17) ) { return ; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:231:2: ( ^( Return exp ) | Return )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:233:2: ( ^( Return exp ) | Return )
                 var alt15:int=2;
                 var LA15_0:int = input.LA(1);
 
@@ -1862,7 +1874,7 @@ package com.esoteric.expressions {
                     if ( (LA15_1==2) ) {
                         alt15=1;
                     }
-                    else if ( (LA15_1==-1||LA15_1==3||(LA15_1>=6 && LA15_1<=11)||(LA15_1>=15 && LA15_1<=24)||(LA15_1>=42 && LA15_1<=53)||(LA15_1>=57 && LA15_1<=85)||(LA15_1>=88 && LA15_1<=90)) ) {
+                    else if ( (LA15_1==-1||LA15_1==3||(LA15_1>=6 && LA15_1<=11)||(LA15_1>=15 && LA15_1<=24)||(LA15_1>=42 && LA15_1<=53)||(LA15_1>=57 && LA15_1<=85)||(LA15_1>=88 && LA15_1<=90)||LA15_1==96) ) {
                         alt15=2;
                     }
                     else {
@@ -1878,12 +1890,12 @@ package com.esoteric.expressions {
                 }
                 switch (alt15) {
                     case 1 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:232:3: ^( Return exp )
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:234:3: ^( Return exp )
                         {
-                        matchStream(input,Return,FOLLOW_Return_in_ret1497); if (this.state.failed) return ;
+                        matchStream(input,Return,FOLLOW_Return_in_ret1512); if (this.state.failed) return ;
 
                         matchStream(input, TokenConstants.DOWN, null); if (this.state.failed) return ;
-                        pushFollow(FOLLOW_exp_in_ret1499);
+                        pushFollow(FOLLOW_exp_in_ret1514);
                         exp();
 
                         state._fsp = state._fsp - 1;
@@ -1897,9 +1909,9 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 2 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:233:4: Return
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\ExpressionWalker.g:235:4: Return
                         {
-                        matchStream(input,Return,FOLLOW_Return_in_ret1512); if (this.state.failed) return ;
+                        matchStream(input,Return,FOLLOW_Return_in_ret1527); if (this.state.failed) return ;
                         if ( this.state.backtracking==0 ) {
                            _codegen.ret(false) 
                         }
@@ -2406,30 +2418,31 @@ package com.esoteric.expressions {
 
 
         private const DFA13_eot:Array =
-            DFA.unpackEncodedString("\x1f\u80ff\xff");
+            DFA.unpackEncodedString("\x20\u80ff\xff");
         private const DFA13_eof:Array =
-            DFA.unpackEncodedString("\x1f\u80ff\xff");
+            DFA.unpackEncodedString("\x20\u80ff\xff");
         private const DFA13_min:Array =
             DFA.unpackEncodedString("\x01\x06\x01\x00\x02\u80ff\xff\x04"+
-            "\x00\x17\u80ff\xff", true);
+            "\x00\x18\u80ff\xff", true);
         private const DFA13_max:Array =
-            DFA.unpackEncodedString("\x01\x5a\x01\x00\x02\u80ff\xff\x04"+
-            "\x00\x17\u80ff\xff", true);
+            DFA.unpackEncodedString("\x01\x60\x01\x00\x02\u80ff\xff\x04"+
+            "\x00\x18\u80ff\xff", true);
         private const DFA13_accept:Array =
             DFA.unpackEncodedString("\x02\u80ff\xff\x01\x02\x01\x03\x04"+
             "\u80ff\xff\x01\x0c\x01\x01\x01\x0d\x01\x0e\x01\x0f\x01\x10\x01"+
             "\x11\x01\x12\x01\x13\x01\x14\x01\x15\x01\x16\x01\x17\x01\x18"+
-            "\x01\x19\x01\x04\x01\x05\x01\x06\x01\x07\x01\x08\x01\x09\x01"+
-            "\x0a\x01\x0b");
+            "\x01\x19\x01\x1a\x01\x04\x01\x05\x01\x06\x01\x07\x01\x08\x01"+
+            "\x09\x01\x0a\x01\x0b");
         private const DFA13_special:Array =
             DFA.unpackEncodedString("\x01\u80ff\xff\x01\x00\x02\u80ff\xff"+
-            "\x01\x01\x01\x02\x01\x03\x01\x04\x17\u80ff\xff");
+            "\x01\x01\x01\x02\x01\x03\x01\x04\x18\u80ff\xff");
         private const DFA13_transition:Array = [
                 DFA.unpackEncodedString("\x01\x0b\x01\x0c\x01\x0d\x01\x08"+
-                "\x01\x14\x01\x15\x03\u80ff\xff\x01\x16\x02\u80ff\xff\x01"+
-                "\x04\x01\x06\x01\x05\x01\x07\x01\x13\x01\x0e\x01\x0f\x20"+
+                "\x01\x15\x01\x16\x03\u80ff\xff\x01\x17\x02\u80ff\xff\x01"+
+                "\x04\x01\x06\x01\x05\x01\x07\x01\x14\x01\x0e\x01\x0f\x20"+
                 "\u80ff\xff\x02\x02\x02\x03\x12\x09\x02\x01\x03\x09\x02\x0a"+
-                "\x02\u80ff\xff\x01\x10\x01\x11\x01\x12"),
+                "\x02\u80ff\xff\x01\x10\x01\x11\x01\x12\x05\u80ff\xff\x01"+
+                "\x13"),
                 DFA.unpackEncodedString("\x01\u80ff\xff"),
                 DFA.unpackEncodedString(""),
                 DFA.unpackEncodedString(""),
@@ -2437,6 +2450,7 @@ package com.esoteric.expressions {
                 DFA.unpackEncodedString("\x01\u80ff\xff"),
                 DFA.unpackEncodedString("\x01\u80ff\xff"),
                 DFA.unpackEncodedString("\x01\u80ff\xff"),
+                DFA.unpackEncodedString(""),
                 DFA.unpackEncodedString(""),
                 DFA.unpackEncodedString(""),
                 DFA.unpackEncodedString(""),
@@ -2487,9 +2501,9 @@ package com.esoteric.expressions {
                             var index13_4:int = input.index;
                             input.rewind();
                             s = -1;
-                            if ( (synpred52_ExpressionWalker()) ) {s = 23;}
+                            if ( (synpred52_ExpressionWalker()) ) {s = 24;}
 
-                            else if ( (synpred53_ExpressionWalker()) ) {s = 24;}
+                            else if ( (synpred53_ExpressionWalker()) ) {s = 25;}
 
                              
                             input.seek(index13_4);
@@ -2502,9 +2516,9 @@ package com.esoteric.expressions {
                             var index13_5:int = input.index;
                             input.rewind();
                             s = -1;
-                            if ( (synpred54_ExpressionWalker()) ) {s = 25;}
+                            if ( (synpred54_ExpressionWalker()) ) {s = 26;}
 
-                            else if ( (synpred55_ExpressionWalker()) ) {s = 26;}
+                            else if ( (synpred55_ExpressionWalker()) ) {s = 27;}
 
                              
                             input.seek(index13_5);
@@ -2517,9 +2531,9 @@ package com.esoteric.expressions {
                             var index13_6:int = input.index;
                             input.rewind();
                             s = -1;
-                            if ( (synpred56_ExpressionWalker()) ) {s = 27;}
+                            if ( (synpred56_ExpressionWalker()) ) {s = 28;}
 
-                            else if ( (synpred57_ExpressionWalker()) ) {s = 28;}
+                            else if ( (synpred57_ExpressionWalker()) ) {s = 29;}
 
                              
                             input.seek(index13_6);
@@ -2532,9 +2546,9 @@ package com.esoteric.expressions {
                             var index13_7:int = input.index;
                             input.rewind();
                             s = -1;
-                            if ( (synpred58_ExpressionWalker()) ) {s = 29;}
+                            if ( (synpred58_ExpressionWalker()) ) {s = 30;}
 
-                            else if ( (synpred59_ExpressionWalker()) ) {s = 30;}
+                            else if ( (synpred59_ExpressionWalker()) ) {s = 31;}
 
                              
                             input.seek(index13_7);
@@ -2556,7 +2570,7 @@ package com.esoteric.expressions {
         public static const FOLLOW_ifStmt_in_stmt99:BitSet = new BitSet([0x00000002, 0x00000000]);
         public static const FOLLOW_whileStmt_in_stmt104:BitSet = new BitSet([0x00000002, 0x00000000]);
         public static const FOLLOW_InstrList_in_instrList117:BitSet = new BitSet([0x00000004, 0x00000000]);
-        public static const FOLLOW_instr_in_instrList119:BitSet = new BitSet([0x01FF8FC8, 0xFE3FFC00, 0x073FFFFF, 0x00000000]);
+        public static const FOLLOW_instr_in_instrList119:BitSet = new BitSet([0x01FF8FC8, 0xFE3FFC00, 0x073FFFFF, 0x00000001]);
         public static const FOLLOW_IfStmt_in_ifStmt137:BitSet = new BitSet([0x00000004, 0x00000000]);
         public static const FOLLOW_exp_in_ifStmt142:BitSet = new BitSet([0x00000010, 0x00000000]);
         public static const FOLLOW_stmtList_in_ifStmt154:BitSet = new BitSet([0x00000010, 0x00000000]);
@@ -2587,19 +2601,19 @@ package com.esoteric.expressions {
         public static const FOLLOW_Identifier_in_local489:BitSet = new BitSet([0x00000008, 0x00000000]);
         public static const FOLLOW_Identifier_in_seti515:BitSet = new BitSet([0x00000002, 0x00000000]);
         public static const FOLLOW_PropExp_in_sete545:BitSet = new BitSet([0x00000004, 0x00000000]);
-        public static const FOLLOW_exp_in_sete547:BitSet = new BitSet([0x01FE8FC0, 0xFE3FFC00, 0x073FFFFF, 0x00000000]);
+        public static const FOLLOW_exp_in_sete547:BitSet = new BitSet([0x01FE8FC0, 0xFE3FFC00, 0x073FFFFF, 0x00000001]);
         public static const FOLLOW_exp_in_sete549:BitSet = new BitSet([0x00000008, 0x00000000]);
         public static const FOLLOW_PropRef_in_setr567:BitSet = new BitSet([0x00000004, 0x00000000]);
         public static const FOLLOW_exp_in_setr569:BitSet = new BitSet([0x00400000, 0x00000000]);
         public static const FOLLOW_Identifier_in_setr573:BitSet = new BitSet([0x00000008, 0x00000000]);
         public static const FOLLOW_set_in_value597:BitSet = new BitSet([0x00000004, 0x00000000]);
-        public static const FOLLOW_exp_in_value692:BitSet = new BitSet([0x01FE8FC0, 0xFE3FFC00, 0x073FFFFF, 0x00000000]);
+        public static const FOLLOW_exp_in_value692:BitSet = new BitSet([0x01FE8FC0, 0xFE3FFC00, 0x073FFFFF, 0x00000001]);
         public static const FOLLOW_exp_in_value694:BitSet = new BitSet([0x00000008, 0x00000000]);
         public static const FOLLOW_set_in_value723:BitSet = new BitSet([0x00000004, 0x00000000]);
-        public static const FOLLOW_exp_in_value734:BitSet = new BitSet([0x01FE8FC0, 0xFE3FFC00, 0x073FFFFF, 0x00000000]);
+        public static const FOLLOW_exp_in_value734:BitSet = new BitSet([0x01FE8FC0, 0xFE3FFC00, 0x073FFFFF, 0x00000001]);
         public static const FOLLOW_exp_in_value746:BitSet = new BitSet([0x00000008, 0x00000000]);
         public static const FOLLOW_set_in_value774:BitSet = new BitSet([0x00000004, 0x00000000]);
-        public static const FOLLOW_exp_in_value785:BitSet = new BitSet([0x01FE8FC0, 0xFE3FFC00, 0x073FFFFF, 0x00000000]);
+        public static const FOLLOW_exp_in_value785:BitSet = new BitSet([0x01FE8FC0, 0xFE3FFC00, 0x073FFFFF, 0x00000001]);
         public static const FOLLOW_exp_in_value797:BitSet = new BitSet([0x00000008, 0x00000000]);
         public static const FOLLOW_PreInc_in_value822:BitSet = new BitSet([0x00000004, 0x00000000]);
         public static const FOLLOW_Identifier_in_value826:BitSet = new BitSet([0x00000008, 0x00000000]);
@@ -2626,40 +2640,41 @@ package com.esoteric.expressions {
         public static const FOLLOW_exp_in_value1028:BitSet = new BitSet([0x00400000, 0x00000000]);
         public static const FOLLOW_Identifier_in_value1032:BitSet = new BitSet([0x00000008, 0x00000000]);
         public static const FOLLOW_CondExp_in_value1053:BitSet = new BitSet([0x00000004, 0x00000000]);
-        public static const FOLLOW_exp_in_value1064:BitSet = new BitSet([0x01FE8FC0, 0xFE3FFC00, 0x073FFFFF, 0x00000000]);
-        public static const FOLLOW_exp_in_value1076:BitSet = new BitSet([0x01FE8FC0, 0xFE3FFC00, 0x073FFFFF, 0x00000000]);
+        public static const FOLLOW_exp_in_value1064:BitSet = new BitSet([0x01FE8FC0, 0xFE3FFC00, 0x073FFFFF, 0x00000001]);
+        public static const FOLLOW_exp_in_value1076:BitSet = new BitSet([0x01FE8FC0, 0xFE3FFC00, 0x073FFFFF, 0x00000001]);
         public static const FOLLOW_exp_in_value1088:BitSet = new BitSet([0x00000008, 0x00000000]);
         public static const FOLLOW_set_in_value1114:BitSet = new BitSet([0x00000004, 0x00000000]);
         public static const FOLLOW_exp_in_value1133:BitSet = new BitSet([0x00000008, 0x00000000]);
         public static const FOLLOW_FuncCall_in_value1156:BitSet = new BitSet([0x00000004, 0x00000000]);
-        public static const FOLLOW_exp_in_value1158:BitSet = new BitSet([0x01FE8FC8, 0xFE3FFC00, 0x073FFFFF, 0x00000000]);
+        public static const FOLLOW_exp_in_value1158:BitSet = new BitSet([0x01FE8FC8, 0xFE3FFC00, 0x073FFFFF, 0x00000001]);
         public static const FOLLOW_PropRef_in_value1174:BitSet = new BitSet([0x00000004, 0x00000000]);
         public static const FOLLOW_exp_in_value1176:BitSet = new BitSet([0x00400000, 0x00000000]);
         public static const FOLLOW_Identifier_in_value1180:BitSet = new BitSet([0x00000008, 0x00000000]);
         public static const FOLLOW_PropExp_in_value1205:BitSet = new BitSet([0x00000004, 0x00000000]);
-        public static const FOLLOW_exp_in_value1207:BitSet = new BitSet([0x01FE8FC0, 0xFE3FFC00, 0x073FFFFF, 0x00000000]);
+        public static const FOLLOW_exp_in_value1207:BitSet = new BitSet([0x01FE8FC0, 0xFE3FFC00, 0x073FFFFF, 0x00000001]);
         public static const FOLLOW_exp_in_value1209:BitSet = new BitSet([0x00000008, 0x00000000]);
         public static const FOLLOW_NumberLiteral_in_value1223:BitSet = new BitSet([0x00000002, 0x00000000]);
         public static const FOLLOW_StringLiteral_in_value1237:BitSet = new BitSet([0x00000002, 0x00000000]);
         public static const FOLLOW_88_in_value1251:BitSet = new BitSet([0x00000002, 0x00000000]);
         public static const FOLLOW_89_in_value1264:BitSet = new BitSet([0x00000002, 0x00000000]);
         public static const FOLLOW_90_in_value1277:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_Identifier_in_value1294:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_CreateArray_in_value1341:BitSet = new BitSet([0x00000004, 0x00000000]);
-        public static const FOLLOW_exp_in_value1343:BitSet = new BitSet([0x01FE8FC8, 0xFE3FFC00, 0x073FFFFF, 0x00000000]);
-        public static const FOLLOW_CreateObject_in_value1363:BitSet = new BitSet([0x00000004, 0x00000000]);
-        public static const FOLLOW_Identifier_in_value1376:BitSet = new BitSet([0x01FE8FC0, 0xFE3FFC00, 0x073FFFFF, 0x00000000]);
-        public static const FOLLOW_exp_in_value1378:BitSet = new BitSet([0x01400008, 0x00000000]);
-        public static const FOLLOW_StringLiteral_in_value1391:BitSet = new BitSet([0x01FE8FC0, 0xFE3FFC00, 0x073FFFFF, 0x00000000]);
+        public static const FOLLOW_96_in_value1292:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_Identifier_in_value1309:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_CreateArray_in_value1356:BitSet = new BitSet([0x00000004, 0x00000000]);
+        public static const FOLLOW_exp_in_value1358:BitSet = new BitSet([0x01FE8FC8, 0xFE3FFC00, 0x073FFFFF, 0x00000001]);
+        public static const FOLLOW_CreateObject_in_value1378:BitSet = new BitSet([0x00000004, 0x00000000]);
+        public static const FOLLOW_Identifier_in_value1391:BitSet = new BitSet([0x01FE8FC0, 0xFE3FFC00, 0x073FFFFF, 0x00000001]);
         public static const FOLLOW_exp_in_value1393:BitSet = new BitSet([0x01400008, 0x00000000]);
-        public static const FOLLOW_funcDef_in_value1419:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_FuncDef_in_funcDef1435:BitSet = new BitSet([0x00000004, 0x00000000]);
-        public static const FOLLOW_arg_in_funcDef1447:BitSet = new BitSet([0x00400010, 0x00000000]);
-        public static const FOLLOW_stmtList_in_funcDef1453:BitSet = new BitSet([0x00000008, 0x00000000]);
-        public static const FOLLOW_Identifier_in_arg1476:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_Return_in_ret1497:BitSet = new BitSet([0x00000004, 0x00000000]);
-        public static const FOLLOW_exp_in_ret1499:BitSet = new BitSet([0x00000008, 0x00000000]);
-        public static const FOLLOW_Return_in_ret1512:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_StringLiteral_in_value1406:BitSet = new BitSet([0x01FE8FC0, 0xFE3FFC00, 0x073FFFFF, 0x00000001]);
+        public static const FOLLOW_exp_in_value1408:BitSet = new BitSet([0x01400008, 0x00000000]);
+        public static const FOLLOW_funcDef_in_value1434:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_FuncDef_in_funcDef1450:BitSet = new BitSet([0x00000004, 0x00000000]);
+        public static const FOLLOW_arg_in_funcDef1462:BitSet = new BitSet([0x00400010, 0x00000000]);
+        public static const FOLLOW_stmtList_in_funcDef1468:BitSet = new BitSet([0x00000008, 0x00000000]);
+        public static const FOLLOW_Identifier_in_arg1491:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_Return_in_ret1512:BitSet = new BitSet([0x00000004, 0x00000000]);
+        public static const FOLLOW_exp_in_ret1514:BitSet = new BitSet([0x00000008, 0x00000000]);
+        public static const FOLLOW_Return_in_ret1527:BitSet = new BitSet([0x00000002, 0x00000000]);
         public static const FOLLOW_IfStmt_in_synpred6_ExpressionWalker137:BitSet = new BitSet([0x00000004, 0x00000000]);
         public static const FOLLOW_exp_in_synpred6_ExpressionWalker142:BitSet = new BitSet([0x00000010, 0x00000000]);
         public static const FOLLOW_stmtList_in_synpred6_ExpressionWalker154:BitSet = new BitSet([0x00000010, 0x00000000]);
@@ -2669,7 +2684,7 @@ package com.esoteric.expressions {
         public static const FOLLOW_stmtList_in_synpred7_ExpressionWalker205:BitSet = new BitSet([0x00001000, 0x00000000]);
         public static const FOLLOW_ifStmt_in_synpred7_ExpressionWalker216:BitSet = new BitSet([0x00000008, 0x00000000]);
         public static const FOLLOW_set_in_synpred47_ExpressionWalker597:BitSet = new BitSet([0x00000004, 0x00000000]);
-        public static const FOLLOW_exp_in_synpred47_ExpressionWalker692:BitSet = new BitSet([0x01FE8FC0, 0xFE3FFC00, 0x073FFFFF, 0x00000000]);
+        public static const FOLLOW_exp_in_synpred47_ExpressionWalker692:BitSet = new BitSet([0x01FE8FC0, 0xFE3FFC00, 0x073FFFFF, 0x00000001]);
         public static const FOLLOW_exp_in_synpred47_ExpressionWalker694:BitSet = new BitSet([0x00000008, 0x00000000]);
         public static const FOLLOW_PreInc_in_synpred52_ExpressionWalker822:BitSet = new BitSet([0x00000004, 0x00000000]);
         public static const FOLLOW_Identifier_in_synpred52_ExpressionWalker826:BitSet = new BitSet([0x00000008, 0x00000000]);

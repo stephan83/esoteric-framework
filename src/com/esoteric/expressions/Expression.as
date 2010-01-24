@@ -170,7 +170,7 @@ package com.esoteric.expressions
 			}
 			
 			_evaluating = true;
-			_value = _vm.eval(_instructions, _closure, _enableWatchers);
+			_value = _vm.eval(_instructions, _closure, _closure, _enableWatchers);
 			_evaluating = false;
 			
 			if (_enableWatchers)

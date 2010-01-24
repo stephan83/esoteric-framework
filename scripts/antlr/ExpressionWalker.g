@@ -202,6 +202,8 @@ value	:	^(
 	|	'false'							{ _codegen.push(false); }
 	|	'null'							{ _codegen.push(null); }
 	
+	|	'this'							{ _codegen.pusht(); }
+	
 	|	i=Identifier						{ _codegen.pushc(); }
 									{ _codegen.push($i.text); }
 									{ _codegen.load(); }

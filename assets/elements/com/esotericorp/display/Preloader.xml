@@ -54,11 +54,25 @@
 	
 	<Script>
 		<![CDATA[
-			i = 0;
-			i++;
-			trace(++i);
-			trace(i);
-			trace(i++, i);
+			t = function()
+			{
+				trace(this);
+				trace($this);
+			}
+			
+			t();
+			
+			o = {
+				f: function()
+				{
+					this.string = "Hello, World!";
+				}
+			};
+			
+			o.f();
+			
+			trace(o.string);
+			trace(this);
 		]]>
 	</Script>
 	

@@ -252,6 +252,11 @@ package com.esoteric.expressions
 			addInstruction([ExpressionVm.instructionTypes.postdec]);
 		}
 		
+		public function pusht():void
+		{
+			addInstruction([ExpressionVm.instructionTypes.pusht]);
+		}
+		
 		//---------------------------------------------------------------------
 		// GETTERS & SETTERS
 		//---------------------------------------------------------------------

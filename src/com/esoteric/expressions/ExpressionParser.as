@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g 2010-01-24 02:07:08
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g 2010-01-24 12:59:32
 package com.esoteric.expressions {
     import org.antlr.runtime.*;
         
@@ -8,7 +8,7 @@ package com.esoteric.expressions {
 
     public class ExpressionParser extends Parser {
         public static const tokenNames:Array = [
-            "<invalid>", "<EOR>", "<DOWN>", "<UP>", "StmtList", "InstrList", "FuncCall", "PropRef", "PropExp", "CondExp", "CreateArray", "CreateObject", "IfStmt", "WhileStmt", "ForStmt", "FuncDef", "Return", "Local", "PreInc", "PostInc", "PreDec", "PostDec", "Identifier", "NumberLiteral", "StringLiteral", "LineComment", "MultilineComment", "Digit", "Exponent", "HexDigit", "EscapeSequence", "WhiteSpace", "Letter", "UnicodeEscapeChar", "'if'", "'('", "')'", "'else'", "'while'", "'{'", "'}'", "';'", "'='", "'*='", "'/='", "'%='", "'+='", "'-='", "'<<='", "'>>='", "'>>>='", "'&='", "'^='", "'|='", "'var'", "'?'", "':'", "'||'", "'or'", "'&&'", "'and'", "'|'", "'^'", "'&'", "'=='", "'!='", "'==='", "'!=='", "'<'", "'lt'", "'>'", "'gt'", "'<='", "'lte'", "'>='", "'gte'", "'<<'", "'>>'", "'>>>'", "'+'", "'-'", "'*'", "'/'", "'%'", "'~'", "'!'", "'++'", "'--'", "'true'", "'false'", "'null'", "'['", "']'", "'.'", "'function'", "','", "'return'"
+            "<invalid>", "<EOR>", "<DOWN>", "<UP>", "StmtList", "InstrList", "FuncCall", "PropRef", "PropExp", "CondExp", "CreateArray", "CreateObject", "IfStmt", "WhileStmt", "ForStmt", "FuncDef", "Return", "Local", "PreInc", "PostInc", "PreDec", "PostDec", "Identifier", "NumberLiteral", "StringLiteral", "LineComment", "MultilineComment", "Digit", "Exponent", "HexDigit", "EscapeSequence", "WhiteSpace", "Letter", "UnicodeEscapeChar", "'if'", "'('", "')'", "'else'", "'while'", "'{'", "'}'", "';'", "'='", "'*='", "'/='", "'%='", "'+='", "'-='", "'<<='", "'>>='", "'>>>='", "'&='", "'^='", "'|='", "'var'", "'?'", "':'", "'||'", "'or'", "'&&'", "'and'", "'|'", "'^'", "'&'", "'=='", "'!='", "'==='", "'!=='", "'<'", "'lt'", "'>'", "'gt'", "'<='", "'lte'", "'>='", "'gte'", "'<<'", "'>>'", "'>>>'", "'+'", "'-'", "'*'", "'/'", "'%'", "'~'", "'!'", "'++'", "'--'", "'true'", "'false'", "'null'", "'['", "']'", "'.'", "'function'", "','", "'this'", "'return'"
         ];
         public static const StmtList:int=4;
         public static const CreateObject:int=11;
@@ -20,6 +20,7 @@ package com.esoteric.expressions {
         public static const T__92:int=92;
         public static const T__90:int=90;
         public static const WhiteSpace:int=31;
+        public static const T__97:int=97;
         public static const T__96:int=96;
         public static const T__95:int=95;
         public static const T__80:int=80;
@@ -56,8 +57,8 @@ package com.esoteric.expressions {
         public static const T__65:int=65;
         public static const T__62:int=62;
         public static const T__63:int=63;
-        public static const LineComment:int=25;
         public static const Exponent:int=28;
+        public static const LineComment:int=25;
         public static const T__61:int=61;
         public static const T__60:int=60;
         public static const HexDigit:int=29;
@@ -148,7 +149,7 @@ package com.esoteric.expressions {
                             DFA27_max, DFA27_accept, DFA27_special,
                             DFA27_transition, DFA27_specialStateTransition);
 
-                this.state.ruleMemo = new Array(124+1);
+                this.state.ruleMemo = new Array(125+1);
                  
             }
             
@@ -200,7 +201,7 @@ package com.esoteric.expressions {
                 var alt1:int=2;
                 var LA1_0:int = input.LA(1);
 
-                if ( ((LA1_0>=22 && LA1_0<=24)||(LA1_0>=34 && LA1_0<=35)||(LA1_0>=38 && LA1_0<=39)||LA1_0==54||(LA1_0>=79 && LA1_0<=80)||(LA1_0>=84 && LA1_0<=91)||LA1_0==94||LA1_0==96) ) {
+                if ( ((LA1_0>=22 && LA1_0<=24)||(LA1_0>=34 && LA1_0<=35)||(LA1_0>=38 && LA1_0<=39)||LA1_0==54||(LA1_0>=79 && LA1_0<=80)||(LA1_0>=84 && LA1_0<=91)||LA1_0==94||(LA1_0>=96 && LA1_0<=97)) ) {
                     alt1=1;
                 }
                 else if ( (LA1_0==-1) ) {
@@ -298,7 +299,7 @@ package com.esoteric.expressions {
                     var alt2:int=2;
                     var LA2_0:int = input.LA(1);
 
-                    if ( ((LA2_0>=22 && LA2_0<=24)||(LA2_0>=34 && LA2_0<=35)||(LA2_0>=38 && LA2_0<=39)||LA2_0==54||(LA2_0>=79 && LA2_0<=80)||(LA2_0>=84 && LA2_0<=91)||LA2_0==94||LA2_0==96) ) {
+                    if ( ((LA2_0>=22 && LA2_0<=24)||(LA2_0>=34 && LA2_0<=35)||(LA2_0>=38 && LA2_0<=39)||LA2_0==54||(LA2_0>=79 && LA2_0<=80)||(LA2_0>=84 && LA2_0<=91)||LA2_0==94||(LA2_0>=96 && LA2_0<=97)) ) {
                         alt2=1;
                     }
 
@@ -427,6 +428,7 @@ package com.esoteric.expressions {
                 case 91:
                 case 94:
                 case 96:
+                case 97:
                     {
                     alt3=3;
                     }
@@ -623,7 +625,7 @@ package com.esoteric.expressions {
 
 
                         // AST REWRITE
-                        // elements: r, exp, l
+                        // elements: exp, l, r
                         // token labels: 
                         // rule labels: retval, r, l
                         // token list labels: 
@@ -690,7 +692,7 @@ package com.esoteric.expressions {
 
 
                         // AST REWRITE
-                        // elements: block, exp, ifStmt
+                        // elements: ifStmt, block, exp
                         // token labels: 
                         // rule labels: retval
                         // token list labels: 
@@ -746,7 +748,7 @@ package com.esoteric.expressions {
 
 
                         // AST REWRITE
-                        // elements: block, exp
+                        // elements: exp, block
                         // token labels: 
                         // rule labels: retval
                         // token list labels: 
@@ -1127,10 +1129,10 @@ package com.esoteric.expressions {
                 var alt6:int=2;
                 var LA6_0:int = input.LA(1);
 
-                if ( ((LA6_0>=22 && LA6_0<=24)||LA6_0==35||LA6_0==39||LA6_0==54||(LA6_0>=79 && LA6_0<=80)||(LA6_0>=84 && LA6_0<=91)||LA6_0==94) ) {
+                if ( ((LA6_0>=22 && LA6_0<=24)||LA6_0==35||LA6_0==39||LA6_0==54||(LA6_0>=79 && LA6_0<=80)||(LA6_0>=84 && LA6_0<=91)||LA6_0==94||LA6_0==96) ) {
                     alt6=1;
                 }
-                else if ( (LA6_0==96) ) {
+                else if ( (LA6_0==97) ) {
                     alt6=2;
                 }
                 else {
@@ -1446,7 +1448,7 @@ package com.esoteric.expressions {
 
 
                         // AST REWRITE
-                        // elements: reference, exp, 42
+                        // elements: exp, 42, reference
                         // token labels: 
                         // rule labels: retval
                         // token list labels: 
@@ -1489,7 +1491,7 @@ package com.esoteric.expressions {
 
 
                         // AST REWRITE
-                        // elements: 43, reference, exp
+                        // elements: exp, reference, 43
                         // token labels: 
                         // rule labels: retval
                         // token list labels: 
@@ -1532,7 +1534,7 @@ package com.esoteric.expressions {
 
 
                         // AST REWRITE
-                        // elements: exp, reference, 44
+                        // elements: 44, exp, reference
                         // token labels: 
                         // rule labels: retval
                         // token list labels: 
@@ -1575,7 +1577,7 @@ package com.esoteric.expressions {
 
 
                         // AST REWRITE
-                        // elements: reference, exp, 45
+                        // elements: 45, reference, exp
                         // token labels: 
                         // rule labels: retval
                         // token list labels: 
@@ -1618,7 +1620,7 @@ package com.esoteric.expressions {
 
 
                         // AST REWRITE
-                        // elements: exp, 46, reference
+                        // elements: 46, reference, exp
                         // token labels: 
                         // rule labels: retval
                         // token list labels: 
@@ -1661,7 +1663,7 @@ package com.esoteric.expressions {
 
 
                         // AST REWRITE
-                        // elements: reference, 47, exp
+                        // elements: 47, exp, reference
                         // token labels: 
                         // rule labels: retval
                         // token list labels: 
@@ -1704,7 +1706,7 @@ package com.esoteric.expressions {
 
 
                         // AST REWRITE
-                        // elements: exp, reference, 48
+                        // elements: exp, 48, reference
                         // token labels: 
                         // rule labels: retval
                         // token list labels: 
@@ -1747,7 +1749,7 @@ package com.esoteric.expressions {
 
 
                         // AST REWRITE
-                        // elements: 49, exp, reference
+                        // elements: exp, reference, 49
                         // token labels: 
                         // rule labels: retval
                         // token list labels: 
@@ -1790,7 +1792,7 @@ package com.esoteric.expressions {
 
 
                         // AST REWRITE
-                        // elements: reference, exp, 50
+                        // elements: 50, reference, exp
                         // token labels: 
                         // rule labels: retval
                         // token list labels: 
@@ -1876,7 +1878,7 @@ package com.esoteric.expressions {
 
 
                         // AST REWRITE
-                        // elements: reference, exp, 52
+                        // elements: exp, 52, reference
                         // token labels: 
                         // rule labels: retval
                         // token list labels: 
@@ -1919,7 +1921,7 @@ package com.esoteric.expressions {
 
 
                         // AST REWRITE
-                        // elements: reference, 53, exp
+                        // elements: exp, reference, 53
                         // token labels: 
                         // rule labels: retval
                         // token list labels: 
@@ -2012,7 +2014,7 @@ package com.esoteric.expressions {
                         if ( (LA9_2==42) ) {
                             alt9=2;
                         }
-                        else if ( (LA9_2==-1||(LA9_2>=22 && LA9_2<=24)||(LA9_2>=34 && LA9_2<=36)||(LA9_2>=38 && LA9_2<=41)||(LA9_2>=54 && LA9_2<=56)||(LA9_2>=79 && LA9_2<=80)||(LA9_2>=84 && LA9_2<=92)||(LA9_2>=94 && LA9_2<=96)) ) {
+                        else if ( (LA9_2==-1||(LA9_2>=22 && LA9_2<=24)||(LA9_2>=34 && LA9_2<=36)||(LA9_2>=38 && LA9_2<=41)||(LA9_2>=54 && LA9_2<=56)||(LA9_2>=79 && LA9_2<=80)||(LA9_2>=84 && LA9_2<=92)||(LA9_2>=94 && LA9_2<=97)) ) {
                             alt9=1;
                         }
                         else {
@@ -2094,7 +2096,7 @@ package com.esoteric.expressions {
 
 
                         // AST REWRITE
-                        // elements: exp, i
+                        // elements: i, exp
                         // token labels: i
                         // rule labels: retval
                         // token list labels: 
@@ -2248,7 +2250,7 @@ package com.esoteric.expressions {
 
 
                 	    // AST REWRITE
-                	    // elements: e1, e2, condExp
+                	    // elements: condExp, e2, e1
                 	    // token labels: 
                 	    // rule labels: retval, e1, e2
                 	    // token list labels: 
@@ -3700,6 +3702,7 @@ package com.esoteric.expressions {
                 case 90:
                 case 91:
                 case 94:
+                case 96:
                     {
                     alt21=7;
                     }
@@ -4120,6 +4123,7 @@ package com.esoteric.expressions {
                 case Identifier:
                 case 39:
                 case 91:
+                case 96:
                     {
                     alt23=6;
                     }
@@ -4421,7 +4425,7 @@ package com.esoteric.expressions {
 
 
                 	    // AST REWRITE
-                	    // elements: i, reference
+                	    // elements: reference, i
                 	    // token labels: i
                 	    // rule labels: retval
                 	    // token list labels: 
@@ -4460,7 +4464,7 @@ package com.esoteric.expressions {
                 	    var alt24:int=2;
                 	    var LA24_0:int = input.LA(1);
 
-                	    if ( ((LA24_0>=22 && LA24_0<=24)||LA24_0==35||LA24_0==39||LA24_0==54||(LA24_0>=79 && LA24_0<=80)||(LA24_0>=84 && LA24_0<=91)||LA24_0==94) ) {
+                	    if ( ((LA24_0>=22 && LA24_0<=24)||LA24_0==35||LA24_0==39||LA24_0==54||(LA24_0>=79 && LA24_0<=80)||(LA24_0>=84 && LA24_0<=91)||LA24_0==94||LA24_0==96) ) {
                 	        alt24=1;
                 	    }
                 	    switch (alt24) {
@@ -4497,7 +4501,7 @@ package com.esoteric.expressions {
 
 
                 	    // AST REWRITE
-                	    // elements: p, reference, e
+                	    // elements: p, e, reference
                 	    // token labels: 
                 	    // rule labels: retval, e, p
                 	    // token list labels: 
@@ -4546,7 +4550,7 @@ package com.esoteric.expressions {
                 	    var alt25:int=2;
                 	    var LA25_0:int = input.LA(1);
 
-                	    if ( ((LA25_0>=22 && LA25_0<=24)||LA25_0==35||LA25_0==39||LA25_0==54||(LA25_0>=79 && LA25_0<=80)||(LA25_0>=84 && LA25_0<=91)||LA25_0==94) ) {
+                	    if ( ((LA25_0>=22 && LA25_0<=24)||LA25_0==35||LA25_0==39||LA25_0==54||(LA25_0>=79 && LA25_0<=80)||(LA25_0>=84 && LA25_0<=91)||LA25_0==94||LA25_0==96) ) {
                 	        alt25=1;
                 	    }
                 	    switch (alt25) {
@@ -4788,7 +4792,7 @@ package com.esoteric.expressions {
 
 
                 	    // AST REWRITE
-                	    // elements: i, referenceOrFuncCall
+                	    // elements: referenceOrFuncCall, i
                 	    // token labels: i
                 	    // rule labels: retval
                 	    // token list labels: 
@@ -4835,7 +4839,7 @@ package com.esoteric.expressions {
 
 
                 	    // AST REWRITE
-                	    // elements: referenceOrFuncCall, p
+                	    // elements: p, referenceOrFuncCall
                 	    // token labels: 
                 	    // rule labels: retval, p
                 	    // token list labels: 
@@ -5204,7 +5208,7 @@ package com.esoteric.expressions {
         // $ANTLR end args
 
         // $ANTLR start object
-        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:289:1: object : ( Identifier | array | createObj );
+        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:289:1: object : ( Identifier | array | createObj | 'this' );
         public final function object():ParserRuleReturnScope {
             var retval:ParserRuleReturnScope = new ParserRuleReturnScope();
             retval.start = input.LT(1);
@@ -5212,17 +5216,19 @@ package com.esoteric.expressions {
             var root_0:CommonTree = null;
 
             var Identifier190:Token=null;
+            var string_literal193:Token=null;
             var array191:ParserRuleReturnScope = null;
 
             var createObj192:ParserRuleReturnScope = null;
 
 
             var Identifier190_tree:CommonTree=null;
+            var string_literal193_tree:CommonTree=null;
 
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 30) ) { return retval; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:290:2: ( Identifier | array | createObj )
-                var alt30:int=3;
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:290:2: ( Identifier | array | createObj | 'this' )
+                var alt30:int=4;
                 switch ( input.LA(1) ) {
                 case Identifier:
                     {
@@ -5237,6 +5243,11 @@ package com.esoteric.expressions {
                 case 39:
                     {
                     alt30=3;
+                    }
+                    break;
+                case 96:
+                    {
+                    alt30=4;
                     }
                     break;
                 default:
@@ -5287,6 +5298,19 @@ package com.esoteric.expressions {
 
                         }
                         break;
+                    case 4 :
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:293:4: 'this'
+                        {
+                        root_0 = CommonTree(adaptor.nil());
+
+                        string_literal193=Token(matchStream(input,96,FOLLOW_96_in_object1899)); if (this.state.failed) return retval;
+                        if ( this.state.backtracking==0 ) {
+                        string_literal193_tree = CommonTree(adaptor.create(string_literal193));
+                        adaptor.addChild(root_0, string_literal193_tree);
+                        }
+
+                        }
+                        break;
 
                 }
                 retval.stop = input.LT(-1);
@@ -5311,35 +5335,35 @@ package com.esoteric.expressions {
         // $ANTLR end object
 
         // $ANTLR start params
-        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:295:1: params : exp ( ',' exp )* ;
+        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:296:1: params : exp ( ',' exp )* ;
         public final function params():ParserRuleReturnScope {
             var retval:ParserRuleReturnScope = new ParserRuleReturnScope();
             retval.start = input.LT(1);
             var params_StartIndex:int = input.index;
             var root_0:CommonTree = null;
 
-            var char_literal194:Token=null;
-            var exp193:ParserRuleReturnScope = null;
+            var char_literal195:Token=null;
+            var exp194:ParserRuleReturnScope = null;
 
-            var exp195:ParserRuleReturnScope = null;
+            var exp196:ParserRuleReturnScope = null;
 
 
-            var char_literal194_tree:CommonTree=null;
+            var char_literal195_tree:CommonTree=null;
 
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 31) ) { return retval; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:296:2: ( exp ( ',' exp )* )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:296:4: exp ( ',' exp )*
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:297:2: ( exp ( ',' exp )* )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:297:4: exp ( ',' exp )*
                 {
                 root_0 = CommonTree(adaptor.nil());
 
-                pushFollow(FOLLOW_exp_in_params1906);
-                exp193=exp();
+                pushFollow(FOLLOW_exp_in_params1911);
+                exp194=exp();
 
                 state._fsp = state._fsp - 1;
                 if (this.state.failed) return retval;
-                if ( this.state.backtracking==0 ) adaptor.addChild(root_0, exp193.tree);
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:297:3: ( ',' exp )*
+                if ( this.state.backtracking==0 ) adaptor.addChild(root_0, exp194.tree);
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:298:3: ( ',' exp )*
                 loop31:
                 do {
                     var alt31:int=2;
@@ -5352,15 +5376,15 @@ package com.esoteric.expressions {
 
                     switch (alt31) {
                 	case 1 :
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:298:4: ',' exp
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:299:4: ',' exp
                 	    {
-                	    char_literal194=Token(matchStream(input,95,FOLLOW_95_in_params1915)); if (this.state.failed) return retval;
-                	    pushFollow(FOLLOW_exp_in_params1921);
-                	    exp195=exp();
+                	    char_literal195=Token(matchStream(input,95,FOLLOW_95_in_params1920)); if (this.state.failed) return retval;
+                	    pushFollow(FOLLOW_exp_in_params1926);
+                	    exp196=exp();
 
                 	    state._fsp = state._fsp - 1;
                 	    if (this.state.failed) return retval;
-                	    if ( this.state.backtracking==0 ) adaptor.addChild(root_0, exp195.tree);
+                	    if ( this.state.backtracking==0 ) adaptor.addChild(root_0, exp196.tree);
 
                 	    }
                 	    break;
@@ -5395,30 +5419,30 @@ package com.esoteric.expressions {
         // $ANTLR end params
 
         // $ANTLR start array
-        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:303:1: array : ( '[' i= items ']' -> ^( CreateArray $i) | '[' ']' -> ^( CreateArray ) );
+        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:304:1: array : ( '[' i= items ']' -> ^( CreateArray $i) | '[' ']' -> ^( CreateArray ) );
         public final function array():ParserRuleReturnScope {
             var retval:ParserRuleReturnScope = new ParserRuleReturnScope();
             retval.start = input.LT(1);
             var array_StartIndex:int = input.index;
             var root_0:CommonTree = null;
 
-            var char_literal196:Token=null;
             var char_literal197:Token=null;
             var char_literal198:Token=null;
             var char_literal199:Token=null;
+            var char_literal200:Token=null;
             var i:ParserRuleReturnScope = null;
 
 
-            var char_literal196_tree:CommonTree=null;
             var char_literal197_tree:CommonTree=null;
             var char_literal198_tree:CommonTree=null;
             var char_literal199_tree:CommonTree=null;
+            var char_literal200_tree:CommonTree=null;
             var stream_92:RewriteRuleTokenStream=new RewriteRuleTokenStream(adaptor,"token 92");
             var stream_91:RewriteRuleTokenStream=new RewriteRuleTokenStream(adaptor,"token 91");
             var stream_items:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule items");
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 32) ) { return retval; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:304:2: ( '[' i= items ']' -> ^( CreateArray $i) | '[' ']' -> ^( CreateArray ) )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:305:2: ( '[' i= items ']' -> ^( CreateArray $i) | '[' ']' -> ^( CreateArray ) )
                 var alt32:int=2;
                 var LA32_0:int = input.LA(1);
 
@@ -5428,7 +5452,7 @@ package com.esoteric.expressions {
                     if ( (LA32_1==92) ) {
                         alt32=2;
                     }
-                    else if ( ((LA32_1>=22 && LA32_1<=24)||LA32_1==35||LA32_1==39||LA32_1==54||(LA32_1>=79 && LA32_1<=80)||(LA32_1>=84 && LA32_1<=91)||LA32_1==94) ) {
+                    else if ( ((LA32_1>=22 && LA32_1<=24)||LA32_1==35||LA32_1==39||LA32_1==54||(LA32_1>=79 && LA32_1<=80)||(LA32_1>=84 && LA32_1<=91)||LA32_1==94||LA32_1==96) ) {
                         alt32=1;
                     }
                     else {
@@ -5444,19 +5468,19 @@ package com.esoteric.expressions {
                 }
                 switch (alt32) {
                     case 1 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:304:4: '[' i= items ']'
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:305:4: '[' i= items ']'
                         {
-                        char_literal196=Token(matchStream(input,91,FOLLOW_91_in_array1938)); if (this.state.failed) return retval; 
-                        if ( this.state.backtracking==0 ) stream_91.add(char_literal196);
+                        char_literal197=Token(matchStream(input,91,FOLLOW_91_in_array1943)); if (this.state.failed) return retval; 
+                        if ( this.state.backtracking==0 ) stream_91.add(char_literal197);
 
-                        pushFollow(FOLLOW_items_in_array1942);
+                        pushFollow(FOLLOW_items_in_array1947);
                         i=items();
 
                         state._fsp = state._fsp - 1;
                         if (this.state.failed) return retval;
                         if ( this.state.backtracking==0 ) stream_items.add(i.tree);
-                        char_literal197=Token(matchStream(input,92,FOLLOW_92_in_array1944)); if (this.state.failed) return retval; 
-                        if ( this.state.backtracking==0 ) stream_92.add(char_literal197);
+                        char_literal198=Token(matchStream(input,92,FOLLOW_92_in_array1949)); if (this.state.failed) return retval; 
+                        if ( this.state.backtracking==0 ) stream_92.add(char_literal198);
 
 
 
@@ -5472,9 +5496,9 @@ package com.esoteric.expressions {
                         var stream_i:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule i",i!=null?i.tree:null);
 
                         root_0 = CommonTree(adaptor.nil());
-                        // 304:22: -> ^( CreateArray $i)
+                        // 305:22: -> ^( CreateArray $i)
                         {
-                            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:304:25: ^( CreateArray $i)
+                            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:305:25: ^( CreateArray $i)
                             {
                             var root_1:CommonTree = CommonTree(adaptor.nil());
                             root_1 = CommonTree(adaptor.becomeRoot(CommonTree(adaptor.create(CreateArray, "CreateArray")), root_1));
@@ -5490,13 +5514,13 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 2 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:305:4: '[' ']'
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:306:4: '[' ']'
                         {
-                        char_literal198=Token(matchStream(input,91,FOLLOW_91_in_array1960)); if (this.state.failed) return retval; 
-                        if ( this.state.backtracking==0 ) stream_91.add(char_literal198);
+                        char_literal199=Token(matchStream(input,91,FOLLOW_91_in_array1965)); if (this.state.failed) return retval; 
+                        if ( this.state.backtracking==0 ) stream_91.add(char_literal199);
 
-                        char_literal199=Token(matchStream(input,92,FOLLOW_92_in_array1962)); if (this.state.failed) return retval; 
-                        if ( this.state.backtracking==0 ) stream_92.add(char_literal199);
+                        char_literal200=Token(matchStream(input,92,FOLLOW_92_in_array1967)); if (this.state.failed) return retval; 
+                        if ( this.state.backtracking==0 ) stream_92.add(char_literal200);
 
 
 
@@ -5511,9 +5535,9 @@ package com.esoteric.expressions {
                         var stream_retval:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                         root_0 = CommonTree(adaptor.nil());
-                        // 305:16: -> ^( CreateArray )
+                        // 306:16: -> ^( CreateArray )
                         {
-                            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:305:19: ^( CreateArray )
+                            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:306:19: ^( CreateArray )
                             {
                             var root_1:CommonTree = CommonTree(adaptor.nil());
                             root_1 = CommonTree(adaptor.becomeRoot(CommonTree(adaptor.create(CreateArray, "CreateArray")), root_1));
@@ -5550,35 +5574,35 @@ package com.esoteric.expressions {
         // $ANTLR end array
 
         // $ANTLR start items
-        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:308:1: items : exp ( ',' exp )* ;
+        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:309:1: items : exp ( ',' exp )* ;
         public final function items():ParserRuleReturnScope {
             var retval:ParserRuleReturnScope = new ParserRuleReturnScope();
             retval.start = input.LT(1);
             var items_StartIndex:int = input.index;
             var root_0:CommonTree = null;
 
-            var char_literal201:Token=null;
-            var exp200:ParserRuleReturnScope = null;
+            var char_literal202:Token=null;
+            var exp201:ParserRuleReturnScope = null;
 
-            var exp202:ParserRuleReturnScope = null;
+            var exp203:ParserRuleReturnScope = null;
 
 
-            var char_literal201_tree:CommonTree=null;
+            var char_literal202_tree:CommonTree=null;
 
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 33) ) { return retval; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:309:2: ( exp ( ',' exp )* )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:309:4: exp ( ',' exp )*
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:310:2: ( exp ( ',' exp )* )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:310:4: exp ( ',' exp )*
                 {
                 root_0 = CommonTree(adaptor.nil());
 
-                pushFollow(FOLLOW_exp_in_items1984);
-                exp200=exp();
+                pushFollow(FOLLOW_exp_in_items1989);
+                exp201=exp();
 
                 state._fsp = state._fsp - 1;
                 if (this.state.failed) return retval;
-                if ( this.state.backtracking==0 ) adaptor.addChild(root_0, exp200.tree);
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:310:3: ( ',' exp )*
+                if ( this.state.backtracking==0 ) adaptor.addChild(root_0, exp201.tree);
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:311:3: ( ',' exp )*
                 loop33:
                 do {
                     var alt33:int=2;
@@ -5591,15 +5615,15 @@ package com.esoteric.expressions {
 
                     switch (alt33) {
                 	case 1 :
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:311:4: ',' exp
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:312:4: ',' exp
                 	    {
-                	    char_literal201=Token(matchStream(input,95,FOLLOW_95_in_items1993)); if (this.state.failed) return retval;
-                	    pushFollow(FOLLOW_exp_in_items1999);
-                	    exp202=exp();
+                	    char_literal202=Token(matchStream(input,95,FOLLOW_95_in_items1998)); if (this.state.failed) return retval;
+                	    pushFollow(FOLLOW_exp_in_items2004);
+                	    exp203=exp();
 
                 	    state._fsp = state._fsp - 1;
                 	    if (this.state.failed) return retval;
-                	    if ( this.state.backtracking==0 ) adaptor.addChild(root_0, exp202.tree);
+                	    if ( this.state.backtracking==0 ) adaptor.addChild(root_0, exp203.tree);
 
                 	    }
                 	    break;
@@ -5634,30 +5658,30 @@ package com.esoteric.expressions {
         // $ANTLR end items
 
         // $ANTLR start createObj
-        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:316:1: createObj : ( '{' o= objItems '}' -> ^( CreateObject $o) | '{' '}' -> ^( CreateObject $o) );
+        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:317:1: createObj : ( '{' o= objItems '}' -> ^( CreateObject $o) | '{' '}' -> ^( CreateObject $o) );
         public final function createObj():ParserRuleReturnScope {
             var retval:ParserRuleReturnScope = new ParserRuleReturnScope();
             retval.start = input.LT(1);
             var createObj_StartIndex:int = input.index;
             var root_0:CommonTree = null;
 
-            var char_literal203:Token=null;
             var char_literal204:Token=null;
             var char_literal205:Token=null;
             var char_literal206:Token=null;
+            var char_literal207:Token=null;
             var o:ParserRuleReturnScope = null;
 
 
-            var char_literal203_tree:CommonTree=null;
             var char_literal204_tree:CommonTree=null;
             var char_literal205_tree:CommonTree=null;
             var char_literal206_tree:CommonTree=null;
+            var char_literal207_tree:CommonTree=null;
             var stream_40:RewriteRuleTokenStream=new RewriteRuleTokenStream(adaptor,"token 40");
             var stream_39:RewriteRuleTokenStream=new RewriteRuleTokenStream(adaptor,"token 39");
             var stream_objItems:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule objItems");
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 34) ) { return retval; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:317:2: ( '{' o= objItems '}' -> ^( CreateObject $o) | '{' '}' -> ^( CreateObject $o) )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:318:2: ( '{' o= objItems '}' -> ^( CreateObject $o) | '{' '}' -> ^( CreateObject $o) )
                 var alt34:int=2;
                 var LA34_0:int = input.LA(1);
 
@@ -5683,19 +5707,19 @@ package com.esoteric.expressions {
                 }
                 switch (alt34) {
                     case 1 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:317:4: '{' o= objItems '}'
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:318:4: '{' o= objItems '}'
                         {
-                        char_literal203=Token(matchStream(input,39,FOLLOW_39_in_createObj2016)); if (this.state.failed) return retval; 
-                        if ( this.state.backtracking==0 ) stream_39.add(char_literal203);
+                        char_literal204=Token(matchStream(input,39,FOLLOW_39_in_createObj2021)); if (this.state.failed) return retval; 
+                        if ( this.state.backtracking==0 ) stream_39.add(char_literal204);
 
-                        pushFollow(FOLLOW_objItems_in_createObj2020);
+                        pushFollow(FOLLOW_objItems_in_createObj2025);
                         o=objItems();
 
                         state._fsp = state._fsp - 1;
                         if (this.state.failed) return retval;
                         if ( this.state.backtracking==0 ) stream_objItems.add(o.tree);
-                        char_literal204=Token(matchStream(input,40,FOLLOW_40_in_createObj2022)); if (this.state.failed) return retval; 
-                        if ( this.state.backtracking==0 ) stream_40.add(char_literal204);
+                        char_literal205=Token(matchStream(input,40,FOLLOW_40_in_createObj2027)); if (this.state.failed) return retval; 
+                        if ( this.state.backtracking==0 ) stream_40.add(char_literal205);
 
 
 
@@ -5711,9 +5735,9 @@ package com.esoteric.expressions {
                         var stream_o:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule o",o!=null?o.tree:null);
 
                         root_0 = CommonTree(adaptor.nil());
-                        // 317:25: -> ^( CreateObject $o)
+                        // 318:25: -> ^( CreateObject $o)
                         {
-                            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:317:28: ^( CreateObject $o)
+                            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:318:28: ^( CreateObject $o)
                             {
                             var root_1:CommonTree = CommonTree(adaptor.nil());
                             root_1 = CommonTree(adaptor.becomeRoot(CommonTree(adaptor.create(CreateObject, "CreateObject")), root_1));
@@ -5729,13 +5753,13 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 2 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:318:4: '{' '}'
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:319:4: '{' '}'
                         {
-                        char_literal205=Token(matchStream(input,39,FOLLOW_39_in_createObj2038)); if (this.state.failed) return retval; 
-                        if ( this.state.backtracking==0 ) stream_39.add(char_literal205);
+                        char_literal206=Token(matchStream(input,39,FOLLOW_39_in_createObj2043)); if (this.state.failed) return retval; 
+                        if ( this.state.backtracking==0 ) stream_39.add(char_literal206);
 
-                        char_literal206=Token(matchStream(input,40,FOLLOW_40_in_createObj2040)); if (this.state.failed) return retval; 
-                        if ( this.state.backtracking==0 ) stream_40.add(char_literal206);
+                        char_literal207=Token(matchStream(input,40,FOLLOW_40_in_createObj2045)); if (this.state.failed) return retval; 
+                        if ( this.state.backtracking==0 ) stream_40.add(char_literal207);
 
 
 
@@ -5751,9 +5775,9 @@ package com.esoteric.expressions {
                         var stream_o:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule o",o!=null?o.tree:null);
 
                         root_0 = CommonTree(adaptor.nil());
-                        // 318:16: -> ^( CreateObject $o)
+                        // 319:16: -> ^( CreateObject $o)
                         {
-                            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:318:19: ^( CreateObject $o)
+                            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:319:19: ^( CreateObject $o)
                             {
                             var root_1:CommonTree = CommonTree(adaptor.nil());
                             root_1 = CommonTree(adaptor.becomeRoot(CommonTree(adaptor.create(CreateObject, "CreateObject")), root_1));
@@ -5792,40 +5816,40 @@ package com.esoteric.expressions {
         // $ANTLR end createObj
 
         // $ANTLR start objItems
-        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:321:1: objItems : ( Identifier | StringLiteral ) ':' exp ( ',' ( Identifier | StringLiteral ) ':' exp )* ;
+        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:322:1: objItems : ( Identifier | StringLiteral ) ':' exp ( ',' ( Identifier | StringLiteral ) ':' exp )* ;
         public final function objItems():ParserRuleReturnScope {
             var retval:ParserRuleReturnScope = new ParserRuleReturnScope();
             retval.start = input.LT(1);
             var objItems_StartIndex:int = input.index;
             var root_0:CommonTree = null;
 
-            var set207:Token=null;
-            var char_literal208:Token=null;
-            var char_literal210:Token=null;
-            var set211:Token=null;
-            var char_literal212:Token=null;
-            var exp209:ParserRuleReturnScope = null;
+            var set208:Token=null;
+            var char_literal209:Token=null;
+            var char_literal211:Token=null;
+            var set212:Token=null;
+            var char_literal213:Token=null;
+            var exp210:ParserRuleReturnScope = null;
 
-            var exp213:ParserRuleReturnScope = null;
+            var exp214:ParserRuleReturnScope = null;
 
 
-            var set207_tree:CommonTree=null;
-            var char_literal208_tree:CommonTree=null;
-            var char_literal210_tree:CommonTree=null;
-            var set211_tree:CommonTree=null;
-            var char_literal212_tree:CommonTree=null;
+            var set208_tree:CommonTree=null;
+            var char_literal209_tree:CommonTree=null;
+            var char_literal211_tree:CommonTree=null;
+            var set212_tree:CommonTree=null;
+            var char_literal213_tree:CommonTree=null;
 
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 35) ) { return retval; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:322:2: ( ( Identifier | StringLiteral ) ':' exp ( ',' ( Identifier | StringLiteral ) ':' exp )* )
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:322:4: ( Identifier | StringLiteral ) ':' exp ( ',' ( Identifier | StringLiteral ) ':' exp )*
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:323:2: ( ( Identifier | StringLiteral ) ':' exp ( ',' ( Identifier | StringLiteral ) ':' exp )* )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:323:4: ( Identifier | StringLiteral ) ':' exp ( ',' ( Identifier | StringLiteral ) ':' exp )*
                 {
                 root_0 = CommonTree(adaptor.nil());
 
-                set207=Token(input.LT(1));
+                set208=Token(input.LT(1));
                 if ( input.LA(1)==22||input.LA(1)==24 ) {
                     input.consume();
-                    if ( this.state.backtracking==0 ) adaptor.addChild(root_0, CommonTree(adaptor.create(set207)));
+                    if ( this.state.backtracking==0 ) adaptor.addChild(root_0, CommonTree(adaptor.create(set208)));
                     this.state.errorRecovery=false;this.state.failed=false;
                 }
                 else {
@@ -5833,14 +5857,14 @@ package com.esoteric.expressions {
                     throw new MismatchedSetException(null,input);
                 }
 
-                char_literal208=Token(matchStream(input,56,FOLLOW_56_in_objItems2073)); if (this.state.failed) return retval;
-                pushFollow(FOLLOW_exp_in_objItems2076);
-                exp209=exp();
+                char_literal209=Token(matchStream(input,56,FOLLOW_56_in_objItems2078)); if (this.state.failed) return retval;
+                pushFollow(FOLLOW_exp_in_objItems2081);
+                exp210=exp();
 
                 state._fsp = state._fsp - 1;
                 if (this.state.failed) return retval;
-                if ( this.state.backtracking==0 ) adaptor.addChild(root_0, exp209.tree);
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:323:3: ( ',' ( Identifier | StringLiteral ) ':' exp )*
+                if ( this.state.backtracking==0 ) adaptor.addChild(root_0, exp210.tree);
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:324:3: ( ',' ( Identifier | StringLiteral ) ':' exp )*
                 loop35:
                 do {
                     var alt35:int=2;
@@ -5853,13 +5877,13 @@ package com.esoteric.expressions {
 
                     switch (alt35) {
                 	case 1 :
-                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:324:4: ',' ( Identifier | StringLiteral ) ':' exp
+                	    // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:325:4: ',' ( Identifier | StringLiteral ) ':' exp
                 	    {
-                	    char_literal210=Token(matchStream(input,95,FOLLOW_95_in_objItems2085)); if (this.state.failed) return retval;
-                	    set211=Token(input.LT(1));
+                	    char_literal211=Token(matchStream(input,95,FOLLOW_95_in_objItems2090)); if (this.state.failed) return retval;
+                	    set212=Token(input.LT(1));
                 	    if ( input.LA(1)==22||input.LA(1)==24 ) {
                 	        input.consume();
-                	        if ( this.state.backtracking==0 ) adaptor.addChild(root_0, CommonTree(adaptor.create(set211)));
+                	        if ( this.state.backtracking==0 ) adaptor.addChild(root_0, CommonTree(adaptor.create(set212)));
                 	        this.state.errorRecovery=false;this.state.failed=false;
                 	    }
                 	    else {
@@ -5867,13 +5891,13 @@ package com.esoteric.expressions {
                 	        throw new MismatchedSetException(null,input);
                 	    }
 
-                	    char_literal212=Token(matchStream(input,56,FOLLOW_56_in_objItems2099)); if (this.state.failed) return retval;
-                	    pushFollow(FOLLOW_exp_in_objItems2102);
-                	    exp213=exp();
+                	    char_literal213=Token(matchStream(input,56,FOLLOW_56_in_objItems2104)); if (this.state.failed) return retval;
+                	    pushFollow(FOLLOW_exp_in_objItems2107);
+                	    exp214=exp();
 
                 	    state._fsp = state._fsp - 1;
                 	    if (this.state.failed) return retval;
-                	    if ( this.state.backtracking==0 ) adaptor.addChild(root_0, exp213.tree);
+                	    if ( this.state.backtracking==0 ) adaptor.addChild(root_0, exp214.tree);
 
                 	    }
                 	    break;
@@ -5908,32 +5932,32 @@ package com.esoteric.expressions {
         // $ANTLR end objItems
 
         // $ANTLR start ret
-        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:329:1: ret : ( 'return' e= exp -> ^( Return $e) | 'return' -> ^( Return ) );
+        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:330:1: ret : ( 'return' e= exp -> ^( Return $e) | 'return' -> ^( Return ) );
         public final function ret():ParserRuleReturnScope {
             var retval:ParserRuleReturnScope = new ParserRuleReturnScope();
             retval.start = input.LT(1);
             var ret_StartIndex:int = input.index;
             var root_0:CommonTree = null;
 
-            var string_literal214:Token=null;
             var string_literal215:Token=null;
+            var string_literal216:Token=null;
             var e:ParserRuleReturnScope = null;
 
 
-            var string_literal214_tree:CommonTree=null;
             var string_literal215_tree:CommonTree=null;
-            var stream_96:RewriteRuleTokenStream=new RewriteRuleTokenStream(adaptor,"token 96");
+            var string_literal216_tree:CommonTree=null;
+            var stream_97:RewriteRuleTokenStream=new RewriteRuleTokenStream(adaptor,"token 97");
             var stream_exp:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule exp");
             try {
                 if ( this.state.backtracking>0 && alreadyParsedRule(input, 36) ) { return retval; }
-                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:330:2: ( 'return' e= exp -> ^( Return $e) | 'return' -> ^( Return ) )
+                // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:331:2: ( 'return' e= exp -> ^( Return $e) | 'return' -> ^( Return ) )
                 var alt36:int=2;
                 var LA36_0:int = input.LA(1);
 
-                if ( (LA36_0==96) ) {
+                if ( (LA36_0==97) ) {
                     var LA36_1:int = input.LA(2);
 
-                    if ( (synpred88_Expression()) ) {
+                    if ( (synpred89_Expression()) ) {
                         alt36=1;
                     }
                     else if ( (true) ) {
@@ -5952,12 +5976,12 @@ package com.esoteric.expressions {
                 }
                 switch (alt36) {
                     case 1 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:331:3: 'return' e= exp
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:332:3: 'return' e= exp
                         {
-                        string_literal214=Token(matchStream(input,96,FOLLOW_96_in_ret2120)); if (this.state.failed) return retval; 
-                        if ( this.state.backtracking==0 ) stream_96.add(string_literal214);
+                        string_literal215=Token(matchStream(input,97,FOLLOW_97_in_ret2125)); if (this.state.failed) return retval; 
+                        if ( this.state.backtracking==0 ) stream_97.add(string_literal215);
 
-                        pushFollow(FOLLOW_exp_in_ret2124);
+                        pushFollow(FOLLOW_exp_in_ret2129);
                         e=exp();
 
                         state._fsp = state._fsp - 1;
@@ -5977,9 +6001,9 @@ package com.esoteric.expressions {
                         var stream_e:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule e",e!=null?e.tree:null);
 
                         root_0 = CommonTree(adaptor.nil());
-                        // 331:20: -> ^( Return $e)
+                        // 332:20: -> ^( Return $e)
                         {
-                            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:331:23: ^( Return $e)
+                            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:332:23: ^( Return $e)
                             {
                             var root_1:CommonTree = CommonTree(adaptor.nil());
                             root_1 = CommonTree(adaptor.becomeRoot(CommonTree(adaptor.create(Return, "Return")), root_1));
@@ -5995,10 +6019,10 @@ package com.esoteric.expressions {
                         }
                         break;
                     case 2 :
-                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:332:4: 'return'
+                        // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:333:4: 'return'
                         {
-                        string_literal215=Token(matchStream(input,96,FOLLOW_96_in_ret2140)); if (this.state.failed) return retval; 
-                        if ( this.state.backtracking==0 ) stream_96.add(string_literal215);
+                        string_literal216=Token(matchStream(input,97,FOLLOW_97_in_ret2145)); if (this.state.failed) return retval; 
+                        if ( this.state.backtracking==0 ) stream_97.add(string_literal216);
 
 
 
@@ -6013,9 +6037,9 @@ package com.esoteric.expressions {
                         var stream_retval:RewriteRuleSubtreeStream=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                         root_0 = CommonTree(adaptor.nil());
-                        // 332:15: -> ^( Return )
+                        // 333:15: -> ^( Return )
                         {
-                            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:332:18: ^( Return )
+                            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:333:18: ^( Return )
                             {
                             var root_1:CommonTree = CommonTree(adaptor.nil());
                             root_1 = CommonTree(adaptor.becomeRoot(CommonTree(adaptor.create(Return, "Return")), root_1));
@@ -6298,7 +6322,7 @@ package com.esoteric.expressions {
             var alt37:int=2;
             var LA37_0:int = input.LA(1);
 
-            if ( ((LA37_0>=22 && LA37_0<=24)||LA37_0==35||LA37_0==39||LA37_0==54||(LA37_0>=79 && LA37_0<=80)||(LA37_0>=84 && LA37_0<=91)||LA37_0==94) ) {
+            if ( ((LA37_0>=22 && LA37_0<=24)||LA37_0==35||LA37_0==39||LA37_0==54||(LA37_0>=79 && LA37_0<=80)||(LA37_0>=84 && LA37_0<=91)||LA37_0==94||LA37_0==96) ) {
                 alt37=1;
             }
             switch (alt37) {
@@ -6343,7 +6367,7 @@ package com.esoteric.expressions {
             var alt38:int=2;
             var LA38_0:int = input.LA(1);
 
-            if ( ((LA38_0>=22 && LA38_0<=24)||LA38_0==35||LA38_0==39||LA38_0==54||(LA38_0>=79 && LA38_0<=80)||(LA38_0>=84 && LA38_0<=91)||LA38_0==94) ) {
+            if ( ((LA38_0>=22 && LA38_0<=24)||LA38_0==35||LA38_0==39||LA38_0==54||(LA38_0>=79 && LA38_0<=80)||(LA38_0>=84 && LA38_0<=91)||LA38_0==94||LA38_0==96) ) {
                 alt38=1;
             }
             switch (alt38) {
@@ -6421,16 +6445,16 @@ package com.esoteric.expressions {
         }
         // $ANTLR end synpred76_Expression
 
-        // $ANTLR start synpred88_Expression
-        public final function synpred88_Expression_fragment():void {
+        // $ANTLR start synpred89_Expression
+        public final function synpred89_Expression_fragment():void {
             var e:ParserRuleReturnScope = null;
 
 
-            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:331:3: ( 'return' e= exp )
-            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:331:3: 'return' e= exp
+            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:332:3: ( 'return' e= exp )
+            // C:\\Users\\Stephan\\Desktop\\compiler\\Expression.g:332:3: 'return' e= exp
             {
-            matchStream(input,96,FOLLOW_96_in_synpred88_Expression2120); if (this.state.failed) return ;
-            pushFollow(FOLLOW_exp_in_synpred88_Expression2124);
+            matchStream(input,97,FOLLOW_97_in_synpred89_Expression2125); if (this.state.failed) return ;
+            pushFollow(FOLLOW_exp_in_synpred89_Expression2129);
             e=exp();
 
             state._fsp = state._fsp - 1;
@@ -6438,7 +6462,7 @@ package com.esoteric.expressions {
 
             }
         }
-        // $ANTLR end synpred88_Expression
+        // $ANTLR end synpred89_Expression
 
 
            // Delegated rules
@@ -6532,6 +6556,20 @@ package com.esoteric.expressions {
             var start:int = input.mark();
             try {
                 synpred72_Expression_fragment(); // can never throw exception
+            } catch (re:RecognitionException) {
+                trace("impossible: "+re);
+            }
+            var success:Boolean = !this.state.failed;
+            input.rewindTo(start);
+            this.state.backtracking--;
+            this.state.failed=false;
+            return success;
+        }
+        public final function synpred89_Expression():Boolean {
+            this.state.backtracking++;
+            var start:int = input.mark();
+            try {
+                synpred89_Expression_fragment(); // can never throw exception
             } catch (re:RecognitionException) {
                 trace("impossible: "+re);
             }
@@ -6639,20 +6677,6 @@ package com.esoteric.expressions {
             this.state.failed=false;
             return success;
         }
-        public final function synpred88_Expression():Boolean {
-            this.state.backtracking++;
-            var start:int = input.mark();
-            try {
-                synpred88_Expression_fragment(); // can never throw exception
-            } catch (re:RecognitionException) {
-                trace("impossible: "+re);
-            }
-            var success:Boolean = !this.state.failed;
-            input.rewindTo(start);
-            this.state.backtracking--;
-            this.state.failed=false;
-            return success;
-        }
         public final function synpred58_Expression():Boolean {
             this.state.backtracking++;
             var start:int = input.mark();
@@ -6699,25 +6723,26 @@ package com.esoteric.expressions {
 
 
         private const DFA5_eot:Array =
-            DFA.unpackEncodedString("\x1a\u80ff\xff");
+            DFA.unpackEncodedString("\x1b\u80ff\xff");
         private const DFA5_eof:Array =
-            DFA.unpackEncodedString("\x01\x01\x19\u80ff\xff");
+            DFA.unpackEncodedString("\x01\x01\x1a\u80ff\xff");
         private const DFA5_min:Array =
-            DFA.unpackEncodedString("\x01\x16\x16\u80ff\xff\x01\x00\x02"+
+            DFA.unpackEncodedString("\x01\x16\x17\u80ff\xff\x01\x00\x02"+
             "\u80ff\xff", true);
         private const DFA5_max:Array =
-            DFA.unpackEncodedString("\x01\x60\x16\u80ff\xff\x01\x00\x02"+
+            DFA.unpackEncodedString("\x01\x61\x17\u80ff\xff\x01\x00\x02"+
             "\u80ff\xff", true);
         private const DFA5_accept:Array =
-            DFA.unpackEncodedString("\x01\u80ff\xff\x01\x03\x16\u80ff\xff"+
+            DFA.unpackEncodedString("\x01\u80ff\xff\x01\x03\x17\u80ff\xff"+
             "\x01\x01\x01\x02");
         private const DFA5_special:Array =
-            DFA.unpackEncodedString("\x17\u80ff\xff\x01\x00\x02\u80ff\xff");
+            DFA.unpackEncodedString("\x18\u80ff\xff\x01\x00\x02\u80ff\xff");
         private const DFA5_transition:Array = [
                 DFA.unpackEncodedString("\x03\x01\x09\u80ff\xff\x02\x01"+
-                "\x02\u80ff\xff\x03\x01\x01\x17\x0c\u80ff\xff\x01\x01\x18"+
+                "\x02\u80ff\xff\x03\x01\x01\x18\x0c\u80ff\xff\x01\x01\x18"+
                 "\u80ff\xff\x02\x01\x03\u80ff\xff\x08\x01\x02\u80ff\xff\x01"+
-                "\x01\x01\u80ff\xff\x01\x01"),
+                "\x01\x01\u80ff\xff\x02\x01"),
+                DFA.unpackEncodedString(""),
                 DFA.unpackEncodedString(""),
                 DFA.unpackEncodedString(""),
                 DFA.unpackEncodedString(""),
@@ -6749,18 +6774,18 @@ package com.esoteric.expressions {
             	var _s:int = s;
                 switch ( s ) {
                         case 0 : 
-                            var LA5_23:int = input.LA(1);
+                            var LA5_24:int = input.LA(1);
 
                              
-                            var index5_23:int = input.index;
+                            var index5_24:int = input.index;
                             input.rewind();
                             s = -1;
-                            if ( (synpred7_Expression()) ) {s = 24;}
+                            if ( (synpred7_Expression()) ) {s = 25;}
 
-                            else if ( (synpred8_Expression()) ) {s = 25;}
+                            else if ( (synpred8_Expression()) ) {s = 26;}
 
                              
-                            input.seek(index5_23);
+                            input.seek(index5_24);
                             if ( s>=0 ) return s;
                             break;
                 }
@@ -6771,24 +6796,25 @@ package com.esoteric.expressions {
         protected var dfa5:DFA;  // initialized in constructor
 
         private const DFA7_eot:Array =
-            DFA.unpackEncodedString("\x13\u80ff\xff");
+            DFA.unpackEncodedString("\x14\u80ff\xff");
         private const DFA7_eof:Array =
-            DFA.unpackEncodedString("\x13\u80ff\xff");
+            DFA.unpackEncodedString("\x14\u80ff\xff");
         private const DFA7_min:Array =
-            DFA.unpackEncodedString("\x01\x16\x03\x00\x0f\u80ff\xff", true);
+            DFA.unpackEncodedString("\x01\x16\x04\x00\x0f\u80ff\xff", true);
         private const DFA7_max:Array =
-            DFA.unpackEncodedString("\x01\x5e\x03\x00\x0f\u80ff\xff", true);
+            DFA.unpackEncodedString("\x01\x60\x04\x00\x0f\u80ff\xff", true);
         private const DFA7_accept:Array =
-            DFA.unpackEncodedString("\x04\u80ff\xff\x01\x02\x01\x03\x0c"+
+            DFA.unpackEncodedString("\x05\u80ff\xff\x01\x02\x01\x03\x0c"+
             "\u80ff\xff\x01\x01");
         private const DFA7_special:Array =
             DFA.unpackEncodedString("\x01\u80ff\xff\x01\x00\x01\x01\x01"+
-            "\x02\x0f\u80ff\xff");
+            "\x02\x01\x03\x0f\u80ff\xff");
         private const DFA7_transition:Array = [
-                DFA.unpackEncodedString("\x01\x01\x02\x05\x0a\u80ff\xff"+
-                "\x01\x05\x03\u80ff\xff\x01\x03\x0e\u80ff\xff\x01\x04\x18"+
-                "\u80ff\xff\x02\x05\x03\u80ff\xff\x07\x05\x01\x02\x02\u80ff\xff"+
-                "\x01\x05"),
+                DFA.unpackEncodedString("\x01\x01\x02\x06\x0a\u80ff\xff"+
+                "\x01\x06\x03\u80ff\xff\x01\x03\x0e\u80ff\xff\x01\x05\x18"+
+                "\u80ff\xff\x02\x06\x03\u80ff\xff\x07\x06\x01\x02\x02\u80ff\xff"+
+                "\x01\x06\x01\u80ff\xff\x01\x04"),
+                DFA.unpackEncodedString("\x01\u80ff\xff"),
                 DFA.unpackEncodedString("\x01\u80ff\xff"),
                 DFA.unpackEncodedString("\x01\u80ff\xff"),
                 DFA.unpackEncodedString("\x01\u80ff\xff"),
@@ -6819,9 +6845,9 @@ package com.esoteric.expressions {
                             var index7_1:int = input.index;
                             input.rewind();
                             s = -1;
-                            if ( (synpred10_Expression()) ) {s = 18;}
+                            if ( (synpred10_Expression()) ) {s = 19;}
 
-                            else if ( (true) ) {s = 5;}
+                            else if ( (true) ) {s = 6;}
 
                              
                             input.seek(index7_1);
@@ -6834,9 +6860,9 @@ package com.esoteric.expressions {
                             var index7_2:int = input.index;
                             input.rewind();
                             s = -1;
-                            if ( (synpred10_Expression()) ) {s = 18;}
+                            if ( (synpred10_Expression()) ) {s = 19;}
 
-                            else if ( (true) ) {s = 5;}
+                            else if ( (true) ) {s = 6;}
 
                              
                             input.seek(index7_2);
@@ -6849,12 +6875,27 @@ package com.esoteric.expressions {
                             var index7_3:int = input.index;
                             input.rewind();
                             s = -1;
-                            if ( (synpred10_Expression()) ) {s = 18;}
+                            if ( (synpred10_Expression()) ) {s = 19;}
 
-                            else if ( (true) ) {s = 5;}
+                            else if ( (true) ) {s = 6;}
 
                              
                             input.seek(index7_3);
+                            if ( s>=0 ) return s;
+                            break;
+                        case 3 : 
+                            var LA7_4:int = input.LA(1);
+
+                             
+                            var index7_4:int = input.index;
+                            input.rewind();
+                            s = -1;
+                            if ( (synpred10_Expression()) ) {s = 19;}
+
+                            else if ( (true) ) {s = 6;}
+
+                             
+                            input.seek(index7_4);
                             if ( s>=0 ) return s;
                             break;
                 }
@@ -6865,25 +6906,26 @@ package com.esoteric.expressions {
         protected var dfa7:DFA;  // initialized in constructor
 
         private const DFA19_eot:Array =
-            DFA.unpackEncodedString("\x35\u80ff\xff");
+            DFA.unpackEncodedString("\x36\u80ff\xff");
         private const DFA19_eof:Array =
-            DFA.unpackEncodedString("\x01\x01\x34\u80ff\xff");
+            DFA.unpackEncodedString("\x01\x01\x35\u80ff\xff");
         private const DFA19_min:Array =
-            DFA.unpackEncodedString("\x01\x16\x21\u80ff\xff\x02\x00\x11"+
+            DFA.unpackEncodedString("\x01\x16\x22\u80ff\xff\x02\x00\x11"+
             "\u80ff\xff", true);
         private const DFA19_max:Array =
-            DFA.unpackEncodedString("\x01\x60\x21\u80ff\xff\x02\x00\x11"+
+            DFA.unpackEncodedString("\x01\x61\x22\u80ff\xff\x02\x00\x11"+
             "\u80ff\xff", true);
         private const DFA19_accept:Array =
-            DFA.unpackEncodedString("\x01\u80ff\xff\x01\x03\x31\u80ff\xff"+
+            DFA.unpackEncodedString("\x01\u80ff\xff\x01\x03\x32\u80ff\xff"+
             "\x01\x01\x01\x02");
         private const DFA19_special:Array =
-            DFA.unpackEncodedString("\x22\u80ff\xff\x01\x00\x01\x01\x11"+
+            DFA.unpackEncodedString("\x23\u80ff\xff\x01\x00\x01\x01\x11"+
             "\u80ff\xff");
         private const DFA19_transition:Array = [
                 DFA.unpackEncodedString("\x03\x01\x09\u80ff\xff\x03\x01"+
-                "\x01\u80ff\xff\x04\x01\x0c\u80ff\xff\x19\x01\x01\x22\x01"+
-                "\x23\x03\u80ff\xff\x09\x01\x01\u80ff\xff\x03\x01"),
+                "\x01\u80ff\xff\x04\x01\x0c\u80ff\xff\x19\x01\x01\x23\x01"+
+                "\x24\x03\u80ff\xff\x09\x01\x01\u80ff\xff\x04\x01"),
+                DFA.unpackEncodedString(""),
                 DFA.unpackEncodedString(""),
                 DFA.unpackEncodedString(""),
                 DFA.unpackEncodedString(""),
@@ -6942,33 +6984,33 @@ package com.esoteric.expressions {
             	var _s:int = s;
                 switch ( s ) {
                         case 0 : 
-                            var LA19_34:int = input.LA(1);
-
-                             
-                            var index19_34:int = input.index;
-                            input.rewind();
-                            s = -1;
-                            if ( (synpred47_Expression()) ) {s = 51;}
-
-                            else if ( (true) ) {s = 1;}
-
-                             
-                            input.seek(index19_34);
-                            if ( s>=0 ) return s;
-                            break;
-                        case 1 : 
                             var LA19_35:int = input.LA(1);
 
                              
                             var index19_35:int = input.index;
                             input.rewind();
                             s = -1;
-                            if ( (synpred48_Expression()) ) {s = 52;}
+                            if ( (synpred47_Expression()) ) {s = 52;}
 
                             else if ( (true) ) {s = 1;}
 
                              
                             input.seek(index19_35);
+                            if ( s>=0 ) return s;
+                            break;
+                        case 1 : 
+                            var LA19_36:int = input.LA(1);
+
+                             
+                            var index19_36:int = input.index;
+                            input.rewind();
+                            s = -1;
+                            if ( (synpred48_Expression()) ) {s = 53;}
+
+                            else if ( (true) ) {s = 1;}
+
+                             
+                            input.seek(index19_36);
                             if ( s>=0 ) return s;
                             break;
                 }
@@ -6979,23 +7021,24 @@ package com.esoteric.expressions {
         protected var dfa19:DFA;  // initialized in constructor
 
         private const DFA22_eot:Array =
-            DFA.unpackEncodedString("\x0d\u80ff\xff");
+            DFA.unpackEncodedString("\x0e\u80ff\xff");
         private const DFA22_eof:Array =
-            DFA.unpackEncodedString("\x0d\u80ff\xff");
+            DFA.unpackEncodedString("\x0e\u80ff\xff");
         private const DFA22_min:Array =
-            DFA.unpackEncodedString("\x01\x16\x03\x00\x09\u80ff\xff", true);
+            DFA.unpackEncodedString("\x01\x16\x04\x00\x09\u80ff\xff", true);
         private const DFA22_max:Array =
-            DFA.unpackEncodedString("\x01\x5e\x03\x00\x09\u80ff\xff", true);
+            DFA.unpackEncodedString("\x01\x60\x04\x00\x09\u80ff\xff", true);
         private const DFA22_accept:Array =
-            DFA.unpackEncodedString("\x04\u80ff\xff\x01\x03\x06\u80ff\xff"+
+            DFA.unpackEncodedString("\x05\u80ff\xff\x01\x03\x06\u80ff\xff"+
             "\x01\x01\x01\x02");
         private const DFA22_special:Array =
             DFA.unpackEncodedString("\x01\u80ff\xff\x01\x00\x01\x01\x01"+
-            "\x02\x09\u80ff\xff");
+            "\x02\x01\x03\x09\u80ff\xff");
         private const DFA22_transition:Array = [
-                DFA.unpackEncodedString("\x01\x01\x02\x04\x0a\u80ff\xff"+
-                "\x01\x04\x03\u80ff\xff\x01\x03\x30\u80ff\xff\x03\x04\x01"+
-                "\x02\x02\u80ff\xff\x01\x04"),
+                DFA.unpackEncodedString("\x01\x01\x02\x05\x0a\u80ff\xff"+
+                "\x01\x05\x03\u80ff\xff\x01\x03\x30\u80ff\xff\x03\x05\x01"+
+                "\x02\x02\u80ff\xff\x01\x05\x01\u80ff\xff\x01\x04"),
+                DFA.unpackEncodedString("\x01\u80ff\xff"),
                 DFA.unpackEncodedString("\x01\u80ff\xff"),
                 DFA.unpackEncodedString("\x01\u80ff\xff"),
                 DFA.unpackEncodedString("\x01\u80ff\xff"),
@@ -7020,11 +7063,11 @@ package com.esoteric.expressions {
                             var index22_1:int = input.index;
                             input.rewind();
                             s = -1;
-                            if ( (synpred58_Expression()) ) {s = 11;}
+                            if ( (synpred58_Expression()) ) {s = 12;}
 
-                            else if ( (synpred59_Expression()) ) {s = 12;}
+                            else if ( (synpred59_Expression()) ) {s = 13;}
 
-                            else if ( (true) ) {s = 4;}
+                            else if ( (true) ) {s = 5;}
 
                              
                             input.seek(index22_1);
@@ -7037,11 +7080,11 @@ package com.esoteric.expressions {
                             var index22_2:int = input.index;
                             input.rewind();
                             s = -1;
-                            if ( (synpred58_Expression()) ) {s = 11;}
+                            if ( (synpred58_Expression()) ) {s = 12;}
 
-                            else if ( (synpred59_Expression()) ) {s = 12;}
+                            else if ( (synpred59_Expression()) ) {s = 13;}
 
-                            else if ( (true) ) {s = 4;}
+                            else if ( (true) ) {s = 5;}
 
                              
                             input.seek(index22_2);
@@ -7054,14 +7097,31 @@ package com.esoteric.expressions {
                             var index22_3:int = input.index;
                             input.rewind();
                             s = -1;
-                            if ( (synpred58_Expression()) ) {s = 11;}
+                            if ( (synpred58_Expression()) ) {s = 12;}
 
-                            else if ( (synpred59_Expression()) ) {s = 12;}
+                            else if ( (synpred59_Expression()) ) {s = 13;}
 
-                            else if ( (true) ) {s = 4;}
+                            else if ( (true) ) {s = 5;}
 
                              
                             input.seek(index22_3);
+                            if ( s>=0 ) return s;
+                            break;
+                        case 3 : 
+                            var LA22_4:int = input.LA(1);
+
+                             
+                            var index22_4:int = input.index;
+                            input.rewind();
+                            s = -1;
+                            if ( (synpred58_Expression()) ) {s = 12;}
+
+                            else if ( (synpred59_Expression()) ) {s = 13;}
+
+                            else if ( (true) ) {s = 5;}
+
+                             
+                            input.seek(index22_4);
                             if ( s>=0 ) return s;
                             break;
                 }
@@ -7072,25 +7132,25 @@ package com.esoteric.expressions {
         protected var dfa22:DFA;  // initialized in constructor
 
         private const DFA26_eot:Array =
-            DFA.unpackEncodedString("\x46\u80ff\xff");
+            DFA.unpackEncodedString("\x47\u80ff\xff");
         private const DFA26_eof:Array =
-            DFA.unpackEncodedString("\x01\x01\x45\u80ff\xff");
+            DFA.unpackEncodedString("\x01\x01\x46\u80ff\xff");
         private const DFA26_min:Array =
-            DFA.unpackEncodedString("\x01\x16\x2f\u80ff\xff\x01\x00\x0c"+
+            DFA.unpackEncodedString("\x01\x16\x2f\u80ff\xff\x01\x00\x0d"+
             "\u80ff\xff\x01\x00\x08\u80ff\xff", true);
         private const DFA26_max:Array =
-            DFA.unpackEncodedString("\x01\x60\x2f\u80ff\xff\x01\x00\x0c"+
+            DFA.unpackEncodedString("\x01\x61\x2f\u80ff\xff\x01\x00\x0d"+
             "\u80ff\xff\x01\x00\x08\u80ff\xff", true);
         private const DFA26_accept:Array =
-            DFA.unpackEncodedString("\x01\u80ff\xff\x01\x05\x40\u80ff\xff"+
+            DFA.unpackEncodedString("\x01\u80ff\xff\x01\x05\x41\u80ff\xff"+
             "\x01\x02\x01\x01\x01\x03\x01\x04");
         private const DFA26_special:Array =
-            DFA.unpackEncodedString("\x30\u80ff\xff\x01\x00\x0c\u80ff\xff"+
+            DFA.unpackEncodedString("\x30\u80ff\xff\x01\x00\x0d\u80ff\xff"+
             "\x01\x01\x08\u80ff\xff");
         private const DFA26_transition:Array = [
                 DFA.unpackEncodedString("\x03\x01\x09\u80ff\xff\x01\x01"+
-                "\x01\x3d\x01\x01\x01\u80ff\xff\x35\x01\x01\x30\x01\x01\x01"+
-                "\x42\x03\x01"),
+                "\x01\x3e\x01\x01\x01\u80ff\xff\x35\x01\x01\x30\x01\x01\x01"+
+                "\x43\x04\x01"),
                 DFA.unpackEncodedString(""),
                 DFA.unpackEncodedString(""),
                 DFA.unpackEncodedString(""),
@@ -7139,6 +7199,7 @@ package com.esoteric.expressions {
                 DFA.unpackEncodedString(""),
                 DFA.unpackEncodedString(""),
                 DFA.unpackEncodedString("\x01\u80ff\xff"),
+                DFA.unpackEncodedString(""),
                 DFA.unpackEncodedString(""),
                 DFA.unpackEncodedString(""),
                 DFA.unpackEncodedString(""),
@@ -7172,7 +7233,7 @@ package com.esoteric.expressions {
                             var index26_48:int = input.index;
                             input.rewind();
                             s = -1;
-                            if ( (synpred67_Expression()) ) {s = 67;}
+                            if ( (synpred67_Expression()) ) {s = 68;}
 
                             else if ( (true) ) {s = 1;}
 
@@ -7181,20 +7242,20 @@ package com.esoteric.expressions {
                             if ( s>=0 ) return s;
                             break;
                         case 1 : 
-                            var LA26_61:int = input.LA(1);
+                            var LA26_62:int = input.LA(1);
 
                              
-                            var index26_61:int = input.index;
+                            var index26_62:int = input.index;
                             input.rewind();
                             s = -1;
-                            if ( (synpred70_Expression()) ) {s = 68;}
+                            if ( (synpred70_Expression()) ) {s = 69;}
 
-                            else if ( (synpred72_Expression()) ) {s = 69;}
+                            else if ( (synpred72_Expression()) ) {s = 70;}
 
                             else if ( (true) ) {s = 1;}
 
                              
-                            input.seek(index26_61);
+                            input.seek(index26_62);
                             if ( s>=0 ) return s;
                             break;
                 }
@@ -7205,25 +7266,25 @@ package com.esoteric.expressions {
         protected var dfa26:DFA;  // initialized in constructor
 
         private const DFA27_eot:Array =
-            DFA.unpackEncodedString("\x3a\u80ff\xff");
+            DFA.unpackEncodedString("\x3b\u80ff\xff");
         private const DFA27_eof:Array =
-            DFA.unpackEncodedString("\x01\x01\x39\u80ff\xff");
+            DFA.unpackEncodedString("\x01\x01\x3a\u80ff\xff");
         private const DFA27_min:Array =
-            DFA.unpackEncodedString("\x01\x16\x23\u80ff\xff\x01\x00\x0c"+
+            DFA.unpackEncodedString("\x01\x16\x23\u80ff\xff\x01\x00\x0d"+
             "\u80ff\xff\x01\x00\x08\u80ff\xff", true);
         private const DFA27_max:Array =
-            DFA.unpackEncodedString("\x01\x60\x23\u80ff\xff\x01\x00\x0c"+
+            DFA.unpackEncodedString("\x01\x61\x23\u80ff\xff\x01\x00\x0d"+
             "\u80ff\xff\x01\x00\x08\u80ff\xff", true);
         private const DFA27_accept:Array =
-            DFA.unpackEncodedString("\x01\u80ff\xff\x01\x05\x34\u80ff\xff"+
+            DFA.unpackEncodedString("\x01\u80ff\xff\x01\x05\x35\u80ff\xff"+
             "\x01\x02\x01\x01\x01\x03\x01\x04");
         private const DFA27_special:Array =
-            DFA.unpackEncodedString("\x24\u80ff\xff\x01\x00\x0c\u80ff\xff"+
+            DFA.unpackEncodedString("\x24\u80ff\xff\x01\x00\x0d\u80ff\xff"+
             "\x01\x01\x08\u80ff\xff");
         private const DFA27_transition:Array = [
                 DFA.unpackEncodedString("\x03\x01\x09\u80ff\xff\x01\x01"+
-                "\x01\x31\x01\x01\x01\u80ff\xff\x04\x01\x0c\u80ff\xff\x25"+
-                "\x01\x01\x24\x01\x01\x01\x36\x03\x01"),
+                "\x01\x32\x01\x01\x01\u80ff\xff\x04\x01\x0c\u80ff\xff\x25"+
+                "\x01\x01\x24\x01\x01\x01\x37\x04\x01"),
                 DFA.unpackEncodedString(""),
                 DFA.unpackEncodedString(""),
                 DFA.unpackEncodedString(""),
@@ -7260,6 +7321,7 @@ package com.esoteric.expressions {
                 DFA.unpackEncodedString(""),
                 DFA.unpackEncodedString(""),
                 DFA.unpackEncodedString("\x01\u80ff\xff"),
+                DFA.unpackEncodedString(""),
                 DFA.unpackEncodedString(""),
                 DFA.unpackEncodedString(""),
                 DFA.unpackEncodedString(""),
@@ -7293,7 +7355,7 @@ package com.esoteric.expressions {
                             var index27_36:int = input.index;
                             input.rewind();
                             s = -1;
-                            if ( (synpred73_Expression()) ) {s = 55;}
+                            if ( (synpred73_Expression()) ) {s = 56;}
 
                             else if ( (true) ) {s = 1;}
 
@@ -7302,20 +7364,20 @@ package com.esoteric.expressions {
                             if ( s>=0 ) return s;
                             break;
                         case 1 : 
-                            var LA27_49:int = input.LA(1);
+                            var LA27_50:int = input.LA(1);
 
                              
-                            var index27_49:int = input.index;
+                            var index27_50:int = input.index;
                             input.rewind();
                             s = -1;
-                            if ( (synpred75_Expression()) ) {s = 56;}
+                            if ( (synpred75_Expression()) ) {s = 57;}
 
-                            else if ( (synpred76_Expression()) ) {s = 57;}
+                            else if ( (synpred76_Expression()) ) {s = 58;}
 
                             else if ( (true) ) {s = 1;}
 
                              
-                            input.seek(index27_49);
+                            input.seek(index27_50);
                             if ( s>=0 ) return s;
                             break;
                 }
@@ -7329,39 +7391,39 @@ package com.esoteric.expressions {
         public static const FOLLOW_stmtList_in_main152:BitSet = new BitSet([0x00000000, 0x00000000]);
         public static const FOLLOW_EOF_in_main155:BitSet = new BitSet([0x00000002, 0x00000000]);
         public static const FOLLOW_EOF_in_main161:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_stmt_in_stmtList173:BitSet = new BitSet([0x01C00002, 0x004000CC, 0x4FF18000, 0x00000001]);
+        public static const FOLLOW_stmt_in_stmtList173:BitSet = new BitSet([0x01C00002, 0x004000CC, 0x4FF18000, 0x00000003]);
         public static const FOLLOW_ifStmt_in_stmt201:BitSet = new BitSet([0x00000002, 0x00000000]);
         public static const FOLLOW_whileStmt_in_stmt207:BitSet = new BitSet([0x00000002, 0x00000000]);
         public static const FOLLOW_instrList_in_stmt213:BitSet = new BitSet([0x00000002, 0x00000000]);
         public static const FOLLOW_34_in_ifStmt226:BitSet = new BitSet([0x00000000, 0x00000008]);
-        public static const FOLLOW_35_in_ifStmt228:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_35_in_ifStmt228:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_exp_in_ifStmt230:BitSet = new BitSet([0x00000000, 0x00000010]);
         public static const FOLLOW_36_in_ifStmt232:BitSet = new BitSet([0x00000000, 0x00000080]);
         public static const FOLLOW_block_in_ifStmt236:BitSet = new BitSet([0x00000000, 0x00000020]);
         public static const FOLLOW_37_in_ifStmt238:BitSet = new BitSet([0x00000000, 0x00000080]);
         public static const FOLLOW_block_in_ifStmt242:BitSet = new BitSet([0x00000002, 0x00000000]);
         public static const FOLLOW_34_in_ifStmt261:BitSet = new BitSet([0x00000000, 0x00000008]);
-        public static const FOLLOW_35_in_ifStmt263:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_35_in_ifStmt263:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_exp_in_ifStmt265:BitSet = new BitSet([0x00000000, 0x00000010]);
         public static const FOLLOW_36_in_ifStmt267:BitSet = new BitSet([0x00000000, 0x00000080]);
         public static const FOLLOW_block_in_ifStmt269:BitSet = new BitSet([0x00000000, 0x00000020]);
         public static const FOLLOW_37_in_ifStmt271:BitSet = new BitSet([0x00000000, 0x00000004]);
         public static const FOLLOW_ifStmt_in_ifStmt273:BitSet = new BitSet([0x00000002, 0x00000000]);
         public static const FOLLOW_34_in_ifStmt290:BitSet = new BitSet([0x00000000, 0x00000008]);
-        public static const FOLLOW_35_in_ifStmt292:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_35_in_ifStmt292:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_exp_in_ifStmt294:BitSet = new BitSet([0x00000000, 0x00000010]);
         public static const FOLLOW_36_in_ifStmt296:BitSet = new BitSet([0x00000000, 0x00000080]);
         public static const FOLLOW_block_in_ifStmt298:BitSet = new BitSet([0x00000002, 0x00000000]);
         public static const FOLLOW_38_in_whileStmt322:BitSet = new BitSet([0x00000000, 0x00000008]);
-        public static const FOLLOW_35_in_whileStmt324:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_35_in_whileStmt324:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_exp_in_whileStmt326:BitSet = new BitSet([0x00000000, 0x00000010]);
         public static const FOLLOW_36_in_whileStmt328:BitSet = new BitSet([0x00000000, 0x00000080]);
         public static const FOLLOW_block_in_whileStmt330:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_39_in_block353:BitSet = new BitSet([0x01C00000, 0x004000CC, 0x4FF18000, 0x00000001]);
+        public static const FOLLOW_39_in_block353:BitSet = new BitSet([0x01C00000, 0x004000CC, 0x4FF18000, 0x00000003]);
         public static const FOLLOW_stmtList_in_block355:BitSet = new BitSet([0x00000000, 0x00000100]);
         public static const FOLLOW_40_in_block357:BitSet = new BitSet([0x00000002, 0x00000000]);
         public static const FOLLOW_instr_in_instrList376:BitSet = new BitSet([0x00000002, 0x00000200]);
-        public static const FOLLOW_41_in_instrList385:BitSet = new BitSet([0x01C00000, 0x004002CC, 0x4FF18000, 0x00000001]);
+        public static const FOLLOW_41_in_instrList385:BitSet = new BitSet([0x01C00000, 0x004002CC, 0x4FF18000, 0x00000003]);
         public static const FOLLOW_instr_in_instrList387:BitSet = new BitSet([0x00000002, 0x00000200]);
         public static const FOLLOW_41_in_instrList393:BitSet = new BitSet([0x00000002, 0x00000200]);
         public static const FOLLOW_exp_in_instr423:BitSet = new BitSet([0x00000002, 0x00000000]);
@@ -7370,116 +7432,116 @@ package com.esoteric.expressions {
         public static const FOLLOW_local_in_exp447:BitSet = new BitSet([0x00000002, 0x00000000]);
         public static const FOLLOW_condExp_in_exp453:BitSet = new BitSet([0x00000002, 0x00000000]);
         public static const FOLLOW_reference_in_assignExp466:BitSet = new BitSet([0x00000000, 0x003FFC00]);
-        public static const FOLLOW_42_in_assignExp475:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_42_in_assignExp475:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_exp_in_assignExp477:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_43_in_assignExp496:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_43_in_assignExp496:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_exp_in_assignExp498:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_44_in_assignExp516:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_44_in_assignExp516:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_exp_in_assignExp518:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_45_in_assignExp536:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_45_in_assignExp536:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_exp_in_assignExp538:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_46_in_assignExp556:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_46_in_assignExp556:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_exp_in_assignExp558:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_47_in_assignExp576:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_47_in_assignExp576:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_exp_in_assignExp578:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_48_in_assignExp596:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_48_in_assignExp596:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_exp_in_assignExp598:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_49_in_assignExp616:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_49_in_assignExp616:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_exp_in_assignExp618:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_50_in_assignExp636:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_50_in_assignExp636:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_exp_in_assignExp638:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_51_in_assignExp656:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_51_in_assignExp656:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_exp_in_assignExp658:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_52_in_assignExp676:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_52_in_assignExp676:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_exp_in_assignExp678:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_53_in_assignExp696:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_53_in_assignExp696:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_exp_in_assignExp698:BitSet = new BitSet([0x00000002, 0x00000000]);
         public static const FOLLOW_54_in_local726:BitSet = new BitSet([0x00400000, 0x00000000]);
         public static const FOLLOW_Identifier_in_local730:BitSet = new BitSet([0x00000002, 0x00000000]);
         public static const FOLLOW_54_in_local746:BitSet = new BitSet([0x00400000, 0x00000000]);
         public static const FOLLOW_Identifier_in_local750:BitSet = new BitSet([0x00000000, 0x00000400]);
-        public static const FOLLOW_42_in_local752:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_42_in_local752:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_exp_in_local754:BitSet = new BitSet([0x00000002, 0x00000000]);
         public static const FOLLOW_logicalOr_in_condExp781:BitSet = new BitSet([0x00000002, 0x00800000]);
-        public static const FOLLOW_55_in_condExp799:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_55_in_condExp799:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_exp_in_condExp806:BitSet = new BitSet([0x00000000, 0x01000000]);
-        public static const FOLLOW_56_in_condExp811:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_56_in_condExp811:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_exp_in_condExp818:BitSet = new BitSet([0x00000002, 0x00800000]);
         public static const FOLLOW_logicalAnd_in_logicalOr852:BitSet = new BitSet([0x00000002, 0x06000000]);
-        public static const FOLLOW_57_in_logicalOr861:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_57_in_logicalOr861:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_logicalAnd_in_logicalOr864:BitSet = new BitSet([0x00000002, 0x06000000]);
-        public static const FOLLOW_58_in_logicalOr870:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_58_in_logicalOr870:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_logicalAnd_in_logicalOr873:BitSet = new BitSet([0x00000002, 0x06000000]);
         public static const FOLLOW_bitwiseOr_in_logicalAnd890:BitSet = new BitSet([0x00000002, 0x18000000]);
-        public static const FOLLOW_59_in_logicalAnd899:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_59_in_logicalAnd899:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_bitwiseOr_in_logicalAnd902:BitSet = new BitSet([0x00000002, 0x18000000]);
-        public static const FOLLOW_60_in_logicalAnd908:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_60_in_logicalAnd908:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_bitwiseOr_in_logicalAnd911:BitSet = new BitSet([0x00000002, 0x18000000]);
         public static const FOLLOW_bitwiseXor_in_bitwiseOr927:BitSet = new BitSet([0x00000002, 0x20000000]);
-        public static const FOLLOW_61_in_bitwiseOr936:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_61_in_bitwiseOr936:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_bitwiseXor_in_bitwiseOr939:BitSet = new BitSet([0x00000002, 0x20000000]);
         public static const FOLLOW_bitwiseAnd_in_bitwiseXor955:BitSet = new BitSet([0x00000002, 0x40000000]);
-        public static const FOLLOW_62_in_bitwiseXor964:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_62_in_bitwiseXor964:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_bitwiseAnd_in_bitwiseXor967:BitSet = new BitSet([0x00000002, 0x00000000]);
         public static const FOLLOW_equalExp_in_bitwiseAnd983:BitSet = new BitSet([0x00000002, 0x80000000]);
-        public static const FOLLOW_63_in_bitwiseAnd992:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_63_in_bitwiseAnd992:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_equalExp_in_bitwiseAnd995:BitSet = new BitSet([0x00000002, 0x80000000]);
         public static const FOLLOW_relExp_in_equalExp1011:BitSet = new BitSet([0x00000002, 0x00000000, 0x0000000F, 0x00000000]);
-        public static const FOLLOW_64_in_equalExp1020:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_64_in_equalExp1020:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_relExp_in_equalExp1023:BitSet = new BitSet([0x00000002, 0x00000000, 0x0000000F, 0x00000000]);
-        public static const FOLLOW_65_in_equalExp1029:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_65_in_equalExp1029:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_relExp_in_equalExp1032:BitSet = new BitSet([0x00000002, 0x00000000, 0x0000000F, 0x00000000]);
-        public static const FOLLOW_66_in_equalExp1038:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_66_in_equalExp1038:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_relExp_in_equalExp1041:BitSet = new BitSet([0x00000002, 0x00000000, 0x0000000F, 0x00000000]);
-        public static const FOLLOW_67_in_equalExp1047:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_67_in_equalExp1047:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_relExp_in_equalExp1050:BitSet = new BitSet([0x00000002, 0x00000000, 0x0000000F, 0x00000000]);
         public static const FOLLOW_shiftExp_in_relExp1067:BitSet = new BitSet([0x00000002, 0x00000000, 0x00000FF0, 0x00000000]);
-        public static const FOLLOW_68_in_relExp1076:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_68_in_relExp1076:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_shiftExp_in_relExp1079:BitSet = new BitSet([0x00000002, 0x00000000, 0x00000FF0, 0x00000000]);
-        public static const FOLLOW_69_in_relExp1085:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_69_in_relExp1085:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_shiftExp_in_relExp1088:BitSet = new BitSet([0x00000002, 0x00000000, 0x00000FF0, 0x00000000]);
-        public static const FOLLOW_70_in_relExp1094:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_70_in_relExp1094:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_shiftExp_in_relExp1097:BitSet = new BitSet([0x00000002, 0x00000000, 0x00000FF0, 0x00000000]);
-        public static const FOLLOW_71_in_relExp1103:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_71_in_relExp1103:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_shiftExp_in_relExp1106:BitSet = new BitSet([0x00000002, 0x00000000, 0x00000FF0, 0x00000000]);
-        public static const FOLLOW_72_in_relExp1112:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_72_in_relExp1112:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_shiftExp_in_relExp1115:BitSet = new BitSet([0x00000002, 0x00000000, 0x00000FF0, 0x00000000]);
-        public static const FOLLOW_73_in_relExp1121:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_73_in_relExp1121:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_shiftExp_in_relExp1124:BitSet = new BitSet([0x00000002, 0x00000000, 0x00000FF0, 0x00000000]);
-        public static const FOLLOW_74_in_relExp1130:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_74_in_relExp1130:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_shiftExp_in_relExp1133:BitSet = new BitSet([0x00000002, 0x00000000, 0x00000FF0, 0x00000000]);
-        public static const FOLLOW_75_in_relExp1139:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_75_in_relExp1139:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_shiftExp_in_relExp1142:BitSet = new BitSet([0x00000002, 0x00000000, 0x00000FF0, 0x00000000]);
         public static const FOLLOW_addExp_in_shiftExp1158:BitSet = new BitSet([0x00000002, 0x00000000, 0x00007000, 0x00000000]);
-        public static const FOLLOW_76_in_shiftExp1167:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_76_in_shiftExp1167:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_addExp_in_shiftExp1170:BitSet = new BitSet([0x00000002, 0x00000000, 0x00007000, 0x00000000]);
-        public static const FOLLOW_77_in_shiftExp1176:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_77_in_shiftExp1176:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_addExp_in_shiftExp1179:BitSet = new BitSet([0x00000002, 0x00000000, 0x00007000, 0x00000000]);
-        public static const FOLLOW_78_in_shiftExp1185:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_78_in_shiftExp1185:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_addExp_in_shiftExp1188:BitSet = new BitSet([0x00000002, 0x00000000, 0x00007000, 0x00000000]);
         public static const FOLLOW_multExp_in_addExp1204:BitSet = new BitSet([0x00000002, 0x00000000, 0x00018000, 0x00000000]);
-        public static const FOLLOW_79_in_addExp1213:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_79_in_addExp1213:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_multExp_in_addExp1216:BitSet = new BitSet([0x00000002, 0x00000000, 0x00018000, 0x00000000]);
-        public static const FOLLOW_80_in_addExp1222:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_80_in_addExp1222:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_multExp_in_addExp1225:BitSet = new BitSet([0x00000002, 0x00000000, 0x00018000, 0x00000000]);
         public static const FOLLOW_unaryExp_in_multExp1243:BitSet = new BitSet([0x00000002, 0x00000000, 0x000E0000, 0x00000000]);
-        public static const FOLLOW_81_in_multExp1252:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_81_in_multExp1252:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_unaryExp_in_multExp1255:BitSet = new BitSet([0x00000002, 0x00000000, 0x000E0000, 0x00000000]);
-        public static const FOLLOW_82_in_multExp1261:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_82_in_multExp1261:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_unaryExp_in_multExp1264:BitSet = new BitSet([0x00000002, 0x00000000, 0x000E0000, 0x00000000]);
-        public static const FOLLOW_83_in_multExp1270:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_83_in_multExp1270:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_unaryExp_in_multExp1273:BitSet = new BitSet([0x00000002, 0x00000000, 0x000E0000, 0x00000000]);
-        public static const FOLLOW_79_in_unaryExp1292:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_79_in_unaryExp1292:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_postFix_in_unaryExp1295:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_80_in_unaryExp1300:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_80_in_unaryExp1300:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_postFix_in_unaryExp1303:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_84_in_unaryExp1308:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_84_in_unaryExp1308:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_postFix_in_unaryExp1311:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_85_in_unaryExp1316:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_85_in_unaryExp1316:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_postFix_in_unaryExp1319:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_86_in_unaryExp1324:BitSet = new BitSet([0x00400000, 0x00000080, 0x08000000, 0x00000000]);
+        public static const FOLLOW_86_in_unaryExp1324:BitSet = new BitSet([0x00400000, 0x00000080, 0x08000000, 0x00000001]);
         public static const FOLLOW_reference_in_unaryExp1326:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_87_in_unaryExp1342:BitSet = new BitSet([0x00400000, 0x00000080, 0x08000000, 0x00000000]);
+        public static const FOLLOW_87_in_unaryExp1342:BitSet = new BitSet([0x00400000, 0x00000080, 0x08000000, 0x00000001]);
         public static const FOLLOW_reference_in_unaryExp1344:BitSet = new BitSet([0x00000002, 0x00000000]);
         public static const FOLLOW_postFix_in_unaryExp1361:BitSet = new BitSet([0x00000002, 0x00000000]);
         public static const FOLLOW_reference_in_postFix1373:BitSet = new BitSet([0x00000000, 0x00000000, 0x00400000, 0x00000000]);
@@ -7494,33 +7556,33 @@ package com.esoteric.expressions {
         public static const FOLLOW_90_in_atom1441:BitSet = new BitSet([0x00000002, 0x00000000]);
         public static const FOLLOW_referenceOrFuncCall_in_atom1446:BitSet = new BitSet([0x00000002, 0x00000000]);
         public static const FOLLOW_funcDef_in_atom1451:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_35_in_atom1456:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_35_in_atom1456:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_exp_in_atom1459:BitSet = new BitSet([0x00000000, 0x00000010]);
         public static const FOLLOW_36_in_atom1461:BitSet = new BitSet([0x00000002, 0x00000000]);
         public static const FOLLOW_object_in_reference1476:BitSet = new BitSet([0x00000002, 0x00000008, 0x28000000, 0x00000000]);
-        public static const FOLLOW_91_in_reference1495:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_91_in_reference1495:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_exp_in_reference1499:BitSet = new BitSet([0x00000000, 0x00000000, 0x10000000, 0x00000000]);
         public static const FOLLOW_92_in_reference1501:BitSet = new BitSet([0x00000002, 0x00000008, 0x28000000, 0x00000000]);
         public static const FOLLOW_93_in_reference1525:BitSet = new BitSet([0x00400000, 0x00000000]);
         public static const FOLLOW_Identifier_in_reference1529:BitSet = new BitSet([0x00000002, 0x00000008, 0x28000000, 0x00000000]);
-        public static const FOLLOW_35_in_reference1551:BitSet = new BitSet([0x01C00000, 0x00400098, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_35_in_reference1551:BitSet = new BitSet([0x01C00000, 0x00400098, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_params_in_reference1555:BitSet = new BitSet([0x00000000, 0x00000010]);
         public static const FOLLOW_36_in_reference1558:BitSet = new BitSet([0x00000000, 0x00000000, 0x08000000, 0x00000000]);
-        public static const FOLLOW_91_in_reference1563:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_91_in_reference1563:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_exp_in_reference1567:BitSet = new BitSet([0x00000000, 0x00000000, 0x10000000, 0x00000000]);
         public static const FOLLOW_92_in_reference1569:BitSet = new BitSet([0x00000002, 0x00000008, 0x28000000, 0x00000000]);
-        public static const FOLLOW_35_in_reference1600:BitSet = new BitSet([0x01C00000, 0x00400098, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_35_in_reference1600:BitSet = new BitSet([0x01C00000, 0x00400098, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_params_in_reference1604:BitSet = new BitSet([0x00000000, 0x00000010]);
         public static const FOLLOW_36_in_reference1607:BitSet = new BitSet([0x00000000, 0x00000000, 0x20000000, 0x00000000]);
         public static const FOLLOW_93_in_reference1612:BitSet = new BitSet([0x00400000, 0x00000000]);
         public static const FOLLOW_Identifier_in_reference1616:BitSet = new BitSet([0x00000002, 0x00000008, 0x28000000, 0x00000000]);
         public static const FOLLOW_object_in_referenceOrFuncCall1656:BitSet = new BitSet([0x00000002, 0x00000008, 0x28000000, 0x00000000]);
-        public static const FOLLOW_91_in_referenceOrFuncCall1675:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_91_in_referenceOrFuncCall1675:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_exp_in_referenceOrFuncCall1679:BitSet = new BitSet([0x00000000, 0x00000000, 0x10000000, 0x00000000]);
         public static const FOLLOW_92_in_referenceOrFuncCall1681:BitSet = new BitSet([0x00000002, 0x00000008, 0x28000000, 0x00000000]);
         public static const FOLLOW_93_in_referenceOrFuncCall1701:BitSet = new BitSet([0x00400000, 0x00000000]);
         public static const FOLLOW_Identifier_in_referenceOrFuncCall1705:BitSet = new BitSet([0x00000002, 0x00000008, 0x28000000, 0x00000000]);
-        public static const FOLLOW_35_in_referenceOrFuncCall1724:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_35_in_referenceOrFuncCall1724:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_params_in_referenceOrFuncCall1728:BitSet = new BitSet([0x00000000, 0x00000010]);
         public static const FOLLOW_36_in_referenceOrFuncCall1730:BitSet = new BitSet([0x00000002, 0x00000008, 0x28000000, 0x00000000]);
         public static const FOLLOW_35_in_referenceOrFuncCall1749:BitSet = new BitSet([0x00000000, 0x00000010]);
@@ -7539,88 +7601,89 @@ package com.esoteric.expressions {
         public static const FOLLOW_Identifier_in_object1884:BitSet = new BitSet([0x00000002, 0x00000000]);
         public static const FOLLOW_array_in_object1889:BitSet = new BitSet([0x00000002, 0x00000000]);
         public static const FOLLOW_createObj_in_object1894:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_exp_in_params1906:BitSet = new BitSet([0x00000002, 0x00000000, 0x80000000, 0x00000000]);
-        public static const FOLLOW_95_in_params1915:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
-        public static const FOLLOW_exp_in_params1921:BitSet = new BitSet([0x00000002, 0x00000000, 0x80000000, 0x00000000]);
-        public static const FOLLOW_91_in_array1938:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
-        public static const FOLLOW_items_in_array1942:BitSet = new BitSet([0x00000000, 0x00000000, 0x10000000, 0x00000000]);
-        public static const FOLLOW_92_in_array1944:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_91_in_array1960:BitSet = new BitSet([0x00000000, 0x00000000, 0x10000000, 0x00000000]);
-        public static const FOLLOW_92_in_array1962:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_exp_in_items1984:BitSet = new BitSet([0x00000002, 0x00000000, 0x80000000, 0x00000000]);
-        public static const FOLLOW_95_in_items1993:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
-        public static const FOLLOW_exp_in_items1999:BitSet = new BitSet([0x00000002, 0x00000000, 0x80000000, 0x00000000]);
-        public static const FOLLOW_39_in_createObj2016:BitSet = new BitSet([0x01400000, 0x00000000]);
-        public static const FOLLOW_objItems_in_createObj2020:BitSet = new BitSet([0x00000000, 0x00000100]);
-        public static const FOLLOW_40_in_createObj2022:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_39_in_createObj2038:BitSet = new BitSet([0x00000000, 0x00000100]);
-        public static const FOLLOW_40_in_createObj2040:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_set_in_objItems2065:BitSet = new BitSet([0x00000000, 0x01000000]);
-        public static const FOLLOW_56_in_objItems2073:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
-        public static const FOLLOW_exp_in_objItems2076:BitSet = new BitSet([0x00000002, 0x00000000, 0x80000000, 0x00000000]);
-        public static const FOLLOW_95_in_objItems2085:BitSet = new BitSet([0x01400000, 0x00000000]);
-        public static const FOLLOW_set_in_objItems2091:BitSet = new BitSet([0x00000000, 0x01000000]);
-        public static const FOLLOW_56_in_objItems2099:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
-        public static const FOLLOW_exp_in_objItems2102:BitSet = new BitSet([0x00000002, 0x00000000, 0x80000000, 0x00000000]);
-        public static const FOLLOW_96_in_ret2120:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
-        public static const FOLLOW_exp_in_ret2124:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_96_in_ret2140:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_96_in_object1899:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_exp_in_params1911:BitSet = new BitSet([0x00000002, 0x00000000, 0x80000000, 0x00000000]);
+        public static const FOLLOW_95_in_params1920:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
+        public static const FOLLOW_exp_in_params1926:BitSet = new BitSet([0x00000002, 0x00000000, 0x80000000, 0x00000000]);
+        public static const FOLLOW_91_in_array1943:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
+        public static const FOLLOW_items_in_array1947:BitSet = new BitSet([0x00000000, 0x00000000, 0x10000000, 0x00000000]);
+        public static const FOLLOW_92_in_array1949:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_91_in_array1965:BitSet = new BitSet([0x00000000, 0x00000000, 0x10000000, 0x00000000]);
+        public static const FOLLOW_92_in_array1967:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_exp_in_items1989:BitSet = new BitSet([0x00000002, 0x00000000, 0x80000000, 0x00000000]);
+        public static const FOLLOW_95_in_items1998:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
+        public static const FOLLOW_exp_in_items2004:BitSet = new BitSet([0x00000002, 0x00000000, 0x80000000, 0x00000000]);
+        public static const FOLLOW_39_in_createObj2021:BitSet = new BitSet([0x01400000, 0x00000000]);
+        public static const FOLLOW_objItems_in_createObj2025:BitSet = new BitSet([0x00000000, 0x00000100]);
+        public static const FOLLOW_40_in_createObj2027:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_39_in_createObj2043:BitSet = new BitSet([0x00000000, 0x00000100]);
+        public static const FOLLOW_40_in_createObj2045:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_set_in_objItems2070:BitSet = new BitSet([0x00000000, 0x01000000]);
+        public static const FOLLOW_56_in_objItems2078:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
+        public static const FOLLOW_exp_in_objItems2081:BitSet = new BitSet([0x00000002, 0x00000000, 0x80000000, 0x00000000]);
+        public static const FOLLOW_95_in_objItems2090:BitSet = new BitSet([0x01400000, 0x00000000]);
+        public static const FOLLOW_set_in_objItems2096:BitSet = new BitSet([0x00000000, 0x01000000]);
+        public static const FOLLOW_56_in_objItems2104:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
+        public static const FOLLOW_exp_in_objItems2107:BitSet = new BitSet([0x00000002, 0x00000000, 0x80000000, 0x00000000]);
+        public static const FOLLOW_97_in_ret2125:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
+        public static const FOLLOW_exp_in_ret2129:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_97_in_ret2145:BitSet = new BitSet([0x00000002, 0x00000000]);
         public static const FOLLOW_stmtList_in_synpred1_Expression152:BitSet = new BitSet([0x00000000, 0x00000000]);
         public static const FOLLOW_EOF_in_synpred1_Expression155:BitSet = new BitSet([0x00000002, 0x00000000]);
         public static const FOLLOW_34_in_synpred5_Expression226:BitSet = new BitSet([0x00000000, 0x00000008]);
-        public static const FOLLOW_35_in_synpred5_Expression228:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_35_in_synpred5_Expression228:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_exp_in_synpred5_Expression230:BitSet = new BitSet([0x00000000, 0x00000010]);
         public static const FOLLOW_36_in_synpred5_Expression232:BitSet = new BitSet([0x00000000, 0x00000080]);
         public static const FOLLOW_block_in_synpred5_Expression236:BitSet = new BitSet([0x00000000, 0x00000020]);
         public static const FOLLOW_37_in_synpred5_Expression238:BitSet = new BitSet([0x00000000, 0x00000080]);
         public static const FOLLOW_block_in_synpred5_Expression242:BitSet = new BitSet([0x00000002, 0x00000000]);
         public static const FOLLOW_34_in_synpred6_Expression261:BitSet = new BitSet([0x00000000, 0x00000008]);
-        public static const FOLLOW_35_in_synpred6_Expression263:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_35_in_synpred6_Expression263:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_exp_in_synpred6_Expression265:BitSet = new BitSet([0x00000000, 0x00000010]);
         public static const FOLLOW_36_in_synpred6_Expression267:BitSet = new BitSet([0x00000000, 0x00000080]);
         public static const FOLLOW_block_in_synpred6_Expression269:BitSet = new BitSet([0x00000000, 0x00000020]);
         public static const FOLLOW_37_in_synpred6_Expression271:BitSet = new BitSet([0x00000000, 0x00000004]);
         public static const FOLLOW_ifStmt_in_synpred6_Expression273:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_41_in_synpred7_Expression385:BitSet = new BitSet([0x01C00000, 0x004000CC, 0x4FF18000, 0x00000001]);
+        public static const FOLLOW_41_in_synpred7_Expression385:BitSet = new BitSet([0x01C00000, 0x004000CC, 0x4FF18000, 0x00000003]);
         public static const FOLLOW_instr_in_synpred7_Expression387:BitSet = new BitSet([0x00000002, 0x00000000]);
         public static const FOLLOW_41_in_synpred8_Expression393:BitSet = new BitSet([0x00000002, 0x00000000]);
         public static const FOLLOW_assignExp_in_synpred10_Expression441:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_55_in_synpred24_Expression799:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_55_in_synpred24_Expression799:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_exp_in_synpred24_Expression806:BitSet = new BitSet([0x00000000, 0x01000000]);
-        public static const FOLLOW_56_in_synpred24_Expression811:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_56_in_synpred24_Expression811:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_exp_in_synpred24_Expression818:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_79_in_synpred47_Expression1213:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_79_in_synpred47_Expression1213:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_multExp_in_synpred47_Expression1216:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_80_in_synpred48_Expression1222:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_80_in_synpred48_Expression1222:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_multExp_in_synpred48_Expression1225:BitSet = new BitSet([0x00000002, 0x00000000]);
         public static const FOLLOW_reference_in_synpred58_Expression1373:BitSet = new BitSet([0x00000000, 0x00000000, 0x00400000, 0x00000000]);
         public static const FOLLOW_86_in_synpred58_Expression1375:BitSet = new BitSet([0x00000002, 0x00000000]);
         public static const FOLLOW_reference_in_synpred59_Expression1391:BitSet = new BitSet([0x00000000, 0x00000000, 0x00800000, 0x00000000]);
         public static const FOLLOW_87_in_synpred59_Expression1393:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_91_in_synpred67_Expression1495:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_91_in_synpred67_Expression1495:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_exp_in_synpred67_Expression1499:BitSet = new BitSet([0x00000000, 0x00000000, 0x10000000, 0x00000000]);
         public static const FOLLOW_92_in_synpred67_Expression1501:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_35_in_synpred70_Expression1551:BitSet = new BitSet([0x01C00000, 0x00400098, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_35_in_synpred70_Expression1551:BitSet = new BitSet([0x01C00000, 0x00400098, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_params_in_synpred70_Expression1555:BitSet = new BitSet([0x00000000, 0x00000010]);
         public static const FOLLOW_36_in_synpred70_Expression1558:BitSet = new BitSet([0x00000000, 0x00000000, 0x08000000, 0x00000000]);
-        public static const FOLLOW_91_in_synpred70_Expression1563:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_91_in_synpred70_Expression1563:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_exp_in_synpred70_Expression1567:BitSet = new BitSet([0x00000000, 0x00000000, 0x10000000, 0x00000000]);
         public static const FOLLOW_92_in_synpred70_Expression1569:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_35_in_synpred72_Expression1600:BitSet = new BitSet([0x01C00000, 0x00400098, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_35_in_synpred72_Expression1600:BitSet = new BitSet([0x01C00000, 0x00400098, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_params_in_synpred72_Expression1604:BitSet = new BitSet([0x00000000, 0x00000010]);
         public static const FOLLOW_36_in_synpred72_Expression1607:BitSet = new BitSet([0x00000000, 0x00000000, 0x20000000, 0x00000000]);
         public static const FOLLOW_93_in_synpred72_Expression1612:BitSet = new BitSet([0x00400000, 0x00000000]);
         public static const FOLLOW_Identifier_in_synpred72_Expression1616:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_91_in_synpred73_Expression1675:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_91_in_synpred73_Expression1675:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_exp_in_synpred73_Expression1679:BitSet = new BitSet([0x00000000, 0x00000000, 0x10000000, 0x00000000]);
         public static const FOLLOW_92_in_synpred73_Expression1681:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_35_in_synpred75_Expression1724:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
+        public static const FOLLOW_35_in_synpred75_Expression1724:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
         public static const FOLLOW_params_in_synpred75_Expression1728:BitSet = new BitSet([0x00000000, 0x00000010]);
         public static const FOLLOW_36_in_synpred75_Expression1730:BitSet = new BitSet([0x00000002, 0x00000000]);
         public static const FOLLOW_35_in_synpred76_Expression1749:BitSet = new BitSet([0x00000000, 0x00000010]);
         public static const FOLLOW_36_in_synpred76_Expression1751:BitSet = new BitSet([0x00000002, 0x00000000]);
-        public static const FOLLOW_96_in_synpred88_Expression2120:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000000]);
-        public static const FOLLOW_exp_in_synpred88_Expression2124:BitSet = new BitSet([0x00000002, 0x00000000]);
+        public static const FOLLOW_97_in_synpred89_Expression2125:BitSet = new BitSet([0x01C00000, 0x00400088, 0x4FF18000, 0x00000001]);
+        public static const FOLLOW_exp_in_synpred89_Expression2129:BitSet = new BitSet([0x00000002, 0x00000000]);
 
     }
 }

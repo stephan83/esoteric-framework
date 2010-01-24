@@ -290,6 +290,7 @@ object
 	:	Identifier
 	|	array
 	|	createObj
+	|	'this'
 	;
 	
 params

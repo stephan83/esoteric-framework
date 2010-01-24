@@ -59,6 +59,7 @@ package com.esoteric.expressions
 			save:		"save",
 			local:		"local",
 			pushc:		"pushc",
+			pusht:		"pusht",
 			push:		"push",
 			binop:		"binop",
 			unaryop:	"unaryop",
@@ -114,7 +115,7 @@ package com.esoteric.expressions
 		// PUBLIC FUNCTIONS
 		//---------------------------------------------------------------------
 		
-		public function eval(instructions:Vector.<Array>, closure:Closure, bind:Boolean = true):*
+		public function eval(instructions:Vector.<Array>, closure:Closure, thisArg:*, bind:Boolean = true):*
 		{
 			var initialTop:int = _top;
 			var length:int = instructions.length;
@@ -238,6 +239,12 @@ package com.esoteric.expressions
 					case instructionTypes.pushc:
 					{
 						_stack[++_top] = closure;
+						break;
+					}
+					
+					case instructionTypes.pusht:
+					{
+						_stack[++_top] = thisArg;
 						break;
 					}
 					
@@ -447,7 +454,7 @@ package com.esoteric.expressions
 					{
 						_top -= instruction[1];
 						var f:Function = _stack[_top];
-						_stack[_top] = f.apply(closure, _stack.slice(_top + 1, _top + instruction[1] + 1));
+						_stack[_top] = f.apply(target, _stack.slice(_top + 1, _top + instruction[1] + 1));
 						break;
 					}
 					
@@ -571,7 +578,7 @@ package com.esoteric.expressions
 					header.push([instructionTypes.push, arg]);
 				}
 				
-				return eval(header.concat(instructions), closure, bind);
+				return eval(header.concat(instructions), closure, this, bind);
 			}
 		}
 		
