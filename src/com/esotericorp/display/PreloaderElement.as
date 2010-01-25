@@ -105,41 +105,62 @@ package com.esotericorp.display
 				{
 					var mesh:Mesh3DElement = container.getChildAt(i) as Mesh3DElement;
 					
-					var triangles3D:Vector.<Number> = new Vector.<Number>;
-					
-					for (var j:int = 0; j < mesh.indices.length; j++) 
-					{
-						triangles3D.push(mesh.vertices[mesh.indices[j] * 3], mesh.vertices[mesh.indices[j] * 3 + 1], mesh.vertices[mesh.indices[j] * 3 + 2]);
-					}
-					
-					var triangles2D:Vector.<Number> = new Vector.<Number>;
-					var uvData:Vector.<Number> = new Vector.<Number>;
+					var triangles:Vector.<Number> = new Vector.<Number>;
+					var uvts:Vector.<Number> = new Vector.<Number>(mesh.indices.length * 3);
+					var sortedIndices:Vector.<int> = new Vector.<int>(mesh.indices.length, true);
 					
 					var matrix:Matrix3D = new Matrix3D();
 					matrix.identity();
 					matrix.appendRotation(rotY+=.3, Vector3D.Y_AXIS);
 					matrix.appendRotation(20, Vector3D.X_AXIS);
-					matrix.appendTranslation(0, 0, -1500);
+					matrix.appendTranslation(0, 0, -1200);
 					
 					var projection:PerspectiveProjection = new PerspectiveProjection();
 					projection.fieldOfView = 60;
 					
 					matrix.append(projection.toMatrix3D());
 					
-					Utils3D.projectVectors(matrix, triangles3D, triangles2D, uvData);
+					Utils3D.projectVectors(matrix, mesh.vertices, triangles, uvts);
 					
-					sprite.graphics.beginFill(0xffffff, .5);
-					sprite.graphics.lineStyle(.5, 0xff00ff, .1);
-					sprite.graphics.drawTriangles(triangles2D, null, null, TriangleCulling.POSITIVE);
+					var faces:Array = [];
+					var face:Vector3D;
+					var inc:int = 0;
+					
+					for (var j:int = 0; j < mesh.indices.length; j+=3) 
+					{
+						faces[inc] = new Vector3D();
+						face = faces[inc];
+						
+						face.x = mesh.indices[j];
+						face.y = mesh.indices[int(j + 1)];
+						face.z = mesh.indices[int(j + 2)];
+						
+						var j3:int = j * 3;
+						
+						face.w = (uvts[int(j3 + 2)] + uvts[int(j3 + 5)] + uvts[int(j3 + 8)]) * 0.333333;
+						
+						inc++;
+					}
+					
+					faces.sortOn('w', Array.NUMERIC);
+					
+					inc = 0;
+					
+					for each (face in faces) 
+					{
+						sortedIndices[inc++] = face.x;
+						sortedIndices[inc++] = face.y;
+						sortedIndices[inc++] = face.z;
+					}
+					
+					sprite.graphics.beginFill(0xffffff, .2);
+					//sprite.graphics.lineStyle(.5, 0xff00ff);
+					sprite.graphics.drawTriangles(triangles, sortedIndices, null, TriangleCulling.POSITIVE);
 					sprite.graphics.endFill();
 				}
 				else if (container.getChildAt(i) is DisplayObjectContainer3DElement)
 				{
 					test(container.getChildAt(i) as DisplayObjectContainer3DElement);
-				}
-				else
-				{
-					trace (container.getChildAt(i));
 				}
 			}
 		}
