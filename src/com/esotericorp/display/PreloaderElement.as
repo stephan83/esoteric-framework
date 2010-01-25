@@ -36,7 +36,6 @@ package com.esotericorp.display
 {
 	import com.esoteric.core.Context;
 	import com.esoteric.utils.FlashTools;
-	import flash.display.DisplayObject;
 	import flash.events.Event;
 	
 	public class PreloaderElement extends AbstractPreloaderElement

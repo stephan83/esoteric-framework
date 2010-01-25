@@ -35,6 +35,7 @@
 
 package com.esoteric.equery 
 {
+	import com.esoteric.core.ElementProxy;
 	import com.esoteric.core.ElementProxyManager;
 	import com.esoteric.core.IElement;
 	import com.esoteric.core.TweenableElement;
@@ -110,7 +111,7 @@ package com.esoteric.equery
 			{
 				try
 				{
-					item[name] = value;
+					ElementProxyManager.getInstance(item)[name] = value;
 				}
 				catch (e:Error)
 				{

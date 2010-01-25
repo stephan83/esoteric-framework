@@ -1,65 +1,103 @@
 ﻿package com.esoteric.utils 
 {
 	import com.esoteric.core.Context;
+	import com.esoteric.display.BitmapElement;
 	import com.esoteric.display.ShapeElement;
 	import com.esoteric.display.SpriteElement;
 	import com.esoteric.text.TextFieldElement;
+	import flash.display.Bitmap;
+	import flash.display.BitmapData;
+	import flash.display.DisplayObject;
 	import flash.display.Shape;
 	import flash.display.Sprite;
 	import flash.text.TextField;
+	import flash.utils.getQualifiedClassName;
 	
 	/**
-	 * ...
+	 * Flash tools.
+	 * 
 	 * @author Stephan Florquin
 	 */
 	public class FlashTools
 	{
 		
-		public function FlashTools() 
-		{
-			
-		}
-		
+		/**
+		 * Loads a sprite into a sprite element.
+		 * 
+		 * It will add children elements for the supported display objects:
+		 * 
+		 * 	- Bitmap will be added as a BitmapElement
+		 * 	- TextField will be added as a TextFieldElement
+		 *  - Sprite will be added as a SpriteElement, which children set as in
+		 * 	  this function
+		 * 
+		 * Other display objects will be added to the sprite of the sprite
+		 * element, but elements won't be created for them.
+		 * 
+		 * The source sprite is used in a destructive manner, so this method
+		 * should only be used on a unique sprite that isn't used for something
+		 * else.
+		 * 
+		 * @param	src		the sprite
+		 * @param	dest	the sprite element
+		 */
 		public static function loadSprite(src:Sprite, dest:SpriteElement)
 		{
+			dest.id = src.name;
+			dest.x = src.x;
+			dest.y = src.y;
+			dest.alpha = src.alpha;
+			dest.visible = src.visible;
+			dest.scaleX = src.scaleX;
+			dest.scaleY = src.scaleY;
+			dest.rotation = src.rotation;
+			
 			for (var i:int = 0; i < src.numChildren; i++) 
 			{
-				var child:Object = src.getChildAt(i);
+				var child:DisplayObject = src.getChildAt(i);
 				
-				if (child is Shape)
-				{
-					dest.addChild(createShape(dest.context, child as Shape));
-				}
-				else if (child is TextField)
+				if (child is TextField)
 				{
 					dest.addChild(createTextField(dest.context, child as TextField));
+				}
+				else if (child is Bitmap)
+				{
+					dest.addChild(createBitmap(dest.context, child as Bitmap));
+				}
+				else if (child is Sprite)
+				{
+					var sprite:SpriteElement = new SpriteElement(dest.context, 'Sprite');
+					sprite.initialize();
+					loadSprite(child as Sprite, sprite);
+					dest.addChild(sprite);
+				}
+				else
+				{
+					dest.sprite.addChild(child);
+					i--;
 				}
 			}
 		}
 		
-		public static function createShape(context:Context, src:Shape):ShapeElement
-		{
-			var shape:ShapeElement = new ShapeElement(context, 'Shape');
-			
-			shape.shape = src;
-			
-			shape.x = src.x;
-			shape.y = src.y;
-			shape.width = src.width;
-			shape.height = src.height;
-			
-			return shape;
-		}
-		
+		/**
+		 * Creates a text field element from a text field.
+		 * 
+		 * @param	context	the element context
+		 * @param	src		the text field
+		 * @return	the text field element
+		 */
 		public static function createTextField(context:Context, src:TextField):TextFieldElement
 		{
 			var textField:TextFieldElement = new TextFieldElement(context, 'TextField');
-			trace('test');
+			
+			textField.initialize();
 			
 			textField.id = src.name;
 			textField.x = src.x;
 			textField.y = src.y;
 			textField.width = src.width;
+			textField.alpha = src.alpha;
+			textField.visible = src.visible;
 			textField.height = src.height;
 			textField.antiAliasType = src.antiAliasType;
 			textField.autoSize = src.autoSize;
@@ -68,7 +106,6 @@
 			textField.text = src.htmlText;
 			textField.visible = src.visible;
 			textField.maxChars = src.maxChars;
-			textField.mouseEnabled = src.mouseEnabled;
 			textField.multiline = src.multiline;
 			textField.restrict = src.restrict;
 			textField.rotation = src.rotation;
@@ -96,6 +133,35 @@
 			textField.underline = src.defaultTextFormat.underline;
 			
 			return textField;
+		}
+		
+		/**
+		 * Creates a bitmap element from a bitmap.
+		 * 
+		 * @param	context	the element context
+		 * @param	src		the bitmap
+		 * @return	the bitmap element
+		 */
+		public static function createBitmap(context:Context, src:Bitmap):BitmapElement
+		{
+			var bitmap:BitmapElement = new BitmapElement(context, 'Bitmap');
+			
+			bitmap.initialize();
+			
+			bitmap.bitmap.bitmapData = src.bitmapData.clone();
+			
+			bitmap.id = src.name;
+			bitmap.x = src.x;
+			bitmap.y = src.y;
+			bitmap.width = src.width;
+			bitmap.height = src.height;
+			bitmap.alpha = src.alpha;
+			bitmap.visible = src.visible;
+			bitmap.rotation = src.rotation;
+			bitmap.scaleX = src.scaleX;
+			bitmap.scaleY = src.scaleY;
+			
+			return bitmap;
 		}
 		
 	}

@@ -34,13 +34,18 @@
 	-----                                                                 -----
 -->
 
-<Preloader mouseEnabled="true" scaleY="{this.scaleX}">
+<Preloader mouseEnabled="true" scaleY="{this.scaleX}" useHandCursor="true" buttonMode="true" mouseChildren="true">
 	
 	<Script>
 		<![CDATA[
 			$this.$click(function(e) {
 				$this.$animate({alpha: 0, x: (Math.random() - .5) * 100, y: (Math.random() - .5) * 20, scaleX: .9}, .5, easing.bounce.easeOut, true);
 			});
+			
+			$('#test').alpha = .5;
+			
+			$('#helloWorld').text = '{this.parent.globalX + ";" + this.parent.globalY}';
+			$('#helloWorld').width = '{this.textWidth * 2}';
 		]]>
 	</Script>
 	

@@ -102,9 +102,9 @@ package com.esoteric.display
 		 *
 		 * @default	new Bitmap()
 		 */
-		protected function get bitmap():Bitmap { return _bitmap; }
+		public function get bitmap():Bitmap { return _bitmap; }
 		
-		protected function set bitmap(value:Bitmap):void 
+		public function set bitmap(value:Bitmap):void 
 		{
 			if(_bitmap != value)
 			{
