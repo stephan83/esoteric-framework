@@ -88,6 +88,10 @@ package com.esoteric.core
 			startSampling();
 			context.expQueue.run();
 			context.renderQueue.render();
+			
+			// TEMPORARY REMOVE THIS!!!!!!!!!!
+			context.root.render();
+			
 			pauseSampling();
 			
 			var time:int = getTimer();

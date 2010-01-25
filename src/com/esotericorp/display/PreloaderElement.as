@@ -35,13 +35,25 @@
 package com.esotericorp.display
 {
 	import com.esoteric.core.Context;
+	import com.esoteric.display.DisplayObjectContainer3DElement;
+	import com.esoteric.display.Mesh3DElement;
+	import com.esoteric.utils.Collada;
 	import com.esoteric.utils.FlashTools;
 	import flash.events.Event;
+	import flash.geom.Matrix3D;
+	import flash.geom.PerspectiveProjection;
+	import flash.geom.Utils3D;
+	import flash.geom.Vector3D;
+	import flash.utils.ByteArray;
 	
 	public class PreloaderElement extends AbstractPreloaderElement
 	{
 		[Embed(source = '../../../../assets/flash/Preloader.swf', symbol = 'ConcreteLight')]
 		private var _concreteLight:Class;
+		[Embed(source = '../../../../assets/collada/preloader.dae', mimeType = 'application/octet-stream')]
+		private var _collada:Class;
+		private var container:DisplayObjectContainer3DElement;
+		
 		
 		//---------------------------------------------------------------------
 		// Constructor
@@ -61,9 +73,63 @@ package com.esotericorp.display
 		
 		override public function initialize():void 
 		{
-			FlashTools.loadSprite(new _concreteLight, this);
+			//FlashTools.loadSprite(new _concreteLight, this);
+			
+			var byteArray:ByteArray = new _collada();
+			var xml:XML = new XML(byteArray.readUTFBytes(byteArray.length));
+			
+			container = new DisplayObjectContainer3DElement(context, 'DisplayObjectContainer3D');
+			addChild(container);
+			container.initialize();
+			
+			Collada.loadCOLLADA(context, container, xml);
+			
+			trace(container.numChildren);
 			
 			super.initialize();
+		}
+		
+		override public function render():void 
+		{
+			for (var i:int = 0; i < container.numChildren; i++) 
+			{
+				if (container.getChildAt(i) is Mesh3DElement)
+				{
+					var mesh:Mesh3DElement = container.getChildAt(i) as Mesh3DElement;
+					
+					var triangles3D:Vector.<Number> = new Vector.<Number>;
+					
+					for (var i:int = 0; i < mesh.indices.length; i++) 
+					{
+						triangles3D.push(mesh.vertices[mesh.indices[i] * 3], mesh.vertices[mesh.indices[i] * 3 + 1], mesh.vertices[mesh.indices[i] * 3 + 2]);
+					}
+					
+					var triangles2D:Vector.<Number> = new Vector.<Number>;
+					var uvData:Vector.<Number> = new Vector.<Number>;
+					
+					var projection:PerspectiveProjection = new PerspectiveProjection();
+					projection.fieldOfView = 60;
+					var matrix:Matrix3D = projection.toMatrix3D();
+					matrix.prependRotation(90, Vector3D.X_AXIS);
+					matrix.prependTranslation(1000, 800, -700);
+					
+					Utils3D.projectVectors(matrix, triangles3D, triangles2D, uvData);
+					
+					sprite.graphics.beginFill(0xffffff);
+					sprite.graphics.lineStyle(2, 0xff00ff);
+					sprite.graphics.drawTriangles(triangles2D);
+					sprite.graphics.endFill();
+					
+					trace('--');
+					
+					for each (var n:Number in triangles2D) 
+					{
+						trace(n);
+					}
+				}
+			}
+			
+			super.render();
 		}
 
 	}

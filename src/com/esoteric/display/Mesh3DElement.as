@@ -37,7 +37,7 @@ package com.esoteric.display
 	import com.esoteric.core.Context;
 	import com.esoteric.core.IElement;
 	
-	public class DisplayObject3DElement extends AbstractDisplayObject3DElement
+	public class Mesh3DElement extends AbstractMesh3DElement
 	{
 		
 		//---------------------------------------------------------------------
@@ -47,7 +47,7 @@ package com.esoteric.display
 		/**
 		 * Constructor.
 		 */
-		public function DisplayObject3DElement(context:Context, kind:String) 
+		public function Mesh3DElement(context:Context, kind:String) 
 		{
 			super(context, kind);
 		}

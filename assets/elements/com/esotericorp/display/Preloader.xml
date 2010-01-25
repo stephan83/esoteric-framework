@@ -36,22 +36,6 @@
 
 <Preloader mouseEnabled="true" scaleY="{this.scaleX}" useHandCursor="true" buttonMode="true" mouseChildren="true">
 	
-	<Script>
-		<![CDATA[
-			$this.$click(function(e) {
-				$this.$animate({/*alpha: 0,*/ z: 100, rotationY: 20, rotationX: 20}, .5, easing.cubic.easeOut, true);
-			});
-			
-			$('#test').alpha = .5;
-			//$('#test').rotationX = 20;
-			$('#test').z = 10;
-			
-			$('#helloWorld').text = '{this.parent.globalX + ";" + this.parent.globalY}';
-			$('#helloWorld').width = '{this.textWidth * 2}';
-			$('#helloWorld').z = .1;
-			
-			$('#space').z = .1;
-		]]>
-	</Script>
+	
 	
 </Preloader>

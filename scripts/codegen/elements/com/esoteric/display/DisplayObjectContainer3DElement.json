@@ -1,19 +1,9 @@
 {
-	"desc": "The DisplayObjectContainer3D element is used as the base element for all elements that contain 3D elements.",
+	"desc": "",
 	
-	"baseclass": "TweenableElement",
+	"baseclass": "DisplayObject3DElement",
 
 	"imports": [
-		"com.esoteric.core.TweenableElement",
-		"org.papervision3d.core.proto.DisplayObjectContainer3D"
-	],
-	
-	"properties": {
-		"displayObjectContainer3D": {
-			"type":	"DisplayObjectContainer3D",
-			"desc": "The DisplayObjectContainer3D object.",
-			"doc": false
-		}
-	}
-	
+		"com.esoteric.core.TweenableElement"
+	]
 }

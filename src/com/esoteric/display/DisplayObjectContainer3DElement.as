@@ -34,15 +34,10 @@
 
 package com.esoteric.display
 {
-	import com.esoteric.core.IElement;
 	import com.esoteric.core.Context;
-	import com.esoteric.events.PropertyChangeEvent;
-	import org.papervision3d.core.proto.DisplayObjectContainer3D;
+	import com.esoteric.core.IElement;
 	
-	/**
-	* Generated 2008-08-05 22:16:49.364000 UTC.
-	*/
-	public class DisplayObjectContainer3DElement extends AbstractDisplayObjectContainer3DElement implements IDisplayObjectContainer3DElement
+	public class DisplayObjectContainer3DElement extends AbstractDisplayObjectContainer3DElement
 	{
 		
 		//---------------------------------------------------------------------
@@ -55,89 +50,8 @@ package com.esoteric.display
 		public function DisplayObjectContainer3DElement(context:Context, kind:String) 
 		{
 			super(context, kind);
-			
-			displayObjectContainer3D = createDisplayObjectContainer3D();
 		}
-		
-		//---------------------------------------------------------------------
-		// Overridden properties
-		//---------------------------------------------------------------------
-		
-		/**
-		 * @inheritDoc
-		 */
-		override protected function childAddedHandler(e:PropertyChangeEvent):void 
-		{
-			super.childAddedHandler(e);
-			
-			if (e.newValue is IDisplayObject3DElement)
-				displayObjectContainer3D.addChild(e.newValue.displayObject3D);
-		}
-		
-		/**
-		 * @inheritDoc
-		 */
-		override protected function childRemovedHandler(e:PropertyChangeEvent):void 
-		{
-			super.childRemovedHandler(e);
-			
-			if (e.newValue is IDisplayObject3DElement)
-				displayObjectContainer3D.removeChild(e.newValue.displayObject3D);
-		}
-		
-		//---------------------------------------------------------------------
-		// Interface implementations
-		//---------------------------------------------------------------------
-		
-		/**
-		 * @inheritDoc
-		 */
-		public function preRender():void
-		{
-			var length:int = numChildren;
-			
-			for (var i:int = 0; i < length; i++) 
-			{
-				var child:IElement = getChildAt(i);
-				
-				if (child is IDisplayObjectContainer3DElement)
-				{
-					IDisplayObjectContainer3DElement(child).preRender();
-				}
-			}
-		}
-		
-		/**
-		 * @inheritDoc
-		 */
-		public function postRender():void
-		{
-			var length:int = numChildren;
-			
-			for (var i:int = 0; i < length; i++) 
-			{
-				var child:IElement = getChildAt(i);
-				
-				if (child is IDisplayObjectContainer3DElement)
-				{
-					IDisplayObjectContainer3DElement(child).postRender();
-				}
-			}
-		}
-		
-		//---------------------------------------------------------------------
-		// Methods
-		//---------------------------------------------------------------------
-		
-		/**
-		 * Template function used to create the DisplayObjectContainer3D object.
-		 * 
-		 * @return	the DisplayObjectContainer3D object
-		 */
-		protected function createDisplayObjectContainer3D():DisplayObjectContainer3D
-		{
-			return new DisplayObjectContainer3D();
-		}
+
 
 	}
 	

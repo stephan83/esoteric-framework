@@ -2,7 +2,7 @@
 	DO NOT MODIFY THIS FILE, THE CODE GENERATOR WILL ERASE ANY CHANGES MADE.
 	MAKE CHANGES TO THE DERIVED CLASS INSTEAD.
 
-	Last generated 2010-01-25 12:58:06.927000 UTC.
+	Last generated 2010-01-25 16:56:12.290000 UTC.
 
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	~                           Esoteric Framework                            ~
@@ -39,13 +39,13 @@
 
 package com.esoteric.display 
 {
-	import org.papervision3d.objects.DisplayObject3D;
+	import com.esoteric.core.TweenableElement;
 
 	import com.esoteric.core.Context;
 	import com.esoteric.events.ElementEvent;
 	import com.esoteric.events.PropertyChangeEvent;
 	
-	public class AbstractDisplayObject3DElement extends DisplayObjectContainer3DElement
+	public class AbstractDisplayObject3DElement extends TweenableElement
 	{
 		
 		//---------------------------------------------------------------------
@@ -84,31 +84,6 @@ package com.esoteric.display
 		/**
 		 * @private
 		 */
-		private var _displayObject3D:DisplayObject3D = null;
-
-		/**
-		 * @private
-		 */
-		private var _filters:Array = null;
-
-		/**
-		 * @private
-		 */
-		private var _localRotationZ:Number = 0.0;
-
-		/**
-		 * @private
-		 */
-		private var _localRotationY:Number = 0.0;
-
-		/**
-		 * @private
-		 */
-		private var _localRotationX:Number = 0.0;
-
-		/**
-		 * @private
-		 */
 		private var _rotationZ:Number = 0.0;
 
 		/**
@@ -139,12 +114,12 @@ package com.esoteric.display
 		/**
 		 * @private
 		 */
-		private var _scale:Number = 1.0;
+		private var _visible:Boolean = true;
 
 		/**
 		 * @private
 		 */
-		private var _useOwnContainer:Boolean = false;
+		private var _alpha:Number = 1.0;
 
 		/**
 		 * @private
@@ -167,166 +142,7 @@ package com.esoteric.display
 		//---------------------------------------------------------------------
 		
 		/**
-		 * The DisplayObject3D object. [default = null]
-		 *
-		 * @default	null
-		 */
-		public function get displayObject3D():DisplayObject3D { return _displayObject3D; }
-		
-		public function set displayObject3D(value:DisplayObject3D):void 
-		{
-			if(_displayObject3D != value)
-			{
-				var oldValue:DisplayObject3D = _displayObject3D;
-			
-				if(value)
-				{
-					value.localRotationZ = _localRotationZ;
-					value.localRotationY = _localRotationY;
-					value.localRotationX = _localRotationX;
-					value.rotationZ = _rotationZ;
-					value.rotationY = _rotationY;
-					value.rotationX = _rotationX;
-					value.scaleX = _scaleX;
-					value.scaleY = _scaleY;
-					value.scaleZ = _scaleZ;
-					value.scale = _scale;
-					value.useOwnContainer = _useOwnContainer;
-					value.y = _y;
-					value.x = _x;
-					value.z = _z;
-
-				}
-			
-				_displayObject3D = value;
-				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
-				{
-					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'displayObject3D', oldValue, value));
-				}
-				context.renderQueue.add(this);
-			}
-		}
-
-		/**
-		 * An array of bitmap filters. [default = null]
-		 *
-		 * @default	null
-		 */
-		public function get filters():Array { return _filters; }
-		
-		public function set filters(value:Array):void 
-		{
-			if(_filters != value)
-			{
-				var oldValue:Array = _filters;
-			
-
-			
-				_filters = value;
-				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
-				{
-					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'filters', oldValue, value));
-				}
-				context.renderQueue.add(this);
-			}
-		}
-
-
-		/**
-		 * The local rotation of the object around the z-axis, in degrees. [default = 0.0]
-		 *
-		 * @default	0.0
-		 */
-		public function get localRotationZ():Number { return _localRotationZ; }
-		
-		public function set localRotationZ(value:Number):void 
-		{
-
-			if(localRotationZ != value)
-			{
-				var oldValue:Number = _localRotationZ;
-
-
-				
-				_localRotationZ = value;
-
-				if(displayObject3D)
-				{
-					displayObject3D.localRotationZ = value;
-				}
-
-				context.renderQueue.add(this);			
-				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
-				{
-					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'localRotationZ', oldValue, value));
-				}
-			}
-		}
-
-		/**
-		 * The local rotation of the object around the y-axis, in degrees. [default = 0.0]
-		 *
-		 * @default	0.0
-		 */
-		public function get localRotationY():Number { return _localRotationY; }
-		
-		public function set localRotationY(value:Number):void 
-		{
-
-			if(localRotationY != value)
-			{
-				var oldValue:Number = _localRotationY;
-
-
-				
-				_localRotationY = value;
-
-				if(displayObject3D)
-				{
-					displayObject3D.localRotationY = value;
-				}
-
-				context.renderQueue.add(this);			
-				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
-				{
-					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'localRotationY', oldValue, value));
-				}
-			}
-		}
-
-		/**
-		 * The local rotation of the object around the x-axis, in degrees. [default = 0.0]
-		 *
-		 * @default	0.0
-		 */
-		public function get localRotationX():Number { return _localRotationX; }
-		
-		public function set localRotationX(value:Number):void 
-		{
-
-			if(localRotationX != value)
-			{
-				var oldValue:Number = _localRotationX;
-
-
-				
-				_localRotationX = value;
-
-				if(displayObject3D)
-				{
-					displayObject3D.localRotationX = value;
-				}
-
-				context.renderQueue.add(this);			
-				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
-				{
-					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'localRotationX', oldValue, value));
-				}
-			}
-		}
-
-		/**
-		 * The rotation of the object around the z-axis, in degrees. [default = 0.0]
+		 * The rotation of the display object 3D around the s-axis, in degrees. [default = 0.0]
 		 *
 		 * @default	0.0
 		 */
@@ -334,30 +150,23 @@ package com.esoteric.display
 		
 		public function set rotationZ(value:Number):void 
 		{
-
-			if(rotationZ != value)
+			if(_rotationZ != value)
 			{
 				var oldValue:Number = _rotationZ;
+			
 
-
-				
+			
 				_rotationZ = value;
-
-				if(displayObject3D)
-				{
-					displayObject3D.rotationZ = value;
-				}
-
-				context.renderQueue.add(this);			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'rotationZ', oldValue, value));
 				}
+				context.renderQueue.add(this);
 			}
 		}
 
 		/**
-		 * The rotation of the object around the y-axis, in degrees. [default = 0.0]
+		 * The rotation of the display object 3D around the y-axis, in degrees. [default = 0.0]
 		 *
 		 * @default	0.0
 		 */
@@ -365,30 +174,23 @@ package com.esoteric.display
 		
 		public function set rotationY(value:Number):void 
 		{
-
-			if(rotationY != value)
+			if(_rotationY != value)
 			{
 				var oldValue:Number = _rotationY;
+			
 
-
-				
+			
 				_rotationY = value;
-
-				if(displayObject3D)
-				{
-					displayObject3D.rotationY = value;
-				}
-
-				context.renderQueue.add(this);			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'rotationY', oldValue, value));
 				}
+				context.renderQueue.add(this);
 			}
 		}
 
 		/**
-		 * The rotation of the object around the x-axis, in degrees. [default = 0.0]
+		 * The rotation of the display object 3D around the x-axis, in degrees. [default = 0.0]
 		 *
 		 * @default	0.0
 		 */
@@ -396,30 +198,23 @@ package com.esoteric.display
 		
 		public function set rotationX(value:Number):void 
 		{
-
-			if(rotationX != value)
+			if(_rotationX != value)
 			{
 				var oldValue:Number = _rotationX;
+			
 
-
-				
+			
 				_rotationX = value;
-
-				if(displayObject3D)
-				{
-					displayObject3D.rotationX = value;
-				}
-
-				context.renderQueue.add(this);			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'rotationX', oldValue, value));
 				}
+				context.renderQueue.add(this);
 			}
 		}
 
 		/**
-		 * The scale of the object along the x-axis. [default = 1.0]
+		 * The horizontal scaling factor of the display object 3D. [default = 1.0]
 		 *
 		 * @default	1.0
 		 */
@@ -427,30 +222,23 @@ package com.esoteric.display
 		
 		public function set scaleX(value:Number):void 
 		{
-
-			if(scaleX != value)
+			if(_scaleX != value)
 			{
 				var oldValue:Number = _scaleX;
+			
 
-
-				
+			
 				_scaleX = value;
-
-				if(displayObject3D)
-				{
-					displayObject3D.scaleX = value;
-				}
-
-				context.renderQueue.add(this);			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'scaleX', oldValue, value));
 				}
+				context.renderQueue.add(this);
 			}
 		}
 
 		/**
-		 * The scale of the object along the y-axis. [default = 1.0]
+		 * The vertical scaling factor of the display object 3D. [default = 1.0]
 		 *
 		 * @default	1.0
 		 */
@@ -458,30 +246,23 @@ package com.esoteric.display
 		
 		public function set scaleY(value:Number):void 
 		{
-
-			if(scaleY != value)
+			if(_scaleY != value)
 			{
 				var oldValue:Number = _scaleY;
+			
 
-
-				
+			
 				_scaleY = value;
-
-				if(displayObject3D)
-				{
-					displayObject3D.scaleY = value;
-				}
-
-				context.renderQueue.add(this);			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'scaleY', oldValue, value));
 				}
+				context.renderQueue.add(this);
 			}
 		}
 
 		/**
-		 * The scale of the object along the z-axis. [default = 1.0]
+		 * The depth scaling factor of the display object 3D. [default = 1.0]
 		 *
 		 * @default	1.0
 		 */
@@ -489,92 +270,71 @@ package com.esoteric.display
 		
 		public function set scaleZ(value:Number):void 
 		{
-
-			if(scaleZ != value)
+			if(_scaleZ != value)
 			{
 				var oldValue:Number = _scaleZ;
+			
 
-
-				
+			
 				_scaleZ = value;
-
-				if(displayObject3D)
-				{
-					displayObject3D.scaleZ = value;
-				}
-
-				context.renderQueue.add(this);			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'scaleZ', oldValue, value));
 				}
+				context.renderQueue.add(this);
 			}
 		}
 
 		/**
-		 * The scale of the object. [default = 1.0]
+		 * Whether the display object is visible 3D. [default = true]
+		 *
+		 * @default	true
+		 */
+		public function get visible():Boolean { return _visible; }
+		
+		public function set visible(value:Boolean):void 
+		{
+			if(_visible != value)
+			{
+				var oldValue:Boolean = _visible;
+			
+
+			
+				_visible = value;
+				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
+				{
+					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'visible', oldValue, value));
+				}
+				context.renderQueue.add(this);
+			}
+		}
+
+		/**
+		 * The alpha value of the display object 3D. [default = 1.0]
 		 *
 		 * @default	1.0
 		 */
-		public function get scale():Number { return _scale; }
+		public function get alpha():Number { return _alpha; }
 		
-		public function set scale(value:Number):void 
+		public function set alpha(value:Number):void 
 		{
-
-			if(scale != value)
+			if(_alpha != value)
 			{
-				var oldValue:Number = _scale;
+				var oldValue:Number = _alpha;
+			
 
-
-				
-				_scale = value;
-
-				if(displayObject3D)
-				{
-					displayObject3D.scale = value;
-				}
-
-				context.renderQueue.add(this);			
+			
+				_alpha = value;
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
-					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'scale', oldValue, value));
+					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'alpha', oldValue, value));
 				}
+				context.renderQueue.add(this);
 			}
 		}
 
 		/**
-		 * Whether the object uses its own container. [default = false]
-		 *
-		 * @default	false
-		 */
-		public function get useOwnContainer():Boolean { return _useOwnContainer; }
-		
-		public function set useOwnContainer(value:Boolean):void 
-		{
-
-			if(useOwnContainer != value)
-			{
-				var oldValue:Boolean = _useOwnContainer;
-
-
-				
-				_useOwnContainer = value;
-
-				if(displayObject3D)
-				{
-					displayObject3D.useOwnContainer = value;
-				}
-
-				context.renderQueue.add(this);			
-				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
-				{
-					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'useOwnContainer', oldValue, value));
-				}
-			}
-		}
-
-		/**
-		 * The horizontal position of the object. [default = 0.0]
+		 * The horizontal position of the display object 3D. [default = 0.0]
 		 *
 		 * @default	0.0
 		 */
@@ -582,30 +342,23 @@ package com.esoteric.display
 		
 		public function set y(value:Number):void 
 		{
-
-			if(y != value)
+			if(_y != value)
 			{
 				var oldValue:Number = _y;
+			
 
-
-				
+			
 				_y = value;
-
-				if(displayObject3D)
-				{
-					displayObject3D.y = value;
-				}
-
-				context.renderQueue.add(this);			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'y', oldValue, value));
 				}
+				context.renderQueue.add(this);
 			}
 		}
 
 		/**
-		 * The vertical position of the object. [default = 0.0]
+		 * The vertical position of the display object 3D. [default = 0.0]
 		 *
 		 * @default	0.0
 		 */
@@ -613,30 +366,23 @@ package com.esoteric.display
 		
 		public function set x(value:Number):void 
 		{
-
-			if(x != value)
+			if(_x != value)
 			{
 				var oldValue:Number = _x;
+			
 
-
-				
+			
 				_x = value;
-
-				if(displayObject3D)
-				{
-					displayObject3D.x = value;
-				}
-
-				context.renderQueue.add(this);			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'x', oldValue, value));
 				}
+				context.renderQueue.add(this);
 			}
 		}
 
 		/**
-		 * The depth of the object. [default = 0.0]
+		 * The depth of the display object 3D. [default = 0.0]
 		 *
 		 * @default	0.0
 		 */
@@ -644,27 +390,21 @@ package com.esoteric.display
 		
 		public function set z(value:Number):void 
 		{
-
-			if(z != value)
+			if(_z != value)
 			{
 				var oldValue:Number = _z;
+			
 
-
-				
+			
 				_z = value;
-
-				if(displayObject3D)
-				{
-					displayObject3D.z = value;
-				}
-
-				context.renderQueue.add(this);			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'z', oldValue, value));
 				}
+				context.renderQueue.add(this);
 			}
 		}
+
 
 
 	}

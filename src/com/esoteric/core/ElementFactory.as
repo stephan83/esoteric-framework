@@ -36,7 +36,6 @@ package com.esoteric.core
 {
 	import com.esoteric.core.Context;
 	import com.esoteric.display.BitmapFileElement;
-	import com.esoteric.display.Camera3DElement;
 	import com.esoteric.display.CircleElement;
 	import com.esoteric.display.CurveToElement;
 	import com.esoteric.display.DisplayObject3DElement;
@@ -46,17 +45,13 @@ package com.esoteric.core
 	import com.esoteric.display.LineStyleElement;
 	import com.esoteric.display.LineToElement;
 	import com.esoteric.display.LoaderElement;
+	import com.esoteric.display.Mesh3DElement;
 	import com.esoteric.display.MoveToElement;
-	import com.esoteric.display.MovieMaterialElement;
-	import com.esoteric.display.PlaneElement;
 	import com.esoteric.display.RoundedRectangleElement;
 	import com.esoteric.display.RectangleElement;
-	import com.esoteric.display.Scene3DElement;
 	import com.esoteric.display.ShapeElement;
 	import com.esoteric.display.SolidFillElement;
-	import com.esoteric.display.Sprite3DElement;
 	import com.esoteric.display.SpriteElement;
-	import com.esoteric.display.Viewport3DElement;
 	import com.esoteric.errors.UnknownElementKindError;
 	import com.esoteric.filters.BlurFilterElement;
 	import com.esoteric.filters.DropShadowFilterElement;
@@ -160,7 +155,6 @@ package com.esoteric.core
 		{
 			add("BitmapFile", new StaticElementBuilder(BitmapFileElement));
 			add("BlurFilter", new StaticElementBuilder(BlurFilterElement));
-			add("Camera3D", new StaticElementBuilder(Camera3DElement));
 			add("Circle", new StaticElementBuilder(CircleElement));
 			add("CurveTo", new StaticElementBuilder(CurveToElement));
 			add("DisplayObject3D", new StaticElementBuilder(DisplayObject3DElement));
@@ -175,24 +169,20 @@ package com.esoteric.core
 			add("LineStyle", new StaticElementBuilder(LineStyleElement));
 			add("LineTo", new StaticElementBuilder(LineToElement));
 			add("Loader", new StaticElementBuilder(LoaderElement));
-			add("MovieMaterial", new StaticElementBuilder(MovieMaterialElement));
+			add("Mesh3D", new StaticElementBuilder(Mesh3DElement));
 			add("MoveTo", new StaticElementBuilder(MoveToElement));
-			add("Plane", new StaticElementBuilder(PlaneElement));
 			add("Rectangle", new StaticElementBuilder(RectangleElement));
 			add("RemoteXML", new StaticElementBuilder(RemoteXMLElement));
 			add("RoundedRectangle", new StaticElementBuilder(RoundedRectangleElement));
-			add("Scene3D", new StaticElementBuilder(Scene3DElement));
 			add("Script", new StaticElementBuilder(ScriptElement));
 			add("Shape", new StaticElementBuilder(ShapeElement));
 			add("SolidFill", new StaticElementBuilder(SolidFillElement));
 			add("SoundFile", new StaticElementBuilder(SoundFileElement));
 			add("Sprite", new StaticElementBuilder(SpriteElement));
-			add("Sprite3D", new StaticElementBuilder(Sprite3DElement));
 			add("TextField", new StaticElementBuilder(TextFieldElement));
 			add("Timeline", new StaticElementBuilder(TimelineElement));
 			add("Timer", new StaticElementBuilder(TimerElement));
 			add("VideoFile", new StaticElementBuilder(VideoFileElement));
-			add("Viewport3D", new StaticElementBuilder(Viewport3DElement));
 			add("Watcher", new StaticElementBuilder(WatcherElement));
 		}
 		

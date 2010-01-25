@@ -2,7 +2,7 @@
 	DO NOT MODIFY THIS FILE, THE CODE GENERATOR WILL ERASE ANY CHANGES MADE.
 	MAKE CHANGES TO THE DERIVED CLASS INSTEAD.
 
-	Last generated 2010-01-25 16:56:12.300000 UTC.
+	Last generated 2010-01-25 16:56:12.341000 UTC.
 
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	~                           Esoteric Framework                            ~
@@ -45,7 +45,7 @@ package com.esoteric.display
 	import com.esoteric.events.ElementEvent;
 	import com.esoteric.events.PropertyChangeEvent;
 	
-	public class AbstractDisplayObjectContainer3DElement extends DisplayObject3DElement
+	public class AbstractMesh3DElement extends DisplayObject3DElement
 	{
 		
 		//---------------------------------------------------------------------
@@ -55,7 +55,7 @@ package com.esoteric.display
 		/**
 		 * Constructor.
 		 */
-		public function AbstractDisplayObjectContainer3DElement(context:Context, kind:String) 
+		public function AbstractMesh3DElement(context:Context, kind:String) 
 		{
 			super(context, kind);
 			
@@ -81,11 +81,98 @@ package com.esoteric.display
 		// Variables
 		//---------------------------------------------------------------------
 		
+		/**
+		 * @private
+		 */
+		private var _indices:Vector.<int> = new Vector.<int>();
+
+		/**
+		 * @private
+		 */
+		private var _vertices:Vector.<Number> = new Vector.<Number>();
+
+		/**
+		 * @private
+		 */
+		private var _uvData:Vector.<Number> = new Vector.<Number>();
+
 
 		//---------------------------------------------------------------------
 		// Getters and setters
 		//---------------------------------------------------------------------
 		
+		/**
+		 * The indices. [default = new Vector.<int>()]
+		 *
+		 * @default	new Vector.<int>()
+		 */
+		public function get indices():Vector.<int> { return _indices; }
+		
+		public function set indices(value:Vector.<int>):void 
+		{
+			if(_indices != value)
+			{
+				var oldValue:Vector.<int> = _indices;
+			
+
+			
+				_indices = value;
+				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
+				{
+					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'indices', oldValue, value));
+				}
+				context.renderQueue.add(this);
+			}
+		}
+
+		/**
+		 * The vertices. [default = new Vector.<Number>()]
+		 *
+		 * @default	new Vector.<Number>()
+		 */
+		public function get vertices():Vector.<Number> { return _vertices; }
+		
+		public function set vertices(value:Vector.<Number>):void 
+		{
+			if(_vertices != value)
+			{
+				var oldValue:Vector.<Number> = _vertices;
+			
+
+			
+				_vertices = value;
+				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
+				{
+					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'vertices', oldValue, value));
+				}
+				context.renderQueue.add(this);
+			}
+		}
+
+		/**
+		 * The UV data. [default = new Vector.<Number>()]
+		 *
+		 * @default	new Vector.<Number>()
+		 */
+		public function get uvData():Vector.<Number> { return _uvData; }
+		
+		public function set uvData(value:Vector.<Number>):void 
+		{
+			if(_uvData != value)
+			{
+				var oldValue:Vector.<Number> = _uvData;
+			
+
+			
+				_uvData = value;
+				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
+				{
+					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'uvData', oldValue, value));
+				}
+				context.renderQueue.add(this);
+			}
+		}
+
 
 
 	}

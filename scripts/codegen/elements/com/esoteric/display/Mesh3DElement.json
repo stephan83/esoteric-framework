@@ -1,0 +1,27 @@
+{
+	"desc": "",
+	
+	"baseclass": "DisplayObject3DElement",
+
+	"imports": [
+		"com.esoteric.core.TweenableElement"
+	],
+	
+	"properties": {
+		"vertices": {
+			"type":	"Vector.<Number>",
+			"default": "new Vector.<Number>()",
+			"desc": "The vertices."
+		},
+		"indices": {
+			"type":	"Vector.<int>",
+			"default": "new Vector.<int>()",
+			"desc": "The indices."
+		},
+		"uvData": {
+			"type":	"Vector.<Number>",
+			"default": "new Vector.<Number>()",
+			"desc": "The UV data."
+		}
+	}
+}
