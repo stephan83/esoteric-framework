@@ -35,6 +35,7 @@
 	
 package com.esoteric.core 
 {
+	import com.esoteric.display.DisplayObjectElement;
 	import com.esoteric.equery.ElementSet;
 	import com.esoteric.equery.EQuery;
 	import com.esoteric.equery.EQueryObject;
@@ -111,7 +112,7 @@ package com.esoteric.core
 		/**
 		 * @private
 		 */
-		private var _root:IElement;
+		private var _root:DisplayObjectElement;
 		
 		/**
 		 * @private
@@ -225,9 +226,9 @@ package com.esoteric.core
 		/**
 		 * The root element.
 		 */
-		public function get root():IElement { return _root; }
+		public function get root():DisplayObjectElement { return _root; }
 		
-		public function set root(value:IElement):void 
+		public function set root(value:DisplayObjectElement):void 
 		{
 			_root = value;
 		}

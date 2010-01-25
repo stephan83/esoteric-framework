@@ -36,6 +36,7 @@ package com.esoteric.core
 {
 	import com.esoteric.core.ElementExpressionQueue;
 	import com.esoteric.core.RenderQueue;
+	import com.esoteric.display.DisplayObjectElement;
 	import com.esoteric.events.LoadEvent;
 	import com.esoteric.expressions.ExpressionVm;
 	import com.esoteric.net.Cache;
@@ -75,7 +76,7 @@ package com.esoteric.core
 				}
 				else if (isRoot)
 				{
-					context.root = element;
+					context.root = element as DisplayObjectElement;
 				}
 				
 				element.initialize();

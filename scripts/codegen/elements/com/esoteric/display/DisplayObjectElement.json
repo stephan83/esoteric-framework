@@ -59,6 +59,14 @@
 			"desc": "The horizontal position of the display object.",
 			"doc": false
 		},
+		"z": {
+			"object": "displayObject",
+			"property": "z",
+			"type":	"Number",
+			"default": "0.0",
+			"desc": "The depth of the display object.",
+			"doc": false
+		},
 		"scaleX": {
 			"object": "displayObject",
 			"property": "scaleX",
@@ -72,6 +80,13 @@
 			"type":	"Number",
 			"default": "1.0",
 			"desc": "The vertical scaling factor of the display object."
+		},
+		"scaleZ": {
+			"object": "displayObject",
+			"property": "scaleZ",
+			"type":	"Number",
+			"default": "1.0",
+			"desc": "The depth scaling factor of the display object."
 		},
 		"visible": {
 			"object": "displayObject",
@@ -87,12 +102,26 @@
 			"default": "1.0",
 			"desc": "The alpha value of the display object."
 		},
-		"rotation": {
+		"rotationX": {
 			"object": "displayObject",
-			"property": "rotation",
+			"property": "rotationX",
 			"type":	"Number",
 			"default": "0.0",
-			"desc": "The rotation of the display object, in degrees."
+			"desc": "The rotation of the display object around the x-axis, in degrees."
+		},
+		"rotationY": {
+			"object": "displayObject",
+			"property": "rotationY",
+			"type":	"Number",
+			"default": "0.0",
+			"desc": "The rotation of the display object around the y-axis, in degrees."
+		},
+		"rotationZ": {
+			"object": "displayObject",
+			"property": "rotationZ",
+			"type":	"Number",
+			"default": "0.0",
+			"desc": "The rotation of the display object around the s-axis, in degrees."
 		},
 		"cacheAsBitmap": {
 			"object": "displayObject",

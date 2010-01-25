@@ -46,11 +46,15 @@
 			dest.id = src.name;
 			dest.x = src.x;
 			dest.y = src.y;
+			dest.z = src.z;
 			dest.alpha = src.alpha;
 			dest.visible = src.visible;
 			dest.scaleX = src.scaleX;
 			dest.scaleY = src.scaleY;
-			dest.rotation = src.rotation;
+			dest.scaleZ = src.scaleZ;
+			dest.rotationX = src.rotationX;
+			dest.rotationY = src.rotationY;
+			dest.rotationZ = src.rotationZ;
 			
 			for (var i:int = 0; i < src.numChildren; i++) 
 			{
@@ -95,6 +99,7 @@
 			textField.id = src.name;
 			textField.x = src.x;
 			textField.y = src.y;
+			textField.z = src.z;
 			textField.width = src.width;
 			textField.alpha = src.alpha;
 			textField.visible = src.visible;
@@ -108,9 +113,12 @@
 			textField.maxChars = src.maxChars;
 			textField.multiline = src.multiline;
 			textField.restrict = src.restrict;
-			textField.rotation = src.rotation;
+			textField.rotationX = src.rotationX;
+			textField.rotationY = src.rotationY;
+			textField.rotationZ = src.rotationZ;
 			textField.scaleX = src.scaleX;
 			textField.scaleY = src.scaleY;
+			textField.scaleZ = src.scaleZ;
 			textField.selectable = src.selectable;
 			textField.sharpness = src.sharpness;
 			textField.thickness = src.thickness;
@@ -153,13 +161,17 @@
 			bitmap.id = src.name;
 			bitmap.x = src.x;
 			bitmap.y = src.y;
+			bitmap.z = src.z;
 			bitmap.width = src.width;
 			bitmap.height = src.height;
 			bitmap.alpha = src.alpha;
 			bitmap.visible = src.visible;
-			bitmap.rotation = src.rotation;
+			bitmap.rotationX = src.rotationX;
+			bitmap.rotationY = src.rotationY;
+			bitmap.rotationZ = src.rotationZ;
 			bitmap.scaleX = src.scaleX;
 			bitmap.scaleY = src.scaleY;
+			bitmap.scaleZ = src.scaleZ;
 			
 			return bitmap;
 		}

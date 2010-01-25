@@ -38,6 +38,7 @@ package com.esoteric.display
 	import com.esoteric.core.IElement;
 	import com.esoteric.core.Context;
 	import com.esoteric.events.PropertyChangeEvent;
+	import flash.display.DisplayObject;
 	import flash.display.InteractiveObject;
 	import flash.display.Sprite;
 	
@@ -100,6 +101,34 @@ package com.esoteric.display
 			}
 				
 			super.childRemovedHandler(e);
+		}
+		
+		/**
+		 * @private
+		 */
+		override public function render():void 
+		{
+			// Reorder children based on z location
+			var faces:Array = new Array();
+			
+			while(sprite.numChildren)
+			{
+				var child:DisplayObject = sprite.getChildAt(0);
+				
+				faces[faces.length] = {
+					z:		child.transform.getRelativeMatrix3D(context.root.displayObject).position.z,
+					child:	sprite.removeChildAt(0)
+				};
+			} 
+			
+			faces.sortOn('z', Array.NUMERIC); 
+			
+			for (var i:int = 0; i < faces.length; i++) 
+			{ 
+				sprite.addChild(faces[i].child);
+			} 
+			
+			super.render();
 		}
 		
 		//---------------------------------------------------------------------

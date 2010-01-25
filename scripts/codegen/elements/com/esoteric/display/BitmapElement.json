@@ -9,7 +9,6 @@
 	
 	"properties": {
 		"bitmap": {
-			"namespace": "protected",
 			"type":	"Bitmap",
 			"default": "new Bitmap()",
 			"desc": "The bitmap object.",

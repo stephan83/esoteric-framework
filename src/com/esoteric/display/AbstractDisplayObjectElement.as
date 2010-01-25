@@ -2,7 +2,7 @@
 	DO NOT MODIFY THIS FILE, THE CODE GENERATOR WILL ERASE ANY CHANGES MADE.
 	MAKE CHANGES TO THE DERIVED CLASS INSTEAD.
 
-	Last generated 2010-01-20 20:12:19.396000 UTC.
+	Last generated 2010-01-25 12:58:06.938000 UTC.
 
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	~                           Esoteric Framework                            ~
@@ -116,12 +116,32 @@ package com.esoteric.display
 		/**
 		 * @private
 		 */
+		private var _rotationZ:Number = 0.0;
+
+		/**
+		 * @private
+		 */
+		private var _rotationY:Number = 0.0;
+
+		/**
+		 * @private
+		 */
+		private var _rotationX:Number = 0.0;
+
+		/**
+		 * @private
+		 */
 		private var _scaleX:Number = 1.0;
 
 		/**
 		 * @private
 		 */
 		private var _scaleY:Number = 1.0;
+
+		/**
+		 * @private
+		 */
+		private var _scaleZ:Number = 1.0;
 
 		/**
 		 * @private
@@ -151,7 +171,7 @@ package com.esoteric.display
 		/**
 		 * @private
 		 */
-		private var _rotation:Number = 0.0;
+		private var _z:Number = 0.0;
 
 
 		//---------------------------------------------------------------------
@@ -269,14 +289,18 @@ package com.esoteric.display
 			
 				if(value)
 				{
+					value.rotationZ = _rotationZ;
+					value.rotationY = _rotationY;
+					value.rotationX = _rotationX;
 					value.scaleX = _scaleX;
 					value.scaleY = _scaleY;
+					value.scaleZ = _scaleZ;
 					value.visible = _visible;
 					value.cacheAsBitmap = _cacheAsBitmap;
 					value.alpha = _alpha;
 					value.y = _y;
 					value.x = _x;
-					value.rotation = _rotation;
+					value.z = _z;
 
 				}
 			
@@ -310,6 +334,99 @@ package com.esoteric.display
 			}
 		}
 
+
+		/**
+		 * The rotation of the display object around the s-axis, in degrees. [default = 0.0]
+		 *
+		 * @default	0.0
+		 */
+		public function get rotationZ():Number { return _rotationZ; }
+		
+		public function set rotationZ(value:Number):void 
+		{
+
+			if(rotationZ != value)
+			{
+				var oldValue:Number = _rotationZ;
+
+
+				
+				_rotationZ = value;
+
+				if(displayObject)
+				{
+					displayObject.rotationZ = value;
+				}
+
+				context.renderQueue.add(this);			
+				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
+				{
+					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'rotationZ', oldValue, value));
+				}
+			}
+		}
+
+		/**
+		 * The rotation of the display object around the y-axis, in degrees. [default = 0.0]
+		 *
+		 * @default	0.0
+		 */
+		public function get rotationY():Number { return _rotationY; }
+		
+		public function set rotationY(value:Number):void 
+		{
+
+			if(rotationY != value)
+			{
+				var oldValue:Number = _rotationY;
+
+
+				
+				_rotationY = value;
+
+				if(displayObject)
+				{
+					displayObject.rotationY = value;
+				}
+
+				context.renderQueue.add(this);			
+				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
+				{
+					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'rotationY', oldValue, value));
+				}
+			}
+		}
+
+		/**
+		 * The rotation of the display object around the x-axis, in degrees. [default = 0.0]
+		 *
+		 * @default	0.0
+		 */
+		public function get rotationX():Number { return _rotationX; }
+		
+		public function set rotationX(value:Number):void 
+		{
+
+			if(rotationX != value)
+			{
+				var oldValue:Number = _rotationX;
+
+
+				
+				_rotationX = value;
+
+				if(displayObject)
+				{
+					displayObject.rotationX = value;
+				}
+
+				context.renderQueue.add(this);			
+				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
+				{
+					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'rotationX', oldValue, value));
+				}
+			}
+		}
 
 		/**
 		 * The horizontal scaling factor of the display object. [default = 1.0]
@@ -369,6 +486,37 @@ package com.esoteric.display
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'scaleY', oldValue, value));
+				}
+			}
+		}
+
+		/**
+		 * The depth scaling factor of the display object. [default = 1.0]
+		 *
+		 * @default	1.0
+		 */
+		public function get scaleZ():Number { return _scaleZ; }
+		
+		public function set scaleZ(value:Number):void 
+		{
+
+			if(scaleZ != value)
+			{
+				var oldValue:Number = _scaleZ;
+
+
+				
+				_scaleZ = value;
+
+				if(displayObject)
+				{
+					displayObject.scaleZ = value;
+				}
+
+				context.renderQueue.add(this);			
+				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
+				{
+					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'scaleZ', oldValue, value));
 				}
 			}
 		}
@@ -529,32 +677,32 @@ package com.esoteric.display
 		}
 
 		/**
-		 * The rotation of the display object, in degrees. [default = 0.0]
+		 * The depth of the display object. [default = 0.0]
 		 *
 		 * @default	0.0
 		 */
-		public function get rotation():Number { return _rotation; }
+		public function get z():Number { return _z; }
 		
-		public function set rotation(value:Number):void 
+		public function set z(value:Number):void 
 		{
 
-			if(rotation != value)
+			if(z != value)
 			{
-				var oldValue:Number = _rotation;
+				var oldValue:Number = _z;
 
 
 				
-				_rotation = value;
+				_z = value;
 
 				if(displayObject)
 				{
-					displayObject.rotation = value;
+					displayObject.z = value;
 				}
 
 				context.renderQueue.add(this);			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
-					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'rotation', oldValue, value));
+					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'z', oldValue, value));
 				}
 			}
 		}
