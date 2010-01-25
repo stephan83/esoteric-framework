@@ -29,6 +29,7 @@
 			
 			dae.addEventListener(Event.COMPLETE, function(e:Event):void {
 				parseScene(context, dest, dae, dae.scene);
+				dae.destroy();
 			});
 			
 			dae.read(collada);
@@ -90,12 +91,12 @@
 			
 			for each (var vertex:Array in primitive.vertices.source.data) 
 			{
-				mesh.vertices.push(vertex[0], vertex[1], vertex[2]);
+				mesh.vertices.push(-vertex[0], vertex[1], -vertex[2]);
 			}
 			
 			for each (var triangle:Array in primitive.triangles) 
 			{
-				mesh.indices.push(triangle[0], triangle[1], triangle[2]);
+				mesh.indices.push(triangle[2], triangle[1], triangle[0]);
 			}
 		}
 		

@@ -39,9 +39,11 @@ package com.esotericorp.display
 	import com.esoteric.display.Mesh3DElement;
 	import com.esoteric.utils.Collada;
 	import com.esoteric.utils.FlashTools;
+	import flash.display.TriangleCulling;
 	import flash.events.Event;
 	import flash.geom.Matrix3D;
 	import flash.geom.PerspectiveProjection;
+	import flash.geom.Point;
 	import flash.geom.Utils3D;
 	import flash.geom.Vector3D;
 	import flash.utils.ByteArray;
@@ -81,15 +83,21 @@ package com.esotericorp.display
 			container = new DisplayObjectContainer3DElement(context, 'DisplayObjectContainer3D');
 			addChild(container);
 			container.initialize();
-			
 			Collada.loadCOLLADA(context, container, xml);
-			
-			trace(container.numChildren);
 			
 			super.initialize();
 		}
 		
 		override public function render():void 
+		{sprite.graphics.clear();
+			test(container);
+			
+			super.render();
+		}
+		
+		public var rotY:Number = 0;
+		
+		public function test(container:DisplayObjectContainer3DElement):void
 		{
 			for (var i:int = 0; i < container.numChildren; i++) 
 			{
@@ -99,37 +107,41 @@ package com.esotericorp.display
 					
 					var triangles3D:Vector.<Number> = new Vector.<Number>;
 					
-					for (var i:int = 0; i < mesh.indices.length; i++) 
+					for (var j:int = 0; j < mesh.indices.length; j++) 
 					{
-						triangles3D.push(mesh.vertices[mesh.indices[i] * 3], mesh.vertices[mesh.indices[i] * 3 + 1], mesh.vertices[mesh.indices[i] * 3 + 2]);
+						triangles3D.push(mesh.vertices[mesh.indices[j] * 3], mesh.vertices[mesh.indices[j] * 3 + 1], mesh.vertices[mesh.indices[j] * 3 + 2]);
 					}
 					
 					var triangles2D:Vector.<Number> = new Vector.<Number>;
 					var uvData:Vector.<Number> = new Vector.<Number>;
 					
+					var matrix:Matrix3D = new Matrix3D();
+					matrix.identity();
+					matrix.appendRotation(rotY+=.3, Vector3D.Y_AXIS);
+					matrix.appendRotation(20, Vector3D.X_AXIS);
+					matrix.appendTranslation(0, 0, -1500);
+					
 					var projection:PerspectiveProjection = new PerspectiveProjection();
 					projection.fieldOfView = 60;
-					var matrix:Matrix3D = projection.toMatrix3D();
-					matrix.prependRotation(90, Vector3D.X_AXIS);
-					matrix.prependTranslation(1000, 800, -700);
+					
+					matrix.append(projection.toMatrix3D());
 					
 					Utils3D.projectVectors(matrix, triangles3D, triangles2D, uvData);
 					
-					sprite.graphics.beginFill(0xffffff);
-					sprite.graphics.lineStyle(2, 0xff00ff);
-					sprite.graphics.drawTriangles(triangles2D);
+					sprite.graphics.beginFill(0xffffff, .5);
+					sprite.graphics.lineStyle(.5, 0xff00ff, .1);
+					sprite.graphics.drawTriangles(triangles2D, null, null, TriangleCulling.POSITIVE);
 					sprite.graphics.endFill();
-					
-					trace('--');
-					
-					for each (var n:Number in triangles2D) 
-					{
-						trace(n);
-					}
+				}
+				else if (container.getChildAt(i) is DisplayObjectContainer3DElement)
+				{
+					test(container.getChildAt(i) as DisplayObjectContainer3DElement);
+				}
+				else
+				{
+					trace (container.getChildAt(i));
 				}
 			}
-			
-			super.render();
 		}
 
 	}
