@@ -86,17 +86,6 @@
 			mesh.initialize();
 			mesh.id = primitive.name;
 			
-			var uvs:Array = primitive.uvSets[0];
-			var textCoord:DaeInput = primitive.texCoordInputs[0];
-			var source:DaeSource = document.sources[textCoord.source];
-			
-			for (var i:int = 0; i < uvs.length; i++) 
-			{
-				mesh.uvts.push(source.data[uvs[i][2]][0], source.data[uvs[i][2]][1], 0);
-				mesh.uvts.push(source.data[uvs[i][1]][0], source.data[uvs[i][1]][1], 0);
-				mesh.uvts.push(source.data[uvs[i][0]][0], source.data[uvs[i][0]][1], 0);
-			}
-			
 			for each (var vertex:Array in primitive.vertices.source.data) 
 			{
 				mesh.vertices.push(-vertex[0], vertex[1], -vertex[2]);
@@ -105,6 +94,33 @@
 			for each (var triangle:Array in primitive.triangles) 
 			{
 				mesh.indices.push(triangle[2], triangle[1], triangle[0]);
+			}
+			
+			var uvset:Array = primitive.uvSets[0];
+			var textCoord:DaeInput = primitive.texCoordInputs[0];
+			var source:DaeSource = document.sources[textCoord.source];
+			var uvs:Vector.<Number> = new Vector.<Number>();
+			
+			// Compule the uvs for each indices
+			for (var i:int = 0; i < uvset.length; i++) 
+			{
+				uvs.push(source.data[uvset[i][2]][0], source.data[uvset[i][2]][1]);
+				uvs.push(source.data[uvset[i][1]][0], source.data[uvset[i][1]][1]);
+				uvs.push(source.data[uvset[i][0]][0], source.data[uvset[i][0]][1]);
+			}
+			
+			mesh.uvts.length = mesh.vertices.length;
+			
+			// Compute the uvts for each vertex since that's what Flash 10 wants
+			for (i = 0; i < mesh.indices.length; i++) 
+			{
+				var u:Number = uvs[i * 2];
+				var v:Number = uvs[i * 2 + 1];
+				
+				var ind:int = mesh.indices[i];
+				
+				mesh.uvts[ind * 3] = u;
+				mesh.uvts[ind * 3 + 1] = v;
 			}
 		}
 		

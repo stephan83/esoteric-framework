@@ -39,11 +39,14 @@ package com.esotericorp.display
 	import com.esoteric.display.Mesh3DElement;
 	import com.esoteric.utils.Collada;
 	import com.esoteric.utils.FlashTools;
+	import flash.display.Bitmap;
+	import flash.display.BitmapData;
 	import flash.display.TriangleCulling;
 	import flash.events.Event;
 	import flash.geom.Matrix3D;
 	import flash.geom.PerspectiveProjection;
 	import flash.geom.Point;
+	import flash.geom.Rectangle;
 	import flash.geom.Utils3D;
 	import flash.geom.Vector3D;
 	import flash.utils.ByteArray;
@@ -55,6 +58,8 @@ package com.esotericorp.display
 		[Embed(source = '../../../../assets/collada/preloader.dae', mimeType = 'application/octet-stream')]
 		private var _collada:Class;
 		private var container:DisplayObjectContainer3DElement;
+		[Embed(source = '../../../../assets/flash/Preloader.swf', symbol = 'concret')]
+		private var _concret:Class;
 		
 		
 		//---------------------------------------------------------------------
@@ -84,7 +89,7 @@ package com.esotericorp.display
 			addChild(container);
 			container.initialize();
 			Collada.loadCOLLADA(context, container, xml);
-			
+			texture.bitmapData.fillRect(new Rectangle(0, 0, 256, 256), 0x33ff00ff);
 			super.initialize();
 		}
 		
@@ -96,7 +101,7 @@ package com.esotericorp.display
 		}
 		
 		public var rotY:Number = 0;
-		
+		public var texture:Bitmap = new Bitmap(new BitmapData(256, 256));
 		public function test(container:DisplayObjectContainer3DElement):void
 		{
 			for (var i:int = 0; i < container.numChildren; i++) 
@@ -105,28 +110,27 @@ package com.esotericorp.display
 				{
 					var mesh:Mesh3DElement = container.getChildAt(i) as Mesh3DElement;
 					
-					var triangles:Vector.<Number> = new Vector.<Number>;
-					var uvts:Vector.<Number> = new Vector.<Number>(mesh.indices.length * 3);
+					var verts:Vector.<Number> = new Vector.<Number>;
 					var sortedIndices:Vector.<int> = new Vector.<int>(mesh.indices.length, true);
 					
 					var matrix:Matrix3D = new Matrix3D();
 					matrix.identity();
 					matrix.appendRotation(rotY+=.3, Vector3D.Y_AXIS);
 					matrix.appendRotation(20, Vector3D.X_AXIS);
-					matrix.appendTranslation(0, 0, -1200);
+					matrix.appendTranslation(0, 0, -1000);
 					
 					var projection:PerspectiveProjection = new PerspectiveProjection();
 					projection.fieldOfView = 60;
 					
 					matrix.append(projection.toMatrix3D());
 					
-					Utils3D.projectVectors(matrix, mesh.vertices, triangles, uvts);
+					Utils3D.projectVectors(matrix, mesh.vertices, verts, mesh.uvts);
 					
 					var faces:Array = [];
 					var face:Vector3D;
 					var inc:int = 0;
 					
-					for (var j:int = 0; j < mesh.indices.length; j+=3) 
+					/*for (var j:int = 0; j < mesh.indices.length; j+=3) 
 					{
 						faces[inc] = new Vector3D();
 						face = faces[inc];
@@ -137,7 +141,7 @@ package com.esotericorp.display
 						
 						var j3:int = j * 3;
 						
-						face.w = (uvts[int(j3 + 2)] + uvts[int(j3 + 5)] + uvts[int(j3 + 8)]) * 0.333333;
+						face.w = (mesh.uvts[int(j3 + 2)] + mesh.uvts[int(j3 + 5)] + mesh.uvts[int(j3 + 8)]) * 0.333333;
 						
 						inc++;
 					}
@@ -151,12 +155,13 @@ package com.esotericorp.display
 						sortedIndices[inc++] = face.x;
 						sortedIndices[inc++] = face.y;
 						sortedIndices[inc++] = face.z;
-					}
+					}*/
 					
-					sprite.graphics.beginFill(0xffffff, .2);
-					//sprite.graphics.lineStyle(.5, 0xff00ff);
-					sprite.graphics.drawTriangles(triangles, sortedIndices, null, TriangleCulling.POSITIVE);
+					sprite.graphics.beginBitmapFill(texture.bitmapData);
+					sprite.graphics.drawTriangles(verts, mesh.indices, mesh.uvts, TriangleCulling.POSITIVE);
 					sprite.graphics.endFill();
+					
+					trace(mesh.uvts);
 				}
 				else if (container.getChildAt(i) is DisplayObjectContainer3DElement)
 				{
