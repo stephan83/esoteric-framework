@@ -6,10 +6,12 @@
 	import flash.events.Event;
 	import org.ascollada.core.DaeDocument;
 	import org.ascollada.core.DaeGeometry;
+	import org.ascollada.core.DaeInput;
 	import org.ascollada.core.DaeInstanceGeometry;
 	import org.ascollada.core.DaeMesh;
 	import org.ascollada.core.DaeNode;
 	import org.ascollada.core.DaePrimitive;
+	import org.ascollada.core.DaeSource;
 	/**
 	 * COLLADA parser.
 	 * 
@@ -84,9 +86,15 @@
 			mesh.initialize();
 			mesh.id = primitive.name;
 			
-			for each (var uvSet:Object in primitive.uvSets) 
+			var uvs:Array = primitive.uvSets[0];
+			var textCoord:DaeInput = primitive.texCoordInputs[0];
+			var source:DaeSource = document.sources[textCoord.source];
+			
+			for (var i:int = 0; i < uvs.length; i++) 
 			{
-				//trace(uvSet);
+				mesh.uvts.push(source.data[uvs[i][2]][0], source.data[uvs[i][2]][1], 0);
+				mesh.uvts.push(source.data[uvs[i][1]][0], source.data[uvs[i][1]][1], 0);
+				mesh.uvts.push(source.data[uvs[i][0]][0], source.data[uvs[i][0]][1], 0);
 			}
 			
 			for each (var vertex:Array in primitive.vertices.source.data) 

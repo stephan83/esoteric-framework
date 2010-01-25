@@ -18,10 +18,10 @@
 			"default": "new Vector.<int>()",
 			"desc": "The indices."
 		},
-		"uvData": {
+		"uvts": {
 			"type":	"Vector.<Number>",
 			"default": "new Vector.<Number>()",
-			"desc": "The UV data."
+			"desc": "The UVTs."
 		}
 	}
 }

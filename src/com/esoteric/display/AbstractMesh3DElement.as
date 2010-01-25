@@ -2,7 +2,7 @@
 	DO NOT MODIFY THIS FILE, THE CODE GENERATOR WILL ERASE ANY CHANGES MADE.
 	MAKE CHANGES TO THE DERIVED CLASS INSTEAD.
 
-	Last generated 2010-01-25 16:56:12.341000 UTC.
+	Last generated 2010-01-25 21:01:56.680000 UTC.
 
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	~                           Esoteric Framework                            ~
@@ -89,12 +89,12 @@ package com.esoteric.display
 		/**
 		 * @private
 		 */
-		private var _vertices:Vector.<Number> = new Vector.<Number>();
+		private var _uvts:Vector.<Number> = new Vector.<Number>();
 
 		/**
 		 * @private
 		 */
-		private var _uvData:Vector.<Number> = new Vector.<Number>();
+		private var _vertices:Vector.<Number> = new Vector.<Number>();
 
 
 		//---------------------------------------------------------------------
@@ -126,6 +126,30 @@ package com.esoteric.display
 		}
 
 		/**
+		 * The UVTs. [default = new Vector.<Number>()]
+		 *
+		 * @default	new Vector.<Number>()
+		 */
+		public function get uvts():Vector.<Number> { return _uvts; }
+		
+		public function set uvts(value:Vector.<Number>):void 
+		{
+			if(_uvts != value)
+			{
+				var oldValue:Vector.<Number> = _uvts;
+			
+
+			
+				_uvts = value;
+				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
+				{
+					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'uvts', oldValue, value));
+				}
+				context.renderQueue.add(this);
+			}
+		}
+
+		/**
 		 * The vertices. [default = new Vector.<Number>()]
 		 *
 		 * @default	new Vector.<Number>()
@@ -144,30 +168,6 @@ package com.esoteric.display
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'vertices', oldValue, value));
-				}
-				context.renderQueue.add(this);
-			}
-		}
-
-		/**
-		 * The UV data. [default = new Vector.<Number>()]
-		 *
-		 * @default	new Vector.<Number>()
-		 */
-		public function get uvData():Vector.<Number> { return _uvData; }
-		
-		public function set uvData(value:Vector.<Number>):void 
-		{
-			if(_uvData != value)
-			{
-				var oldValue:Vector.<Number> = _uvData;
-			
-
-			
-				_uvData = value;
-				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
-				{
-					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'uvData', oldValue, value));
 				}
 				context.renderQueue.add(this);
 			}
