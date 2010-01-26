@@ -89,7 +89,10 @@ package com.esotericorp.display
 			addChild(container);
 			container.initialize();
 			Collada.loadCOLLADA(context, container, xml);
-			texture.bitmapData.fillRect(new Rectangle(0, 0, 256, 256), 0xffffffff);
+			texture.bitmapData.fillRect(new Rectangle(0, 0, 128, 128), 0xaaffffff);
+			texture.bitmapData.fillRect(new Rectangle(0, 128, 128, 128), 0xaafff000);
+			texture.bitmapData.fillRect(new Rectangle(128, 0, 128, 128), 0xaa000fff);
+			texture.bitmapData.fillRect(new Rectangle(128, 128, 128, 128), 0xaaffffff);
 			super.initialize();
 		}
 		
@@ -141,7 +144,6 @@ package com.esotericorp.display
 						face.z = mesh.indices[int(j + 2)];		// point index 3
 						
 						face.w = (mesh.uvts[int(face.x * 3 + 2)] + mesh.uvts[int(face.y * 3 + 2)] + mesh.uvts[int(face.z * 3 + 2)]) * 0.333333;
-						
 						inc++;
 					}
 					
@@ -157,7 +159,6 @@ package com.esotericorp.display
 					}
 					
 					sprite.graphics.beginBitmapFill(texture.bitmapData);
-					sprite.graphics.lineStyle(1, 0xff000f, .5);
 					sprite.graphics.drawTriangles(verts, sortedIndices, mesh.uvts, TriangleCulling.POSITIVE);
 					sprite.graphics.endFill();
 				}
