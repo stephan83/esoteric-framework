@@ -2,7 +2,7 @@
 	DO NOT MODIFY THIS FILE, THE CODE GENERATOR WILL ERASE ANY CHANGES MADE.
 	MAKE CHANGES TO THE DERIVED CLASS INSTEAD.
 
-	Last generated 2010-01-25 12:58:06.953000 UTC.
+	Last generated 2010-01-26 14:38:33.691000 UTC.
 
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	~                           Esoteric Framework                            ~
@@ -84,12 +84,12 @@ package com.esoteric.display
 		/**
 		 * @private
 		 */
-		private var _pressedX:Number = 0.0;
+		private var _hovered:Boolean = false;
 
 		/**
 		 * @private
 		 */
-		private var _hovered:Boolean = false;
+		private var _pressedX:Number = 0.0;
 
 		/**
 		 * @private
@@ -99,27 +99,17 @@ package com.esoteric.display
 		/**
 		 * @private
 		 */
-		private var _globalX:Number = 0.0;
+		private var _mouseY:Number = 0.0;
 
 		/**
 		 * @private
 		 */
-		private var _localY:Number = 0.0;
-
-		/**
-		 * @private
-		 */
-		private var _localX:Number = 0.0;
+		private var _mouseX:Number = 0.0;
 
 		/**
 		 * @private
 		 */
 		private var _interactiveObject:InteractiveObject = null;
-
-		/**
-		 * @private
-		 */
-		private var _globalY:Number = 0.0;
 
 		/**
 		 * @private
@@ -136,30 +126,6 @@ package com.esoteric.display
 		// Getters and setters
 		//---------------------------------------------------------------------
 		
-		/**
-		 *  [default = 0.0]
-		 *
-		 * @default	0.0
-		 */
-		public function get pressedX():Number { return _pressedX; }
-		
-		public function set pressedX(value:Number):void 
-		{
-			if(_pressedX != value)
-			{
-				var oldValue:Number = _pressedX;
-			
-
-			
-				_pressedX = value;
-				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
-				{
-					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'pressedX', oldValue, value));
-				}
-
-			}
-		}
-
 		/**
 		 * Whether a point input is over this object. [default = false]
 		 *
@@ -179,6 +145,30 @@ package com.esoteric.display
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'hovered', oldValue, value));
+				}
+
+			}
+		}
+
+		/**
+		 *  [default = 0.0]
+		 *
+		 * @default	0.0
+		 */
+		public function get pressedX():Number { return _pressedX; }
+		
+		public function set pressedX(value:Number):void 
+		{
+			if(_pressedX != value)
+			{
+				var oldValue:Number = _pressedX;
+			
+
+			
+				_pressedX = value;
+				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
+				{
+					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'pressedX', oldValue, value));
 				}
 
 			}
@@ -213,20 +203,20 @@ package com.esoteric.display
 		 *
 		 * @default	0.0
 		 */
-		public function get globalX():Number { return _globalX; }
+		public function get mouseY():Number { return _mouseY; }
 		
-		public function set globalX(value:Number):void 
+		public function set mouseY(value:Number):void 
 		{
-			if(_globalX != value)
+			if(_mouseY != value)
 			{
-				var oldValue:Number = _globalX;
+				var oldValue:Number = _mouseY;
 			
 
 			
-				_globalX = value;
+				_mouseY = value;
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
-					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'globalX', oldValue, value));
+					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'mouseY', oldValue, value));
 				}
 
 			}
@@ -237,44 +227,20 @@ package com.esoteric.display
 		 *
 		 * @default	0.0
 		 */
-		public function get localY():Number { return _localY; }
+		public function get mouseX():Number { return _mouseX; }
 		
-		public function set localY(value:Number):void 
+		public function set mouseX(value:Number):void 
 		{
-			if(_localY != value)
+			if(_mouseX != value)
 			{
-				var oldValue:Number = _localY;
+				var oldValue:Number = _mouseX;
 			
 
 			
-				_localY = value;
+				_mouseX = value;
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
-					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'localY', oldValue, value));
-				}
-
-			}
-		}
-
-		/**
-		 *  [default = 0.0]
-		 *
-		 * @default	0.0
-		 */
-		public function get localX():Number { return _localX; }
-		
-		public function set localX(value:Number):void 
-		{
-			if(_localX != value)
-			{
-				var oldValue:Number = _localX;
-			
-
-			
-				_localX = value;
-				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
-				{
-					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'localX', oldValue, value));
+					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'mouseX', oldValue, value));
 				}
 
 			}
@@ -301,30 +267,6 @@ package com.esoteric.display
 			
 				_interactiveObject = value;
 
-
-			}
-		}
-
-		/**
-		 *  [default = 0.0]
-		 *
-		 * @default	0.0
-		 */
-		public function get globalY():Number { return _globalY; }
-		
-		public function set globalY(value:Number):void 
-		{
-			if(_globalY != value)
-			{
-				var oldValue:Number = _globalY;
-			
-
-			
-				_globalY = value;
-				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
-				{
-					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'globalY', oldValue, value));
-				}
 
 			}
 		}

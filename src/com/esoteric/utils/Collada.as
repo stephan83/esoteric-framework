@@ -12,6 +12,7 @@
 	import org.ascollada.core.DaeNode;
 	import org.ascollada.core.DaePrimitive;
 	import org.ascollada.core.DaeSource;
+	import org.ascollada.core.DaeTransform;
 	/**
 	 * COLLADA parser.
 	 * 
@@ -39,10 +40,7 @@
 		
 		static private function parseScene(context:Context, dest:DisplayObjectContainer3DElement, document:DaeDocument, scene:DaeNode):void
 		{
-			for each (var node:DaeNode in scene.nodes) 
-			{
-				parseNode(context, dest, document, node);
-			}
+			parseNode(context, dest, document, scene);
 		}
 		
 		static private function parseNode(context:Context, dest:DisplayObjectContainer3DElement, document:DaeDocument, node:DaeNode):void
@@ -61,6 +59,47 @@
 				dest.addChild(container);
 				container.initialize();
 				container.id = child.name;
+				
+				for each (var transform:DaeTransform in child.transforms) 
+				{
+					switch(transform.sid.toLowerCase())
+					{
+						case 'translate':
+						{
+							container.x = transform.data[0];
+							container.y = -transform.data[1];
+							container.z = -transform.data[2];
+							break;
+						}
+						
+						case 'scale':
+						{
+							container.scaleX = transform.data[0];
+							container.scaleY = transform.data[1];
+							container.scaleZ = transform.data[2];
+							break;
+						}
+						
+						case 'rotatex':
+						{
+							container.rotationX = transform.data[3];
+							break;
+						}
+						
+						case 'rotatey':
+						{
+							container.rotationY = transform.data[3];
+							break;
+						}
+						
+						case 'rotatez':
+						{
+							container.rotationZ = transform.data[3];
+							break;
+						}
+					}
+				}
+				
 				parseNode(context, container, document, child);
 			}
 		}
@@ -88,12 +127,12 @@
 			
 			for each (var vertex:Array in primitive.vertices.source.data) 
 			{
-				mesh.vertices.push(-vertex[0], vertex[1], -vertex[2]);
+				mesh.vertices.push(vertex[0], -vertex[1], -vertex[2]);
 			}
 			
 			for each (var triangle:Array in primitive.triangles) 
 			{
-				mesh.indices.push(triangle[2], triangle[1], triangle[0]);
+				mesh.indices.push(triangle[0], triangle[1], triangle[2]);
 			}
 			
 			var uvset:Array = primitive.uvSets[0];
@@ -104,9 +143,9 @@
 			// Compule the uvs for each indices
 			for (var i:int = 0; i < uvset.length; i++) 
 			{
-				uvs.push(source.data[uvset[i][2]][0], source.data[uvset[i][2]][1]);
-				uvs.push(source.data[uvset[i][1]][0], source.data[uvset[i][1]][1]);
 				uvs.push(source.data[uvset[i][0]][0], source.data[uvset[i][0]][1]);
+				uvs.push(source.data[uvset[i][1]][0], source.data[uvset[i][1]][1]);
+				uvs.push(source.data[uvset[i][2]][0], source.data[uvset[i][2]][1]);
 			}
 			
 			mesh.uvts.length = mesh.vertices.length;

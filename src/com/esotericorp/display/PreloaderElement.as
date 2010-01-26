@@ -113,7 +113,7 @@ package com.esotericorp.display
 		private var projection:PerspectiveProjection = new PerspectiveProjection();
 		public function test(container:DisplayObjectContainer3DElement):void
 		{
-			for (var i:int = 0; i < container.numChildren; i++) 
+			/*for (var i:int = 0; i < container.numChildren; i++) 
 			{
 				if (container.getChildAt(i) is Mesh3DElement)
 				{
@@ -175,7 +175,7 @@ package com.esotericorp.display
 				{
 					test(container.getChildAt(i) as DisplayObjectContainer3DElement);
 				}
-			}
+			}*/
 		}
 
 	}

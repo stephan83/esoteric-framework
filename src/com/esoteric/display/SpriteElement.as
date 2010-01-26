@@ -41,6 +41,7 @@ package com.esoteric.display
 	import flash.display.DisplayObject;
 	import flash.display.InteractiveObject;
 	import flash.display.Sprite;
+	import flash.geom.Matrix3D;
 	
 	/**
 	* Generated 2008-08-03 07:32:29.801000 UTC.
@@ -72,63 +73,21 @@ package com.esoteric.display
 			return sprite = createSprite();
 		}
 		
-		/**
-		 * @inheritDoc
-		 */
-		override protected function childAddedHandler(e:PropertyChangeEvent):void 
+		override public function updateCoords(matrix:Matrix3D):void
 		{
-			super.childAddedHandler(e);
+			super.updateCoords(matrix);
 			
-			if (e.newValue is IDisplayObjectElement)
-				sprite.addChild(e.newValue.displayObject);
-		}
-		
-		/**
-		 * @inheritDoc
-		 */
-		override protected function childRemovedHandler(e:PropertyChangeEvent):void 
-		{
-			// TODO: find reason which hack is necessary
+			var child:IElement;
 			
-			try
+			for (var i:int = 0; i < numChildren; i++) 
 			{
-				if (e.oldValue is IDisplayObjectElement)
-					sprite.removeChild(e.oldValue.displayObject);
+				child = getChildAt(i);
+				
+				if (child is IDisplayObjectElement)
+				{
+					(child as IDisplayObjectElement).updateCoords(displayObject.transform.matrix3D.clone());
+				}
 			}
-			catch (error:Error)
-			{
-				
-			}
-				
-			super.childRemovedHandler(e);
-		}
-		
-		/**
-		 * @private
-		 */
-		override public function render():void 
-		{
-			// Reorder children based on z location
-			var faces:Array = new Array();
-			
-			while(sprite.numChildren)
-			{
-				var child:DisplayObject = sprite.getChildAt(0);
-				
-				faces[faces.length] = {
-					z:		child.transform.getRelativeMatrix3D(context.root.displayObject).position.z,
-					child:	sprite.removeChildAt(0)
-				};
-			} 
-			
-			faces.sortOn('z', Array.NUMERIC); 
-			
-			for (var i:int = 0; i < faces.length; i++) 
-			{ 
-				sprite.addChild(faces[i].child);
-			} 
-			
-			super.render();
 		}
 		
 		//---------------------------------------------------------------------

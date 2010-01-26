@@ -2,7 +2,7 @@
 	DO NOT MODIFY THIS FILE, THE CODE GENERATOR WILL ERASE ANY CHANGES MADE.
 	MAKE CHANGES TO THE DERIVED CLASS INSTEAD.
 
-	Last generated 2010-01-25 21:01:56.680000 UTC.
+	Last generated 2010-01-26 12:06:36.445000 UTC.
 
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	~                           Esoteric Framework                            ~
@@ -39,7 +39,6 @@
 
 package com.esoteric.display 
 {
-	import com.esoteric.core.TweenableElement;
 
 	import com.esoteric.core.Context;
 	import com.esoteric.events.ElementEvent;

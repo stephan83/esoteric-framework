@@ -125,8 +125,8 @@ package com.esoteric.display
 			interactiveObject.addEventListener(MouseEvent.MOUSE_OVER, mouseOverHandler, false, 0, true);
 			interactiveObject.addEventListener(MouseEvent.MOUSE_OUT, mouseOutHandler, false, 1, true);
 			interactiveObject.addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler, false, 0, true);
-			//context.stage.addEventListener(MouseEvent.MOUSE_UP, stageMouseUpHandler, false, 0, true);
-			//context.stage.addEventListener(MouseEvent.MOUSE_MOVE, stageMouseMoveHandler, false, 0, true);
+			//context.container.stage.addEventListener(MouseEvent.MOUSE_UP, stageMouseUpHandler, false, 0, true);
+			//context.container.stage.addEventListener(MouseEvent.MOUSE_MOVE, stageMouseMoveHandler, false, 0, true);
 			
 			_hasEventListeners = true;
 		}
@@ -142,8 +142,8 @@ package com.esoteric.display
 			interactiveObject.removeEventListener(MouseEvent.MOUSE_OVER, mouseOverHandler);
 			interactiveObject.removeEventListener(MouseEvent.MOUSE_OUT, mouseOutHandler);
 			interactiveObject.removeEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);
-			//context.stage.removeEventListener(MouseEvent.MOUSE_UP, stageMouseUpHandler);
-			//context.stage.removeEventListener(MouseEvent.MOUSE_MOVE, stageMouseMoveHandler);
+			//context.container.stage.removeEventListener(MouseEvent.MOUSE_UP, stageMouseUpHandler);
+			//context.container.stage.removeEventListener(MouseEvent.MOUSE_MOVE, stageMouseMoveHandler);
 			
 			_hasEventListeners = false;
 		}
@@ -225,11 +225,8 @@ package com.esoteric.display
 			var global:Point = new Point(e.stageX, e.stageY);
 			var local:Point = displayObject.globalToLocal(global);
 			
-			localX = local.x;
-			localY = local.y;
-			
-			globalX = e.stageX;
-			globalY = e.stageY;
+			mouseX = local.x;
+			mouseY = local.y;
 			
 			dispatchEvent(new PointInputEvent(PointInputEvent.MOVE, false, false, local.x, local.y, 0, e.stageX, e.stageY));
 			
@@ -266,11 +263,8 @@ package com.esoteric.display
 			
 			if (!hovered)
 			{
-				localX = local.x;
-				localY = local.y;
-				
-				globalX = e.stageX;
-				globalY = e.stageY;
+				mouseX = local.x;
+				mouseY = local.y;
 			}
 			
 			if (pressed)
@@ -297,10 +291,10 @@ package com.esoteric.display
 				{
 					hovered = false;
 					
-					var global:Point = new Point(context.stage.mouseX, context.stage.mouseY);
+					var global:Point = new Point(context.container.stage.mouseX, context.container.stage.mouseY);
 					var local:Point = displayObject.globalToLocal(global);
 					
-					dispatchEvent(new PointInputEvent(PointInputEvent.OUT, false, false, local.x, local.y, 0, context.stage.mouseX, context.stage.mouseY));
+					dispatchEvent(new PointInputEvent(PointInputEvent.OUT, false, false, local.x, local.y, 0, context.container.stage.mouseX, context.container.stage.mouseY));
 				}
 				
 				if (_hasEventListeners)
@@ -321,10 +315,10 @@ package com.esoteric.display
 				{
 					hovered = false;
 					
-					var global:Point = new Point(context.stage.mouseX, context.stage.mouseY);
+					var global:Point = new Point(context.container.stage.mouseX, context.container.stage.mouseY);
 					var local:Point = displayObject.globalToLocal(global);
 					
-					dispatchEvent(new PointInputEvent(PointInputEvent.OUT, false, false, local.x, local.y, 0, context.stage.mouseX, context.stage.mouseY));
+					dispatchEvent(new PointInputEvent(PointInputEvent.OUT, false, false, local.x, local.y, 0, context.container.stage.mouseX, context.container.stage.mouseY));
 				}
 				
 				if (_hasEventListeners)

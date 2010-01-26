@@ -34,7 +34,7 @@
 	-----                                                                 -----
 -->
 
-<Preloader mouseEnabled="true" scaleY="{this.scaleX}" useHandCursor="true" buttonMode="true" mouseChildren="true" x="500" y="400">
+<Preloader mouseEnabled="true" scaleY="{this.scaleX}" useHandCursor="true" buttonMode="true" mouseChildren="true" x="{stageWidth / 2}" y="{stageHeight / 2}" z="800" rotationX="0">
 	
 	
 	

@@ -15,25 +15,13 @@
 			"update": false,
 			"doc": false
 		},
-		"localX": {
+		"mouseX": {
 			"type":	"Number",
 			"desc": "",
 			"default": "0.0",
 			"update": false
 		},
-		"localY": {
-			"type":	"Number",
-			"desc": "",
-			"default": "0.0",
-			"update": false
-		},
-		"globalX": {
-			"type":	"Number",
-			"desc": "",
-			"default": "0.0",
-			"update": false
-		},
-		"globalY": {
+		"mouseY": {
 			"type":	"Number",
 			"desc": "",
 			"default": "0.0",

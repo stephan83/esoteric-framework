@@ -17,6 +17,54 @@
 			"update": false,
 			"doc": false
 		},
+		"x": {
+			"object": "displayObject",
+			"property": "x",
+			"type":	"Number",
+			"default": "0.0",
+			"desc": "The vertical position of the display object.",
+			"doc": false
+		},
+		"y": {
+			"type":	"Number",
+			"default": "0.0",
+			"desc": "The horizontal position of the display object."
+		},
+		"z": {
+			"type":	"Number",
+			"default": "0.0",
+			"desc": "The depth of the display object."
+		},
+		"scaleX": {
+			"type":	"Number",
+			"default": "1.0",
+			"desc": "The horizontal scaling factor of the display object."
+		},
+		"scaleY": {
+			"type":	"Number",
+			"default": "1.0",
+			"desc": "The vertical scaling factor of the display object."
+		},
+		"scaleZ": {
+			"type":	"Number",
+			"default": "1.0",
+			"desc": "The depth scaling factor of the display object."
+		},
+		"rotationX": {
+			"type":	"Number",
+			"default": "0.0",
+			"desc": "The rotation of the display object around the x-axis, in degrees."
+		},
+		"rotationY": {
+			"type":	"Number",
+			"default": "0.0",
+			"desc": "The rotation of the display object around the y-axis, in degrees."
+		},
+		"rotationZ": {
+			"type":	"Number",
+			"default": "0.0",
+			"desc": "The rotation of the display object around the z-axis, in degrees."
+		},
 		"width": {
 			"type":	"Number",
 			"desc": "The width of the display object.",
@@ -43,51 +91,6 @@
 	},
 	
 	"objectProperties": {
-		"x": {
-			"object": "displayObject",
-			"property": "x",
-			"type":	"Number",
-			"default": "0.0",
-			"desc": "The vertical position of the display object.",
-			"doc": false
-		},
-		"y": {
-			"object": "displayObject",
-			"property": "y",
-			"type":	"Number",
-			"default": "0.0",
-			"desc": "The horizontal position of the display object.",
-			"doc": false
-		},
-		"z": {
-			"object": "displayObject",
-			"property": "z",
-			"type":	"Number",
-			"default": "0.0",
-			"desc": "The depth of the display object.",
-			"doc": false
-		},
-		"scaleX": {
-			"object": "displayObject",
-			"property": "scaleX",
-			"type":	"Number",
-			"default": "1.0",
-			"desc": "The horizontal scaling factor of the display object."
-		},
-		"scaleY": {
-			"object": "displayObject",
-			"property": "scaleY",
-			"type":	"Number",
-			"default": "1.0",
-			"desc": "The vertical scaling factor of the display object."
-		},
-		"scaleZ": {
-			"object": "displayObject",
-			"property": "scaleZ",
-			"type":	"Number",
-			"default": "1.0",
-			"desc": "The depth scaling factor of the display object."
-		},
 		"visible": {
 			"object": "displayObject",
 			"property": "visible",
@@ -101,27 +104,6 @@
 			"type":	"Number",
 			"default": "1.0",
 			"desc": "The alpha value of the display object."
-		},
-		"rotationX": {
-			"object": "displayObject",
-			"property": "rotationX",
-			"type":	"Number",
-			"default": "0.0",
-			"desc": "The rotation of the display object around the x-axis, in degrees."
-		},
-		"rotationY": {
-			"object": "displayObject",
-			"property": "rotationY",
-			"type":	"Number",
-			"default": "0.0",
-			"desc": "The rotation of the display object around the y-axis, in degrees."
-		},
-		"rotationZ": {
-			"object": "displayObject",
-			"property": "rotationZ",
-			"type":	"Number",
-			"default": "0.0",
-			"desc": "The rotation of the display object around the s-axis, in degrees."
 		},
 		"cacheAsBitmap": {
 			"object": "displayObject",

@@ -35,6 +35,9 @@
 	
 package com.esoteric.core 
 {
+	import flash.display.DisplayObject;
+	import flash.display.DisplayObjectContainer;
+	import flash.geom.Matrix3D;
 	import flash.sampler.clearSamples;
 	import flash.sampler.DeleteObjectSample;
 	import flash.sampler.getSamples;
@@ -90,7 +93,29 @@ package com.esoteric.core
 			context.renderQueue.render();
 			
 			// TEMPORARY REMOVE THIS!!!!!!!!!!
+			context.root.updateCoords(new Matrix3D());
 			context.root.render();
+			
+			// Reorder children based on z location
+			/*var faces:Array = new Array();
+			var container:DisplayObjectContainer = context.container;
+			
+			while(container.numChildren)
+			{
+				var child:DisplayObject = container.getChildAt(0);
+				
+				faces[faces.length] = {
+					z:		child.transform.getRelativeMatrix3D(context.root.displayObject).position.z,
+					child:	container.removeChildAt(0)
+				};
+			} 
+			
+			faces.sortOn('z', Array.NUMERIC); 
+			
+			for (var i:int = 0; i < faces.length; i++) 
+			{ 
+				container.addChild(faces[i].child);
+			} */
 			
 			pauseSampling();
 			

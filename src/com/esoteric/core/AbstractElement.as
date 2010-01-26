@@ -413,7 +413,7 @@ package com.esoteric.core
 		 */
 		private function childUpdatedHandler(e:ElementEvent):void 
 		{
-			_context.renderQueue.add(_target);
+			//_context.renderQueue.add(_target);
 		}
 		
 	}

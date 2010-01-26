@@ -36,6 +36,11 @@ package com.esoteric.display
 {
 	import com.esoteric.core.Context;
 	import com.esoteric.core.IElement;
+	import flash.display.DisplayObject;
+	import flash.display.Sprite;
+	import flash.geom.Matrix3D;
+	import flash.geom.Orientation3D;
+	import flash.geom.Vector3D;
 	
 	public class DisplayObject3DElement extends AbstractDisplayObject3DElement
 	{
@@ -51,7 +56,35 @@ package com.esoteric.display
 		{
 			super(context, kind);
 		}
-
+		
+		//---------------------------------------------------------------------
+		// Members
+		//---------------------------------------------------------------------
+		
+		/**
+		 * Transform matrix.
+		 */
+		protected var _transformMatrix:Matrix3D = new Matrix3D();
+		
+		//---------------------------------------------------------------------
+		// Overrides
+		//---------------------------------------------------------------------
+		
+		/**
+		 * @inheritDoc
+		 */
+		override public function updateCoords(matrix:Matrix3D):void
+		{
+			_transformMatrix.identity();
+			_transformMatrix.appendScale(scaleX, scaleY, scaleZ);
+			_transformMatrix.appendRotation(rotationX, Vector3D.X_AXIS);
+			_transformMatrix.appendRotation(rotationY, Vector3D.Y_AXIS);
+			_transformMatrix.appendRotation(rotationZ, Vector3D.Z_AXIS);
+			_transformMatrix.appendTranslation(x, y, z);
+			_transformMatrix.append(matrix);
+			
+			context.renderQueue.add(this);
+		}
 
 	}
 	

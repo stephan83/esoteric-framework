@@ -54,7 +54,7 @@ package com.esoteric.core
 			
 			if (_rendering)
 			{
-				if (!isInNextQueue(element))
+				if (!isInQueue(element) && !isInNextQueue(element))
 				{
 					for (i = 0; i < _nextIElements.length; i++) 
 					{

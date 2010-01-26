@@ -45,6 +45,9 @@ package com.esoteric.display
 	import com.esoteric.utils.BindableArray;
 	import com.esoteric.utils.Watcher;
 	import flash.display.DisplayObject;
+	import flash.geom.Matrix3D;
+	import flash.geom.Orientation3D;
+	import flash.geom.Vector3D;
 	
 	/**
 	* Generated 2008-08-03 07:26:09.918000 UTC.
@@ -68,6 +71,32 @@ package com.esoteric.display
 			new Watcher(this, 'hiddenAncestor', hiddenAncestorWatcher);
 			
 			displayObject = createDisplayObject();
+			
+			// Enabled 3D
+			displayObject.z = 0;
+			
+			context.container.addChild(displayObject);
+		}
+		
+		
+		//---------------------------------------------------------------------
+		// Implementations
+		//---------------------------------------------------------------------
+		
+		/**
+		 * @inheritDoc
+		 */
+		public function updateCoords(matrix:Matrix3D):void
+		{
+			displayObject.transform.matrix3D.identity();
+			displayObject.transform.matrix3D.appendScale(scaleX, scaleY, scaleZ);
+			displayObject.transform.matrix3D.appendRotation(rotationX, Vector3D.X_AXIS);
+			displayObject.transform.matrix3D.appendRotation(rotationY, Vector3D.Y_AXIS);
+			displayObject.transform.matrix3D.appendRotation(rotationZ, Vector3D.Z_AXIS);
+			displayObject.transform.matrix3D.appendTranslation(x, y, z);
+			displayObject.transform.matrix3D.append(matrix);
+			
+			context.renderQueue.add(this);
 		}
 		
 		//---------------------------------------------------------------------
@@ -82,6 +111,16 @@ package com.esoteric.display
 			super.initialize();
 			
 			hiddenAncestor = !(parent is DisplayObjectElement || context.root == this);
+		}
+		
+		/**
+		 * @inheritDoc
+		 */
+		override public function destroy():void 
+		{
+			context.container.removeChild(displayObject);
+			
+			super.destroy();
 		}
 		
 		// The mask property is a little tricky so it is overridden.
@@ -190,7 +229,6 @@ package com.esoteric.display
 				super.startTween(prop, endValue, duration, easingFunc, yoyo);
 			}
 		}
-		
 		
 		//---------------------------------------------------------------------
 		// Methods

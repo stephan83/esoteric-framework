@@ -15,10 +15,11 @@
 	import flash.events.ProgressEvent;
 	import flash.utils.getDefinitionByName;
 	
-	[SWF(backgroundColor='#000000', frameRate='30')]
+	[SWF(backgroundColor='#ffffff', frameRate='30')]
 	
 	/**
-	 * ...
+	 * The preloader.
+	 * 
 	 * @author Stephan Florquin
 	 */
 	public class Preloader extends MovieClip 
@@ -35,7 +36,7 @@
 			
 			var factory:ElementFactory = new ElementFactory();
 			factory.add('Preloader', new StaticElementBuilder(PreloaderElement));
-			_context = new Context(stage, factory);
+			_context = new Context(this, factory);
 			var root:PreloaderElement = XMLParser.parseNode(<Preloader />, _context, null, true) as PreloaderElement;
 			
 			addChild(root.sprite);

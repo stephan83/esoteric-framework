@@ -36,6 +36,7 @@ package com.esoteric.display
 {
 	import com.esoteric.core.Context;
 	import com.esoteric.core.IElement;
+	import flash.geom.Matrix3D;
 	
 	public class DisplayObjectContainer3DElement extends AbstractDisplayObjectContainer3DElement
 	{
@@ -50,6 +51,23 @@ package com.esoteric.display
 		public function DisplayObjectContainer3DElement(context:Context, kind:String) 
 		{
 			super(context, kind);
+		}
+		
+		override public function updateCoords(matrix:Matrix3D):void
+		{
+			super.updateCoords(matrix);
+			
+			var child:IElement;
+			
+			for (var i:int = 0; i < numChildren; i++) 
+			{
+				child = getChildAt(i);
+				
+				if (child is IDisplayObjectElement)
+				{
+					(child as IDisplayObjectElement).updateCoords(_transformMatrix.clone());
+				}
+			}
 		}
 
 

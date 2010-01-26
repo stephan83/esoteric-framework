@@ -35,6 +35,7 @@
 package com.esoteric.display 
 {
 	import flash.display.DisplayObject;
+	import flash.geom.Matrix3D;
 	/**
 	* @author Stephan Florquin
 	*/
@@ -49,6 +50,17 @@ package com.esoteric.display
 		 * The display object.
 		 */
 		function get displayObject():DisplayObject;
+		
+		//---------------------------------------------------------------------
+		// Members
+		//---------------------------------------------------------------------
+		
+		/**
+		 * Updates the global coords according to parent.
+		 * 
+		 * @param	matrix	the parent transformation matrix
+		 */
+		function updateCoords(matrix:Matrix3D):void;
 	}
 	
 }
