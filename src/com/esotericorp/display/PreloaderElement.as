@@ -89,10 +89,11 @@ package com.esotericorp.display
 			addChild(container);
 			container.initialize();
 			Collada.loadCOLLADA(context, container, xml);
-			texture.bitmapData.fillRect(new Rectangle(0, 0, 128, 128), 0xaaffffff);
-			texture.bitmapData.fillRect(new Rectangle(0, 128, 128, 128), 0xaafff000);
-			texture.bitmapData.fillRect(new Rectangle(128, 0, 128, 128), 0xaa000fff);
-			texture.bitmapData.fillRect(new Rectangle(128, 128, 128, 128), 0xaaffffff);
+			/*texture.bitmapData.fillRect(new Rectangle(0, 0, 128, 128), 0xffffffff);
+			texture.bitmapData.fillRect(new Rectangle(0, 128, 128, 128), 0xfffff000);
+			texture.bitmapData.fillRect(new Rectangle(128, 0, 128, 128), 0xff000fff);
+			texture.bitmapData.fillRect(new Rectangle(128, 128, 128, 128), 0xffffffff);*/
+			texture = new _concret();
 			super.initialize();
 		}
 		
@@ -147,7 +148,7 @@ package com.esotericorp.display
 						inc++;
 					}
 					
-					faces.sortOn('w', Array.NUMERIC);
+					faces.sortOn('w', Array.NUMERIC | Array.DESCENDING);
 					
 					inc = 0;
 					
