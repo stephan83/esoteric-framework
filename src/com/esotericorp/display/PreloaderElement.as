@@ -43,6 +43,7 @@ package com.esotericorp.display
 	import flash.display.BitmapData;
 	import flash.display.TriangleCulling;
 	import flash.events.Event;
+	import flash.geom.Matrix;
 	import flash.geom.Matrix3D;
 	import flash.geom.PerspectiveProjection;
 	import flash.geom.Point;
@@ -93,7 +94,10 @@ package com.esotericorp.display
 			texture.bitmapData.fillRect(new Rectangle(0, 128, 128, 128), 0xfffff000);
 			texture.bitmapData.fillRect(new Rectangle(128, 0, 128, 128), 0xff000fff);
 			texture.bitmapData.fillRect(new Rectangle(128, 128, 128, 128), 0xffffffff);*/
-			texture = new _concret();
+			var concrete:Bitmap = new _concret();
+			var matrix:Matrix = new Matrix();
+			//matrix.scale(.5, .5)
+			texture.draw(concrete.bitmapData, matrix);
 			super.initialize();
 		}
 		
@@ -105,7 +109,8 @@ package com.esotericorp.display
 		}
 		
 		public var rotY:Number = 0;
-		public var texture:Bitmap = new Bitmap(new BitmapData(256, 256));
+		public var texture:BitmapData = new BitmapData(1024, 1024);
+		private var projection:PerspectiveProjection = new PerspectiveProjection();
 		public function test(container:DisplayObjectContainer3DElement):void
 		{
 			for (var i:int = 0; i < container.numChildren; i++) 
@@ -114,38 +119,41 @@ package com.esotericorp.display
 				{
 					var mesh:Mesh3DElement = container.getChildAt(i) as Mesh3DElement;
 					
-					var verts:Vector.<Number> = new Vector.<Number>;
+					var verts:Vector.<Number> = new Vector.<Number>(mesh.vertices.length * 2 / 3, true);
 					var sortedIndices:Vector.<int> = new Vector.<int>(mesh.indices.length, true);
 					
 					var matrix:Matrix3D = new Matrix3D();
-					matrix.identity();
 					matrix.appendRotation(rotY+=.3, Vector3D.Y_AXIS);
-					matrix.appendRotation(20, Vector3D.X_AXIS);
-					matrix.appendTranslation(0, 0, -1000);
+					matrix.appendRotation(30, Vector3D.X_AXIS);
+					matrix.appendTranslation(0, 0, -800);
 					
-					var projection:PerspectiveProjection = new PerspectiveProjection();
 					projection.fieldOfView = 60;
 					
 					matrix.append(projection.toMatrix3D());
 					
-					Utils3D.projectVectors(matrix, mesh.vertices, verts, mesh.uvts);
+					var vertices:Vector.<Number> = mesh.vertices;
+					var indices:Vector.<int> = mesh.indices;
+					var uvts:Vector.<Number> = mesh.uvts;
 					
-					var faces:Array = [];
+					Utils3D.projectVectors(matrix, vertices, verts, uvts);
+					
+					var faces:Array = new Array(mesh.indices.length / 3);
 					var face:Vector3D;
 					var inc:int = 0;
 					
-					for (var j:int = 0; j < mesh.indices.length; j += 3) 
+					for (var j:int = 0; j < mesh.indices.length; j ++) 
 					{
-						faces[inc] = new Vector3D();
+						faces[inc] = new Vector3D();	// should preallocate this
 						
 						face = faces[inc];
 						
-						face.x = mesh.indices[j];				// point index 1
-						face.y = mesh.indices[int(j + 1)];		// point index 2
-						face.z = mesh.indices[int(j + 2)];		// point index 3
+						face.x = indices[j];			// point index 1
+						face.y = indices[int(++j)];		// point index 2
+						face.z = indices[int(++j)];		// point index 3
 						
-						face.w = (mesh.uvts[int(face.x * 3 + 2)] + mesh.uvts[int(face.y * 3 + 2)] + mesh.uvts[int(face.z * 3 + 2)]) * 0.333333;
-						inc++;
+						face.w = (uvts[int(face.x * 3 + 2)] + uvts[int(face.y * 3 + 2)] + uvts[int(face.z * 3 + 2)]) * 0.333333;
+						
+						++inc;
 					}
 					
 					faces.sortOn('w', Array.NUMERIC | Array.DESCENDING);
@@ -159,8 +167,8 @@ package com.esotericorp.display
 						sortedIndices[inc++] = face.z;
 					}
 					
-					sprite.graphics.beginBitmapFill(texture.bitmapData);
-					sprite.graphics.drawTriangles(verts, sortedIndices, mesh.uvts, TriangleCulling.POSITIVE);
+					sprite.graphics.beginBitmapFill(texture);
+					sprite.graphics.drawTriangles(verts, sortedIndices, uvts, TriangleCulling.POSITIVE);
 					sprite.graphics.endFill();
 				}
 				else if (container.getChildAt(i) is DisplayObjectContainer3DElement)
