@@ -89,7 +89,7 @@ package com.esotericorp.display
 			addChild(container);
 			container.initialize();
 			Collada.loadCOLLADA(context, container, xml);
-			texture.bitmapData.fillRect(new Rectangle(0, 0, 256, 256), 0x33ff00ff);
+			texture.bitmapData.fillRect(new Rectangle(0, 0, 256, 256), 0xffffffff);
 			super.initialize();
 		}
 		
@@ -130,18 +130,17 @@ package com.esotericorp.display
 					var face:Vector3D;
 					var inc:int = 0;
 					
-					/*for (var j:int = 0; j < mesh.indices.length; j+=3) 
+					for (var j:int = 0; j < mesh.indices.length; j += 3) 
 					{
 						faces[inc] = new Vector3D();
+						
 						face = faces[inc];
 						
-						face.x = mesh.indices[j];
-						face.y = mesh.indices[int(j + 1)];
-						face.z = mesh.indices[int(j + 2)];
+						face.x = mesh.indices[j];				// point index 1
+						face.y = mesh.indices[int(j + 1)];		// point index 2
+						face.z = mesh.indices[int(j + 2)];		// point index 3
 						
-						var j3:int = j * 3;
-						
-						face.w = (mesh.uvts[int(j3 + 2)] + mesh.uvts[int(j3 + 5)] + mesh.uvts[int(j3 + 8)]) * 0.333333;
+						face.w = (mesh.uvts[int(face.x * 3 + 2)] + mesh.uvts[int(face.y * 3 + 2)] + mesh.uvts[int(face.z * 3 + 2)]) * 0.333333;
 						
 						inc++;
 					}
@@ -155,13 +154,12 @@ package com.esotericorp.display
 						sortedIndices[inc++] = face.x;
 						sortedIndices[inc++] = face.y;
 						sortedIndices[inc++] = face.z;
-					}*/
+					}
 					
 					sprite.graphics.beginBitmapFill(texture.bitmapData);
-					sprite.graphics.drawTriangles(verts, mesh.indices, mesh.uvts, TriangleCulling.POSITIVE);
+					sprite.graphics.lineStyle(1, 0xff000f, .5);
+					sprite.graphics.drawTriangles(verts, sortedIndices, mesh.uvts, TriangleCulling.POSITIVE);
 					sprite.graphics.endFill();
-					
-					trace(mesh.uvts);
 				}
 				else if (container.getChildAt(i) is DisplayObjectContainer3DElement)
 				{
