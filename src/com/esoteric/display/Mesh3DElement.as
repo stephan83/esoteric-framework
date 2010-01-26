@@ -39,6 +39,8 @@ package com.esoteric.display
 	import com.esoteric.events.PropertyChangeEvent;
 	import com.esoteric.utils.Watcher;
 	import flash.display.Bitmap;
+	import flash.display.DisplayObject;
+	import flash.display.Sprite;
 	import flash.display.TriangleCulling;
 	import flash.geom.Matrix3D;
 	import flash.geom.PerspectiveProjection;
@@ -116,16 +118,16 @@ package com.esoteric.display
 				_faces[i] = new Vector3D();
 			}
 			
-			if (vertices && indices && uvts)
+			if (vertices.length && indices.length && uvts.length)
 			{
 				var matrix:Matrix3D = _transformMatrix.clone();
-				trace(matrix.decompose());
-				// todo: CAMERA
-				var perspective:PerspectiveProjection = new PerspectiveProjection();
-				perspective.fieldOfView = 60;
-				perspective.projectionCenter = new Point(0, 0);
-				matrix.append(perspective.toMatrix3D());
 				
+				// todo: CAMERA
+				
+				
+				matrix.append(context.container.root.transform.perspectiveProjection.toMatrix3D());
+				
+				// project vertices
 				Utils3D.projectVectors(matrix, vertices, _pVerts, uvts);
 				
 				var face:Vector3D;

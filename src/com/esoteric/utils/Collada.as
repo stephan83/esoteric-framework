@@ -143,9 +143,9 @@
 			// Compule the uvs for each indices
 			for (var i:int = 0; i < uvset.length; i++) 
 			{
-				uvs.push(source.data[uvset[i][0]][0], source.data[uvset[i][0]][1]);
-				uvs.push(source.data[uvset[i][1]][0], source.data[uvset[i][1]][1]);
-				uvs.push(source.data[uvset[i][2]][0], source.data[uvset[i][2]][1]);
+				uvs.push(source.data[uvset[i][0]][0], 1 - source.data[uvset[i][0]][1]);
+				uvs.push(source.data[uvset[i][1]][0], 1 - source.data[uvset[i][1]][1]);
+				uvs.push(source.data[uvset[i][2]][0], 1 - source.data[uvset[i][2]][1]);
 			}
 			
 			mesh.uvts.length = mesh.vertices.length;

@@ -75,7 +75,7 @@ package com.esoteric.display
 			// Enabled 3D
 			displayObject.z = 0;
 			
-			context.container.addChild(displayObject);
+			context.dispList.push(this);
 		}
 		
 		
@@ -99,6 +99,14 @@ package com.esoteric.display
 			context.renderQueue.add(this);
 		}
 		
+		/**
+		 * @inheritDoc
+		 */
+		public function get globalZ():Number
+		{
+			return displayObject.transform.matrix3D.position.z;
+		}
+		
 		//---------------------------------------------------------------------
 		// Overridden properties
 		//---------------------------------------------------------------------
@@ -118,7 +126,13 @@ package com.esoteric.display
 		 */
 		override public function destroy():void 
 		{
-			context.container.removeChild(displayObject);
+			for (var i:int = 0; i < context.dispList.length; i++) 
+			{
+				if (context.dispList[i] = this){
+					context.dispList.splice(i , 1);					
+					return;
+				}
+			}
 			
 			super.destroy();
 		}

@@ -36,6 +36,7 @@ package com.esoteric.display
 {
 	import flash.display.DisplayObject;
 	import flash.geom.Matrix3D;
+	import flash.geom.Vector3D;
 	/**
 	* @author Stephan Florquin
 	*/
@@ -61,6 +62,13 @@ package com.esoteric.display
 		 * @param	matrix	the parent transformation matrix
 		 */
 		function updateCoords(matrix:Matrix3D):void;
+		
+		/**
+		 * Returns the global z position of the objet. Used for sorting.
+		 * 
+		 * @return the global z position of the objet
+		 */
+		function get globalZ():Number;
 	}
 	
 }

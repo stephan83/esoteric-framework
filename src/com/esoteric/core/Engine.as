@@ -97,25 +97,19 @@ package com.esoteric.core
 			context.root.render();
 			
 			// Reorder children based on z location
-			/*var faces:Array = new Array();
 			var container:DisplayObjectContainer = context.container;
 			
 			while(container.numChildren)
 			{
-				var child:DisplayObject = container.getChildAt(0);
-				
-				faces[faces.length] = {
-					z:		child.transform.getRelativeMatrix3D(context.root.displayObject).position.z,
-					child:	container.removeChildAt(0)
-				};
+				container.removeChildAt(0)
 			} 
 			
-			faces.sortOn('z', Array.NUMERIC); 
+			context.dispList.sortOn('globalZ', Array.NUMERIC | Array.DESCENDING); 
 			
-			for (var i:int = 0; i < faces.length; i++) 
+			for (var i:int = 0; i < context.dispList.length; i++) 
 			{ 
-				container.addChild(faces[i].child);
-			} */
+				container.addChild(context.dispList[i].displayObject);
+			}
 			
 			pauseSampling();
 			

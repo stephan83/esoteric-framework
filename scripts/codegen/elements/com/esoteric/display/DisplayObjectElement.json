@@ -18,12 +18,9 @@
 			"doc": false
 		},
 		"x": {
-			"object": "displayObject",
-			"property": "x",
 			"type":	"Number",
 			"default": "0.0",
-			"desc": "The vertical position of the display object.",
-			"doc": false
+			"desc": "The vertical position of the display object."
 		},
 		"y": {
 			"type":	"Number",

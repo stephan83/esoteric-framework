@@ -150,6 +150,11 @@ package com.esoteric.core
 		 */
 		private var _renderQueue:RenderQueue;
 		
+		/**
+		 * @private
+		 */
+		private var _dispList:Array = new Array();
+		
 		//---------------------------------------------------------------------
 		// Methods
 		//---------------------------------------------------------------------
@@ -232,6 +237,16 @@ package com.esoteric.core
 		public function set container(value:DisplayObjectContainer):void 
 		{
 			_container = value;
+		}
+		
+		/**
+		 * The display list.
+		 */
+		public function get dispList():Array { return _dispList; }
+		
+		public function set dispList(value:Array):void 
+		{
+			_dispList = value;
 		}
 		
 		/**

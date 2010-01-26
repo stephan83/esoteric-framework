@@ -85,6 +85,14 @@ package com.esoteric.display
 			
 			context.renderQueue.add(this);
 		}
+		
+		/**
+		 * @inheritDoc
+		 */
+		override public function get globalZ():Number
+		{
+			return _transformMatrix.position.z;
+		}
 
 	}
 	
