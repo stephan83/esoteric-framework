@@ -46,6 +46,7 @@ package com.esoteric.core
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Stage;
 	import flash.events.Event;
+	import flash.events.MouseEvent;
 	
 	/**
 	 * Render context.
@@ -104,6 +105,7 @@ package com.esoteric.core
 			_closure['Math'] = Math;
 			
 			_container.stage.addEventListener(Event.RESIZE, resizeHandler);
+			_container.stage.addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);
 		}
 		
 		//---------------------------------------------------------------------
@@ -256,6 +258,15 @@ package com.esoteric.core
 		{
 			_closure['stageWidth'] = e.target.stageWidth;
 			_closure['stageHeight'] = e.target.stageHeight;
+		}
+		
+		/**
+		 * @private
+		 */
+		private function mouseMoveHandler(e:MouseEvent):void 
+		{
+			_closure['mouseX'] = e.stageX;
+			_closure['mouseY'] = e.stageY;
 		}
 		
 	}

@@ -358,6 +358,16 @@ package com.esoteric.equery
 			return this;
 		}
 		
+		public function $mousemove(handler:Function):EQueryObject
+		{
+			for each (var element:IElement in _elementSet.result) 
+			{
+				element.addEventListener(PointInputEvent.MOVE, handler, false, 0, true);
+			}
+			
+			return this;
+		}
+		
 		
 		public function $change(handler:Function, property:*):EQueryObject
 		{

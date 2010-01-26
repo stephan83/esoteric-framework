@@ -118,14 +118,17 @@ package com.esoteric.display
 				_faces[i] = new Vector3D();
 			}
 			
-			if (vertices.length && indices.length && uvts.length)
+			if (vertices.length && indices.length && uvts.length && displayObject.stage)
 			{
 				var matrix:Matrix3D = _transformMatrix.clone();
 				
 				// todo: CAMERA
-				
-				
-				matrix.append(context.container.root.transform.perspectiveProjection.toMatrix3D());
+				matrix.appendTranslation( -displayObject.stage.stageWidth / 2, -displayObject.stage.stageHeight / 2, 0);
+				var pp:PerspectiveProjection = new PerspectiveProjection();
+				pp.fieldOfView = 60;
+				matrix.append(pp.toMatrix3D());
+				displayObject.x = displayObject.stage.stageWidth / 2;
+				displayObject.y = displayObject.stage.stageHeight / 2;
 				
 				// project vertices
 				Utils3D.projectVectors(matrix, vertices, _pVerts, uvts);
@@ -142,8 +145,6 @@ package com.esoteric.display
 					face.z = indices[int(++i)];		// point index 3
 					
 					face.w = (uvts[int(face.x * 3 + 2)] + uvts[int(face.y * 3 + 2)] + uvts[int(face.z * 3 + 2)]) * 0.333333;
-					
-					//++inc;
 				}
 				
 				_faces.sortOn('w', Array.NUMERIC);
@@ -157,7 +158,7 @@ package com.esoteric.display
 					_sortedIndices[i++] = face.z;
 				}
 				
-				sprite.graphics.beginBitmapFill(texture.bitmapData);
+				sprite.graphics.beginBitmapFill(texture.bitmapData, null, false, true);
 				//sprite.graphics.lineStyle(1, 0xff000f);
 				sprite.graphics.drawTriangles(_pVerts, _sortedIndices, uvts, TriangleCulling.POSITIVE);
 				sprite.graphics.endFill();

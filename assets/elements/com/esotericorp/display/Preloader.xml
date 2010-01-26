@@ -34,12 +34,7 @@
 	-----                                                                 -----
 -->
 
-<Preloader mouseEnabled="true" scaleY="{this.scaleX}" useHandCursor="true" buttonMode="true" mouseChildren="true" x="{stageWidth / 2}" y="{stageHeight / 2}" z="1200" rotationX="0">
+<Preloader mouseEnabled="true" scaleY="{this.scaleX}" useHandCursor="true" buttonMode="true" mouseChildren="true" x="{stageWidth / 2 - 200}" y="{stageHeight / 2}" z="800" rotationY="{mouseX}" rotationX="{mouseY / 10}">
 	
-	<Script>
-		<![CDATA[
-			$('preloader').$animate('rotationY', 720, 30);
-		]]>
-	</Script>
 	
 </Preloader>
