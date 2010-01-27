@@ -34,23 +34,13 @@
 
 package com.esoteric.display 
 {
-	import flash.display.DisplayObject;
 	import flash.geom.Matrix3D;
-	import flash.geom.Vector3D;
+	
 	/**
 	* @author Stephan Florquin
 	*/
 	public interface IDisplayObjectElement
 	{
-		
-		//---------------------------------------------------------------------
-		// Getters & setters
-		//---------------------------------------------------------------------
-		
-		/**
-		 * The display object.
-		 */
-		function get displayObject():DisplayObject;
 		
 		//---------------------------------------------------------------------
 		// Members

@@ -18,6 +18,7 @@
 	the rights to use, copy, modify, merge, publish, distribute, sublicense,
 	and / or sell	copies of the Software, and to permit persons to whom the
 	Software is furnished to do so, subject to the following conditions:
+	Software is furnished to do so, subject to the following conditions:
 
 	The above copyright notice and this permission notice shall be included in
 	all copies or substantial portions of the Software.
@@ -35,6 +36,7 @@
 	
 package com.esoteric.core 
 {
+	import com.esoteric.display.IDisplayObject2DElement;
 	import com.esoteric.display.IDisplayObjectElement;
 	import com.esoteric.display.Mesh3DElement;
 	import flash.display.DisplayObject;
@@ -42,6 +44,8 @@ package com.esoteric.core
 	import flash.display.Shape;
 	import flash.display.Sprite;
 	import flash.geom.Matrix3D;
+	import flash.geom.PerspectiveProjection;
+	import flash.geom.Point;
 	import flash.geom.Vector3D;
 	import flash.sampler.clearSamples;
 	import flash.sampler.DeleteObjectSample;
@@ -72,6 +76,8 @@ package com.esoteric.core
 		{
 			_context = context;
 			_lastSecond = getTimer();
+			
+			_context.container.transform.perspectiveProjection = new PerspectiveProjection();
 		}
 		
 		//---------------------------------------------------------------------
@@ -156,9 +162,15 @@ package com.esoteric.core
 		/**
 		 * @private
 		 */
-		private function renderScene(context:Context):void
+		private function renderScene():void
 		{
 			clear();
+			
+			var container:DisplayObjectContainer = _context.container;
+			var pp:PerspectiveProjection = container.transform.perspectiveProjection;
+			pp.fieldOfView = 60;
+			pp.projectionCenter = new Point(container.stage.stageWidth / 2, container.stage.stageHeight / 2);
+			container.transform.perspectiveProjection = pp;
 			
 			switch(_triangleSortMode)
 			{
@@ -174,89 +186,6 @@ package com.esoteric.core
 				renderSortScene();
 				break;
 			}
-			
-			// Reorder children based on z location
-			var container:DisplayObjectContainer = context.container;
-			
-			while(container.numChildren)
-			{
-				container.removeChildAt(0)
-			}
-			
-			//context.dispList.sortOn('globalZ', Array.NUMERIC | Array.DESCENDING); 
-			
-			var mesh:Mesh3DElement;
-			var faces:Array = new Array();
-			var colors:Array = new Array();
-			
-			for (var k:int = 0; k < 1000; k++) 
-			{
-				colors[k] = k * 30;
-			}
-			
-			for (var ind:int = 0; ind < context.dispList.length; ind++) 
-			{
-				if (context.dispList[ind] is Mesh3DElement)
-				{
-					mesh = context.dispList[ind] as Mesh3DElement;
-					mesh.clear();
-					
-					var pVerts:Vector.<Number> = mesh.projectVertices();
-					var uvts:Vector.<Number> = mesh.uvts;
-					var indices:Vector.<int> = mesh.indices;
-					var face:Object;
-					
-					for (var i:int = 0; i < indices.length; i++) 
-					{
-						faces.push({mesh: mesh});
-						face = faces[faces.length - 1];
-						
-						face.v1 = indices[i];				// point index 1
-						face.v2 = indices[int(++i)];		// point index 2
-						face.v3 = indices[int(++i)];		// point index 3
-						
-						face.t = (uvts[int(face.v1 * 3 + 2)] + uvts[int(face.v2 * 3 + 2)] + uvts[int(face.v3 * 3 + 2)]) * 0.333333;
-					}
-					
-				}
-				
-				container.addChild(context.dispList[ind].displayObject);
-			}
-			
-			if (faces.length)
-			{
-				faces.sortOn('t', Array.NUMERIC);
-				
-				var currMesh:Mesh3DElement = faces[0].mesh;
-				var sortedIndices:Vector.<int> = new Vector.<int>();
-				
-				i = 0;
-				var j:int = 0;
-				for each (face in faces) 
-				{
-					if (face.mesh == currMesh)
-					{
-						sortedIndices[i++] = face.v1;
-						sortedIndices[i++] = face.v2;
-						sortedIndices[i++] = face.v3;
-					}
-					else
-					{
-						currMesh.drawTriangles(sortedIndices, colors[j]);
-						sortedIndices = new Vector.<int>();
-						currMesh = face.mesh;
-						i = 0; j++;
-						sortedIndices[i++] = face.v1;
-						sortedIndices[i++] = face.v2;
-						sortedIndices[i++] = face.v3;
-					}
-				}
-				//trace(j);
-				if (sortedIndices.length)
-				{
-					currMesh.drawTriangles(sortedIndices, colors[j]);
-				}
-			}
 		}
 		
 		/**
@@ -269,7 +198,7 @@ package com.esoteric.core
 			
 			for (var i:int = 0; i < length; i++) 
 			{
-				container.removeChildAt(i);
+				container.removeChildAt(0);
 			}
 			
 			_currShape = 0;
@@ -278,28 +207,26 @@ package com.esoteric.core
 		/**
 		 * @private
 		 */
-		private function renderNone():void
+		private function renderSortNone():void
 		{
 			var container:DisplayObjectContainer = _context.container;
 			var dispList:Array = _context.dispList;
-			var dispObj2D:IDisplayObjectElement2D;
-			var dispObj3D:IDisplayObjectElement3D;
+			var dispObj2D:IDisplayObject2DElement;
+			var mesh3D:Mesh3DElement;
 			
 			dispList.sortOn('globalZ', Array.NUMERIC | Array.DESCENDING);
 			
 			for each (var dispObj:IDisplayObjectElement in dispList) 
 			{
-				if (dispObj is IDisplayObjectElement2D)
+				if (dispObj is IDisplayObject2DElement)
 				{
-					dispObj2D = dispObj as IDisplayObjectElement2D;
-					
+					dispObj2D = dispObj as IDisplayObject2DElement;
 					container.addChild(dispObj2D.displayObject);
 				}
-				else if (dispObj is IDisplayObjectElement3D)
+				else if (dispObj is Mesh3DElement)
 				{
-					dispObj3D = dispObj as IDisplayObjectElement3D;
-					
-					container.addChild(renderDispObj3D(dispObj3D));
+					mesh3D = dispObj as Mesh3DElement;
+					renderMesh3D(mesh3D);
 				}
 			}
 		}
@@ -312,7 +239,7 @@ package com.esoteric.core
 			var container:DisplayObjectContainer = _context.container;
 			var dispList:Array = _context.dispList;
 			var dispObj2D:IDisplayObject2DElement;
-			var dispObj3D:IDisplayObject3DElement;
+			var mesh3D:Mesh3DElement;
 			
 			dispList.sortOn('globalZ', Array.NUMERIC | Array.DESCENDING);
 			
@@ -323,10 +250,10 @@ package com.esoteric.core
 					dispObj2D = dispObj as IDisplayObject2DElement;
 					container.addChild(dispObj2D.displayObject);
 				}
-				else if (dispObj is IDisplayObject3DElement)
+				else if (dispObj is Mesh3DElement)
 				{
-					dispObj3D = dispObj as IDisplayObject3DElement;
-					renderDispObj3DSorted(dispObj3D);
+					mesh3D = dispObj as Mesh3DElement;
+					renderMesh3DSorted(mesh3D);
 				}
 			}
 		}
@@ -339,14 +266,10 @@ package com.esoteric.core
 			var container:DisplayObjectContainer = _context.container;
 			var dispList:Array = _context.dispList;
 			var dispObj2D:IDisplayObject2DElement;
-			var dispObj3D:IDisplayObject3DElement;
+			var mesh3D:Mesh3DElement;
 			var faces:Array = new Array();
 			var face:Face;
-			var pVerts:Vector.<Number> = mesh.projectVertices();
-			var uvts:Vector.<Number>;
-			var indices:Vector.<int>;
-			var face:Object;
-			var pVerts:Vector.<Number> = mesh.projectVertices();
+			var pVerts:Vector.<Number>;
 			var uvts:Vector.<Number>;
 			var indices:Vector.<int>;
 			var i:int = 0;
@@ -364,18 +287,18 @@ package com.esoteric.core
 					face.dispObj2D = dispObj2D;
 					face.t = dispObj.globalZ;
 				}
-				else if (context.dispList[ind] is IDisplayObject3DElement)
+				else if (dispObj is Mesh3DElement)
 				{
-					dispObj3D = dispObj as IDisplayObject3DElement;
-					pVerts = mesh.projectVertices();
-					uvts = mesh.uvts;
-					indices = mesh.indices;
+					mesh3D = dispObj as Mesh3DElement;
+					pVerts = mesh3D.projectVertices();
+					uvts = mesh3D.uvts;
+					indices = mesh3D.indices;
 					
 					for (i = 0; i < indices.length; i++) 
 					{
 						faces.push(new Face());
 						face = faces[faces.length - 1];
-						face.dispObj3D = dispObj3D;
+						face.mesh3D = mesh3D;
 						face.v1 = indices[i];
 						face.v2 = indices[int(++i)];
 						face.v3 = indices[int(++i)];
@@ -389,8 +312,8 @@ package com.esoteric.core
 			{
 				faces.sortOn('t', Array.NUMERIC);
 				
-				var currDispObj3D:IDisplayObject3DElement = faces[0].dispObj3D;
-				var sortedIndices:Vector.<int>;
+				var currmesh3D:Mesh3DElement = faces[0].mesh3D;
+				var sortedIndices:Vector.<int> = new Vector.<int>();
 				var shape:Shape;
 				
 				i = 0;
@@ -399,17 +322,17 @@ package com.esoteric.core
 				{
 					if (face.dispObj2D) 
 					{
-						if (currDispObj3D)
+						if (currmesh3D)
 						{
 							shape = getNextShape();
-							currDispObj3D.drawTriangles(shape, sortedIndices);
-							currDispObj3D = null;
+							currmesh3D.drawTriangles(shape, sortedIndices);
+							currmesh3D = null;
 						}
-						container.addChild(face.dispObj2D);
+						container.addChild(face.dispObj2D.displayObject);
 					}
-					else if (currDispObj3D)
+					else if (currmesh3D)
 					{
-						if (face.dispObj3D == currDispObj3D)
+						if (face.mesh3D == currmesh3D)
 						{
 							sortedIndices[i++] = face.v1;
 							sortedIndices[i++] = face.v2;
@@ -418,9 +341,9 @@ package com.esoteric.core
 						else
 						{
 							shape = getNextShape();
-							currDispObj3D.drawTriangles(shape, sortedIndices);
+							currmesh3D.drawTriangles(shape, sortedIndices);
 							sortedIndices = new Vector.<int>();
-							currDispObj3D = face.dispObj3D;
+							currmesh3D = face.mesh3D;
 							sortedIndices[i = 0] = face.v1;
 							sortedIndices[i++] = face.v2;
 							sortedIndices[i++] = face.v3;
@@ -428,17 +351,17 @@ package com.esoteric.core
 					}
 					else
 					{
-						currDispObj3D = face.dispObj3D;
+						currmesh3D = face.mesh3D;
 						sortedIndices[i = 0] = face.v1;
 						sortedIndices[i++] = face.v2;
 						sortedIndices[i++] = face.v3;
 					}
 				}
 				
-				if (currDispObj3D)
+				if (currmesh3D)
 				{
 					shape = getNextShape();
-					currDispObj3D.drawTriangles(shape, sortedIndices);
+					currmesh3D.drawTriangles(shape, sortedIndices);
 				}
 			}
 		}
@@ -446,25 +369,23 @@ package com.esoteric.core
 		/**
 		 * @private
 		 */
-		private function renderDispObj3D(dispObj3D:IDisplayObject3DElement):void
+		private function renderMesh3D(mesh3D:Mesh3DElement):void
 		{
 			var shape:Shape = getNextShape();
 			
-			dispObj3D.draw(shape, dispObj3D.indices);
+			mesh3D.projectVertices();
+			mesh3D.drawTriangles(shape, mesh3D.indices);
 		}
 		
 		/**
 		 * @private
 		 */
-		private function renderSortDispObj3DSorted(dispObj3D:IDisplayObject3DElement):void
+		private function renderMesh3DSorted(mesh3D:Mesh3DElement):void
 		{
 			var shape:Shape = getNextShape();
-			
-			dispObj3D.draw(shape, sortedIndices);
-			
-			var pVerts:Vector.<Number> = dispObj3D.projectVertices();
-			var uvts:Vector.<Number> = dispObj3D.uvts;
-			var indices:Vector.<int> = dispObj3D.indices;
+			var pVerts:Vector.<Number> = mesh3D.projectVertices();
+			var uvts:Vector.<Number> = mesh3D.uvts;
+			var indices:Vector.<int> = mesh3D.indices;
 			var faces:Array = new Array(indices.length / 3);
 			var face:Vector3D;
 			
@@ -481,7 +402,7 @@ package com.esoteric.core
 		
 			faces.sortOn('w', Array.NUMERIC);
 			
-			var sortedIndices:Vector.<int> = new Vector.<int>(pVerts.length, true);
+			var sortedIndices:Vector.<int> = new Vector.<int>(indices.length, true);
 			
 			i = 0;
 			
@@ -492,7 +413,7 @@ package com.esoteric.core
 				sortedIndices[i++] = face.z;
 			}
 			
-			dispObj3D.draw(shape, sortedIndices);
+			mesh3D.drawTriangles(shape, sortedIndices);
 		}
 		
 		/**
@@ -506,7 +427,7 @@ package com.esoteric.core
 			}
 			else
 			{
-				shapes[_currShape].graphics.clear();
+				_shapes[_currShape].graphics.clear();
 			}
 			
 			var container:DisplayObjectContainer = _context.container;
@@ -547,7 +468,8 @@ package com.esoteric.core
 
 }
 
-import com.esoteric.display.IDisplayObjectElement;
+import com.esoteric.display.IDisplayObject2DElement;
+import com.esoteric.display.Mesh3DElement;
 
 /**
  * @private
@@ -555,7 +477,7 @@ import com.esoteric.display.IDisplayObjectElement;
 internal final class Face
 {
 	public var dispObj2D:IDisplayObject2DElement;
-	public var dispObj3D:IDisplayObject2DElement;
+	public var mesh3D:Mesh3DElement;
 	public var v1:Number;
 	public var v2:Number;
 	public var v3:Number;

@@ -5,6 +5,7 @@
 	import com.esoteric.core.Engine;
 	import com.esoteric.core.IElement;
 	import com.esoteric.core.StaticElementBuilder;
+	import com.esoteric.core.TriangleSortMode;
 	import com.esoteric.core.XMLParser;
 	import com.esotericorp.display.PreloaderElement;
 	import flash.display.DisplayObject;
@@ -40,11 +41,14 @@
 			var root:PreloaderElement = XMLParser.parseNode(<Preloader />, _context, null, true) as PreloaderElement;
 			
 			addChild(root.sprite);
+			
+			_engine = new Engine(_context);
+			_engine.triangleSortMode = TriangleSortMode.SCENE;
 		}
 		
 		private var _context:Context;
 		
-		private var _engine:Engine = new Engine();
+		private var _engine:Engine;
 		
 		private function progress(e:ProgressEvent):void 
 		{
@@ -61,7 +65,7 @@
 				//startup();
 			}
 			
-			_engine.render(_context);
+			_engine.render();
 		}
 		
 		private function startup():void 

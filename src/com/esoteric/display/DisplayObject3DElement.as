@@ -37,12 +37,14 @@ package com.esoteric.display
 	import com.esoteric.core.Context;
 	import com.esoteric.core.IElement;
 	import flash.display.DisplayObject;
+	import flash.display.Shape;
 	import flash.display.Sprite;
 	import flash.geom.Matrix3D;
 	import flash.geom.Orientation3D;
+	import flash.geom.Utils3D;
 	import flash.geom.Vector3D;
 	
-	public class DisplayObject3DElement extends AbstractDisplayObject3DElement
+	public class DisplayObject3DElement extends AbstractDisplayObject3DElement implements IDisplayObject3DElement
 	{
 		
 		//---------------------------------------------------------------------
@@ -55,6 +57,8 @@ package com.esoteric.display
 		public function DisplayObject3DElement(context:Context, kind:String) 
 		{
 			super(context, kind);
+			
+			context.dispList.push(this);
 		}
 		
 		//---------------------------------------------------------------------
@@ -62,18 +66,18 @@ package com.esoteric.display
 		//---------------------------------------------------------------------
 		
 		/**
-		 * Transform matrix.
+		 * @private
 		 */
 		protected var _transformMatrix:Matrix3D = new Matrix3D();
 		
 		//---------------------------------------------------------------------
-		// Overrides
+		// Implementations
 		//---------------------------------------------------------------------
 		
 		/**
 		 * @inheritDoc
 		 */
-		override public function updateCoords(matrix:Matrix3D):void
+		public function updateCoords(matrix:Matrix3D):void
 		{
 			_transformMatrix.identity();
 			_transformMatrix.appendScale(scaleX, scaleY, scaleZ);
@@ -89,11 +93,31 @@ package com.esoteric.display
 		/**
 		 * @inheritDoc
 		 */
-		override public function get globalZ():Number
+		public function get globalZ():Number
 		{
 			return _transformMatrix.position.z;
 		}
-
+		
+		//---------------------------------------------------------------------
+		// Overrides
+		//---------------------------------------------------------------------
+		
+		/**
+		 * @inheritDoc
+		 */
+		override public function destroy():void 
+		{
+			for (var i:int = 0; i < context.dispList.length; i++) 
+			{
+				if (context.dispList[i] = this){
+					context.dispList.splice(i , 1);					
+					return;
+				}
+			}
+			
+			super.destroy();
+		}
+		
 	}
 	
 }

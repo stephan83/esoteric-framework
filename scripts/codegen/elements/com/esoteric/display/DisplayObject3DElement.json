@@ -1,5 +1,67 @@
 {
 	"desc": "",
 	
-	"baseclass": "SpriteElement"
+	"baseclass": "TweenableElement",
+
+	"imports": [
+		"com.esoteric.core.TweenableElement"
+	],
+	
+	"properties": {
+		"x": {
+			"type":	"Number",
+			"default": "0.0",
+			"desc": "The vertical position of the display object 3D."
+		},
+		"y": {
+			"type":	"Number",
+			"default": "0.0",
+			"desc": "The horizontal position of the display object 3D."
+		},
+		"z": {
+			"type":	"Number",
+			"default": "0.0",
+			"desc": "The depth of the display object 3D."
+		},
+		"scaleX": {
+			"type":	"Number",
+			"default": "1.0",
+			"desc": "The horizontal scaling factor of the display object 3D."
+		},
+		"scaleY": {
+			"type":	"Number",
+			"default": "1.0",
+			"desc": "The vertical scaling factor of the display object 3D."
+		},
+		"scaleZ": {
+			"type":	"Number",
+			"default": "1.0",
+			"desc": "The depth scaling factor of the display object 3D."
+		},
+		"visible": {
+			"type":	"Boolean",
+			"default": "true",
+			"desc": "Whether the display object is visible."
+		},
+		"alpha": {
+			"type":	"Number",
+			"default": "1.0",
+			"desc": "The alpha value of the display object 3D."
+		},
+		"rotationX": {
+			"type":	"Number",
+			"default": "0.0",
+			"desc": "The rotation of the display object 3D around the x-axis, in degrees."
+		},
+		"rotationY": {
+			"type":	"Number",
+			"default": "0.0",
+			"desc": "The rotation of the display object 3D around the y-axis, in degrees."
+		},
+		"rotationZ": {
+			"type":	"Number",
+			"default": "0.0",
+			"desc": "The rotation of the display object 3D around the s-axis, in degrees."
+		}
+	}
 }

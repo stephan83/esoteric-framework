@@ -40,6 +40,7 @@ package com.esoteric.display
 	import com.esoteric.utils.Watcher;
 	import flash.display.Bitmap;
 	import flash.display.DisplayObject;
+	import flash.display.Shape;
 	import flash.display.Sprite;
 	import flash.display.TriangleCulling;
 	import flash.geom.Matrix3D;
@@ -72,16 +73,6 @@ package com.esoteric.display
 		 */
 		private var _pVerts:Vector.<Number>;
 		
-		/**
-		 * @private
-		 */
-		private var _faces:Array;
-		
-		/**
-		 * @private
-		 */
-		private var _sortedIndices:Vector.<int>;
-		
 		//---------------------------------------------------------------------
 		// Overrides
 		//---------------------------------------------------------------------
@@ -100,81 +91,14 @@ package com.esoteric.display
 		private var _concret:Class;
 		var texture:Bitmap = new _concret();
 		
-		public function render3D():void
-		{
-			sprite.graphics.clear();
-			
-			var vertices:Vector.<Number> = this.vertices;
-			var indices:Vector.<int> = this.indices;
-			var uvts:Vector.<Number> = this.uvts;
-			
-			// todo: optimize
-			_pVerts = new Vector.<Number>(vertices.length * 2 / 3, true);
-			_faces = new Array(indices.length / 3);
-			_sortedIndices = new Vector.<int>(indices.length, true);
-			
-			for (var i:int = 0; i < _faces.length; i++) 
-			{
-				_faces[i] = new Vector3D();
-			}
-			
-			if (vertices.length && indices.length && uvts.length && displayObject.stage)
-			{
-				var matrix:Matrix3D = _transformMatrix.clone();
-				
-				// todo: CAMERA
-				matrix.appendTranslation( -displayObject.stage.stageWidth / 2, -displayObject.stage.stageHeight / 2, 0);
-				var pp:PerspectiveProjection = new PerspectiveProjection();
-				pp.fieldOfView = 60;
-				matrix.append(pp.toMatrix3D());
-				displayObject.x = displayObject.stage.stageWidth / 2;
-				displayObject.y = displayObject.stage.stageHeight / 2;
-				
-				// project vertices
-				Utils3D.projectVectors(matrix, vertices, _pVerts, uvts);
-				
-				var face:Vector3D;
-				var inc:int = 0;
-				
-				for (var i:int = 0, j:int = 0; i < indices.length; i++, j++) 
-				{
-					face = _faces[j];
-					
-					face.x = indices[i];			// point index 1
-					face.y = indices[int(++i)];		// point index 2
-					face.z = indices[int(++i)];		// point index 3
-					
-					face.w = (uvts[int(face.x * 3 + 2)] + uvts[int(face.y * 3 + 2)] + uvts[int(face.z * 3 + 2)]) * 0.333333;
-				}
-				
-				_faces.sortOn('w', Array.NUMERIC);
-				
-				i = 0;
-				
-				for each (face in _faces) 
-				{
-					_sortedIndices[i++] = face.x;
-					_sortedIndices[i++] = face.y;
-					_sortedIndices[i++] = face.z;
-				}
-				
-				sprite.graphics.beginBitmapFill(texture.bitmapData, null, false, true);
-				//sprite.graphics.lineStyle(1, 0xff000f);
-				sprite.graphics.drawTriangles(_pVerts, _sortedIndices, uvts, TriangleCulling.POSITIVE);
-				sprite.graphics.endFill();
-			}
-		}
-		
 		
 		//---------------------------------------------------------------------
 		// Methods
 		//---------------------------------------------------------------------
 		
-		public function clear():void
-		{
-			sprite.graphics.clear();
-		}
-		
+		/**
+		 * @inheritDoc
+		 */
 		public function projectVertices():Vector.<Number>
 		{
 			var vertices:Vector.<Number> = this.vertices;
@@ -182,25 +106,12 @@ package com.esoteric.display
 			var uvts:Vector.<Number> = this.uvts;
 			
 			_pVerts = new Vector.<Number>(vertices.length * 2 / 3, true);
-			_faces = new Array(indices.length / 3);
-			_sortedIndices = new Vector.<int>(indices.length, true);
 			
-			for (var i:int = 0; i < _faces.length; i++) 
-			{
-				_faces[i] = new Vector3D();
-			}
-			
-			if (vertices.length && indices.length && uvts.length && displayObject.stage)
+			if (vertices.length && indices.length && uvts.length && context.container.stage)
 			{
 				var matrix:Matrix3D = _transformMatrix.clone();
-				
-				// todo: CAMERA
-				matrix.appendTranslation( -displayObject.stage.stageWidth / 2, -displayObject.stage.stageHeight / 2, 0);
-				var pp:PerspectiveProjection = new PerspectiveProjection();
-				pp.fieldOfView = 60;
-				matrix.append(pp.toMatrix3D());
-				displayObject.x = displayObject.stage.stageWidth / 2;
-				displayObject.y = displayObject.stage.stageHeight / 2;
+				matrix.appendTranslation( -context.container.stage.stageWidth / 2, -context.container.stage.stageHeight / 2, 0);
+				matrix.append(context.container.transform.perspectiveProjection.toMatrix3D());
 				
 				// project vertices
 				Utils3D.projectVectors(matrix, vertices, _pVerts, uvts);
@@ -211,12 +122,15 @@ package com.esoteric.display
 			return null;
 		}
 		
-		public function drawTriangles(indices:Vector.<int>, color:int):void 
+		/**
+		 * @inheritDoc
+		 */
+		public function drawTriangles(shape:Shape, indices:Vector.<int>):void 
 		{
-			sprite.graphics.beginBitmapFill(texture.bitmapData, null, false, true);
-			sprite.graphics.lineStyle(1, color);
-			sprite.graphics.drawTriangles(_pVerts, _sortedIndices, uvts, TriangleCulling.POSITIVE);
-			sprite.graphics.endFill();
+			shape.graphics.beginBitmapFill(texture.bitmapData, null, false, true);
+			shape.graphics.lineStyle(1, 0xff00ff);
+			shape.graphics.drawTriangles(_pVerts, indices, uvts, TriangleCulling.POSITIVE);
+			shape.graphics.endFill();
 		}
 	}
 	
