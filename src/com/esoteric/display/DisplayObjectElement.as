@@ -47,6 +47,8 @@ package com.esoteric.display
 	import flash.display.DisplayObject;
 	import flash.geom.Matrix3D;
 	import flash.geom.Orientation3D;
+	import flash.geom.PerspectiveProjection;
+	import flash.geom.Point;
 	import flash.geom.Vector3D;
 	
 	/**
@@ -95,7 +97,11 @@ package com.esoteric.display
 			displayObject.transform.matrix3D.appendRotation(rotationZ, Vector3D.Z_AXIS);
 			displayObject.transform.matrix3D.appendTranslation(x, y, z);
 			displayObject.transform.matrix3D.append(matrix);
-			
+			// TODO: Seems to resolve resize problems, so think about that!
+			var pp:PerspectiveProjection = new PerspectiveProjection();
+			pp.fieldOfView = 60;
+			pp.projectionCenter = new Point(context.container.stage.stageWidth / 2, context.container.stage.stageHeight / 2);
+			displayObject.transform.perspectiveProjection = pp;
 			context.renderQueue.add(this);
 		}
 		
