@@ -91,7 +91,7 @@ package com.esoteric.display
 		 */
 		override public function render():void 
 		{
-			render3D();
+			//render3D();
 			
 			super.render();
 		}
@@ -163,6 +163,60 @@ package com.esoteric.display
 				sprite.graphics.drawTriangles(_pVerts, _sortedIndices, uvts, TriangleCulling.POSITIVE);
 				sprite.graphics.endFill();
 			}
+		}
+		
+		
+		//---------------------------------------------------------------------
+		// Methods
+		//---------------------------------------------------------------------
+		
+		public function clear():void
+		{
+			sprite.graphics.clear();
+		}
+		
+		public function projectVertices():Vector.<Number>
+		{
+			var vertices:Vector.<Number> = this.vertices;
+			var indices:Vector.<int> = this.indices;
+			var uvts:Vector.<Number> = this.uvts;
+			
+			_pVerts = new Vector.<Number>(vertices.length * 2 / 3, true);
+			_faces = new Array(indices.length / 3);
+			_sortedIndices = new Vector.<int>(indices.length, true);
+			
+			for (var i:int = 0; i < _faces.length; i++) 
+			{
+				_faces[i] = new Vector3D();
+			}
+			
+			if (vertices.length && indices.length && uvts.length && displayObject.stage)
+			{
+				var matrix:Matrix3D = _transformMatrix.clone();
+				
+				// todo: CAMERA
+				matrix.appendTranslation( -displayObject.stage.stageWidth / 2, -displayObject.stage.stageHeight / 2, 0);
+				var pp:PerspectiveProjection = new PerspectiveProjection();
+				pp.fieldOfView = 60;
+				matrix.append(pp.toMatrix3D());
+				displayObject.x = displayObject.stage.stageWidth / 2;
+				displayObject.y = displayObject.stage.stageHeight / 2;
+				
+				// project vertices
+				Utils3D.projectVectors(matrix, vertices, _pVerts, uvts);
+				
+				return _pVerts;
+			}
+			
+			return null;
+		}
+		
+		public function drawTriangles(indices:Vector.<int>, color:int):void 
+		{
+			sprite.graphics.beginBitmapFill(texture.bitmapData, null, false, true);
+			sprite.graphics.lineStyle(1, color);
+			sprite.graphics.drawTriangles(_pVerts, _sortedIndices, uvts, TriangleCulling.POSITIVE);
+			sprite.graphics.endFill();
 		}
 	}
 	
