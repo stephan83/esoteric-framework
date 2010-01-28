@@ -122,13 +122,13 @@ package com.esoteric.display
 				Utils3D.projectVectors(matrix, vertices, _pVerts, uvts);
 				
 				// TODO: WTF t values are tiny after projectVectors???
-				for (var i:int = 0; i < uvts.length;) 
+				/*for (var i:int = 0; i < uvts.length;) 
 				{
 					v.x = vertices[int(i++)];
 					v.y = vertices[int(i++)];
 					v.z = vertices[i];
-					uvts[int(i++)] = focalLength / (focalLength + Utils3D.projectVector(_transformMatrix, v).z);
-				}
+					trace(uvts[int(i++)], focalLength / (focalLength + Utils3D.projectVector(_transformMatrix, v).z));
+				}*/
 				
 				return _pVerts;
 			}
@@ -146,6 +146,8 @@ package com.esoteric.display
 			shape.graphics.drawTriangles(_pVerts, indices, uvts, TriangleCulling.POSITIVE);
 			shape.graphics.endFill();
 		}
+		
+		public function get pVerts():Vector.<Number> { return _pVerts; }
 	}
 	
 }

@@ -16,7 +16,7 @@
 	import flash.events.ProgressEvent;
 	import flash.utils.getDefinitionByName;
 	
-	[SWF(backgroundColor='#000000', frameRate='30')]
+	[SWF(backgroundColor='#111111', frameRate='30')]
 	
 	/**
 	 * The preloader.

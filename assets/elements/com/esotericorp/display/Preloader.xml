@@ -34,7 +34,7 @@
 	-----                                                                 -----
 -->
 
-<Preloader mouseEnabled="true" scaleY="{this.scaleX}" useHandCursor="true" buttonMode="true" mouseChildren="true" x="{stageWidth / 2}" y="{stageHeight / 2}" z="800" rotationY="{mouseX}" rotationX="{20}">
+<Preloader mouseEnabled="true" scaleY="{this.scaleX}" useHandCursor="true" buttonMode="true" mouseChildren="true" x="{stageWidth / 2 - 200}" y="{stageHeight / 2}" z="800" rotationY="{mouseX}" rotationX="{20}">
 	
 	<TextField y="-200" color="0xffffff" size="50" width="{this.textWidth}">HELLO WORLD</TextField>
 	

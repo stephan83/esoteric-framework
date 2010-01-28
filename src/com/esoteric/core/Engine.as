@@ -39,13 +39,19 @@ package com.esoteric.core
 	import com.esoteric.display.IDisplayObject2DElement;
 	import com.esoteric.display.IDisplayObjectElement;
 	import com.esoteric.display.Mesh3DElement;
+	import flash.display.Bitmap;
+	import flash.display.BitmapData;
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Shape;
 	import flash.display.Sprite;
+	import flash.display.TriangleCulling;
+	import flash.geom.Matrix;
 	import flash.geom.Matrix3D;
 	import flash.geom.PerspectiveProjection;
 	import flash.geom.Point;
+	import flash.geom.Rectangle;
+	import flash.geom.Utils3D;
 	import flash.geom.Vector3D;
 	import flash.sampler.clearSamples;
 	import flash.sampler.DeleteObjectSample;
@@ -103,6 +109,11 @@ package com.esoteric.core
 		 * @private
 		 */
 		private	var _currShape:int = 0;
+		
+		/**
+		 * @private
+		 */
+		private var _canvas:Shape = new Shape();
 		
 		/**
 		 * @private
@@ -201,6 +212,7 @@ package com.esoteric.core
 				container.removeChildAt(0);
 			}
 			
+			_canvas.graphics.clear();
 			_currShape = 0;
 		}
 		
@@ -286,8 +298,9 @@ package com.esoteric.core
 					faces.push(new Face());
 					face = faces[faces.length - 1];
 					face.dispObj2D = dispObj2D;
-					face.t = focalLength / (focalLength + dispObj2D.globalZ);
-					//trace('>>>>>>>>>>>>>>>>>', face.t);
+					
+					// Adjust for projectVectors t values weirdness
+					face.t = focalLength / (focalLength + dispObj2D.globalZ) * .002645402308931556724974235094393;
 				}
 				else if (dispObj is Mesh3DElement)
 				{
@@ -305,7 +318,6 @@ package com.esoteric.core
 						face.v2 = indices[int(++i)];
 						face.v3 = indices[int(++i)];
 						face.t = (uvts[int(face.v1 * 3 + 2)] + uvts[int(face.v2 * 3 + 2)] + uvts[int(face.v3 * 3 + 2)]) * 0.333333;
-						//trace(focalLength, mesh3D.vertices[indices[i] * 3 + 2], face.t);
 					}
 					
 				}
@@ -321,12 +333,27 @@ package com.esoteric.core
 				
 				i = 0;
 				
+				
+				
+				var sVerts:Vector.<Number>;
+				_canvas.x = container.stage.stageWidth / 2;
+				_canvas.y = container.stage.stageHeight / 2;
+				
+				
 				for each (face in faces) 
 				{
 					if (face.dispObj2D) 
 					{
 						if (currMesh3D)
 						{
+							sVerts = new Vector.<Number>(currMesh3D.pVerts.length);
+							for (var j:int = 0; j < sVerts.length; j++) 
+							{
+								sVerts[j] = currMesh3D.pVerts[j] * .25;
+							}
+							_canvas.graphics.beginFill(parseInt(currMesh3D.uid));
+							_canvas.graphics.drawTriangles(sVerts, sortedIndices, null, TriangleCulling.POSITIVE);
+							_canvas.graphics.endFill();
 							shape = getNextShape();
 							currMesh3D.drawTriangles(shape, sortedIndices);
 							currMesh3D = null;
@@ -343,6 +370,14 @@ package com.esoteric.core
 						}
 						else
 						{
+							sVerts = new Vector.<Number>(currMesh3D.pVerts.length, true);
+							for (var j:int = 0; j < sVerts.length; j++) 
+							{
+								sVerts[j] = currMesh3D.pVerts[j] * .25;
+							}
+							_canvas.graphics.beginFill(parseInt(currMesh3D.uid));
+							_canvas.graphics.drawTriangles(sVerts, sortedIndices, null, TriangleCulling.POSITIVE);
+							_canvas.graphics.endFill();
 							shape = getNextShape();
 							currMesh3D.drawTriangles(shape, sortedIndices);
 							sortedIndices = new Vector.<int>();
@@ -355,6 +390,7 @@ package com.esoteric.core
 					}
 					else
 					{
+						sortedIndices = new Vector.<int>();
 						currMesh3D = face.mesh3D;
 						i = 0;
 						sortedIndices[int(i++)] = face.v1;
@@ -365,9 +401,28 @@ package com.esoteric.core
 				
 				if (currMesh3D)
 				{
+					sVerts = new Vector.<Number>(currMesh3D.pVerts.length, true);
+					for (var j:int = 0; j < sVerts.length; j++) 
+					{
+						sVerts[j] = currMesh3D.pVerts[j] * .25;
+					}
+					_canvas.graphics.beginFill(parseInt(currMesh3D.uid));
+					_canvas.graphics.drawTriangles(sVerts, sortedIndices, null, TriangleCulling.POSITIVE);
+					_canvas.graphics.endFill();
 					shape = getNextShape();
 					currMesh3D.drawTriangles(shape, sortedIndices);
 				}
+				
+				var mouseX4:Number = container.stage.mouseX / 4;
+				var mouseY4:Number = container.stage.mouseY / 4;
+				
+				var bmpData:BitmapData = new BitmapData(container.stage.stageWidth / 4, container.stage.stageHeight / 4, false);
+				var transform:Matrix = new Matrix(1, 0, 0, 1, container.stage.stageWidth / 8, container.stage.stageHeight / 8);
+				//bmpData.draw(_canvas, transform, null, null, new Rectangle( 0, 0, container.stage.stageWidth / 4, container.stage.stageHeight / 4));
+				trace(bmpData.getPixel(mouseX4, mouseY4));
+				
+				var bitmap:Bitmap = new Bitmap(bmpData);
+				//container.addChild(bitmap);
 			}
 		}
 		
