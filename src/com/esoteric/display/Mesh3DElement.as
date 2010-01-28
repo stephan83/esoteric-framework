@@ -37,6 +37,7 @@ package com.esoteric.display
 	import com.esoteric.core.Context;
 	import com.esoteric.core.IElement;
 	import com.esoteric.events.PropertyChangeEvent;
+	import com.esoteric.geom.BoundingSphere;
 	import com.esoteric.utils.Watcher;
 	import flash.display.Bitmap;
 	import flash.display.DisplayObject;
@@ -91,6 +92,32 @@ package com.esoteric.display
 		[Embed(source = '../../../../assets/flash/Preloader.swf', symbol = 'concret')]
 		private var _concret:Class;
 		var texture:Bitmap = new _concret();
+		
+		/**
+		 * @inheritDoc
+		 */
+		override public function get boundingSphere():BoundingSphere
+		{
+			var radius:Number;
+			var maxRadius:Number = 0;
+			var vx:Number, vy:Number, vz:Number;
+			
+			for (var i:int = 0; i < vertices.length;) 
+			{
+				vx = vertices[i++] * scaleX;
+				vy = vertices[i++] * scaleY;
+				vz = vertices[i++] * scaleZ;
+				
+				radius = Math.sqrt(vx * vx + vy * vy + vz * vz);
+				
+				if (radius > maxRadius)
+				{
+					maxRadius = radius;
+				}
+			}
+			
+			return new BoundingSphere(0, 0, 0, maxRadius);
+		}
 		
 		
 		//---------------------------------------------------------------------

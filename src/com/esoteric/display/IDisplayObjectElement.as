@@ -34,12 +34,14 @@
 
 package com.esoteric.display 
 {
+	import com.esoteric.core.IElement;
+	import com.esoteric.geom.BoundingSphere;
 	import flash.geom.Matrix3D;
 	
 	/**
 	* @author Stephan Florquin
 	*/
-	public interface IDisplayObjectElement
+	public interface IDisplayObjectElement extends IElement
 	{
 		
 		//---------------------------------------------------------------------
@@ -59,6 +61,11 @@ package com.esoteric.display
 		 * @return the global z position of the objet
 		 */
 		function get globalZ():Number;
+		
+		/**
+		 * Returns the bound sphere of the object.
+		 */
+		function get boundingSphere():BoundingSphere;
 	}
 	
 }

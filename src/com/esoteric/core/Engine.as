@@ -36,15 +36,18 @@
 	
 package com.esoteric.core 
 {
+	import com.esoteric.display.DisplayObjectElement;
 	import com.esoteric.display.IDisplayObject2DElement;
 	import com.esoteric.display.IDisplayObjectElement;
 	import com.esoteric.display.Mesh3DElement;
+	import com.esoteric.display.RenderShape;
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Shape;
 	import flash.display.Sprite;
+	import flash.display.Stage;
 	import flash.display.TriangleCulling;
 	import flash.geom.Matrix;
 	import flash.geom.Matrix3D;
@@ -53,16 +56,8 @@ package com.esoteric.core
 	import flash.geom.Rectangle;
 	import flash.geom.Utils3D;
 	import flash.geom.Vector3D;
-	import flash.sampler.clearSamples;
-	import flash.sampler.DeleteObjectSample;
-	import flash.sampler.getSamples;
-	import flash.sampler.NewObjectSample;
-	import flash.sampler.pauseSampling;
-	import flash.sampler.startSampling;
-	import flash.system.System;
-	import flash.utils.Dictionary;
-	import flash.utils.getQualifiedClassName;
 	import flash.utils.getTimer;
+	
 	/**
 	 * Esoteric framework engine.
 	 * 
@@ -103,7 +98,7 @@ package com.esoteric.core
 		/**
 		 * @private
 		 */
-		private var _shapes:Vector.<Shape> = new Vector.<Shape>();
+		private var _shapes:Vector.<RenderShape> = new Vector.<RenderShape>();
 		
 		/**
 		 * @private
@@ -114,6 +109,11 @@ package com.esoteric.core
 		 * @private
 		 */
 		private var _canvas:Shape = new Shape();
+		
+		/**
+		 * @private
+		 */
+		private var _objectBuffer:BitmapData = new BitmapData(320, 240);
 		
 		/**
 		 * @private
@@ -197,6 +197,9 @@ package com.esoteric.core
 				renderSortScene();
 				break;
 			}
+			
+			drawObjectBuffer();
+			handleMouse();
 		}
 		
 		/**
@@ -214,6 +217,7 @@ package com.esoteric.core
 			
 			_canvas.graphics.clear();
 			_currShape = 0;
+			_objectBuffer.fillRect(new Rectangle(0, 0, _objectBuffer.width, _objectBuffer.height), 0xFFFFFFFF);
 		}
 		
 		/**
@@ -290,8 +294,6 @@ package com.esoteric.core
 			
 			for each (var dispObj:IDisplayObjectElement in dispList) 
 			{
-				// TODO: Optimize new Face()
-				
 				if (dispObj is IDisplayObject2DElement)
 				{
 					dispObj2D = dispObj as IDisplayObject2DElement;
@@ -329,13 +331,9 @@ package com.esoteric.core
 				
 				var currMesh3D:Mesh3DElement = faces[0].mesh3D;
 				var sortedIndices:Vector.<int> = new Vector.<int>();
-				var shape:Shape;
 				
 				i = 0;
 				
-				
-				
-				var sVerts:Vector.<Number>;
 				_canvas.x = container.stage.stageWidth / 2;
 				_canvas.y = container.stage.stageHeight / 2;
 				
@@ -346,16 +344,7 @@ package com.esoteric.core
 					{
 						if (currMesh3D)
 						{
-							sVerts = new Vector.<Number>(currMesh3D.pVerts.length);
-							for (var j:int = 0; j < sVerts.length; j++) 
-							{
-								sVerts[j] = currMesh3D.pVerts[j] * .25;
-							}
-							_canvas.graphics.beginFill(parseInt(currMesh3D.uid));
-							_canvas.graphics.drawTriangles(sVerts, sortedIndices, null, TriangleCulling.POSITIVE);
-							_canvas.graphics.endFill();
-							shape = getNextShape();
-							currMesh3D.drawTriangles(shape, sortedIndices);
+							drawTriangles(currMesh3D, getNextShape(), sortedIndices);
 							currMesh3D = null;
 						}
 						container.addChild(face.dispObj2D.displayObject);
@@ -370,16 +359,7 @@ package com.esoteric.core
 						}
 						else
 						{
-							sVerts = new Vector.<Number>(currMesh3D.pVerts.length, true);
-							for (var j:int = 0; j < sVerts.length; j++) 
-							{
-								sVerts[j] = currMesh3D.pVerts[j] * .25;
-							}
-							_canvas.graphics.beginFill(parseInt(currMesh3D.uid));
-							_canvas.graphics.drawTriangles(sVerts, sortedIndices, null, TriangleCulling.POSITIVE);
-							_canvas.graphics.endFill();
-							shape = getNextShape();
-							currMesh3D.drawTriangles(shape, sortedIndices);
+							drawTriangles(currMesh3D, getNextShape(), sortedIndices);
 							sortedIndices = new Vector.<int>();
 							currMesh3D = face.mesh3D;
 							i = 0;
@@ -401,28 +381,8 @@ package com.esoteric.core
 				
 				if (currMesh3D)
 				{
-					sVerts = new Vector.<Number>(currMesh3D.pVerts.length, true);
-					for (var j:int = 0; j < sVerts.length; j++) 
-					{
-						sVerts[j] = currMesh3D.pVerts[j] * .25;
-					}
-					_canvas.graphics.beginFill(parseInt(currMesh3D.uid));
-					_canvas.graphics.drawTriangles(sVerts, sortedIndices, null, TriangleCulling.POSITIVE);
-					_canvas.graphics.endFill();
-					shape = getNextShape();
-					currMesh3D.drawTriangles(shape, sortedIndices);
+					drawTriangles(currMesh3D, getNextShape(), sortedIndices);
 				}
-				
-				var mouseX4:Number = container.stage.mouseX / 4;
-				var mouseY4:Number = container.stage.mouseY / 4;
-				
-				var bmpData:BitmapData = new BitmapData(container.stage.stageWidth / 4, container.stage.stageHeight / 4, false);
-				var transform:Matrix = new Matrix(1, 0, 0, 1, container.stage.stageWidth / 8, container.stage.stageHeight / 8);
-				//bmpData.draw(_canvas, transform, null, null, new Rectangle( 0, 0, container.stage.stageWidth / 4, container.stage.stageHeight / 4));
-				trace(bmpData.getPixel(mouseX4, mouseY4));
-				
-				var bitmap:Bitmap = new Bitmap(bmpData);
-				//container.addChild(bitmap);
 			}
 		}
 		
@@ -431,10 +391,8 @@ package com.esoteric.core
 		 */
 		private function renderMesh3D(mesh3D:Mesh3DElement):void
 		{
-			var shape:Shape = getNextShape();
-			
 			mesh3D.projectVertices();
-			mesh3D.drawTriangles(shape, mesh3D.indices);
+			drawTriangles(mesh3D, getNextShape(), mesh3D.indices);
 		}
 		
 		/**
@@ -442,7 +400,6 @@ package com.esoteric.core
 		 */
 		private function renderMesh3DSorted(mesh3D:Mesh3DElement):void
 		{
-			var shape:Shape = getNextShape();
 			var pVerts:Vector.<Number> = mesh3D.projectVertices();
 			var uvts:Vector.<Number> = mesh3D.uvts;
 			var indices:Vector.<int> = mesh3D.indices;
@@ -473,17 +430,17 @@ package com.esoteric.core
 				sortedIndices[int(i++)] = face.z;
 			}
 			
-			mesh3D.drawTriangles(shape, sortedIndices);
+			drawTriangles(mesh3D, getNextShape(), sortedIndices);
 		}
 		
 		/**
 		 * @private
 		 */
-		private function getNextShape():Shape 
+		private function getNextShape():RenderShape 
 		{
 			if (_shapes.length <= _currShape)
 			{
-				_shapes[_currShape] = new Shape();
+				_shapes[_currShape] = new RenderShape();
 			}
 			else
 			{
@@ -491,7 +448,7 @@ package com.esoteric.core
 			}
 			
 			var container:DisplayObjectContainer = _context.container;
-			var shape:Shape = _shapes[_currShape++];
+			var shape:RenderShape = _shapes[_currShape++];
 			
 			container.addChild(shape);
 			
@@ -502,6 +459,66 @@ package com.esoteric.core
 			}
 			
 			return shape;
+		}
+		
+		/**
+		 * @private
+		 */
+		private function drawTriangles(mesh:Mesh3DElement, shape:Shape, indices:Vector.<int>):void
+		{
+			_canvas.graphics.beginFill(parseInt(mesh.uid));
+			_canvas.graphics.drawTriangles(mesh.pVerts, indices, null, TriangleCulling.POSITIVE);
+			_canvas.graphics.endFill();
+			mesh.drawTriangles(shape, indices);
+		}
+		
+		/**
+		 * @private
+		 */
+		private function drawObjectBuffer():void 
+		{
+			var container:DisplayObjectContainer = _context.container;
+			var transform:Matrix = new Matrix();
+			var xScale:Number = _objectBuffer.width / container.stage.stageWidth;
+			var yScale:Number = _objectBuffer.width / container.stage.stageWidth;
+			var clip:Rectangle = new Rectangle(0, 0, container.stage.stageWidth, container.stage.stageHeight)
+			
+			transform.scale(xScale, yScale);
+			transform.translate(container.stage.stageWidth * .5 * xScale, container.stage.stageHeight * .5 * yScale);
+			_objectBuffer.draw(_canvas, transform, null, null, clip);
+		}
+		
+		/**
+		 * @private
+		 */
+		private function handleMouse():void
+		{
+			var container:DisplayObjectContainer = _context.container;
+			var stage:Stage = container.stage;
+			var objsUnderMouse:Array = stage.getObjectsUnderPoint(new Point(stage.mouseX, stage.mouseY));
+			var xScale:Number = _objectBuffer.width / stage.stageWidth;
+			var yScale:Number = _objectBuffer.width / stage.stageWidth;
+			
+			if (objsUnderMouse.length )
+			{
+				var hovered:DisplayObject = objsUnderMouse[objsUnderMouse.length - 1];
+				
+				if (hovered.parent == container && hovered is RenderShape)
+				{
+					var objectUID:int = _objectBuffer.getPixel(stage.mouseX * xScale, stage.mouseY * yScale);
+					
+					if (objectUID != 0xffffff)
+					{					
+						for each (var dispObj:IDisplayObjectElement in _context.dispList) 
+						{
+							if (parseInt(dispObj.uid) == objectUID)
+							{
+								_context.closure['hovered'] = dispObj;
+							}
+						}
+					}
+				}
+			}
 		}
 		
 		/**

@@ -42,6 +42,7 @@ package com.esoteric.display
 	import com.esoteric.events.ElementEvent;
 	import com.esoteric.events.PropertyChangeEvent;
 	import com.esoteric.events.TweenEvent;
+	import com.esoteric.geom.BoundingSphere;
 	import com.esoteric.utils.BindableArray;
 	import com.esoteric.utils.Watcher;
 	import flash.display.DisplayObject;
@@ -49,6 +50,7 @@ package com.esoteric.display
 	import flash.geom.Orientation3D;
 	import flash.geom.PerspectiveProjection;
 	import flash.geom.Point;
+	import flash.geom.Rectangle;
 	import flash.geom.Vector3D;
 	
 	/**
@@ -109,6 +111,21 @@ package com.esoteric.display
 		public function get globalZ():Number
 		{
 			return displayObject.transform.matrix3D.position.z;
+		}
+		
+		/**
+		 * @inheritDoc
+		 */
+		public function get boundingSphere():BoundingSphere
+		{
+			var bounds:Rectangle = displayObject.getBounds(displayObject);
+			// TODO: fix this
+			var center:Vector3D = new Vector3D(bounds.width / 2 + bounds.left, bounds.height / 2 + bounds.top);
+			var pCenter:Vector3D =  displayObject.transform.matrix3D.transformVector(center);
+			var radius:Number = bounds.width * scaleX > bounds.height * scaleY ?
+			                    bounds.width * scaleX / 2 : bounds.height * scaleY / 2;
+			
+			return new BoundingSphere(pCenter.x, pCenter.y, pCenter.z, radius);
 		}
 		
 		//---------------------------------------------------------------------

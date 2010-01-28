@@ -36,6 +36,7 @@ package com.esoteric.display
 {
 	import com.esoteric.core.Context;
 	import com.esoteric.core.IElement;
+	import com.esoteric.geom.BoundingSphere;
 	import flash.display.DisplayObject;
 	import flash.display.Shape;
 	import flash.display.Sprite;
@@ -96,6 +97,14 @@ package com.esoteric.display
 		public function get globalZ():Number
 		{
 			return _transformMatrix.position.z;
+		}
+		
+		/**
+		 * @inheritDoc
+		 */
+		public function get boundingSphere():BoundingSphere
+		{
+			return new BoundingSphere();	
 		}
 		
 		//---------------------------------------------------------------------
