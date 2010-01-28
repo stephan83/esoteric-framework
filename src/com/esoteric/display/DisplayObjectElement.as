@@ -97,6 +97,8 @@ package com.esoteric.display
 			displayObject.transform.matrix3D.appendRotation(rotationZ, Vector3D.Z_AXIS);
 			displayObject.transform.matrix3D.appendTranslation(x, y, z);
 			displayObject.transform.matrix3D.append(matrix);
+			var pp:PerspectiveProjection = context.container.transform.perspectiveProjection;
+			displayObject.transform.perspectiveProjection = pp;
 			
 			context.renderQueue.add(this);
 		}

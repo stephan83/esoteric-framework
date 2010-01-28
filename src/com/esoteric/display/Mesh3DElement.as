@@ -40,6 +40,7 @@ package com.esoteric.display
 	import com.esoteric.utils.Watcher;
 	import flash.display.Bitmap;
 	import flash.display.DisplayObject;
+	import flash.display.DisplayObjectContainer;
 	import flash.display.Shape;
 	import flash.display.Sprite;
 	import flash.display.TriangleCulling;
@@ -104,17 +105,30 @@ package com.esoteric.display
 			var vertices:Vector.<Number> = this.vertices;
 			var indices:Vector.<int> = this.indices;
 			var uvts:Vector.<Number> = this.uvts;
+			var container:DisplayObjectContainer = context.container;
+			var pp:PerspectiveProjection = container.transform.perspectiveProjection;
+			var focalLength:Number = pp.focalLength;
+			var v:Vector3D = new Vector3D();
 			
 			_pVerts = new Vector.<Number>(vertices.length * 2 / 3, true);
 			
 			if (vertices.length && indices.length && uvts.length && context.container.stage)
 			{
 				var matrix:Matrix3D = _transformMatrix.clone();
-				matrix.appendTranslation( -context.container.stage.stageWidth / 2, -context.container.stage.stageHeight / 2, 0);
-				matrix.append(context.container.transform.perspectiveProjection.toMatrix3D());
+				matrix.appendTranslation( -container.stage.stageWidth / 2, -container.stage.stageHeight / 2, 0);
+				matrix.append(pp.toMatrix3D());
 				
 				// project vertices
 				Utils3D.projectVectors(matrix, vertices, _pVerts, uvts);
+				
+				// TODO: WTF t values are tiny after projectVectors???
+				for (var i:int = 0; i < uvts.length;) 
+				{
+					v.x = vertices[int(i++)];
+					v.y = vertices[int(i++)];
+					v.z = vertices[i];
+					uvts[int(i++)] = focalLength / (focalLength + Utils3D.projectVector(_transformMatrix, v).z);
+				}
 				
 				return _pVerts;
 			}
@@ -128,7 +142,7 @@ package com.esoteric.display
 		public function drawTriangles(shape:Shape, indices:Vector.<int>):void 
 		{
 			shape.graphics.beginBitmapFill(texture.bitmapData, null, false, true);
-			shape.graphics.lineStyle(1, 0xff00ff);
+			//shape.graphics.lineStyle(1, 0xff00ff);
 			shape.graphics.drawTriangles(_pVerts, indices, uvts, TriangleCulling.POSITIVE);
 			shape.graphics.endFill();
 		}

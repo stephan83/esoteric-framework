@@ -264,6 +264,7 @@ package com.esoteric.core
 		private function renderSortScene():void
 		{
 			var container:DisplayObjectContainer = _context.container;
+			var focalLength:Number = container.transform.perspectiveProjection.focalLength;
 			var dispList:Array = _context.dispList;
 			var dispObj2D:IDisplayObject2DElement;
 			var mesh3D:Mesh3DElement;
@@ -285,7 +286,8 @@ package com.esoteric.core
 					faces.push(new Face());
 					face = faces[faces.length - 1];
 					face.dispObj2D = dispObj2D;
-					face.t = dispObj.globalZ;
+					face.t = focalLength / (focalLength + dispObj2D.globalZ);
+					//trace('>>>>>>>>>>>>>>>>>', face.t);
 				}
 				else if (dispObj is Mesh3DElement)
 				{
@@ -303,6 +305,7 @@ package com.esoteric.core
 						face.v2 = indices[int(++i)];
 						face.v3 = indices[int(++i)];
 						face.t = (uvts[int(face.v1 * 3 + 2)] + uvts[int(face.v2 * 3 + 2)] + uvts[int(face.v3 * 3 + 2)]) * 0.333333;
+						//trace(focalLength, mesh3D.vertices[indices[i] * 3 + 2], face.t);
 					}
 					
 				}
@@ -312,7 +315,7 @@ package com.esoteric.core
 			{
 				faces.sortOn('t', Array.NUMERIC);
 				
-				var currmesh3D:Mesh3DElement = faces[0].mesh3D;
+				var currMesh3D:Mesh3DElement = faces[0].mesh3D;
 				var sortedIndices:Vector.<int> = new Vector.<int>();
 				var shape:Shape;
 				
@@ -322,46 +325,48 @@ package com.esoteric.core
 				{
 					if (face.dispObj2D) 
 					{
-						if (currmesh3D)
+						if (currMesh3D)
 						{
 							shape = getNextShape();
-							currmesh3D.drawTriangles(shape, sortedIndices);
-							currmesh3D = null;
+							currMesh3D.drawTriangles(shape, sortedIndices);
+							currMesh3D = null;
 						}
 						container.addChild(face.dispObj2D.displayObject);
 					}
-					else if (currmesh3D)
+					else if (currMesh3D)
 					{
-						if (face.mesh3D == currmesh3D)
+						if (face.mesh3D == currMesh3D)
 						{
-							sortedIndices[i++] = face.v1;
-							sortedIndices[i++] = face.v2;
-							sortedIndices[i++] = face.v3;
+							sortedIndices[int(i++)] = face.v1;
+							sortedIndices[int(i++)] = face.v2;
+							sortedIndices[int(i++)] = face.v3;
 						}
 						else
 						{
 							shape = getNextShape();
-							currmesh3D.drawTriangles(shape, sortedIndices);
+							currMesh3D.drawTriangles(shape, sortedIndices);
 							sortedIndices = new Vector.<int>();
-							currmesh3D = face.mesh3D;
-							sortedIndices[i = 0] = face.v1;
-							sortedIndices[i++] = face.v2;
-							sortedIndices[i++] = face.v3;
+							currMesh3D = face.mesh3D;
+							i = 0;
+							sortedIndices[int(i++)] = face.v1;
+							sortedIndices[int(i++)] = face.v2;
+							sortedIndices[int(i++)] = face.v3;
 						}
 					}
 					else
 					{
-						currmesh3D = face.mesh3D;
-						sortedIndices[i = 0] = face.v1;
-						sortedIndices[i++] = face.v2;
-						sortedIndices[i++] = face.v3;
+						currMesh3D = face.mesh3D;
+						i = 0;
+						sortedIndices[int(i++)] = face.v1;
+						sortedIndices[int(i++)] = face.v2;
+						sortedIndices[int(i++)] = face.v3;
 					}
 				}
 				
-				if (currmesh3D)
+				if (currMesh3D)
 				{
 					shape = getNextShape();
-					currmesh3D.drawTriangles(shape, sortedIndices);
+					currMesh3D.drawTriangles(shape, sortedIndices);
 				}
 			}
 		}
@@ -408,9 +413,9 @@ package com.esoteric.core
 			
 			for each (face in faces) 
 			{
-				sortedIndices[i++] = face.x;
-				sortedIndices[i++] = face.y;
-				sortedIndices[i++] = face.z;
+				sortedIndices[int(i++)] = face.x;
+				sortedIndices[int(i++)] = face.y;
+				sortedIndices[int(i++)] = face.z;
 			}
 			
 			mesh3D.drawTriangles(shape, sortedIndices);
