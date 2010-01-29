@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
-
-<!--
+﻿/*
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	~                           Esoteric Framework                            ~
 	~                       framework.esotericorp.com                         ~
@@ -32,14 +30,17 @@
 	DEALINGS IN THE SOFTWARE.
 	
 	-----                                                                 -----
--->
+*/
 
-<Preloader mouseEnabled="true" useHandCursor="true" buttonMode="true" mouseChildren="true" x="{stageWidth / 2 - 100}" y="{stageHeight / 2 + 400}" z="1200" rotationY="{mouseX}" rotationX="{0}">
+package com.esoteric.display 
+{
 	
-	<Sprite>
-		<TextField y="-400" color="0xffffff" size="50" width="{this.textWidth}">HELLO WORLD</TextField>
-		<TextField y="-300" color="0xffffff" size="50" width="{this.textWidth}">WAZUUUUUP</TextField>
-		<TextField y="-300" z="-50" color="0xffffff" size="50" width="{this.textWidth}">!!!!!!!!!</TextField>
-	</Sprite>
+	/**
+	* @author Stephan Florquin
+	*/
+	public interface IDisplayObject3DElement extends IDisplayObjectElement
+	{
+		
+	}
 	
-</Preloader>
+}

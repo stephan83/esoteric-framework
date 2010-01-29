@@ -38,6 +38,7 @@ package com.esoteric.display
 	import com.esoteric.core.IElement;
 	import com.esoteric.events.PropertyChangeEvent;
 	import com.esoteric.geom.BoundingSphere;
+	import com.esoteric.utils.Math3D;
 	import com.esoteric.utils.Watcher;
 	import flash.display.Bitmap;
 	import flash.display.DisplayObject;
@@ -133,8 +134,7 @@ package com.esoteric.display
 			var indices:Vector.<int> = this.indices;
 			var uvts:Vector.<Number> = this.uvts;
 			var container:DisplayObjectContainer = context.container;
-			var pp:PerspectiveProjection = container.transform.perspectiveProjection;
-			var focalLength:Number = pp.focalLength;
+			//var pp:PerspectiveProjection = container.transform.perspectiveProjection;
 			var v:Vector3D = new Vector3D();
 			
 			_pVerts = new Vector.<Number>(vertices.length * 2 / 3, true);
@@ -142,12 +142,13 @@ package com.esoteric.display
 			if (vertices.length && indices.length && uvts.length && context.container.stage)
 			{
 				var matrix:Matrix3D = _transformMatrix.clone();
-				matrix.appendTranslation( -container.stage.stageWidth / 2, -container.stage.stageHeight / 2, 0);
-				matrix.append(pp.toMatrix3D());
+				//matrix.appendTranslation( -container.stage.stageWidth / 2, -container.stage.stageHeight / 2, 0);
+				//matrix.append(pp.toMatrix3D());
+				matrix.append(Math3D.frustrumMatrix3D(-.001, .001, .001, -.001, .001, 10));
 				
 				// project vertices
 				Utils3D.projectVectors(matrix, vertices, _pVerts, uvts);
-				
+				trace(_pVerts);
 				// TODO: WTF t values are tiny after projectVectors???
 				/*for (var i:int = 0; i < uvts.length;) 
 				{
@@ -169,7 +170,7 @@ package com.esoteric.display
 		public function drawTriangles(shape:Shape, indices:Vector.<int>):void 
 		{
 			shape.graphics.beginBitmapFill(texture.bitmapData, null, false, true);
-			//shape.graphics.lineStyle(1, 0xff00ff);
+			shape.graphics.lineStyle(1, 0xff00ff);
 			shape.graphics.drawTriangles(_pVerts, indices, uvts, TriangleCulling.POSITIVE);
 			shape.graphics.endFill();
 		}

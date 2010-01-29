@@ -7,6 +7,7 @@
 	import com.esoteric.core.StaticElementBuilder;
 	import com.esoteric.core.TriangleSortMode;
 	import com.esoteric.core.XMLParser;
+	import com.esoteric.utils.Math3D;
 	import com.esotericorp.display.PreloaderElement;
 	import flash.display.DisplayObject;
 	import flash.display.MovieClip;
@@ -14,9 +15,11 @@
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
 	import flash.events.ProgressEvent;
+	import flash.geom.Matrix3D;
+	import flash.geom.Vector3D;
 	import flash.utils.getDefinitionByName;
 	
-	[SWF(backgroundColor='#111111', frameRate='30')]
+	[SWF(backgroundColor='#000000', frameRate='30')]
 	
 	/**
 	 * The preloader.

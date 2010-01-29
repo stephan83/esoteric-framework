@@ -56,6 +56,7 @@ package com.esoteric.core
 	import flash.geom.Rectangle;
 	import flash.geom.Utils3D;
 	import flash.geom.Vector3D;
+	import flash.system.System;
 	import flash.utils.getTimer;
 	
 	/**
@@ -78,7 +79,7 @@ package com.esoteric.core
 			_context = context;
 			_lastSecond = getTimer();
 			
-			_context.container.transform.perspectiveProjection = new PerspectiveProjection();
+			//_context.container.transform.perspectiveProjection = new PerspectiveProjection();
 		}
 		
 		//---------------------------------------------------------------------
@@ -174,14 +175,15 @@ package com.esoteric.core
 		 * @private
 		 */
 		private function renderScene():void
-		{
-			clear();
-			
+		{			
 			var container:DisplayObjectContainer = _context.container;
-			var pp:PerspectiveProjection = container.transform.perspectiveProjection;
-			pp.fieldOfView = 60;
+			//var pp:PerspectiveProjection = container.transform.perspectiveProjection;
+			/*pp.fieldOfView = 60;
 			pp.projectionCenter = new Point(container.stage.stageWidth / 2, container.stage.stageHeight / 2);
-			container.transform.perspectiveProjection = pp;
+			container.transform.perspectiveProjection = pp;*/
+			
+			
+			clear();
 			
 			switch(_triangleSortMode)
 			{

@@ -1,4 +1,4 @@
-/*
+﻿/*
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	~                           Esoteric Framework                            ~
 	~                       framework.esotericorp.com                         ~
@@ -32,92 +32,23 @@
 	-----                                                                 -----
 */
 
-package com.esoteric.display
+package com.esoteric.display 
 {
-	import com.esoteric.core.Context;
-	import com.esoteric.core.IElement;
-	import com.esoteric.core.Context;
-	import com.esoteric.events.PropertyChangeEvent;
 	import flash.display.DisplayObject;
-	import flash.display.InteractiveObject;
-	import flash.display.Sprite;
-	import flash.geom.Matrix3D;
 	
 	/**
-	* Generated 2008-08-03 07:32:29.801000 UTC.
+	* @author Stephan Florquin
 	*/
-	public class SpriteElement extends AbstractSpriteElement
+	public interface IDisplayObject2DElement extends IDisplayObjectElement
 	{
-		
 		//---------------------------------------------------------------------
-		// Constructor
-		//---------------------------------------------------------------------
-		
-		/**
-		 * Constructor.
-		 */
-		public function SpriteElement(context:Context, kind:String) 
-		{
-			super(context, kind);
-		}
-		
-		//---------------------------------------------------------------------
-		// Overridden property
+		// Getters & setters
 		//---------------------------------------------------------------------
 		
 		/**
-		 * @inheritDoc
+		 * The display object.
 		 */
-		override protected function createInteractiveObject():InteractiveObject
-		{
-			return sprite = createSprite();
-		}
-		
-		override public function updateCoords(matrix:Matrix3D):void
-		{
-			super.updateCoords(matrix);
-			
-			var child:IElement;
-			
-			for (var i:int = 0; i < numChildren; i++) 
-			{
-				child = getChildAt(i);
-				
-				if (child is IDisplayObjectElement)
-				{
-					(child as IDisplayObjectElement).updateCoords(_transformMatrix.clone());
-				}
-			}
-		}
-		
-		//---------------------------------------------------------------------
-		// Methods
-		//---------------------------------------------------------------------
-		
-		/**
-		 * Starts dragging the sprite.
-		 */
-		public function startDrag():void
-		{
-			sprite.startDrag();
-		}
-		
-		/**
-		 * Stops dragging the sprite.
-		 */
-		public function stopDrag():void
-		{
-			sprite.stopDrag();
-		}
-		
-		/**
-		 * Creates the sprite.
-		 */
-		protected function createSprite():Sprite
-		{
-			return new Sprite();
-		}
-		
+		function get displayObject():DisplayObject;
 	}
 	
 }

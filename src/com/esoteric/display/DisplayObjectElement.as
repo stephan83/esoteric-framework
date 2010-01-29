@@ -44,6 +44,7 @@ package com.esoteric.display
 	import com.esoteric.events.TweenEvent;
 	import com.esoteric.geom.BoundingSphere;
 	import com.esoteric.utils.BindableArray;
+	import com.esoteric.utils.Math3D;
 	import com.esoteric.utils.Watcher;
 	import flash.display.DisplayObject;
 	import flash.geom.Matrix3D;
@@ -87,20 +88,25 @@ package com.esoteric.display
 		// Implementations
 		//---------------------------------------------------------------------
 		
+		protected var _transformMatrix = new Matrix3D();
+		
 		/**
 		 * @inheritDoc
 		 */
 		public function updateCoords(matrix:Matrix3D):void
 		{
-			displayObject.transform.matrix3D.identity();
-			displayObject.transform.matrix3D.appendScale(scaleX, scaleY, scaleZ);
-			displayObject.transform.matrix3D.appendRotation(rotationX, Vector3D.X_AXIS);
-			displayObject.transform.matrix3D.appendRotation(rotationY, Vector3D.Y_AXIS);
-			displayObject.transform.matrix3D.appendRotation(rotationZ, Vector3D.Z_AXIS);
-			displayObject.transform.matrix3D.appendTranslation(x, y, z);
-			displayObject.transform.matrix3D.append(matrix);
-			var pp:PerspectiveProjection = context.container.transform.perspectiveProjection;
-			displayObject.transform.perspectiveProjection = pp;
+			_transformMatrix.identity();
+			_transformMatrix.appendScale(scaleX, scaleY, scaleZ);
+			_transformMatrix.appendRotation(rotationX, Vector3D.X_AXIS);
+			_transformMatrix.appendRotation(rotationY, Vector3D.Y_AXIS);
+			_transformMatrix.appendRotation(rotationZ, Vector3D.Z_AXIS);
+			_transformMatrix.appendTranslation(x, y, z);
+			_transformMatrix.append(matrix);
+			
+			displayObject.transform.matrix3D = _transformMatrix.clone();
+			//displayObject.transform.matrix3D.append(Math3D.frustrumMatrix3D(-400, 400, 300, -300, 500, 50000000));
+			//displayObject.transform.matrix3D.append(new PerspectiveProjection().toMatrix3D());
+			//displayObject.transform.perspectiveProjection = null;
 			
 			context.renderQueue.add(this);
 		}
