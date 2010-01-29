@@ -134,30 +134,20 @@ package com.esoteric.display
 			var indices:Vector.<int> = this.indices;
 			var uvts:Vector.<Number> = this.uvts;
 			var container:DisplayObjectContainer = context.container;
-			//var pp:PerspectiveProjection = container.transform.perspectiveProjection;
-			var v:Vector3D = new Vector3D();
+			var pp:Matrix3D = Math3D.ppToMatrix3D(container.transform.perspectiveProjection, 200);
 			
-			_pVerts = new Vector.<Number>(vertices.length * 2 / 3, true);
+			if (!_pVerts || _pVerts.length != int(vertices.length * 2 / 3))
+			{
+				_pVerts = new Vector.<Number>(vertices.length * 2 / 3, true);
+			}
 			
 			if (vertices.length && indices.length && uvts.length && context.container.stage)
 			{
 				var matrix:Matrix3D = _transformMatrix.clone();
-				//matrix.appendTranslation( -container.stage.stageWidth / 2, -container.stage.stageHeight / 2, 0);
-				//matrix.append(pp.toMatrix3D());
-				matrix.append(Math3D.frustrumMatrix3D(-.001, .001, .001, -.001, .001, 10));
-				
-				// project vertices
-				Utils3D.projectVectors(matrix, vertices, _pVerts, uvts);
-				trace(_pVerts);
-				// TODO: WTF t values are tiny after projectVectors???
-				/*for (var i:int = 0; i < uvts.length;) 
-				{
-					v.x = vertices[int(i++)];
-					v.y = vertices[int(i++)];
-					v.z = vertices[i];
-					trace(uvts[int(i++)], focalLength / (focalLength + Utils3D.projectVector(_transformMatrix, v).z));
-				}*/
-				
+				matrix.appendTranslation( -container.stage.stageWidth / 2, -container.stage.stageHeight / 2, 0);
+				var vVerts:Vector.<Number> = new Vector.<Number>(vertices.length, true);
+				matrix.transformVectors(vertices, vVerts);
+				Utils3D.projectVectors(pp, vVerts, _pVerts, uvts);
 				return _pVerts;
 			}
 			
@@ -170,7 +160,7 @@ package com.esoteric.display
 		public function drawTriangles(shape:Shape, indices:Vector.<int>):void 
 		{
 			shape.graphics.beginBitmapFill(texture.bitmapData, null, false, true);
-			shape.graphics.lineStyle(1, 0xff00ff);
+			//shape.graphics.lineStyle(1, 0xff00ff);
 			shape.graphics.drawTriangles(_pVerts, indices, uvts, TriangleCulling.POSITIVE);
 			shape.graphics.endFill();
 		}

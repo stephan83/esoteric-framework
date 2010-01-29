@@ -4,8 +4,8 @@
         <contributor>
             <authoring_tool>CINEMA4D 11.514 COLLADA Exporter</authoring_tool>
         </contributor>
-        <created>2010-01-28T21:09:14Z</created>
-        <modified>2010-01-28T21:09:14Z</modified>
+        <created>2010-01-29T19:03:39Z</created>
+        <modified>2010-01-29T19:03:39Z</modified>
         <unit name="meter"/>
         <up_axis>Y_UP</up_axis>
     </asset>
@@ -80,7 +80,7 @@
         <geometry id="ID13">
             <mesh>
                 <source id="ID14">
-                    <float_array id="ID15" count="12">-100.5 4.76837e-007 100.5 100.5 4.76837e-007 100.5 -100.5 4.76837e-007 -100.5 100.5 4.76837e-007 -100.5</float_array>
+                    <float_array id="ID15" count="12">-50 7.15256e-007 50 50 7.15256e-007 50 -50 7.15256e-007 -50 50 7.15256e-007 -50</float_array>
                     <technique_common>
                         <accessor count="4" source="#ID15" stride="3">
                             <param name="X" type="float"/>

@@ -34,12 +34,18 @@
 	-----                                                                 -----
 -->
 
-<Preloader mouseEnabled="true" useHandCursor="true" buttonMode="true" mouseChildren="true" x="{stageWidth / 2 - 100}" y="{stageHeight / 2 + 400}" z="1200" rotationY="{mouseX}" rotationX="{0}">
+<Preloader mouseEnabled="true" useHandCursor="true" buttonMode="true" mouseChildren="true" x="{stageWidth / 2 + 200}" y="{stageHeight / 2 + 200}" z="1200" rotationY="{mouseX}" rotationX="{0}">
 	
 	<Sprite>
-		<TextField y="-400" color="0xffffff" size="50" width="{this.textWidth}">HELLO WORLD</TextField>
-		<TextField y="-300" color="0xffffff" size="50" width="{this.textWidth}">WAZUUUUUP</TextField>
-		<TextField y="-300" z="-50" color="0xffffff" size="50" width="{this.textWidth}">!!!!!!!!!</TextField>
+		<TextField y="-100" color="0xffffff" size="50" width="{this.textWidth}">HELLO WORLD</TextField>
+		<TextField y="-200" color="0xffffff" size="50" width="{this.textWidth}">WAZUUUUUP</TextField>
+		<TextField y="-200" z="-50" color="0xffffff" size="50" width="{this.textWidth}">!!!!!!!!!</TextField>
 	</Sprite>
+	
+	<Shape rotationX="90" y="10">
+		<SolidFill color="0xffffff" alpha=".3">
+			<Rectangle x="-560" y="-560" width="1120" height="1120" />
+		</SolidFill>
+	</Shape>
 	
 </Preloader>

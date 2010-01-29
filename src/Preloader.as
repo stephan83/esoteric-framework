@@ -11,15 +11,17 @@
 	import com.esotericorp.display.PreloaderElement;
 	import flash.display.DisplayObject;
 	import flash.display.MovieClip;
+	import flash.display.Sprite;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
 	import flash.events.ProgressEvent;
 	import flash.geom.Matrix3D;
+	import flash.geom.PerspectiveProjection;
 	import flash.geom.Vector3D;
 	import flash.utils.getDefinitionByName;
 	
-	[SWF(backgroundColor='#000000', frameRate='30')]
+	[SWF(backgroundColor='#cccccc', frameRate='30')]
 	
 	/**
 	 * The preloader.
@@ -34,13 +36,17 @@
 			addEventListener(Event.ENTER_FRAME, checkFrame);
 			loaderInfo.addEventListener(ProgressEvent.PROGRESS, progress);
 			
+			var container:Sprite = new Sprite();
+			container.transform.perspectiveProjection = new PerspectiveProjection();
+			addChild(container);
+			
 			// show loader
 			stage.align = StageAlign.TOP_LEFT;
 			stage.scaleMode = StageScaleMode.NO_SCALE
 			
 			var factory:ElementFactory = new ElementFactory();
 			factory.add('Preloader', new StaticElementBuilder(PreloaderElement));
-			_context = new Context(this, factory);
+			_context = new Context(container, factory);
 			var root:PreloaderElement = XMLParser.parseNode(<Preloader />, _context, null, true) as PreloaderElement;
 			
 			addChild(root.sprite);

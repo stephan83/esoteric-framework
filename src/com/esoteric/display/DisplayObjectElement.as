@@ -78,7 +78,7 @@ package com.esoteric.display
 			displayObject = createDisplayObject();
 			
 			// Enabled 3D
-			displayObject.z = 0;
+			displayObject.z = .0001;
 			
 			context.dispList.push(this);
 		}
@@ -104,9 +104,8 @@ package com.esoteric.display
 			_transformMatrix.append(matrix);
 			
 			displayObject.transform.matrix3D = _transformMatrix.clone();
-			//displayObject.transform.matrix3D.append(Math3D.frustrumMatrix3D(-400, 400, 300, -300, 500, 50000000));
-			//displayObject.transform.matrix3D.append(new PerspectiveProjection().toMatrix3D());
-			//displayObject.transform.perspectiveProjection = null;
+			displayObject.transform.perspectiveProjection = context.container.transform.perspectiveProjection;
+			displayObject.transform.perspectiveProjection.projectionCenter = new Point(context.container.stage.stageWidth / 2, context.container.stage.stageHeight / 2);
 			
 			context.renderQueue.add(this);
 		}

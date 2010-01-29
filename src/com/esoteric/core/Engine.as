@@ -78,8 +78,6 @@ package com.esoteric.core
 		{
 			_context = context;
 			_lastSecond = getTimer();
-			
-			//_context.container.transform.perspectiveProjection = new PerspectiveProjection();
 		}
 		
 		//---------------------------------------------------------------------
@@ -177,10 +175,6 @@ package com.esoteric.core
 		private function renderScene():void
 		{			
 			var container:DisplayObjectContainer = _context.container;
-			//var pp:PerspectiveProjection = container.transform.perspectiveProjection;
-			/*pp.fieldOfView = 60;
-			pp.projectionCenter = new Point(container.stage.stageWidth / 2, container.stage.stageHeight / 2);
-			container.transform.perspectiveProjection = pp;*/
 			
 			
 			clear();
@@ -305,6 +299,7 @@ package com.esoteric.core
 					
 					// Adjust for projectVectors t values weirdness
 					face.t = focalLength / (focalLength + dispObj2D.globalZ) * .002645402308931556724974235094393;
+					
 				}
 				else if (dispObj is Mesh3DElement)
 				{
