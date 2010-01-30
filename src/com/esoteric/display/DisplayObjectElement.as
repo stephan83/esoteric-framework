@@ -103,7 +103,7 @@ package com.esoteric.display
 			_transformMatrix.appendTranslation(x, y, z);
 			_transformMatrix.append(matrix);
 			
-			displayObject.transform.matrix3D = _transformMatrix.clone();
+			displayObject.transform.matrix3D = _transformMatrix;
 			displayObject.transform.perspectiveProjection = context.container.transform.perspectiveProjection;
 			displayObject.transform.perspectiveProjection.projectionCenter = new Point(context.container.stage.stageWidth / 2, context.container.stage.stageHeight / 2);
 			

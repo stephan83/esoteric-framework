@@ -451,8 +451,8 @@ package com.esoteric.core
 			
 			if (container.stage)
 			{
-				shape.x = container.stage.stageWidth / 2;
-				shape.y = container.stage.stageHeight / 2;
+				//shape.x = container.stage.stageWidth / 2;
+				//shape.y = container.stage.stageHeight / 2;
 			}
 			
 			return shape;

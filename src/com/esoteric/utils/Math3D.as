@@ -28,9 +28,6 @@
 		 * 
 		 * X(x,y,z) = (sxx*x + sxy*y + sxz*z + dx)/(cfx*x + cfy*y + cfz*z + cd)
 		 * Y(x,y,z) = (syx*x + syy*y + syz*z + dy)/(cfx*x + cfy*y + cfz*z + cd)
-		 * 
-		 * And in theory...
-		 * 
 		 * Z(x,y,z) = (szx*x + szy*y + szz*z + dz)/(cfx*x + cfy*y + cfz*z + cd)
 		 * 
 		 * See AyMaN comment on this page:
@@ -39,22 +36,27 @@
 		 * PerspectiveProjection.html
 		 * 
 		 * @param	pp					the perspective projection
+		 * @param	cx					projection center x
+		 * @param	cy					projection center y
 		 * @param	pixelPerUnitRatio	the pixel per unit ratio...
 		 */
 		public static function ppToMatrix3D(pp:PerspectiveProjection,
+											cx:Number = 0, cy:Number = 0,
 											pixelPerUnitRatio:Number = 250)
 											:Matrix3D 
 		{
 			var fov:Number = pp.fieldOfView;
 			var sxx:Number = pixelPerUnitRatio / Math.tan(fov * Math.PI / 360);
 			var syy:Number = sxx;
+			var dx:Number  = -cx * sxx;
+			var dy:Number  = -cy * syy;
 			
 			var m:Vector.<Number> = new Vector.<Number>();
 			
 			m.push(	sxx,	0,		0,		0	);
 			m.push(	0,		syy,	0,		0	);
-			m.push(	0,		0,		1,		1	);
-			m.push(	0,		0,		0,		0	);
+			m.push(	cx,		cy,		1,		1	);
+			m.push(	dx,		dy,		0,		0	);
 			
 			return new Matrix3D(m);
 		}

@@ -134,7 +134,7 @@ package com.esoteric.display
 			var indices:Vector.<int> = this.indices;
 			var uvts:Vector.<Number> = this.uvts;
 			var container:DisplayObjectContainer = context.container;
-			var pp:Matrix3D = Math3D.ppToMatrix3D(container.transform.perspectiveProjection, 200);
+			var pp:Matrix3D = Math3D.ppToMatrix3D(container.transform.perspectiveProjection, container.stage.stageWidth / 2, container.stage.stageHeight / 2, 250);
 			
 			if (!_pVerts || _pVerts.length != int(vertices.length * 2 / 3))
 			{
@@ -143,10 +143,13 @@ package com.esoteric.display
 			
 			if (vertices.length && indices.length && uvts.length && context.container.stage)
 			{
-				var matrix:Matrix3D = _transformMatrix.clone();
-				matrix.appendTranslation( -container.stage.stageWidth / 2, -container.stage.stageHeight / 2, 0);
+				//matrix.appendTranslation( -container.stage.stageWidth / 2, -container.stage.stageHeight / 2, 0);
 				var vVerts:Vector.<Number> = new Vector.<Number>(vertices.length, true);
-				matrix.transformVectors(vertices, vVerts);
+				var m:Matrix3D = _transformMatrix.clone();
+				/*m.appendTranslation(0, 0, -_transformMatrix.position.z);
+				m.appendScale(1, 1, .4);
+				m.appendTranslation(0, 0, _transformMatrix.position.z);*/
+				m.transformVectors(vertices, vVerts);
 				Utils3D.projectVectors(pp, vVerts, _pVerts, uvts);
 				return _pVerts;
 			}
