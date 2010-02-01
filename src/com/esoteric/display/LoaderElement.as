@@ -36,12 +36,14 @@ package com.esoteric.display
 {
 	import com.esoteric.core.IElement;
 	import com.esoteric.core.Context;
+	import com.esoteric.esoteric;
 	import flash.display.DisplayObject;
 	import flash.events.Event;
 	import flash.net.URLRequest;
 	
 	public class LoaderElement extends AbstractLoaderElement
 	{
+		use namespace esoteric;
 		
 		//---------------------------------------------------------------------
 		// Constructor

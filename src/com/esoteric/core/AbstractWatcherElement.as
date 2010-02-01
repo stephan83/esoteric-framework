@@ -2,7 +2,7 @@
 	DO NOT MODIFY THIS FILE, THE CODE GENERATOR WILL ERASE ANY CHANGES MADE.
 	MAKE CHANGES TO THE DERIVED CLASS INSTEAD.
 
-	Last generated 2010-01-25 12:58:06.894000 UTC.
+	Last generated 2010-02-01 17:20:42.191000 UTC.
 
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	~                           Esoteric Framework                            ~
@@ -42,8 +42,11 @@ package com.esoteric.core
 	import flash.events.Event;
 
 	import com.esoteric.core.Context;
+	import com.esoteric.esoteric;
 	import com.esoteric.events.ElementEvent;
 	import com.esoteric.events.PropertyChangeEvent;
+	
+	use namespace esoteric;
 	
 	public class AbstractWatcherElement extends ScriptElement
 	{
@@ -70,7 +73,7 @@ package com.esoteric.core
 		 * @inheritDoc
 		 */
 		
-		public override function initialize():void
+		override public function initialize():void
 		{
 			super.initialize();
 			
@@ -84,12 +87,12 @@ package com.esoteric.core
 		/**
 		 * @private
 		 */
-		private var _lastEvent:Event = null;
+		esoteric var _lastEvent:Event = null;
 
 		/**
 		 * @private
 		 */
-		private var _watch:* = null;
+		esoteric var _watch:* = null;
 
 
 		//---------------------------------------------------------------------
@@ -137,7 +140,10 @@ package com.esoteric.core
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'watch', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 

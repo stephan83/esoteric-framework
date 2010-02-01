@@ -36,6 +36,7 @@ package com.esoteric.display
 {
 	import com.esoteric.core.IElement;
 	import com.esoteric.core.Context;
+	import com.esoteric.esoteric;
 	import com.esoteric.events.ElementEvent;
 	import com.esoteric.net.CacheRequest;
 	import flash.display.Bitmap;
@@ -44,6 +45,8 @@ package com.esoteric.display
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
 	import flash.utils.ByteArray;
+	
+	use namespace esoteric;
 	
 	/**
 	* Generated 2008-08-04 08:40:26.455000 UTC.
@@ -109,7 +112,7 @@ package com.esoteric.display
 			}
 			else
 			{
-				bitmap.bitmapData = null;
+				_bitmap.bitmapData = null;
 			}
 			
 			super.url = value;

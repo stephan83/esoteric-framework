@@ -34,18 +34,16 @@
 	-----                                                                 -----
 -->
 
-<Preloader mouseEnabled="true" useHandCursor="true" buttonMode="true" mouseChildren="true" x="{stageWidth / 2 + 400}" y="{stageHeight / 2 + 200}" z="1000" rotationY="{mouseX}" rotationX="{0}">
+<Preloader mouseEnabled="true" useHandCursor="true" buttonMode="true" mouseChildren="true">
 	
-	<Sprite>
-		<TextField y="-100" color="0xffffff" size="50" width="{this.textWidth}">HELLO WORLD</TextField>
-		<TextField y="-200" color="0xffffff" size="50" width="{this.textWidth}">WAZUUUUUP</TextField>
-		<TextField y="-200" z="-50" color="0xffffff" size="50" width="{this.textWidth}">!!!!!!!!!</TextField>
-	</Sprite>
+	<Scene3D id="scene">
+		<ObjectContainer3D rotationY="{mouseX}">
+			<Collada url="assets/preloader.dae" />
+		</ObjectContainer3D>
+	</Scene3D>
 	
-	<Shape rotationX="90" y="0">
-		<SolidFill color="0xffffff" alpha=".3">
-			<Rectangle x="-560" y="-560" width="1120" height="1120" />
-		</SolidFill>
-	</Shape>
+	<Camera3D id="camera" y="-200" z="-1000"></Camera3D>
+	
+	<View3D scene="{$('#scene').$elements()}" camera="{$('#camera').$elements()}" x="{stageWidth / 2}" y="{stageHeight / 2}"></View3D>
 	
 </Preloader>

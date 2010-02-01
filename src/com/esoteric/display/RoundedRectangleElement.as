@@ -40,7 +40,7 @@ package com.esoteric.display
 	/**
 	* Generated 2008-08-03 06:44:21.386000 UTC.
 	*/
-	public class RoundedRectangleElement extends AbstractRoundedRectangleElement implements IGraphicCommandElement
+	public class RoundedRectangleElement extends AbstractRoundedRectangleElement
 	{
 		
 		//---------------------------------------------------------------------

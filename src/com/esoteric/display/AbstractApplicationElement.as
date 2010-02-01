@@ -2,7 +2,7 @@
 	DO NOT MODIFY THIS FILE, THE CODE GENERATOR WILL ERASE ANY CHANGES MADE.
 	MAKE CHANGES TO THE DERIVED CLASS INSTEAD.
 
-	Last generated 2010-01-25 12:58:06.901000 UTC.
+	Last generated 2010-02-01 17:20:42.201000 UTC.
 
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	~                           Esoteric Framework                            ~
@@ -49,8 +49,11 @@ package com.esoteric.display
 	import org.papervision3d.core.render.IRenderEngine;
 
 	import com.esoteric.core.Context;
+	import com.esoteric.esoteric;
 	import com.esoteric.events.ElementEvent;
 	import com.esoteric.events.PropertyChangeEvent;
+	
+	use namespace esoteric;
 	
 	public class AbstractApplicationElement extends SpriteElement
 	{
@@ -77,7 +80,7 @@ package com.esoteric.display
 		 * @inheritDoc
 		 */
 		
-		public override function initialize():void
+		override public function initialize():void
 		{
 			super.initialize();
 			
@@ -91,62 +94,62 @@ package com.esoteric.display
 		/**
 		 * @private
 		 */
-		private var _applicationHeight:Number = 480;
+		esoteric var _applicationHeight:Number = 480;
 
 		/**
 		 * @private
 		 */
-		private var _globals:BindableObject = null;
+		esoteric var _globals:BindableObject = null;
 
 		/**
 		 * @private
 		 */
-		private var _renderEngine:IRenderEngine = null;
+		esoteric var _renderEngine:IRenderEngine = null;
 
 		/**
 		 * @private
 		 */
-		private var _cache:Cache = null;
+		esoteric var _cache:Cache = null;
 
 		/**
 		 * @private
 		 */
-		private var _elementFactory:ElementFactory = null;
+		esoteric var _elementFactory:ElementFactory = null;
 
 		/**
 		 * @private
 		 */
-		private var _applicationWidth:Number = 640;
+		esoteric var _applicationWidth:Number = 640;
 
 		/**
 		 * @private
 		 */
-		private var _volume:Number = 1.0;
+		esoteric var _volume:Number = 1.0;
 
 		/**
 		 * @private
 		 */
-		private var _expVm:ExpressionVm = null;
+		esoteric var _expVm:ExpressionVm = null;
 
 		/**
 		 * @private
 		 */
-		private var _extraContext:Object = null;
+		esoteric var _extraContext:Object = null;
 
 		/**
 		 * @private
 		 */
-		private var _expQueue:ElementExpressionQueue = null;
+		esoteric var _expQueue:ElementExpressionQueue = null;
 
 		/**
 		 * @private
 		 */
-		private var _renderQueue:RenderQueue = null;
+		esoteric var _renderQueue:RenderQueue = null;
 
 		/**
 		 * @private
 		 */
-		private var _stage:Stage = null;
+		esoteric var _stage:Stage = null;
 
 
 		//---------------------------------------------------------------------
@@ -173,7 +176,10 @@ package com.esoteric.display
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'applicationHeight', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -281,7 +287,10 @@ package com.esoteric.display
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'applicationWidth', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -305,7 +314,10 @@ package com.esoteric.display
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'volume', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 

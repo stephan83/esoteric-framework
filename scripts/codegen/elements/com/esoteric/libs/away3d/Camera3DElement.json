@@ -1,0 +1,38 @@
+{
+	"desc": "A 3D camera.",
+	
+	"baseclass": "Object3DElement",
+
+	"imports": [
+		"away3dlite.cameras.Camera3D"
+	],
+	
+	"properties": {
+		"camera": {
+			"type":	"Camera3D",
+			"default": "new Camera3D()",
+			"desc": "The camera.",
+			"bindable": false,
+			"update": false,
+			"namespace": "esoteric"
+		}
+	},
+	
+	"objectProperties": {
+		"zoom": {
+			"object": "camera",
+			"property": "zoom",
+			"type":	"Number",
+			"default": "10",
+			"desc": "The zoom of the camera."
+		},
+		"focus": {
+			"object": "camera",
+			"property": "focus",
+			"type":	"Number",
+			"default": "100",
+			"desc": "The focus of the camera."
+		}
+	}
+	
+}

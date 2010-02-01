@@ -2,7 +2,7 @@
 	DO NOT MODIFY THIS FILE, THE CODE GENERATOR WILL ERASE ANY CHANGES MADE.
 	MAKE CHANGES TO THE DERIVED CLASS INSTEAD.
 
-	Last generated 2010-01-25 12:58:07.023000 UTC.
+	Last generated 2010-02-01 17:20:42.319000 UTC.
 
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	~                           Esoteric Framework                            ~
@@ -43,8 +43,11 @@ package com.esoteric.filters
 	import flash.filters.BitmapFilter;
 
 	import com.esoteric.core.Context;
+	import com.esoteric.esoteric;
 	import com.esoteric.events.ElementEvent;
 	import com.esoteric.events.PropertyChangeEvent;
+	
+	use namespace esoteric;
 	
 	public class AbstractBitmapFilterElement extends TweenableElement
 	{
@@ -71,7 +74,7 @@ package com.esoteric.filters
 		 * @inheritDoc
 		 */
 		
-		public override function initialize():void
+		override public function initialize():void
 		{
 			super.initialize();
 			
@@ -85,7 +88,7 @@ package com.esoteric.filters
 		/**
 		 * @private
 		 */
-		private var _bitmapFilter:BitmapFilter = null;
+		esoteric var _bitmapFilter:BitmapFilter = null;
 
 
 		//---------------------------------------------------------------------

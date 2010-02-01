@@ -37,6 +37,7 @@ package com.esoteric.display
 	import com.esoteric.core.Context;
 	import com.esoteric.core.IElement;
 	import com.esoteric.core.Context;
+	import com.esoteric.esoteric;
 	import com.esoteric.events.PointInputEvent;
 	import com.esoteric.events.PropertyChangeEvent;
 	import com.esoteric.utils.Watcher;
@@ -47,6 +48,7 @@ package com.esoteric.display
 	
 	public class InteractiveObjectElement extends AbstractInteractiveObjectElement
 	{
+		use namespace esoteric;
 		
 		//---------------------------------------------------------------------
 		// Constructor
@@ -95,9 +97,9 @@ package com.esoteric.display
 		 */
 		override protected function createDisplayObject():DisplayObject
 		{
-			interactiveObject = createInteractiveObject();
+			_interactiveObject = createInteractiveObject();
 			
-			return interactiveObject;
+			return _interactiveObject;
 		}
 		
 		//---------------------------------------------------------------------
@@ -125,8 +127,8 @@ package com.esoteric.display
 			interactiveObject.addEventListener(MouseEvent.MOUSE_OVER, mouseOverHandler, false, 0, true);
 			interactiveObject.addEventListener(MouseEvent.MOUSE_OUT, mouseOutHandler, false, 1, true);
 			interactiveObject.addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler, false, 0, true);
-			//context.container.stage.addEventListener(MouseEvent.MOUSE_UP, stageMouseUpHandler, false, 0, true);
-			//context.container.stage.addEventListener(MouseEvent.MOUSE_MOVE, stageMouseMoveHandler, false, 0, true);
+			//context.stage.addEventListener(MouseEvent.MOUSE_UP, stageMouseUpHandler, false, 0, true);
+			//context.stage.addEventListener(MouseEvent.MOUSE_MOVE, stageMouseMoveHandler, false, 0, true);
 			
 			_hasEventListeners = true;
 		}
@@ -142,8 +144,8 @@ package com.esoteric.display
 			interactiveObject.removeEventListener(MouseEvent.MOUSE_OVER, mouseOverHandler);
 			interactiveObject.removeEventListener(MouseEvent.MOUSE_OUT, mouseOutHandler);
 			interactiveObject.removeEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);
-			//context.container.stage.removeEventListener(MouseEvent.MOUSE_UP, stageMouseUpHandler);
-			//context.container.stage.removeEventListener(MouseEvent.MOUSE_MOVE, stageMouseMoveHandler);
+			//context.stage.removeEventListener(MouseEvent.MOUSE_UP, stageMouseUpHandler);
+			//context.stage.removeEventListener(MouseEvent.MOUSE_MOVE, stageMouseMoveHandler);
 			
 			_hasEventListeners = false;
 		}
@@ -291,10 +293,10 @@ package com.esoteric.display
 				{
 					hovered = false;
 					
-					var global:Point = new Point(context.container.stage.mouseX, context.container.stage.mouseY);
+					var global:Point = new Point(context.stage.mouseX, context.stage.mouseY);
 					var local:Point = displayObject.globalToLocal(global);
 					
-					dispatchEvent(new PointInputEvent(PointInputEvent.OUT, false, false, local.x, local.y, 0, context.container.stage.mouseX, context.container.stage.mouseY));
+					dispatchEvent(new PointInputEvent(PointInputEvent.OUT, false, false, local.x, local.y, 0, context.stage.mouseX, context.stage.mouseY));
 				}
 				
 				if (_hasEventListeners)
@@ -315,10 +317,10 @@ package com.esoteric.display
 				{
 					hovered = false;
 					
-					var global:Point = new Point(context.container.stage.mouseX, context.container.stage.mouseY);
+					var global:Point = new Point(context.stage.mouseX, context.stage.mouseY);
 					var local:Point = displayObject.globalToLocal(global);
 					
-					dispatchEvent(new PointInputEvent(PointInputEvent.OUT, false, false, local.x, local.y, 0, context.container.stage.mouseX, context.container.stage.mouseY));
+					dispatchEvent(new PointInputEvent(PointInputEvent.OUT, false, false, local.x, local.y, 0, context.stage.mouseX, context.stage.mouseY));
 				}
 				
 				if (_hasEventListeners)

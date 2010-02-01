@@ -2,7 +2,7 @@
 	DO NOT MODIFY THIS FILE, THE CODE GENERATOR WILL ERASE ANY CHANGES MADE.
 	MAKE CHANGES TO THE DERIVED CLASS INSTEAD.
 
-	Last generated 2010-01-25 12:58:07.055000 UTC.
+	Last generated 2010-02-01 17:20:42.398000 UTC.
 
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	~                           Esoteric Framework                            ~
@@ -43,8 +43,11 @@ package com.esoteric.net
 	import com.esoteric.utils.BindableArray;
 
 	import com.esoteric.core.Context;
+	import com.esoteric.esoteric;
 	import com.esoteric.events.ElementEvent;
 	import com.esoteric.events.PropertyChangeEvent;
+	
+	use namespace esoteric;
 	
 	public class AbstractRemoteXMLElement extends AbstractElement
 	{
@@ -71,7 +74,7 @@ package com.esoteric.net
 		 * @inheritDoc
 		 */
 		
-		public override function initialize():void
+		override public function initialize():void
 		{
 			super.initialize();
 			
@@ -85,12 +88,12 @@ package com.esoteric.net
 		/**
 		 * @private
 		 */
-		private var _url:String = null;
+		esoteric var _url:String = null;
 
 		/**
 		 * @private
 		 */
-		private var _variables:BindableArray = new BindableArray();
+		esoteric var _variables:BindableArray = new BindableArray();
 
 
 		//---------------------------------------------------------------------
@@ -117,7 +120,10 @@ package com.esoteric.net
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'url', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -141,7 +147,10 @@ package com.esoteric.net
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'variables', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 

@@ -2,7 +2,7 @@
 	DO NOT MODIFY THIS FILE, THE CODE GENERATOR WILL ERASE ANY CHANGES MADE.
 	MAKE CHANGES TO THE DERIVED CLASS INSTEAD.
 
-	Last generated 2010-01-25 12:58:07.070000 UTC.
+	Last generated 2010-02-01 17:20:42.417000 UTC.
 
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	~                           Esoteric Framework                            ~
@@ -48,8 +48,11 @@ package com.esoteric.text
 	import flash.text.TextFormatAlign;
 
 	import com.esoteric.core.Context;
+	import com.esoteric.esoteric;
 	import com.esoteric.events.ElementEvent;
 	import com.esoteric.events.PropertyChangeEvent;
+	
+	use namespace esoteric;
 	
 	public class AbstractTextFieldElement extends InteractiveObjectElement
 	{
@@ -101,7 +104,7 @@ package com.esoteric.text
 		 * @inheritDoc
 		 */
 		
-		public override function initialize():void
+		override public function initialize():void
 		{
 			super.initialize();
 			
@@ -115,162 +118,162 @@ package com.esoteric.text
 		/**
 		 * @private
 		 */
-		private var _textField:TextField = new TextField();
+		esoteric var _textField:TextField = new TextField();
 
 		/**
 		 * @private
 		 */
-		private var _textFormat:TextFormat = new TextFormat();
+		esoteric var _textFormat:TextFormat = new TextFormat();
 
 		/**
 		 * @private
 		 */
-		private var _textHeight:int = 0;
+		esoteric var _textHeight:int = 0;
 
 		/**
 		 * @private
 		 */
-		private var _textWidth:int = 0;
+		esoteric var _textWidth:int = 0;
 
 		/**
 		 * @private
 		 */
-		private var _embedFonts:Boolean = false;
+		esoteric var _embedFonts:Boolean = false;
 
 		/**
 		 * @private
 		 */
-		private var _color:Object = 0x000000;
+		esoteric var _color:Object = 0x000000;
 
 		/**
 		 * @private
 		 */
-		private var _sharpness:int = -100;
+		esoteric var _sharpness:int = -100;
 
 		/**
 		 * @private
 		 */
-		private var _restrict:String = null;
+		esoteric var _restrict:String = null;
 
 		/**
 		 * @private
 		 */
-		private var _wordWrap:Boolean = false;
+		esoteric var _wordWrap:Boolean = false;
 
 		/**
 		 * @private
 		 */
-		private var _font:String = "_sans";
+		esoteric var _font:String = "_sans";
 
 		/**
 		 * @private
 		 */
-		private var _tabStops:Array = null;
+		esoteric var _tabStops:Array = null;
 
 		/**
 		 * @private
 		 */
-		private var _underline:Object = false;
+		esoteric var _underline:Object = false;
 
 		/**
 		 * @private
 		 */
-		private var _size:Object = 12;
+		esoteric var _size:Object = 12;
 
 		/**
 		 * @private
 		 */
-		private var _antiAliasType:String = AntiAliasType.ADVANCED;
+		esoteric var _antiAliasType:String = AntiAliasType.ADVANCED;
 
 		/**
 		 * @private
 		 */
-		private var _leading:Object = 0;
+		esoteric var _leading:Object = 0;
 
 		/**
 		 * @private
 		 */
-		private var _thickness:int = 100;
+		esoteric var _thickness:int = 100;
 
 		/**
 		 * @private
 		 */
-		private var _kerning:Object = false;
+		esoteric var _kerning:Object = false;
 
 		/**
 		 * @private
 		 */
-		private var _multiline:Boolean = false;
+		esoteric var _multiline:Boolean = false;
 
 		/**
 		 * @private
 		 */
-		private var _italic:Object = false;
+		esoteric var _italic:Object = false;
 
 		/**
 		 * @private
 		 */
-		private var _leftMargin:Object = 0;
+		esoteric var _leftMargin:Object = 0;
 
 		/**
 		 * @private
 		 */
-		private var _type:String = TextFieldType.DYNAMIC;
+		esoteric var _type:String = TextFieldType.DYNAMIC;
 
 		/**
 		 * @private
 		 */
-		private var _autoSize:String = TextFieldAutoSize.NONE;
+		esoteric var _autoSize:String = TextFieldAutoSize.NONE;
 
 		/**
 		 * @private
 		 */
-		private var _rightMargin:Object = 0;
+		esoteric var _rightMargin:Object = 0;
 
 		/**
 		 * @private
 		 */
-		private var _maxChars:int = 0;
+		esoteric var _maxChars:int = 0;
 
 		/**
 		 * @private
 		 */
-		private var _letterSpacing:Object = 0.0;
+		esoteric var _letterSpacing:Object = 0.0;
 
 		/**
 		 * @private
 		 */
-		private var _selectable:Boolean = false;
+		esoteric var _selectable:Boolean = false;
 
 		/**
 		 * @private
 		 */
-		private var _indent:Object = 0;
+		esoteric var _indent:Object = 0;
 
 		/**
 		 * @private
 		 */
-		private var _target:String = "_self";
+		esoteric var _target:String = "_self";
 
 		/**
 		 * @private
 		 */
-		private var _bullet:Object = false;
+		esoteric var _bullet:Object = false;
 
 		/**
 		 * @private
 		 */
-		private var _url:String = null;
+		esoteric var _url:String = null;
 
 		/**
 		 * @private
 		 */
-		private var _align:String = TextFormatAlign.LEFT;
+		esoteric var _align:String = TextFormatAlign.LEFT;
 
 		/**
 		 * @private
 		 */
-		private var _blockIdent:Object = 0;
+		esoteric var _blockIdent:Object = 0;
 
 
 		//---------------------------------------------------------------------
@@ -349,7 +352,10 @@ package com.esoteric.text
 			
 				_textFormat = value;
 
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -425,7 +431,10 @@ package com.esoteric.text
 					textField.embedFonts = value;
 				}
 
-				context.renderQueue.add(this);			
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'embedFonts', oldValue, value));
@@ -456,7 +465,10 @@ package com.esoteric.text
 					textFormat.color = value;
 				}
 
-				context.renderQueue.add(this);			
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'color', oldValue, value));
@@ -487,7 +499,10 @@ package com.esoteric.text
 					textField.sharpness = value;
 				}
 
-				context.renderQueue.add(this);			
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'sharpness', oldValue, value));
@@ -518,7 +533,10 @@ package com.esoteric.text
 					textField.restrict = value;
 				}
 
-				context.renderQueue.add(this);			
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'restrict', oldValue, value));
@@ -549,7 +567,10 @@ package com.esoteric.text
 					textField.wordWrap = value;
 				}
 
-				context.renderQueue.add(this);			
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'wordWrap', oldValue, value));
@@ -580,7 +601,10 @@ package com.esoteric.text
 					textFormat.font = value;
 				}
 
-				context.renderQueue.add(this);			
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'font', oldValue, value));
@@ -611,7 +635,10 @@ package com.esoteric.text
 					textFormat.tabStops = value;
 				}
 
-				context.renderQueue.add(this);			
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'tabStops', oldValue, value));
@@ -642,7 +669,10 @@ package com.esoteric.text
 					textFormat.underline = value;
 				}
 
-				context.renderQueue.add(this);			
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'underline', oldValue, value));
@@ -673,7 +703,10 @@ package com.esoteric.text
 					textFormat.size = value;
 				}
 
-				context.renderQueue.add(this);			
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'size', oldValue, value));
@@ -704,7 +737,10 @@ package com.esoteric.text
 					textField.antiAliasType = value;
 				}
 
-				context.renderQueue.add(this);			
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'antiAliasType', oldValue, value));
@@ -735,7 +771,10 @@ package com.esoteric.text
 					textFormat.leading = value;
 				}
 
-				context.renderQueue.add(this);			
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'leading', oldValue, value));
@@ -766,7 +805,10 @@ package com.esoteric.text
 					textField.thickness = value;
 				}
 
-				context.renderQueue.add(this);			
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'thickness', oldValue, value));
@@ -797,7 +839,10 @@ package com.esoteric.text
 					textFormat.kerning = value;
 				}
 
-				context.renderQueue.add(this);			
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'kerning', oldValue, value));
@@ -828,7 +873,10 @@ package com.esoteric.text
 					textField.multiline = value;
 				}
 
-				context.renderQueue.add(this);			
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'multiline', oldValue, value));
@@ -859,7 +907,10 @@ package com.esoteric.text
 					textFormat.italic = value;
 				}
 
-				context.renderQueue.add(this);			
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'italic', oldValue, value));
@@ -890,7 +941,10 @@ package com.esoteric.text
 					textFormat.leftMargin = value;
 				}
 
-				context.renderQueue.add(this);			
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'leftMargin', oldValue, value));
@@ -921,7 +975,10 @@ package com.esoteric.text
 					textField.type = value;
 				}
 
-				context.renderQueue.add(this);			
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'type', oldValue, value));
@@ -952,7 +1009,10 @@ package com.esoteric.text
 					textField.autoSize = value;
 				}
 
-				context.renderQueue.add(this);			
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'autoSize', oldValue, value));
@@ -983,7 +1043,10 @@ package com.esoteric.text
 					textFormat.rightMargin = value;
 				}
 
-				context.renderQueue.add(this);			
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'rightMargin', oldValue, value));
@@ -1014,7 +1077,10 @@ package com.esoteric.text
 					textField.maxChars = value;
 				}
 
-				context.renderQueue.add(this);			
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'maxChars', oldValue, value));
@@ -1045,7 +1111,10 @@ package com.esoteric.text
 					textFormat.letterSpacing = value;
 				}
 
-				context.renderQueue.add(this);			
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'letterSpacing', oldValue, value));
@@ -1076,7 +1145,10 @@ package com.esoteric.text
 					textField.selectable = value;
 				}
 
-				context.renderQueue.add(this);			
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'selectable', oldValue, value));
@@ -1107,7 +1179,10 @@ package com.esoteric.text
 					textFormat.indent = value;
 				}
 
-				context.renderQueue.add(this);			
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'indent', oldValue, value));
@@ -1138,7 +1213,10 @@ package com.esoteric.text
 					textFormat.target = value;
 				}
 
-				context.renderQueue.add(this);			
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'target', oldValue, value));
@@ -1169,7 +1247,10 @@ package com.esoteric.text
 					textFormat.bullet = value;
 				}
 
-				context.renderQueue.add(this);			
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'bullet', oldValue, value));
@@ -1200,7 +1281,10 @@ package com.esoteric.text
 					textFormat.url = value;
 				}
 
-				context.renderQueue.add(this);			
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'url', oldValue, value));
@@ -1231,7 +1315,10 @@ package com.esoteric.text
 					textFormat.align = value;
 				}
 
-				context.renderQueue.add(this);			
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'align', oldValue, value));
@@ -1262,7 +1349,10 @@ package com.esoteric.text
 					textFormat.blockIndent = value;
 				}
 
-				context.renderQueue.add(this);			
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'blockIdent', oldValue, value));

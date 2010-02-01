@@ -2,7 +2,7 @@
 	DO NOT MODIFY THIS FILE, THE CODE GENERATOR WILL ERASE ANY CHANGES MADE.
 	MAKE CHANGES TO THE DERIVED CLASS INSTEAD.
 
-	Last generated 2010-01-25 12:58:07.048000 UTC.
+	Last generated 2010-02-01 17:20:42.389000 UTC.
 
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	~                           Esoteric Framework                            ~
@@ -42,8 +42,11 @@ package com.esoteric.motion
 	import com.esoteric.core.ScriptElement;
 
 	import com.esoteric.core.Context;
+	import com.esoteric.esoteric;
 	import com.esoteric.events.ElementEvent;
 	import com.esoteric.events.PropertyChangeEvent;
+	
+	use namespace esoteric;
 	
 	public class AbstractFrameElement extends ScriptElement
 	{
@@ -70,7 +73,7 @@ package com.esoteric.motion
 		 * @inheritDoc
 		 */
 		
-		public override function initialize():void
+		override public function initialize():void
 		{
 			super.initialize();
 			
@@ -84,7 +87,7 @@ package com.esoteric.motion
 		/**
 		 * @private
 		 */
-		private var _position:int = 0;
+		esoteric var _position:int = 0;
 
 
 		//---------------------------------------------------------------------
@@ -111,7 +114,10 @@ package com.esoteric.motion
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'position', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 

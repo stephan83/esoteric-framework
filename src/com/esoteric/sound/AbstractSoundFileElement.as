@@ -2,7 +2,7 @@
 	DO NOT MODIFY THIS FILE, THE CODE GENERATOR WILL ERASE ANY CHANGES MADE.
 	MAKE CHANGES TO THE DERIVED CLASS INSTEAD.
 
-	Last generated 2010-01-25 12:58:07.060000 UTC.
+	Last generated 2010-02-01 17:20:42.404000 UTC.
 
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	~                           Esoteric Framework                            ~
@@ -45,8 +45,11 @@ package com.esoteric.sound
 	import flash.utils.Timer;
 
 	import com.esoteric.core.Context;
+	import com.esoteric.esoteric;
 	import com.esoteric.events.ElementEvent;
 	import com.esoteric.events.PropertyChangeEvent;
+	
+	use namespace esoteric;
 	
 	public class AbstractSoundFileElement extends TweenableElement
 	{
@@ -74,7 +77,7 @@ package com.esoteric.sound
 		 * @inheritDoc
 		 */
 		
-		public override function initialize():void
+		override public function initialize():void
 		{
 			super.initialize();
 			
@@ -88,92 +91,92 @@ package com.esoteric.sound
 		/**
 		 * @private
 		 */
-		private var _album:String = null;
+		esoteric var _album:String = null;
 
 		/**
 		 * @private
 		 */
-		private var _comment:String = null;
+		esoteric var _comment:String = null;
 
 		/**
 		 * @private
 		 */
-		private var _soundChannel:SoundChannel = null;
+		esoteric var _soundChannel:SoundChannel = null;
 
 		/**
 		 * @private
 		 */
-		private var _artist:String = null;
+		esoteric var _artist:String = null;
 
 		/**
 		 * @private
 		 */
-		private var _url:String = null;
+		esoteric var _url:String = null;
 
 		/**
 		 * @private
 		 */
-		private var _mute:Boolean = false;
+		esoteric var _mute:Boolean = false;
 
 		/**
 		 * @private
 		 */
-		private var _timer:Timer = new Timer(100);
+		esoteric var _timer:Timer = new Timer(100);
 
 		/**
 		 * @private
 		 */
-		private var _volume:Number = 1.0;
+		esoteric var _volume:Number = 1.0;
 
 		/**
 		 * @private
 		 */
-		private var _genre:String = null;
+		esoteric var _genre:String = null;
 
 		/**
 		 * @private
 		 */
-		private var _length:int = 0;
+		esoteric var _length:int = 0;
 
 		/**
 		 * @private
 		 */
-		private var _track:String = null;
+		esoteric var _track:String = null;
 
 		/**
 		 * @private
 		 */
-		private var _year:String = null;
+		esoteric var _year:String = null;
 
 		/**
 		 * @private
 		 */
-		private var _loops:int = 1;
+		esoteric var _loops:int = 1;
 
 		/**
 		 * @private
 		 */
-		private var _position:int = 0;
+		esoteric var _position:int = 0;
 
 		/**
 		 * @private
 		 */
-		private var _playing:Boolean = false;
+		esoteric var _playing:Boolean = false;
 
 		/**
 		 * @private
 		 */
-		private var _songName:String = null;
+		esoteric var _songName:String = null;
 
 		/**
 		 * @private
 		 */
-		private var _delay:Number = 100;
+		esoteric var _delay:Number = 100;
 
 		/**
 		 * @private
 		 */
-		private var _soundTransform:SoundTransform = new SoundTransform();
+		esoteric var _soundTransform:SoundTransform = new SoundTransform();
 
 
 		//---------------------------------------------------------------------
@@ -200,7 +203,10 @@ package com.esoteric.sound
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'album', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -224,7 +230,10 @@ package com.esoteric.sound
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'comment', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -273,7 +282,10 @@ package com.esoteric.sound
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'artist', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -297,7 +309,10 @@ package com.esoteric.sound
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'url', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -321,7 +336,10 @@ package com.esoteric.sound
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'mute', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -370,7 +388,10 @@ package com.esoteric.sound
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'volume', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -394,7 +415,10 @@ package com.esoteric.sound
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'genre', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -418,7 +442,10 @@ package com.esoteric.sound
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'length', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -442,7 +469,10 @@ package com.esoteric.sound
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'track', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -466,7 +496,10 @@ package com.esoteric.sound
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'year', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -490,7 +523,10 @@ package com.esoteric.sound
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'loops', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -514,7 +550,10 @@ package com.esoteric.sound
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'position', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -538,7 +577,10 @@ package com.esoteric.sound
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'playing', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -562,7 +604,10 @@ package com.esoteric.sound
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'songName', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -590,7 +635,10 @@ package com.esoteric.sound
 					timer.delay = value;
 				}
 
-				context.renderQueue.add(this);			
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'delay', oldValue, value));

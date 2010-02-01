@@ -1,0 +1,21 @@
+{
+	"desc": "A 3D scene.",
+	
+	"baseclass": "ObjectContainer3DElement",
+
+	"imports": [
+		"away3dlite.containers.Scene3D"
+	],
+	
+	"properties": {
+		"scene": {
+			"type":	"Scene3D",
+			"desc": "The scene.",
+			"default": "new Scene3D()",
+			"bindable": false,
+			"update": false,
+			"namespace": "esoteric"
+		}
+	}
+	
+}

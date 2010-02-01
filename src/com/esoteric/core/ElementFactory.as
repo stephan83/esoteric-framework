@@ -38,14 +38,12 @@ package com.esoteric.core
 	import com.esoteric.display.BitmapFileElement;
 	import com.esoteric.display.CircleElement;
 	import com.esoteric.display.CurveToElement;
-	import com.esoteric.display.DisplayObject3DElement;
 	import com.esoteric.display.EllipseElement;
 	import com.esoteric.display.GradientFillElement;
 	import com.esoteric.display.LineGradientStyleElement;
 	import com.esoteric.display.LineStyleElement;
 	import com.esoteric.display.LineToElement;
 	import com.esoteric.display.LoaderElement;
-	import com.esoteric.display.Mesh3DElement;
 	import com.esoteric.display.MoveToElement;
 	import com.esoteric.display.RoundedRectangleElement;
 	import com.esoteric.display.RectangleElement;
@@ -56,6 +54,11 @@ package com.esoteric.core
 	import com.esoteric.filters.BlurFilterElement;
 	import com.esoteric.filters.DropShadowFilterElement;
 	import com.esoteric.filters.GlowFilterElement;
+	import com.esoteric.libs.away3d.Camera3DElement;
+	import com.esoteric.libs.away3d.ColladaElement;
+	import com.esoteric.libs.away3d.ObjectContainer3DElement;
+	import com.esoteric.libs.away3d.Scene3DElement;
+	import com.esoteric.libs.away3d.View3DElement;
 	import com.esoteric.media.VideoFileElement;
 	import com.esoteric.motion.FrameElement;
 	import com.esoteric.motion.TimelineElement;
@@ -153,11 +156,11 @@ package com.esoteric.core
 		 */
 		private function loadBuiltins():void
 		{
+			// Core elements
 			add("BitmapFile", new StaticElementBuilder(BitmapFileElement));
 			add("BlurFilter", new StaticElementBuilder(BlurFilterElement));
 			add("Circle", new StaticElementBuilder(CircleElement));
 			add("CurveTo", new StaticElementBuilder(CurveToElement));
-			add("DisplayObject3D", new StaticElementBuilder(DisplayObject3DElement));
 			add("DropShadowFilter", new StaticElementBuilder(DropShadowFilterElement));
 			add("Ellipse", new StaticElementBuilder(EllipseElement));
 			add("EventListener", new StaticElementBuilder(EventListenerElement));
@@ -169,7 +172,6 @@ package com.esoteric.core
 			add("LineStyle", new StaticElementBuilder(LineStyleElement));
 			add("LineTo", new StaticElementBuilder(LineToElement));
 			add("Loader", new StaticElementBuilder(LoaderElement));
-			add("Mesh3D", new StaticElementBuilder(Mesh3DElement));
 			add("MoveTo", new StaticElementBuilder(MoveToElement));
 			add("Rectangle", new StaticElementBuilder(RectangleElement));
 			add("RemoteXML", new StaticElementBuilder(RemoteXMLElement));
@@ -184,6 +186,13 @@ package com.esoteric.core
 			add("Timer", new StaticElementBuilder(TimerElement));
 			add("VideoFile", new StaticElementBuilder(VideoFileElement));
 			add("Watcher", new StaticElementBuilder(WatcherElement));
+			
+			// Away3D
+			add("Camera3D", new StaticElementBuilder(Camera3DElement));
+			add("Collada", new StaticElementBuilder(ColladaElement));
+			add("ObjectContainer3D", new StaticElementBuilder(ObjectContainer3DElement));
+			add("Scene3D", new StaticElementBuilder(Scene3DElement));
+			add("View3D", new StaticElementBuilder(View3DElement));
 		}
 		
 	}

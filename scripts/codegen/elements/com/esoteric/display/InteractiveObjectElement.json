@@ -13,7 +13,8 @@
 			"desc": "The InteractiveObject object.",
 			"bindable": false,
 			"update": false,
-			"doc": false
+			"doc": false,
+			"namespace": "esoteric"
 		},
 		"mouseX": {
 			"type":	"Number",

@@ -15,7 +15,8 @@
 			"desc": "The DisplayObject object.",
 			"bindable": false,
 			"update": false,
-			"doc": false
+			"doc": false,
+			"namespace": "esoteric"
 		},
 		"x": {
 			"type":	"Number",

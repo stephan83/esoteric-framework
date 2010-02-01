@@ -1,4 +1,38 @@
-﻿package com.esoteric.utils 
+﻿/*
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	~                           Esoteric Framework                            ~
+	~                       framework.esotericorp.com                         ~
+	~                                                                         ~
+	~                  Crafted with care by Stephan Florquin                  ~
+	~                       stephan.florquin@gmail.com                        ~
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	
+	-----                                                                 -----
+
+	Copyright (c) 2010 Stephan Florquin
+
+	Permission is hereby granted, free of charge, to any person	obtaining a
+	copy of this software and associated documentationfiles (the "Software"),
+	to deal in the Software without	restriction, including without limitation
+	the rights to use, copy, modify, merge, publish, distribute, sublicense,
+	and / or sell	copies of the Software, and to permit persons to whom the
+	Software is furnished to do so, subject to the following conditions:
+
+	The above copyright notice and this permission notice shall be included in
+	all copies or substantial portions of the Software.
+
+	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,	EXPRESS OR
+	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+	FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+	DEALINGS IN THE SOFTWARE.
+	
+	-----                                                                 -----
+*/
+
+package com.esoteric.utils 
 {
 	import flash.geom.Matrix3D;
 	import flash.geom.PerspectiveProjection;
@@ -12,8 +46,8 @@
 	{
 		
 		/**
-		 * Converts a perspective projection to a Matrix3D that can be used
-		 * with flash.utils.Utils3D.projectVectors().
+		 * Creates a Matrix3D that can be used with
+		 * flash.utils.Utils3D.projectVectors().
 		 * 
 		 * This matrix works diffently than transorm matrices:
 		 * 
@@ -35,17 +69,17 @@
 		 * http://help.adobe.com/en_US/AS3LCR/Flash_10.0/flash/geom/
 		 * PerspectiveProjection.html
 		 * 
-		 * @param	pp					the perspective projection
+		 * @param	fov					the field of view
 		 * @param	cx					projection center x
 		 * @param	cy					projection center y
-		 * @param	pixelPerUnitRatio	the pixel per unit ratio...
+		 * @param	pixelPerUnitRatio	the pixel per unit ratio
 		 */
-		public static function ppToMatrix3D(pp:PerspectiveProjection,
-											cx:Number = 0, cy:Number = 0,
-											pixelPerUnitRatio:Number = 250)
-											:Matrix3D 
+		public static function perspectiveMatrix3D(
+			fov:Number,
+			cx:Number = 0, cy:Number = 0,
+			pixelPerUnitRatio:Number = 250
+		):Matrix3D 
 		{
-			var fov:Number = pp.fieldOfView;
 			var sxx:Number = pixelPerUnitRatio / Math.tan(fov * Math.PI / 360);
 			var syy:Number = sxx;
 			var dx:Number  = -cx * sxx;
@@ -56,150 +90,36 @@
 			m.push(	sxx,	0,		0,		0	);
 			m.push(	0,		syy,	0,		0	);
 			m.push(	cx,		cy,		1,		1	);
-			m.push(	dx,		dy,		0,		0	);
+			m.push(	dx,		dy,		0,		1	);
 			
 			return new Matrix3D(m);
 		}
 		
-		public static function perspectiveMatrix3D(x:Number, y:Number,
-		                                           w:Number, h:Number,
-												   fov:Number,
-												   vx:Number = NaN,
-												   vy:Number = NaN):Matrix3D 
+		/**
+		 * Converts a perspective projection to a pespective matrix, taking
+		 * into account the projection center.
+		 * 
+		 * @param	pp					the perspective projection
+		 * @param	pixelPerUnitRatio	the pixel per unit ratio
+		 * @return	the perspective matrix
+		 */
+		public static function ppToMatrix3D(
+			pp:PerspectiveProjection,
+			pixelPerUnitRatio:Number = 250
+		):Matrix3D
 		{
-			if (isNaN(vx))
-			{
-				vx = x + w / 2;
-			}
+			var fov:Number = pp.fieldOfView;
+			var cx:Number = pp.projectionCenter.x;
+			var cy:Number = pp.projectionCenter.y;
 			
-			if (isNaN(vy))
-			{
-				vy = y + h / 2;
-			}
-			
-			var m:Vector.<Number> = new Vector.<Number>();
-			var fl:Number = focalLengthFromFoV(fov);
-			var W:Number = fl * w;
-			var H:Number = fl * h;
-			var X:Number = 300;
-			var Y:Number = 400;
-			trace(fl);
-			m.push(	W,		0,		0,		0	);
-			m.push(	0,		H,		0,		0	);
-			m.push(	X,		Y,		1,		1	);
-			m.push(	0,		0,		1,		0	);
-			
-			var m3:Matrix3D = new Matrix3D(m);
-			
-			return m3;
+			return perspectiveMatrix3D(fov, cx, cy, pixelPerUnitRatio);
 		}
 		
-		public static function perspectiveOffCenter(left:Number, right:Number,
-													top:Number, bottom:Number,
-													near:Number, far:Number):Matrix3D
-		{
-			var x:Number = (2.0 * near) / (right - left);
-			var y:Number = (2.0 * near) / (top - bottom);
-			var a:Number = (right + left) / (right - left);
-			var b:Number = (top + bottom) / (top - bottom);
-			var c:Number = -(far + near) / (far - near);
-			var d:Number = -(2.0 * far * near) / (far - near);
-			var e:Number = -1.0;
-			
-			var m:Vector.<Number> = new Vector.<Number>();
-			
-			m.push(	x,		0,		a,		0	);
-			m.push(	0,		y,		b,		0	);
-			m.push(	0,		0,		c,		d	);
-			m.push(	0,		0,		e,		0	);
-			
-			/*m.push(	x,		0,		a,		0	);
-			m.push(	0,		y,		b,		0	);
-			m.push(	a,		b,		c,		e	);
-			m.push(	0,		0,		d,		0	);*/
-			
-			trace(m);
-			trace(new PerspectiveProjection().toMatrix3D().rawData);
-			return new Matrix3D(m);
-		}
-		
-		/*public static function perspectiveMatrix3D(l:Number, r:Number, b:Number, t:Number, fov:Number):Matrix3D 
-		{
-			var m:Vector.<Number> = new Vector.<Number>();
-			var w:Number = r - l;
-			w = w > 0 ? w : -w;
-			var h:Number = b - t;
-			h = h > 0 ? h : -h;
-			var fl:Number = focalLengthFromFoV(fov);
-			var W:Number = fl * w;
-			var H:Number = fl * h;
-			var A:Number = (r + l) / (r - l);
-			var B:Number = (t + b) / (t - b);
-			
-			
-			
-			m.push(	W,		0,		A,		0	);
-			m.push(	0,		H,		B,		0	);
-			m.push(	0,		0,		1,		1	);
-			m.push(	0,		0,		-1,		0	);*/
-			
-			/*
-			m.push(	W,		0,		A,		0		);
-			m.push(	0,		H,		B,		0		);
-			m.push(	0,		0,		C,		D		);
-			m.push(	0,		0,		-1,		0		);*/
-			
-			/*return new Matrix3D(m);
-		}*/
-		
-		public static function frustrumMatrix3D(l:Number, r:Number, b:Number, t:Number, n:Number, f:Number):Matrix3D
-		{
-			var Q:Number = f / (f - n);
-			var w:Number = l - r;
-			w = w > 0 ? w : -w;
-			var h:Number = t - b;
-			h = h > 0 ? h : -h;
-			var W:Number = 2 * (n / w);
-			var H:Number = 2 * (n / h);
-	
-			var m:Vector.<Number> = new Vector.<Number>();
-			
-			/*m.push(	W,		0,		0,		0		);
-			m.push(	0,		H,		0,		0		);
-			m.push(	0,		0,		Q,		-Q * n	);
-			m.push(	0,		0,		1,		0		);*/
-			
-			m.push(	W,		0,		0,		0	);
-			m.push(	0,		H,		0,		0	);
-			m.push(	0,		0,		1,		1	);
-			m.push(	0,		0,		0,		0	);
-			trace(m);
-			trace(new PerspectiveProjection().toMatrix3D().rawData);
-			trace(new PerspectiveProjection().focalLength);
-			/*var m:Vector.<Number> = new Vector.<Number>();
-			
-			/*var W:Number = 2 * n / (r - l);
-			var H:Number = 2 * n / (t - n);
-			var A:Number = (r + l) / (r - l);
-			var B:Number = (t + b) / (t - b);
-			var C:Number = -(f + n) / (f - n);
-			var D:Number = -2 * f * n / (f - n);
-			
-			m.push(	W,		0,		A,		0		);
-			m.push(	0,		H,		B,		0		);
-			m.push(	0,		0,		C,		D		);
-			m.push(	0,		0,		-1,		0		);*/
-			
-			return new Matrix3D(m);
-		}
-		
-		/*public static function frustrumMatrix3DFoV(l:Number, r:Number, b:Number, t:Number, fov:Number, f:Number):Matrix3D 
-		{
-			var n:Number = focalLengthFromFoV(r - l, fov);
-			
-			return frustrumMatrix3D(l, r, b, t, n, f);
-		}*/
-		
+		/**
+		 * Converts a field of view to a focal length.
+		 * @param	fov	the field of view
+		 * @return	the focal length
+		 */
 		public static function focalLengthFromFoV(fov:Number):Number
 		{
 			return -.5 * Math.cos(fov * .5) / Math.sin(fov * .5);

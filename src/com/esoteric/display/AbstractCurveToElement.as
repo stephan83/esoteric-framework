@@ -2,7 +2,7 @@
 	DO NOT MODIFY THIS FILE, THE CODE GENERATOR WILL ERASE ANY CHANGES MADE.
 	MAKE CHANGES TO THE DERIVED CLASS INSTEAD.
 
-	Last generated 2010-01-25 12:58:06.921000 UTC.
+	Last generated 2010-02-01 17:20:42.226000 UTC.
 
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	~                           Esoteric Framework                            ~
@@ -42,8 +42,11 @@ package com.esoteric.display
 	import com.esoteric.core.TweenableElement;
 
 	import com.esoteric.core.Context;
+	import com.esoteric.esoteric;
 	import com.esoteric.events.ElementEvent;
 	import com.esoteric.events.PropertyChangeEvent;
+	
+	use namespace esoteric;
 	
 	public class AbstractCurveToElement extends TweenableElement
 	{
@@ -70,7 +73,7 @@ package com.esoteric.display
 		 * @inheritDoc
 		 */
 		
-		public override function initialize():void
+		override public function initialize():void
 		{
 			super.initialize();
 			
@@ -84,22 +87,22 @@ package com.esoteric.display
 		/**
 		 * @private
 		 */
-		private var _controlY:Number = 0.0;
+		esoteric var _controlY:Number = 0.0;
 
 		/**
 		 * @private
 		 */
-		private var _controlX:Number = 0.0;
+		esoteric var _controlX:Number = 0.0;
 
 		/**
 		 * @private
 		 */
-		private var _anchorX:Number = 0.0;
+		esoteric var _anchorX:Number = 0.0;
 
 		/**
 		 * @private
 		 */
-		private var _anchorY:Number = 0.0;
+		esoteric var _anchorY:Number = 0.0;
 
 
 		//---------------------------------------------------------------------
@@ -126,7 +129,10 @@ package com.esoteric.display
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'controlY', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -150,7 +156,10 @@ package com.esoteric.display
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'controlX', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -174,7 +183,10 @@ package com.esoteric.display
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'anchorX', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -198,7 +210,10 @@ package com.esoteric.display
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'anchorY', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 

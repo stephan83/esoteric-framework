@@ -2,7 +2,7 @@
 	DO NOT MODIFY THIS FILE, THE CODE GENERATOR WILL ERASE ANY CHANGES MADE.
 	MAKE CHANGES TO THE DERIVED CLASS INSTEAD.
 
-	Last generated 2010-01-25 12:58:06.948000 UTC.
+	Last generated 2010-02-01 17:20:42.252000 UTC.
 
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	~                           Esoteric Framework                            ~
@@ -43,8 +43,11 @@ package com.esoteric.display
 	import flash.display.GradientType;
 
 	import com.esoteric.core.Context;
+	import com.esoteric.esoteric;
 	import com.esoteric.events.ElementEvent;
 	import com.esoteric.events.PropertyChangeEvent;
+	
+	use namespace esoteric;
 	
 	public class AbstractGradientFillElement extends TweenableElement
 	{
@@ -71,7 +74,7 @@ package com.esoteric.display
 		 * @inheritDoc
 		 */
 		
-		public override function initialize():void
+		override public function initialize():void
 		{
 			super.initialize();
 			
@@ -85,47 +88,47 @@ package com.esoteric.display
 		/**
 		 * @private
 		 */
-		private var _alphas:Array = [1.0, 1.0];
+		esoteric var _alphas:Array = [1.0, 1.0];
 
 		/**
 		 * @private
 		 */
-		private var _tx:Number = 0.0;
+		esoteric var _tx:Number = 0.0;
 
 		/**
 		 * @private
 		 */
-		private var _ty:Number = 0.0;
+		esoteric var _ty:Number = 0.0;
 
 		/**
 		 * @private
 		 */
-		private var _height:Number = 100.0;
+		esoteric var _height:Number = 100.0;
 
 		/**
 		 * @private
 		 */
-		private var _width:Number = 100.0;
+		esoteric var _width:Number = 100.0;
 
 		/**
 		 * @private
 		 */
-		private var _colors:Array = [0x000000, 0xFFFFFF];
+		esoteric var _colors:Array = [0x000000, 0xFFFFFF];
 
 		/**
 		 * @private
 		 */
-		private var _ratios:Array = [0, 255];
+		esoteric var _ratios:Array = [0, 255];
 
 		/**
 		 * @private
 		 */
-		private var _rotation:Number = 0.0;
+		esoteric var _rotation:Number = 0.0;
 
 		/**
 		 * @private
 		 */
-		private var _type:String = GradientType.LINEAR;
+		esoteric var _type:String = GradientType.LINEAR;
 
 
 		//---------------------------------------------------------------------
@@ -152,7 +155,10 @@ package com.esoteric.display
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'alphas', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -176,7 +182,10 @@ package com.esoteric.display
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'tx', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -200,7 +209,10 @@ package com.esoteric.display
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'ty', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -224,7 +236,10 @@ package com.esoteric.display
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'height', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -248,7 +263,10 @@ package com.esoteric.display
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'width', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -272,7 +290,10 @@ package com.esoteric.display
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'colors', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -296,7 +317,10 @@ package com.esoteric.display
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'ratios', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -320,7 +344,10 @@ package com.esoteric.display
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'rotation', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -344,7 +371,10 @@ package com.esoteric.display
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'type', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 

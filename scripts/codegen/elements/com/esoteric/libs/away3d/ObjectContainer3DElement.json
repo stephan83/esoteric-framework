@@ -1,0 +1,21 @@
+{
+	"desc": "A 3D object container.",
+	
+	"baseclass": "Object3DElement",
+
+	"imports": [
+		"away3dlite.containers.ObjectContainer3D"
+	],
+	
+	"properties": {
+		"container": {
+			"type":	"ObjectContainer3D",
+			"desc": "The container.",
+			"default": "new ObjectContainer3D()",
+			"bindable": false,
+			"update": false,
+			"namespace": "esoteric"
+		}
+	}
+	
+}

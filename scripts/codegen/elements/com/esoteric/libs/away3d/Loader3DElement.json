@@ -1,0 +1,33 @@
+{
+	"desc": "A 3D loader.",
+	
+	"baseclass": "ObjectContainer3DElement",
+
+	"imports": [
+		"away3dlite.loaders.Loader3D",
+		"away3dlite.loaders.AbstractParser"
+	],
+	
+	"properties": {
+		"loader": {
+			"type":	"Loader3D",
+			"desc": "The loader.",
+			"bindable": false,
+			"update": false,
+			"default": "new Loader3D()",
+			"namespace": "esoteric"
+		},
+		"parser": {
+			"type":	"AbstractParser",
+			"desc": "The parser.",
+			"bindable": false,
+			"update": false,
+			"namespace": "esoteric"
+		},
+		"url": {
+			"type": "String",
+			"desc": "The URL of the file to load"
+		}
+	}
+	
+}

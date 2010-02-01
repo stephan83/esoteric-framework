@@ -1,0 +1,30 @@
+{
+	"desc": "A 3D view.",
+	
+	"baseclass": "SpriteElement",
+
+	"imports": [
+		"away3dlite.containers.View3D",
+		"com.esoteric.display.SpriteElement"
+	],
+	
+	"properties": {
+		"view": {
+			"type":	"View3D",
+			"desc": "The 3D view.",
+			"bindable": false,
+			"update": false,
+			"default": "new View3D()",
+			"namespace": "esoteric"
+		},
+		"scene": {
+			"type": "Scene3DElement",
+			"desc": "The scene"
+		},
+		"camera": {
+			"type": "Camera3DElement",
+			"desc": "The camera"
+		}
+	}
+	
+}

@@ -2,7 +2,7 @@
 	DO NOT MODIFY THIS FILE, THE CODE GENERATOR WILL ERASE ANY CHANGES MADE.
 	MAKE CHANGES TO THE DERIVED CLASS INSTEAD.
 
-	Last generated 2010-01-26 21:22:50.955000 UTC.
+	Last generated 2010-02-01 17:20:42.235000 UTC.
 
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	~                           Esoteric Framework                            ~
@@ -44,8 +44,11 @@ package com.esoteric.display
 	import flash.display.DisplayObject;
 
 	import com.esoteric.core.Context;
+	import com.esoteric.esoteric;
 	import com.esoteric.events.ElementEvent;
 	import com.esoteric.events.PropertyChangeEvent;
+	
+	use namespace esoteric;
 	
 	public class AbstractDisplayObjectElement extends TweenableElement
 	{
@@ -72,7 +75,7 @@ package com.esoteric.display
 		 * @inheritDoc
 		 */
 		
-		public override function initialize():void
+		override public function initialize():void
 		{
 			super.initialize();
 			
@@ -86,92 +89,92 @@ package com.esoteric.display
 		/**
 		 * @private
 		 */
-		private var _hiddenAncestor:Boolean = false;
+		esoteric var _hiddenAncestor:Boolean = false;
 
 		/**
 		 * @private
 		 */
-		private var _rotationZ:Number = 0.0;
+		esoteric var _rotationZ:Number = 0.0;
 
 		/**
 		 * @private
 		 */
-		private var _rotationY:Number = 0.0;
+		esoteric var _rotationY:Number = 0.0;
 
 		/**
 		 * @private
 		 */
-		private var _rotationX:Number = 0.0;
+		esoteric var _rotationX:Number = 0.0;
 
 		/**
 		 * @private
 		 */
-		private var _mask:DisplayObjectElement = null;
+		esoteric var _mask:DisplayObjectElement = null;
 
 		/**
 		 * @private
 		 */
-		private var _scaleX:Number = 1.0;
+		esoteric var _scaleX:Number = 1.0;
 
 		/**
 		 * @private
 		 */
-		private var _scaleY:Number = 1.0;
+		esoteric var _scaleY:Number = 1.0;
 
 		/**
 		 * @private
 		 */
-		private var _scaleZ:Number = 1.0;
+		esoteric var _scaleZ:Number = 1.0;
 
 		/**
 		 * @private
 		 */
-		private var _height:Number = 0.0;
+		esoteric var _height:Number = 0.0;
 
 		/**
 		 * @private
 		 */
-		private var _width:Number = 0.0;
+		esoteric var _width:Number = 0.0;
 
 		/**
 		 * @private
 		 */
-		private var _displayObject:DisplayObject = null;
+		esoteric var _displayObject:DisplayObject = null;
 
 		/**
 		 * @private
 		 */
-		private var _filters:BindableArray = null;
+		esoteric var _filters:BindableArray = null;
 
 		/**
 		 * @private
 		 */
-		private var _y:Number = 0.0;
+		esoteric var _y:Number = 0.0;
 
 		/**
 		 * @private
 		 */
-		private var _x:Number = 0.0;
+		esoteric var _x:Number = 0.0;
 
 		/**
 		 * @private
 		 */
-		private var _z:Number = 0.0;
+		esoteric var _z:Number = 0.0;
 
 		/**
 		 * @private
 		 */
-		private var _visible:Boolean = true;
+		esoteric var _visible:Boolean = true;
 
 		/**
 		 * @private
 		 */
-		private var _cacheAsBitmap:Boolean = false;
+		esoteric var _cacheAsBitmap:Boolean = false;
 
 		/**
 		 * @private
 		 */
-		private var _alpha:Number = 1.0;
+		esoteric var _alpha:Number = 1.0;
 
 
 		//---------------------------------------------------------------------
@@ -198,7 +201,10 @@ package com.esoteric.display
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'hiddenAncestor', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -222,7 +228,10 @@ package com.esoteric.display
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'rotationZ', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -246,7 +255,10 @@ package com.esoteric.display
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'rotationY', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -270,7 +282,10 @@ package com.esoteric.display
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'rotationX', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -294,7 +309,10 @@ package com.esoteric.display
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'mask', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -318,7 +336,10 @@ package com.esoteric.display
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'scaleX', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -342,7 +363,10 @@ package com.esoteric.display
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'scaleY', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -366,7 +390,10 @@ package com.esoteric.display
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'scaleZ', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -390,7 +417,10 @@ package com.esoteric.display
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'height', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -414,7 +444,10 @@ package com.esoteric.display
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'width', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -423,9 +456,9 @@ package com.esoteric.display
 		 *
 		 * @default	null
 		 */
-		public function get displayObject():DisplayObject { return _displayObject; }
+		esoteric function get displayObject():DisplayObject { return _displayObject; }
 		
-		public function set displayObject(value:DisplayObject):void 
+		esoteric function set displayObject(value:DisplayObject):void 
 		{
 			if(_displayObject != value)
 			{
@@ -465,7 +498,10 @@ package com.esoteric.display
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'filters', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -489,7 +525,10 @@ package com.esoteric.display
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'y', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -513,7 +552,10 @@ package com.esoteric.display
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'x', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -537,7 +579,10 @@ package com.esoteric.display
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'z', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -565,7 +610,10 @@ package com.esoteric.display
 					displayObject.visible = value;
 				}
 
-				context.renderQueue.add(this);			
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'visible', oldValue, value));
@@ -596,7 +644,10 @@ package com.esoteric.display
 					displayObject.cacheAsBitmap = value;
 				}
 
-				context.renderQueue.add(this);			
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'cacheAsBitmap', oldValue, value));
@@ -627,7 +678,10 @@ package com.esoteric.display
 					displayObject.alpha = value;
 				}
 
-				context.renderQueue.add(this);			
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'alpha', oldValue, value));

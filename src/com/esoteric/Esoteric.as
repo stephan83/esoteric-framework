@@ -34,42 +34,11 @@
 
 package com.esoteric 
 {
-	import com.esoteric.core.esoteric_internal;
 	
 	/**
 	* @author Stephan Florquin
 	*/
-	public class Esoteric 
-	{
-		//---------------------------------------------------------------------
-		// Class constants
-		//---------------------------------------------------------------------
-		
-		/**
-		 * RegExp to recognize an expression.
-		 */
-		public static const EXPRESSION_REG_EXP:RegExp = /^\{(.+)\}$/;
-		
-		/**
-		 * Default path to widget skins.
-		 */
-		public static const WIDGET_SKINS_PATH:String = "data/ui/";
-		
-		/**
-		 * @private
-		 */
-		esoteric_internal static const BRANCH:String = "L'Ankou";
-		
-		/**
-		 * @private
-		 */
-		esoteric_internal static const VERSION:String = "0.3.0";
-		
-		/**
-		 * @private
-		 */
-		esoteric_internal static const COPYRIGHT:String = "© 2009 by Stephan Florquin";
-		
-	}
+	
+	public namespace esoteric = 'com.esoteric.esoteric';
 	
 }

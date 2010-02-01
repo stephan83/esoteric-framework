@@ -36,7 +36,7 @@ package com.esoteric.core
 {
 	import com.esoteric.core.ElementExpressionQueue;
 	import com.esoteric.core.Context;
-	import com.esoteric.Esoteric;
+	import com.esoteric.Settings;
 	import com.esoteric.events.ElementEvent;
 	import com.esoteric.events.ExpressionEvent;
 	import com.esoteric.events.PropertyChangeEvent;
@@ -278,7 +278,7 @@ package com.esoteric.core
 			
 			if (value is String)
 			{
-				var match:Array = Esoteric.EXPRESSION_REG_EXP.exec(value);
+				var match:Array = Settings.EXPRESSION_REG_EXP.exec(value);
 			}
 			
 			var oldValue:* = _element[name];

@@ -2,7 +2,7 @@
 	DO NOT MODIFY THIS FILE, THE CODE GENERATOR WILL ERASE ANY CHANGES MADE.
 	MAKE CHANGES TO THE DERIVED CLASS INSTEAD.
 
-	Last generated 2010-01-25 12:58:07.010000 UTC.
+	Last generated 2010-02-01 17:20:42.315000 UTC.
 
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	~                           Esoteric Framework                            ~
@@ -42,8 +42,11 @@ package com.esoteric.display
 	import flash.display.Sprite;
 
 	import com.esoteric.core.Context;
+	import com.esoteric.esoteric;
 	import com.esoteric.events.ElementEvent;
 	import com.esoteric.events.PropertyChangeEvent;
+	
+	use namespace esoteric;
 	
 	public class AbstractSpriteElement extends InteractiveObjectElement
 	{
@@ -70,7 +73,7 @@ package com.esoteric.display
 		 * @inheritDoc
 		 */
 		
-		public override function initialize():void
+		override public function initialize():void
 		{
 			super.initialize();
 			
@@ -84,22 +87,22 @@ package com.esoteric.display
 		/**
 		 * @private
 		 */
-		private var _sprite:Sprite = null;
+		esoteric var _sprite:Sprite = null;
 
 		/**
 		 * @private
 		 */
-		private var _mouseChildren:Boolean = true;
+		esoteric var _mouseChildren:Boolean = true;
 
 		/**
 		 * @private
 		 */
-		private var _useHandCursor:Boolean = false;
+		esoteric var _useHandCursor:Boolean = false;
 
 		/**
 		 * @private
 		 */
-		private var _buttonMode:Boolean = false;
+		esoteric var _buttonMode:Boolean = false;
 
 
 		//---------------------------------------------------------------------
@@ -111,9 +114,9 @@ package com.esoteric.display
 		 *
 		 * @default	null
 		 */
-		public function get sprite():Sprite { return _sprite; }
+		esoteric function get sprite():Sprite { return _sprite; }
 		
-		public function set sprite(value:Sprite):void 
+		esoteric function set sprite(value:Sprite):void 
 		{
 			if(_sprite != value)
 			{
@@ -128,11 +131,8 @@ package com.esoteric.display
 				}
 			
 				_sprite = value;
-				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
-				{
-					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'sprite', oldValue, value));
-				}
-				context.renderQueue.add(this);
+
+
 			}
 		}
 
@@ -160,7 +160,10 @@ package com.esoteric.display
 					sprite.mouseChildren = value;
 				}
 
-				context.renderQueue.add(this);			
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'mouseChildren', oldValue, value));
@@ -191,7 +194,10 @@ package com.esoteric.display
 					sprite.useHandCursor = value;
 				}
 
-				context.renderQueue.add(this);			
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'useHandCursor', oldValue, value));
@@ -222,7 +228,10 @@ package com.esoteric.display
 					sprite.buttonMode = value;
 				}
 
-				context.renderQueue.add(this);			
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'buttonMode', oldValue, value));

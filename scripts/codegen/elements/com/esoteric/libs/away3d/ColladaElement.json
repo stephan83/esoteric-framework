@@ -1,0 +1,10 @@
+{
+	"desc": "A collada loader.",
+	
+	"baseclass": "Loader3DElement",
+
+	"imports": [
+		"away3dlite.loaders.Collada"
+	]
+	
+}

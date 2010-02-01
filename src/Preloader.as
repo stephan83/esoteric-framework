@@ -5,8 +5,8 @@
 	import com.esoteric.core.Engine;
 	import com.esoteric.core.IElement;
 	import com.esoteric.core.StaticElementBuilder;
-	import com.esoteric.core.TriangleSortMode;
 	import com.esoteric.core.XMLParser;
+	import com.esoteric.esoteric;
 	import com.esoteric.utils.Math3D;
 	import com.esotericorp.display.PreloaderElement;
 	import flash.display.DisplayObject;
@@ -21,7 +21,9 @@
 	import flash.geom.Vector3D;
 	import flash.utils.getDefinitionByName;
 	
-	[SWF(backgroundColor='#cccccc', frameRate='30')]
+	use namespace esoteric;
+	
+	[SWF(backgroundColor='#000000', frameRate='25')]
 	
 	/**
 	 * The preloader.
@@ -36,23 +38,18 @@
 			addEventListener(Event.ENTER_FRAME, checkFrame);
 			loaderInfo.addEventListener(ProgressEvent.PROGRESS, progress);
 			
-			var container:Sprite = new Sprite();
-			container.transform.perspectiveProjection = new PerspectiveProjection();
-			addChild(container);
-			
 			// show loader
 			stage.align = StageAlign.TOP_LEFT;
 			stage.scaleMode = StageScaleMode.NO_SCALE
 			
 			var factory:ElementFactory = new ElementFactory();
 			factory.add('Preloader', new StaticElementBuilder(PreloaderElement));
-			_context = new Context(container, factory);
+			_context = new Context(stage, factory);
 			var root:PreloaderElement = XMLParser.parseNode(<Preloader />, _context, null, true) as PreloaderElement;
 			
-			addChild(root.sprite);
-			
 			_engine = new Engine(_context);
-			_engine.triangleSortMode = TriangleSortMode.SCENE;
+			
+			addChild(root.displayObject);
 		}
 		
 		private var _context:Context;

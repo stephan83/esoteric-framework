@@ -1,5 +1,5 @@
 		/**
 		 * @private
 		 */
-		private var _$name:$type = $default;
+		esoteric var _$name:$type = $default;
 

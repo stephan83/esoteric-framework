@@ -13,7 +13,8 @@
 			"default": "new Bitmap()",
 			"desc": "The bitmap object.",
 			"bindable": false,
-			"update": false
+			"update": false,
+			"namespace": "esoteric"
 		}
 	},
 	

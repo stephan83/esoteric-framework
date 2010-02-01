@@ -45,7 +45,6 @@
   <libraryPaths>
     <element path="lib\antlr3.swc" />
     <element path="lib\fl.swc" />
-    <element path="lib\Papervision3D.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>

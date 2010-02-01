@@ -36,6 +36,7 @@ package com.esoteric.display
 {
 	import com.esoteric.core.IElement;
 	import com.esoteric.core.Context;
+	import com.esoteric.esoteric;
 	import flash.display.DisplayObject;
 	
 	/**
@@ -43,6 +44,7 @@ package com.esoteric.display
 	*/
 	public class BitmapElement extends AbstractBitmapElement
 	{
+		use namespace esoteric;
 		
 		//---------------------------------------------------------------------
 		// Constructor

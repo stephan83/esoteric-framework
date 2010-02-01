@@ -37,11 +37,14 @@ package com.esoteric.display
 	import com.esoteric.core.Context;
 	import com.esoteric.core.IElement;
 	import com.esoteric.core.Context;
+	import com.esoteric.esoteric;
 	import com.esoteric.events.PropertyChangeEvent;
 	import flash.display.DisplayObject;
 	import flash.display.InteractiveObject;
 	import flash.display.Sprite;
 	import flash.geom.Matrix3D;
+	
+	use namespace esoteric;
 	
 	/**
 	* Generated 2008-08-03 07:32:29.801000 UTC.
@@ -70,12 +73,45 @@ package com.esoteric.display
 		 */
 		override protected function createInteractiveObject():InteractiveObject
 		{
-			return sprite = createSprite();
+			return _sprite = createSprite();
 		}
 		
-		override public function updateCoords(matrix:Matrix3D):void
+		/**
+		 * @inheritDoc
+		 */
+		override protected function childAddedHandler(e:PropertyChangeEvent):void 
 		{
-			super.updateCoords(matrix);
+			super.childAddedHandler(e);
+			
+			if (e.newValue is DisplayObjectElement)
+			{
+				var dispObject:DisplayObjectElement = e.newValue as DisplayObjectElement;
+				
+				_sprite.addChild(dispObject._displayObject);
+			}
+		}
+		
+		/**
+		 * @inheritDoc
+		 */
+		override protected function childRemovedHandler(e:PropertyChangeEvent):void 
+		{
+			super.childAddedHandler(e);
+			
+			if (e.oldValue is DisplayObjectElement)
+			{
+				var dispObject:DisplayObjectElement = e.oldValue as DisplayObjectElement;
+				
+				_sprite.removeChild(dispObject._displayObject);
+			}
+		}
+		
+		/**
+		 * @inheritDoc
+		 */
+		override esoteric function updateGlobalPosition(matrix:Matrix3D):void
+		{
+			super.updateGlobalPosition(matrix);
 			
 			var child:IElement;
 			
@@ -83,9 +119,9 @@ package com.esoteric.display
 			{
 				child = getChildAt(i);
 				
-				if (child is IDisplayObjectElement)
+				if (child is DisplayObjectElement)
 				{
-					(child as IDisplayObjectElement).updateCoords(_transformMatrix.clone());
+					(child as DisplayObjectElement).updateGlobalPosition(_transformMatrix.clone());
 				}
 			}
 		}
@@ -99,7 +135,7 @@ package com.esoteric.display
 		 */
 		public function startDrag():void
 		{
-			sprite.startDrag();
+			_sprite.startDrag();
 		}
 		
 		/**
@@ -107,7 +143,7 @@ package com.esoteric.display
 		 */
 		public function stopDrag():void
 		{
-			sprite.stopDrag();
+			_sprite.stopDrag();
 		}
 		
 		/**

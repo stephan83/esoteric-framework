@@ -12,7 +12,6 @@
     <library-path append="true">
       <path-element>C:\Users\Stephan\Documents\Work\Clients\esoteric\esotericorp\lib\antlr3.swc</path-element>
       <path-element>C:\Users\Stephan\Documents\Work\Clients\esoteric\esotericorp\lib\fl.swc</path-element>
-      <path-element>C:\Users\Stephan\Documents\Work\Clients\esoteric\esotericorp\lib\Papervision3D.swc</path-element>
     </library-path>
   </compiler>
   <file-specs>

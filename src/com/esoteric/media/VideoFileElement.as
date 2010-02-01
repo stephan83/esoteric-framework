@@ -36,6 +36,7 @@ package com.esoteric.media
 {
 	import com.esoteric.core.IElement;
 	import com.esoteric.core.Context;
+	import com.esoteric.esoteric;
 	import com.esoteric.events.AudioFileEvent;
 	import flash.display.DisplayObject;
 	import flash.events.NetStatusEvent;
@@ -47,6 +48,7 @@ package com.esoteric.media
 	
 	public class VideoFileElement extends AbstractVideoFileElement
 	{
+		use namespace esoteric;
 		
 		//---------------------------------------------------------------------
 		// Constructor

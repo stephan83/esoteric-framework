@@ -11,7 +11,10 @@
 		"sprite": {
 			"type":	"Sprite",
 			"desc": "The sprite object.",
-			"doc": false
+			"doc": false,
+			"bindable": false,
+			"update": false,
+			"namespace": "esoteric"
 		}
 	},
 	

@@ -1,9 +1,0 @@
-{
-	"desc": "",
-	
-	"baseclass": "DisplayObject3DElement",
-
-	"imports": [
-		"com.esoteric.core.TweenableElement"
-	]
-}

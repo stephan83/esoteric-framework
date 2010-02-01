@@ -1,0 +1,21 @@
+{
+	"desc": "A 3D object container.",
+	
+	"baseclass": "SpriteElement",
+
+	"imports": [
+		"away3dlite.core.base.Object3D",
+		"com.esoteric.display.SpriteElement"
+	],
+	
+	"properties": {
+		"object": {
+			"type":	"Object3D",
+			"desc": "The object.",
+			"bindable": false,
+			"update": false,
+			"namespace": "esoteric"
+		}
+	}
+	
+}

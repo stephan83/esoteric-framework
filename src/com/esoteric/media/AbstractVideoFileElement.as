@@ -2,7 +2,7 @@
 	DO NOT MODIFY THIS FILE, THE CODE GENERATOR WILL ERASE ANY CHANGES MADE.
 	MAKE CHANGES TO THE DERIVED CLASS INSTEAD.
 
-	Last generated 2010-01-25 12:58:07.045000 UTC.
+	Last generated 2010-02-01 17:20:42.384000 UTC.
 
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	~                           Esoteric Framework                            ~
@@ -42,8 +42,11 @@ package com.esoteric.media
 	import com.esoteric.display.DisplayObjectElement;
 
 	import com.esoteric.core.Context;
+	import com.esoteric.esoteric;
 	import com.esoteric.events.ElementEvent;
 	import com.esoteric.events.PropertyChangeEvent;
+	
+	use namespace esoteric;
 	
 	public class AbstractVideoFileElement extends DisplayObjectElement
 	{
@@ -70,7 +73,7 @@ package com.esoteric.media
 		 * @inheritDoc
 		 */
 		
-		public override function initialize():void
+		override public function initialize():void
 		{
 			super.initialize();
 			
@@ -84,42 +87,42 @@ package com.esoteric.media
 		/**
 		 * @private
 		 */
-		private var _url:String = null;
+		esoteric var _url:String = null;
 
 		/**
 		 * @private
 		 */
-		private var _videoWidth:int = 0;
+		esoteric var _videoWidth:int = 0;
 
 		/**
 		 * @private
 		 */
-		private var _length:int = 0;
+		esoteric var _length:int = 0;
 
 		/**
 		 * @private
 		 */
-		private var _bufferLength:Number = 0;
+		esoteric var _bufferLength:Number = 0;
 
 		/**
 		 * @private
 		 */
-		private var _position:int = 0;
+		esoteric var _position:int = 0;
 
 		/**
 		 * @private
 		 */
-		private var _buffering:Boolean = false;
+		esoteric var _buffering:Boolean = false;
 
 		/**
 		 * @private
 		 */
-		private var _playing:Boolean = false;
+		esoteric var _playing:Boolean = false;
 
 		/**
 		 * @private
 		 */
-		private var _videoHeight:int = 0;
+		esoteric var _videoHeight:int = 0;
 
 
 		//---------------------------------------------------------------------
@@ -146,7 +149,10 @@ package com.esoteric.media
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'url', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -170,7 +176,10 @@ package com.esoteric.media
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'videoWidth', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -194,7 +203,10 @@ package com.esoteric.media
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'length', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -218,7 +230,10 @@ package com.esoteric.media
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'bufferLength', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -242,7 +257,10 @@ package com.esoteric.media
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'position', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -266,7 +284,10 @@ package com.esoteric.media
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'buffering', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -290,7 +311,10 @@ package com.esoteric.media
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'playing', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -314,7 +338,10 @@ package com.esoteric.media
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'videoHeight', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 

@@ -43,7 +43,6 @@ package com.esoteric.core
 	import com.esoteric.expressions.ExpressionVm;
 	import com.esoteric.net.Cache;
 	import fl.motion.easing.*;
-	import flash.display.DisplayObjectContainer;
 	import flash.display.Stage;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -62,14 +61,14 @@ package com.esoteric.core
 		/**
 		 * Constructor.
 		 * 
-		 * @param	container	the container
+		 * @param	stage		the stage
 		 * @param	factory		the element factory
 		 * @param	vm			the virtual machine
 		 * @param	cache		the cache
 		 */
-		public function Context(container:DisplayObjectContainer, factory:ElementFactory = null, vm:ExpressionVm = null, cache:Cache = null, expQueue:ElementExpressionQueue = null, closure:Closure = null, renderQueue:RenderQueue = null) 
+		public function Context(stage:Stage, factory:ElementFactory, vm:ExpressionVm = null, cache:Cache = null, expQueue:ElementExpressionQueue = null, closure:Closure = null, renderQueue:RenderQueue = null) 
 		{
-			_container = container;
+			_stage = stage;
 			_factory = factory || new ElementFactory();
 			_vm = vm || new ExpressionVm();
 			_cache = cache || new Cache();
@@ -77,8 +76,8 @@ package com.esoteric.core
 			_closure = closure || new Closure();
 			_renderQueue = renderQueue || new RenderQueue();
 			
-			_closure['stageWidth'] = _container.stage.stageWidth;
-			_closure['stageHeight'] = _container.stage.stageHeight;
+			_closure['stageWidth'] = stage.stageWidth;
+			_closure['stageHeight'] = stage.stageHeight;
 			_closure['trace'] = trace;
 			
 			// enable eQuery
@@ -104,8 +103,8 @@ package com.esoteric.core
 			// add math functions
 			_closure['Math'] = Math;
 			
-			_container.stage.addEventListener(Event.RESIZE, resizeHandler);
-			_container.stage.addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);
+			stage.addEventListener(Event.RESIZE, resizeHandler);
+			stage.addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);
 		}
 		
 		//---------------------------------------------------------------------
@@ -120,7 +119,7 @@ package com.esoteric.core
 		/**
 		 * @private
 		 */
-		private var _container:DisplayObjectContainer;
+		private var _stage:Stage;
 		
 		/**
 		 * @private
@@ -151,11 +150,6 @@ package com.esoteric.core
 		 * @private
 		 */
 		private var _renderQueue:RenderQueue;
-		
-		/**
-		 * @private
-		 */
-		private var _dispList:Array = new Array();
 		
 		//---------------------------------------------------------------------
 		// Methods
@@ -232,23 +226,13 @@ package com.esoteric.core
 		}
 		
 		/**
-		 * The container.
-		 */
-		public function get container():DisplayObjectContainer { return _container; }
+		 * The stage.
+		 */		
+		public function get stage():Stage { return _stage; }
 		
-		public function set container(value:DisplayObjectContainer):void 
+		public function set stage(value:Stage):void 
 		{
-			_container = value;
-		}
-		
-		/**
-		 * The display list.
-		 */
-		public function get dispList():Array { return _dispList; }
-		
-		public function set dispList(value:Array):void 
-		{
-			_dispList = value;
+			_stage = value;
 		}
 		
 		/**

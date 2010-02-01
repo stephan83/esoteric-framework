@@ -39,25 +39,26 @@ package com.esoteric.display
 	import com.esoteric.core.IElement;
 	import com.esoteric.core.IElementProxy;
 	import com.esoteric.core.Context;
+	import com.esoteric.esoteric;
 	import com.esoteric.events.ElementEvent;
 	import com.esoteric.events.PropertyChangeEvent;
 	import com.esoteric.events.TweenEvent;
-	import com.esoteric.geom.BoundingSphere;
 	import com.esoteric.utils.BindableArray;
 	import com.esoteric.utils.Math3D;
 	import com.esoteric.utils.Watcher;
 	import flash.display.DisplayObject;
 	import flash.geom.Matrix3D;
-	import flash.geom.Orientation3D;
 	import flash.geom.PerspectiveProjection;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import flash.geom.Vector3D;
 	
+	use namespace esoteric;
+	
 	/**
 	* Generated 2008-08-03 07:26:09.918000 UTC.
 	*/
-	public class DisplayObjectElement extends AbstractDisplayObjectElement implements IDisplayObject2DElement
+	public class DisplayObjectElement extends AbstractDisplayObjectElement
 	{
 		
 		//---------------------------------------------------------------------
@@ -77,61 +78,18 @@ package com.esoteric.display
 			
 			displayObject = createDisplayObject();
 			
-			// Enabled 3D
-			displayObject.z = .0001;
-			
-			context.dispList.push(this);
+			// Enable 3D
+			displayObject.z = 0;
 		}
-		
 		
 		//---------------------------------------------------------------------
-		// Implementations
+		// Members
 		//---------------------------------------------------------------------
 		
-		protected var _transformMatrix = new Matrix3D();
-		
 		/**
-		 * @inheritDoc
+		 * @private
 		 */
-		public function updateCoords(matrix:Matrix3D):void
-		{
-			_transformMatrix.identity();
-			_transformMatrix.appendScale(scaleX, scaleY, scaleZ);
-			_transformMatrix.appendRotation(rotationX, Vector3D.X_AXIS);
-			_transformMatrix.appendRotation(rotationY, Vector3D.Y_AXIS);
-			_transformMatrix.appendRotation(rotationZ, Vector3D.Z_AXIS);
-			_transformMatrix.appendTranslation(x, y, z);
-			_transformMatrix.append(matrix);
-			
-			displayObject.transform.matrix3D = _transformMatrix;
-			displayObject.transform.perspectiveProjection = context.container.transform.perspectiveProjection;
-			displayObject.transform.perspectiveProjection.projectionCenter = new Point(context.container.stage.stageWidth / 2, context.container.stage.stageHeight / 2);
-			
-			context.renderQueue.add(this);
-		}
-		
-		/**
-		 * @inheritDoc
-		 */
-		public function get globalZ():Number
-		{
-			return displayObject.transform.matrix3D.position.z;
-		}
-		
-		/**
-		 * @inheritDoc
-		 */
-		public function get boundingSphere():BoundingSphere
-		{
-			var bounds:Rectangle = displayObject.getBounds(displayObject);
-			// TODO: fix this
-			var center:Vector3D = new Vector3D(bounds.width / 2 + bounds.left, bounds.height / 2 + bounds.top);
-			var pCenter:Vector3D =  displayObject.transform.matrix3D.transformVector(center);
-			var radius:Number = bounds.width * scaleX > bounds.height * scaleY ?
-			                    bounds.width * scaleX / 2 : bounds.height * scaleY / 2;
-			
-			return new BoundingSphere(pCenter.x, pCenter.y, pCenter.z, radius);
-		}
+		esoteric var _transformMatrix = new Matrix3D();
 		
 		//---------------------------------------------------------------------
 		// Overridden properties
@@ -145,22 +103,6 @@ package com.esoteric.display
 			super.initialize();
 			
 			hiddenAncestor = !(parent is DisplayObjectElement || context.root == this);
-		}
-		
-		/**
-		 * @inheritDoc
-		 */
-		override public function destroy():void 
-		{
-			for (var i:int = 0; i < context.dispList.length; i++) 
-			{
-				if (context.dispList[i] = this){
-					context.dispList.splice(i , 1);					
-					return;
-				}
-			}
-			
-			super.destroy();
 		}
 		
 		// The mask property is a little tricky so it is overridden.
@@ -230,7 +172,7 @@ package com.esoteric.display
 		/**
 		 * @inheritDoc
 		 */
-		override public function set displayObject(value:DisplayObject):void
+		override esoteric function set displayObject(value:DisplayObject):void
 		{
 			if (value)
 			{
@@ -274,9 +216,36 @@ package com.esoteric.display
 		// Methods
 		//---------------------------------------------------------------------
 		
-		public function hitTestPoint(x:Number, y:Number, shapeFlag:Boolean = false):Boolean
+		/**
+		 * Updates the global position of the object.
+		 * 
+		 * @param	matrix	the parent transformation matrix
+		 */
+		esoteric function updateGlobalPosition(matrix:Matrix3D):void
 		{
-			return displayObject.hitTestPoint(x, y, shapeFlag);
+			_transformMatrix.identity();
+			_transformMatrix.appendScale(scaleX, scaleY, scaleZ);
+			_transformMatrix.appendRotation(rotationX, Vector3D.X_AXIS);
+			_transformMatrix.appendRotation(rotationY, Vector3D.Y_AXIS);
+			_transformMatrix.appendRotation(rotationZ, Vector3D.Z_AXIS);
+			_transformMatrix.appendTranslation(x, y, z);
+			_transformMatrix.append(matrix);
+			
+			_displayObject.transform.matrix3D = _transformMatrix;
+			//displayObject.transform.perspectiveProjection = context.container.transform.perspectiveProjection;
+			//displayObject.transform.perspectiveProjection.projectionCenter = new Point(context.container.stage.stageWidth / 2, context.container.stage.stageHeight / 2);
+			
+			context.renderQueue.add(this);
+		}
+		
+		/**
+		 * Returns the global position of the object.
+		 * 
+		 * @return	the global position of the object
+		 */
+		esoteric function getGlobalPosition():Vector3D
+		{
+			return _transformMatrix.position;
 		}
 		
 		/**

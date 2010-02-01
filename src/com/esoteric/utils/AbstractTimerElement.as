@@ -2,7 +2,7 @@
 	DO NOT MODIFY THIS FILE, THE CODE GENERATOR WILL ERASE ANY CHANGES MADE.
 	MAKE CHANGES TO THE DERIVED CLASS INSTEAD.
 
-	Last generated 2010-01-25 12:58:07.079000 UTC.
+	Last generated 2010-02-01 17:20:42.430000 UTC.
 
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	~                           Esoteric Framework                            ~
@@ -43,8 +43,11 @@ package com.esoteric.utils
 	import flash.utils.Timer;
 
 	import com.esoteric.core.Context;
+	import com.esoteric.esoteric;
 	import com.esoteric.events.ElementEvent;
 	import com.esoteric.events.PropertyChangeEvent;
+	
+	use namespace esoteric;
 	
 	public class AbstractTimerElement extends ScriptElement
 	{
@@ -73,7 +76,7 @@ package com.esoteric.utils
 		 * @inheritDoc
 		 */
 		
-		public override function initialize():void
+		override public function initialize():void
 		{
 			super.initialize();
 			
@@ -87,17 +90,17 @@ package com.esoteric.utils
 		/**
 		 * @private
 		 */
-		private var _timer:Timer = new Timer(1000);
+		esoteric var _timer:Timer = new Timer(1000);
 
 		/**
 		 * @private
 		 */
-		private var _delay:int = 1000;
+		esoteric var _delay:int = 1000;
 
 		/**
 		 * @private
 		 */
-		private var _repeatCount:int = 0;
+		esoteric var _repeatCount:int = 0;
 
 
 		//---------------------------------------------------------------------
@@ -154,7 +157,10 @@ package com.esoteric.utils
 					timer.delay = value;
 				}
 
-				context.renderQueue.add(this);			
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'delay', oldValue, value));
@@ -185,7 +191,10 @@ package com.esoteric.utils
 					timer.repeatCount = value;
 				}
 
-				context.renderQueue.add(this);			
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'repeatCount', oldValue, value));

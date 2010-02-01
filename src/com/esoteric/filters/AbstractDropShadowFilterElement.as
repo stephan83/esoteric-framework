@@ -2,7 +2,7 @@
 	DO NOT MODIFY THIS FILE, THE CODE GENERATOR WILL ERASE ANY CHANGES MADE.
 	MAKE CHANGES TO THE DERIVED CLASS INSTEAD.
 
-	Last generated 2010-01-25 12:58:07.032000 UTC.
+	Last generated 2010-02-01 17:20:42.333000 UTC.
 
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	~                           Esoteric Framework                            ~
@@ -43,8 +43,11 @@ package com.esoteric.filters
 	import flash.filters.DropShadowFilter;
 
 	import com.esoteric.core.Context;
+	import com.esoteric.esoteric;
 	import com.esoteric.events.ElementEvent;
 	import com.esoteric.events.PropertyChangeEvent;
+	
+	use namespace esoteric;
 	
 	public class AbstractDropShadowFilterElement extends BitmapFilterElement
 	{
@@ -82,7 +85,7 @@ package com.esoteric.filters
 		 * @inheritDoc
 		 */
 		
-		public override function initialize():void
+		override public function initialize():void
 		{
 			super.initialize();
 			
@@ -96,62 +99,62 @@ package com.esoteric.filters
 		/**
 		 * @private
 		 */
-		private var _dropShadowFilter:DropShadowFilter = new DropShadowFilter();
+		esoteric var _dropShadowFilter:DropShadowFilter = new DropShadowFilter();
 
 		/**
 		 * @private
 		 */
-		private var _distance:Number = 4.0;
+		esoteric var _distance:Number = 4.0;
 
 		/**
 		 * @private
 		 */
-		private var _strength:Number = 2.0;
+		esoteric var _strength:Number = 2.0;
 
 		/**
 		 * @private
 		 */
-		private var _blurX:Number = 4.0;
+		esoteric var _blurX:Number = 4.0;
 
 		/**
 		 * @private
 		 */
-		private var _blurY:Number = 4.0;
+		esoteric var _blurY:Number = 4.0;
 
 		/**
 		 * @private
 		 */
-		private var _hideObject:Boolean = false;
+		esoteric var _hideObject:Boolean = false;
 
 		/**
 		 * @private
 		 */
-		private var _color:int = 0x000000;
+		esoteric var _color:int = 0x000000;
 
 		/**
 		 * @private
 		 */
-		private var _knockout:Boolean = false;
+		esoteric var _knockout:Boolean = false;
 
 		/**
 		 * @private
 		 */
-		private var _inner:Boolean = false;
+		esoteric var _inner:Boolean = false;
 
 		/**
 		 * @private
 		 */
-		private var _alpha:Number = 1.0;
+		esoteric var _alpha:Number = 1.0;
 
 		/**
 		 * @private
 		 */
-		private var _angle:Number = 45;
+		esoteric var _angle:Number = 45;
 
 		/**
 		 * @private
 		 */
-		private var _quality:int = BitmapFilterQuality.MEDIUM;
+		esoteric var _quality:int = BitmapFilterQuality.MEDIUM;
 
 
 		//---------------------------------------------------------------------
@@ -192,7 +195,10 @@ package com.esoteric.filters
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'dropShadowFilter', oldValue, value));
 				}
-				context.renderQueue.add(this);
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -220,7 +226,10 @@ package com.esoteric.filters
 					dropShadowFilter.distance = value;
 				}
 
-				context.renderQueue.add(this);			
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'distance', oldValue, value));
@@ -251,7 +260,10 @@ package com.esoteric.filters
 					dropShadowFilter.strength = value;
 				}
 
-				context.renderQueue.add(this);			
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'strength', oldValue, value));
@@ -282,7 +294,10 @@ package com.esoteric.filters
 					dropShadowFilter.blurX = value;
 				}
 
-				context.renderQueue.add(this);			
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'blurX', oldValue, value));
@@ -313,7 +328,10 @@ package com.esoteric.filters
 					dropShadowFilter.blurY = value;
 				}
 
-				context.renderQueue.add(this);			
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'blurY', oldValue, value));
@@ -344,7 +362,10 @@ package com.esoteric.filters
 					dropShadowFilter.hideObject = value;
 				}
 
-				context.renderQueue.add(this);			
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'hideObject', oldValue, value));
@@ -375,7 +396,10 @@ package com.esoteric.filters
 					dropShadowFilter.color = value;
 				}
 
-				context.renderQueue.add(this);			
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'color', oldValue, value));
@@ -406,7 +430,10 @@ package com.esoteric.filters
 					dropShadowFilter.knockout = value;
 				}
 
-				context.renderQueue.add(this);			
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'knockout', oldValue, value));
@@ -437,7 +464,10 @@ package com.esoteric.filters
 					dropShadowFilter.inner = value;
 				}
 
-				context.renderQueue.add(this);			
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'inner', oldValue, value));
@@ -468,7 +498,10 @@ package com.esoteric.filters
 					dropShadowFilter.alpha = value;
 				}
 
-				context.renderQueue.add(this);			
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'alpha', oldValue, value));
@@ -499,7 +532,10 @@ package com.esoteric.filters
 					dropShadowFilter.angle = value;
 				}
 
-				context.renderQueue.add(this);			
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'angle', oldValue, value));
@@ -530,7 +566,10 @@ package com.esoteric.filters
 					dropShadowFilter.quality = value;
 				}
 
-				context.renderQueue.add(this);			
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
 				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
 				{
 					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'quality', oldValue, value));
