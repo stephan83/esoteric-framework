@@ -5,6 +5,7 @@
 
 	"imports": [
 		"away3dlite.containers.View3D",
+		"away3dlite.core.clip.RectangleClipping",
 		"com.esoteric.display.SpriteElement"
 	],
 	
@@ -14,8 +15,8 @@
 			"desc": "The 3D view.",
 			"bindable": false,
 			"update": false,
-			"default": "new View3D()",
-			"namespace": "esoteric"
+			"namespace": "esoteric",
+			"default": "new View3D()"
 		},
 		"scene": {
 			"type": "Scene3DElement",
@@ -24,6 +25,61 @@
 		"camera": {
 			"type": "Camera3DElement",
 			"desc": "The camera"
+		}
+	},
+	
+	"objectProperties": {
+		"clipping": {
+			"object": "view",
+			"property": "clipping",
+			"type":	"RectangleClipping",
+			"desc": "The rectangle clipping.",
+			"bindable": false,
+			"update": false,
+			"default": "new RectangleClipping()",
+			"namespace": "esoteric"
+		},
+		"minX": {
+				"object": "clipping",
+				"property": "minX",
+				"type": "Number",
+				"default": "-320",
+				"desc": "Minimum x value for clipping."
+		},
+		"maxX": {
+				"object": "clipping",
+				"property": "maxX",
+				"type": "Number",
+				"default": "320",
+				"desc": "Maximum x value for clipping."
+		},
+		"minY": {
+				"object": "clipping",
+				"property": "minY",
+				"type": "Number",
+				"default": "-240",
+				"desc": "Minimum y value for clipping."
+		},
+		"maxY": {
+				"object": "clipping",
+				"property": "maxY",
+				"type": "Number",
+				"default": "240",
+				"desc": "Maximum y value for clipping."
+		},
+		"minZ": {
+				"object": "clipping",
+				"property": "minZ",
+				"type": "Number",
+				"default": "0",
+				"desc": "Minimum z value for clipping."
+		},
+		"maxZ": {
+				"object": "clipping",
+				"property": "maxZ",
+				"type": "Number",
+				"default": "3000",
+				"desc": "Maximum z value for clipping."
 		}
 	}
 	

@@ -35,6 +35,8 @@
 
 package com.esoteric.expressions 
 {
+	import com.carlcalderon.arthropod.Debug;
+	import com.esoteric.events.ClosureEvent;
 	import com.esoteric.events.PropertyChangeEvent;
 	import com.esoteric.utils.Enumerator;
 	import com.esoteric.utils.IBindable;
@@ -63,8 +65,8 @@ package com.esoteric.expressions
 			
 			if (_parent)
 			{
-				_parent.addEventListener(PropertyChangeEvent.PROPERTY_ADDED, parentPropertyAddedHandler, false, 0, true);
-				_parent.addEventListener(PropertyChangeEvent.PROPERTY_UPDATED, parentPropertyUpdatedHandler, false, 0, true);
+				_parent.addEventListener(ClosureEvent.CLOSURE_PROPERTY_ADDED, parentPropertyAddedHandler, false, 0, true);
+				_parent.addEventListener(ClosureEvent.CLOSURE_PROPERTY_UPDATED, parentPropertyUpdatedHandler, false, 0, true);
 			}
 		}
 		
@@ -93,8 +95,8 @@ package com.esoteric.expressions
 		{
 			if (_parent)
 			{
-				_parent.removeEventListener(PropertyChangeEvent.PROPERTY_ADDED, parentPropertyAddedHandler);
-				_parent.removeEventListener(PropertyChangeEvent.PROPERTY_UPDATED, parentPropertyUpdatedHandler);
+				_parent.removeEventListener(ClosureEvent.CLOSURE_PROPERTY_ADDED, parentPropertyAddedHandler);
+				_parent.removeEventListener(ClosureEvent.CLOSURE_PROPERTY_UPDATED, parentPropertyUpdatedHandler);
 			}
 			
 			_parent = null;
@@ -136,7 +138,15 @@ package com.esoteric.expressions
 					_dict[name] = value;
 					
 					dispatchEvent(new PropertyChangeEvent(
-						PropertyChangeEvent.PROPERTY_UPDATED,
+						PropertyChangeEvent.PROPERTY_UPDATED + name,
+						false,
+						false,
+						oldValue,
+						value
+					));
+					
+					dispatchEvent(new ClosureEvent(
+						ClosureEvent.CLOSURE_PROPERTY_UPDATED,
 						false,
 						false,
 						name,
@@ -154,7 +164,15 @@ package com.esoteric.expressions
 				_dict[name] = value;
 				
 				dispatchEvent(new PropertyChangeEvent(
-					PropertyChangeEvent.PROPERTY_ADDED,
+					PropertyChangeEvent.PROPERTY_ADDED + name,
+					false,
+					false,
+					null,
+					value
+				));
+					
+				dispatchEvent(new ClosureEvent(
+					ClosureEvent.CLOSURE_PROPERTY_ADDED,
 					false,
 					false,
 					name,
@@ -222,7 +240,15 @@ package com.esoteric.expressions
 				_dict[name] = value;
 				
 				dispatchEvent(new PropertyChangeEvent(
-					PropertyChangeEvent.PROPERTY_UPDATED,
+					PropertyChangeEvent.PROPERTY_UPDATED + name,
+					false,
+					false,
+					oldValue,
+					value
+				));
+					
+				dispatchEvent(new ClosureEvent(
+					ClosureEvent.CLOSURE_PROPERTY_UPDATED,
 					false,
 					false,
 					name,
@@ -235,7 +261,15 @@ package com.esoteric.expressions
 				_dict[name] = value;
 				
 				dispatchEvent(new PropertyChangeEvent(
-					PropertyChangeEvent.PROPERTY_ADDED,
+					PropertyChangeEvent.PROPERTY_ADDED + name,
+					false,
+					false,
+					null,
+					value
+				));
+					
+				dispatchEvent(new ClosureEvent(
+					ClosureEvent.CLOSURE_PROPERTY_UPDATED,
 					false,
 					false,
 					name,
@@ -248,16 +282,18 @@ package com.esoteric.expressions
 		/**
 		 * @private
 		 */
-		private function parentPropertyUpdatedHandler(e:PropertyChangeEvent):void 
+		private function parentPropertyUpdatedHandler(e:ClosureEvent):void 
 		{
+			dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + e.property, false, false, e.oldValue, e.newValue));
 			dispatchEvent(e.clone());
 		}
 		
 		/**
 		 * @private
 		 */
-		private function parentPropertyAddedHandler(e:PropertyChangeEvent):void 
+		private function parentPropertyAddedHandler(e:ClosureEvent):void 
 		{
+			dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_ADDED + e.property, false, false, null, e.newValue));
 			dispatchEvent(e.clone());
 		}
 		

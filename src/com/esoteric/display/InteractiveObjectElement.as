@@ -137,7 +137,7 @@ package com.esoteric.display
 		 * @private
 		 */
 		private function removeEventListeners():void
-		{trace('nooo');
+		{
 			interactiveObject.removeEventListener(MouseEvent.CLICK, clickHandler);
 			interactiveObject.removeEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler);
 			interactiveObject.removeEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);

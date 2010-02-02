@@ -34,6 +34,7 @@
 
 package com.esoteric.core 
 {
+	import com.carlcalderon.arthropod.Debug;
 	import com.esoteric.core.ElementExpressionQueue;
 	import com.esoteric.core.RenderQueue;
 	import com.esoteric.display.DisplayObjectElement;
@@ -88,8 +89,7 @@ package com.esoteric.core
 			}
 			catch (e:Error)
 			{
-				trace(element);
-				trace(e);
+				Debug.error('Error creating node `' + xml.name() + '`: ' + e.name + ': ' + e.message());
 			}
 			
 			return element;

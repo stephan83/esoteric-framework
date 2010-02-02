@@ -2,7 +2,7 @@
 	DO NOT MODIFY THIS FILE, THE CODE GENERATOR WILL ERASE ANY CHANGES MADE.
 	MAKE CHANGES TO THE DERIVED CLASS INSTEAD.
 
-	Last generated 2010-02-01 17:20:42.430000 UTC.
+	Last generated 2010-02-02 00:19:45.544000 UTC.
 
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	~                           Esoteric Framework                            ~
@@ -161,10 +161,7 @@ package com.esoteric.utils
 
 
 				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
-				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
-				{
-					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'delay', oldValue, value));
-				}
+				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'delay', false, false, oldValue, value));
 			}
 		}
 
@@ -195,10 +192,7 @@ package com.esoteric.utils
 
 
 				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
-				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
-				{
-					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'repeatCount', oldValue, value));
-				}
+				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'repeatCount', false, false, oldValue, value));
 			}
 		}
 

@@ -2,7 +2,7 @@
 	DO NOT MODIFY THIS FILE, THE CODE GENERATOR WILL ERASE ANY CHANGES MADE.
 	MAKE CHANGES TO THE DERIVED CLASS INSTEAD.
 
-	Last generated 2010-02-01 17:20:42.379000 UTC.
+	Last generated 2010-02-02 02:31:48.862000 UTC.
 
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	~                           Esoteric Framework                            ~
@@ -40,6 +40,7 @@
 package com.esoteric.libs.away3d 
 {
 	import away3dlite.containers.View3D;
+	import away3dlite.core.clip.RectangleClipping;
 	import com.esoteric.display.SpriteElement;
 
 	import com.esoteric.core.Context;
@@ -63,6 +64,13 @@ package com.esoteric.libs.away3d
 		{
 			super(context, kind);
 			
+			clipping.maxZ = _maxZ;
+			view.clipping = _clipping;
+			clipping.maxY = _maxY;
+			clipping.maxX = _maxX;
+			clipping.minX = _minX;
+			clipping.minY = _minY;
+			clipping.minZ = _minZ;
 
 		}
 		
@@ -100,6 +108,41 @@ package com.esoteric.libs.away3d
 		 */
 		esoteric var _view:View3D = new View3D();
 
+		/**
+		 * @private
+		 */
+		esoteric var _maxZ:Number = 3000;
+
+		/**
+		 * @private
+		 */
+		esoteric var _clipping:RectangleClipping = new RectangleClipping();
+
+		/**
+		 * @private
+		 */
+		esoteric var _maxY:Number = 240;
+
+		/**
+		 * @private
+		 */
+		esoteric var _maxX:Number = 320;
+
+		/**
+		 * @private
+		 */
+		esoteric var _minX:Number = -320;
+
+		/**
+		 * @private
+		 */
+		esoteric var _minY:Number = -240;
+
+		/**
+		 * @private
+		 */
+		esoteric var _minZ:Number = 0;
+
 
 		//---------------------------------------------------------------------
 		// Getters and setters
@@ -121,10 +164,7 @@ package com.esoteric.libs.away3d
 
 			
 				_camera = value;
-				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
-				{
-					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'camera', oldValue, value));
-				}
+				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'camera', false, false, oldValue, value));
 				//context.renderQueue.add(this);
 
 
@@ -148,10 +188,7 @@ package com.esoteric.libs.away3d
 
 			
 				_scene = value;
-				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
-				{
-					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'scene', oldValue, value));
-				}
+				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'scene', false, false, oldValue, value));
 				//context.renderQueue.add(this);
 
 
@@ -172,7 +209,11 @@ package com.esoteric.libs.away3d
 			{
 				var oldValue:View3D = _view;
 			
+				if(value)
+				{
+					value.clipping = _clipping;
 
+				}
 			
 				_view = value;
 
@@ -180,6 +221,229 @@ package com.esoteric.libs.away3d
 			}
 		}
 
+
+		/**
+		 * Maximum z value for clipping. [default = 3000]
+		 *
+		 * @default	3000
+		 */
+		public function get maxZ():Number { return _maxZ; }
+		
+		public function set maxZ(value:Number):void 
+		{
+
+			if(maxZ != value)
+			{
+				var oldValue:Number = _maxZ;
+
+
+				
+				_maxZ = value;
+
+				if(clipping)
+				{
+					clipping.maxZ = value;
+				}
+
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
+				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'maxZ', false, false, oldValue, value));
+			}
+		}
+
+		/**
+		 * The rectangle clipping. [default = new RectangleClipping()]
+		 *
+		 * @default	new RectangleClipping()
+		 */
+		esoteric function get clipping():RectangleClipping { return _clipping; }
+		
+		esoteric function set clipping(value:RectangleClipping):void 
+		{
+
+			if(clipping != value)
+			{
+				var oldValue:RectangleClipping = _clipping;
+
+				if(value)
+				{
+					value.maxZ = _maxZ;
+					value.maxY = _maxY;
+					value.maxX = _maxX;
+					value.minX = _minX;
+					value.minY = _minY;
+					value.minZ = _minZ;
+
+				}
+				
+				_clipping = value;
+
+				if(view)
+				{
+					view.clipping = value;
+				}
+
+			
+
+			}
+		}
+
+		/**
+		 * Maximum y value for clipping. [default = 240]
+		 *
+		 * @default	240
+		 */
+		public function get maxY():Number { return _maxY; }
+		
+		public function set maxY(value:Number):void 
+		{
+
+			if(maxY != value)
+			{
+				var oldValue:Number = _maxY;
+
+
+				
+				_maxY = value;
+
+				if(clipping)
+				{
+					clipping.maxY = value;
+				}
+
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
+				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'maxY', false, false, oldValue, value));
+			}
+		}
+
+		/**
+		 * Maximum x value for clipping. [default = 320]
+		 *
+		 * @default	320
+		 */
+		public function get maxX():Number { return _maxX; }
+		
+		public function set maxX(value:Number):void 
+		{
+
+			if(maxX != value)
+			{
+				var oldValue:Number = _maxX;
+
+
+				
+				_maxX = value;
+
+				if(clipping)
+				{
+					clipping.maxX = value;
+				}
+
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
+				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'maxX', false, false, oldValue, value));
+			}
+		}
+
+		/**
+		 * Minimum x value for clipping. [default = -320]
+		 *
+		 * @default	-320
+		 */
+		public function get minX():Number { return _minX; }
+		
+		public function set minX(value:Number):void 
+		{
+
+			if(minX != value)
+			{
+				var oldValue:Number = _minX;
+
+
+				
+				_minX = value;
+
+				if(clipping)
+				{
+					clipping.minX = value;
+				}
+
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
+				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'minX', false, false, oldValue, value));
+			}
+		}
+
+		/**
+		 * Minimum y value for clipping. [default = -240]
+		 *
+		 * @default	-240
+		 */
+		public function get minY():Number { return _minY; }
+		
+		public function set minY(value:Number):void 
+		{
+
+			if(minY != value)
+			{
+				var oldValue:Number = _minY;
+
+
+				
+				_minY = value;
+
+				if(clipping)
+				{
+					clipping.minY = value;
+				}
+
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
+				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'minY', false, false, oldValue, value));
+			}
+		}
+
+		/**
+		 * Minimum z value for clipping. [default = 0]
+		 *
+		 * @default	0
+		 */
+		public function get minZ():Number { return _minZ; }
+		
+		public function set minZ(value:Number):void 
+		{
+
+			if(minZ != value)
+			{
+				var oldValue:Number = _minZ;
+
+
+				
+				_minZ = value;
+
+				if(clipping)
+				{
+					clipping.minZ = value;
+				}
+
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
+				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'minZ', false, false, oldValue, value));
+			}
+		}
 
 
 	}

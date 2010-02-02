@@ -48,15 +48,14 @@ package com.esoteric.events
 		// CONSTANTS
 		//---------------------------------------------------------------------
 		
-		public static const PROPERTY_ADDED:String = "propertyAdded";
-		public static const PROPERTY_UPDATED:String = "propertyUpdated";
-		public static const PROPERTY_REMOVED:String = "propertyRemoved";
+		public static const PROPERTY_ADDED:String = "propertyAdded_";
+		public static const PROPERTY_UPDATED:String = "propertyUpdated_";
+		public static const PROPERTY_REMOVED:String = "propertyRemoved_";
 		
 		//---------------------------------------------------------------------
 		// MEMBERS
 		//---------------------------------------------------------------------
 		
-		private var _property:*;
 		private var _oldValue:*;
 		private var _newValue:*;
 		
@@ -64,11 +63,10 @@ package com.esoteric.events
 		// CONSTRUCTOR
 		//---------------------------------------------------------------------
 		
-		public function PropertyChangeEvent(type:String, bubbles:Boolean = false, cancelable:Boolean = false, property:* = null, oldValue:* = null, newValue:* = null) 
+		public function PropertyChangeEvent(type:String, bubbles:Boolean = false, cancelable:Boolean = false, oldValue:* = null, newValue:* = null) 
 		{
 			super(type, bubbles, cancelable);
 			
-			_property = property;
 			_oldValue = oldValue;
 			_newValue = newValue;
 		}
@@ -79,19 +77,12 @@ package com.esoteric.events
 		
 		public override function clone():Event
 		{
-			return new PropertyChangeEvent(type, bubbles, cancelable, _property, _oldValue, _newValue);
+			return new PropertyChangeEvent(type, bubbles, cancelable, _oldValue, _newValue);
 		}
 		
 		//---------------------------------------------------------------------
 		// GETTERS & SETTERS
 		//---------------------------------------------------------------------
-		
-		public function get property():* { return _property; }
-		
-		public function set property(value:*):void 
-		{
-			_property = value;
-		}
 		
 		public function get oldValue():* { return _oldValue; }
 		
@@ -105,6 +96,11 @@ package com.esoteric.events
 		public function set newValue(value:*):void 
 		{
 			_newValue = value;
+		}
+		
+		public function get property():String 
+		{
+			return type.replace(PROPERTY_ADDED, '').replace(PROPERTY_REMOVED, '').replace(PROPERTY_UPDATED, '');
 		}
 		
 	}

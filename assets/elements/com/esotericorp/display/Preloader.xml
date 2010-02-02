@@ -34,7 +34,9 @@
 	-----                                                                 -----
 -->
 
-<Preloader mouseEnabled="true" useHandCursor="true" buttonMode="true" mouseChildren="true">
+<Preloader>
+	
+	<TextField color="0xffffff">{stageWidth}</TextField>
 	
 	<Scene3D id="scene">
 		<ObjectContainer3D rotationY="{mouseX}">
@@ -42,8 +44,36 @@
 		</ObjectContainer3D>
 	</Scene3D>
 	
-	<Camera3D id="camera" y="-200" z="-1000"></Camera3D>
+	<Camera3D id="camera" y="-200" z="-2000"></Camera3D>
 	
-	<View3D scene="{$('#scene').$elements()}" camera="{$('#camera').$elements()}" x="{stageWidth / 2}" y="{stageHeight / 2}"></View3D>
+	<View3D
+		scene="{$('#scene').elements()}"
+		camera="{$('#camera').elements()}"
+		x="{stageWidth / 2}"
+		y="{stageHeight / 2}"
+		minX="{-stageWidth / 2}"
+		maxX="{stageWidth / 2}"
+		minY="{-stageHeight / 2}"
+		maxY="{stageHeight / 2}"
+	/>
+	
+	<Sprite mouseEnabled="true" buttonMode="true" useHandCursor="true" mouseChildren="true">
+		
+		<Shape alpha=".5">
+			<SolidFill color="0xffffff">
+				<Rectangle width="{$('#clickMe').elements().width}" height="{$('#clickMe').elements().height}" />
+			</SolidFill>
+		</Shape>
+		
+		<TextField id="clickMe" color="0x0000ff" size="50" width="{this.textWidth}" height="{this.textHeight}">CLICK ME</TextField>
+		
+		<Script>
+			<![CDATA[
+				$this.click(function(e) {
+					$('#camera').animate('zoom', 5, 1, null, true);
+				});
+			]]>
+		</Script>
+	</Sprite>
 	
 </Preloader>

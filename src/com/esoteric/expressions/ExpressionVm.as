@@ -35,18 +35,18 @@
 package com.esoteric.expressions 
 {
 	import com.esoteric.events.ExpressionEvent;
+	import com.esoteric.events.VerboseEventDispatcher;
 	import com.esoteric.utils.BindableArray;
 	import com.esoteric.utils.BindableObject;
 	import com.esoteric.utils.IBindable;
 	import com.esoteric.utils.ICloneable;
-	import flash.events.EventDispatcher;
 	
 	/**
 	* Expression virtual machine.
 	* 
 	* @author Stephan Florquin
 	*/
-	public class ExpressionVm extends EventDispatcher implements ICloneable
+	public class ExpressionVm extends VerboseEventDispatcher implements ICloneable
 	{
 		//---------------------------------------------------------------------
 		// CONSTANTS
@@ -420,7 +420,7 @@ package com.esoteric.expressions
 							{
 								if (bind && target is IBindable && bindablePropertiesEnabled)
 								{
-									dispatchEvent(new ExpressionEvent(ExpressionEvent.BINDABLE_PROPERTY_LOADED, false, false, IBindable(target), prop, instructions.slice(i, instructions.length), stack.slice(0), top));
+									dispatchEvent(new ExpressionEvent(ExpressionEvent.BINDABLE_PROPERTY_LOADED, false, false, target as IBindable, prop, instructions.slice(i, instructions.length), stack.slice(0), top));
 								}
 								
 								top--;

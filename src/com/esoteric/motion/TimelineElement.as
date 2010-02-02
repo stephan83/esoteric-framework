@@ -37,6 +37,7 @@ package com.esoteric.motion
 	import com.esoteric.core.IElement;
 	import com.esoteric.core.Context;
 	import com.esoteric.events.ElementEvent;
+	import com.esoteric.events.ListEvent;
 	import com.esoteric.events.PropertyChangeEvent;
 	import com.esoteric.utils.Watcher;
 	import flash.utils.getTimer;
@@ -129,11 +130,11 @@ package com.esoteric.motion
 		/**
 		 * @inheritDoc
 		 */
-		protected override function childAddedHandler(e:PropertyChangeEvent):void
+		protected override function childAddedHandler(e:ListEvent):void
 		{
-			if (e.newValue.position > position && playing)
+			if (e.item.position > position && playing)
 			{
-				_frames.push(e.newValue);
+				_frames.push(e.item);
 				_frames.sortOn('position', Array.NUMERIC);
 			}
 			
@@ -143,13 +144,13 @@ package com.esoteric.motion
 		/**
 		 * @inheritDoc
 		 */
-		protected override function childRemovedHandler(e:PropertyChangeEvent):void
+		protected override function childRemovedHandler(e:ListEvent):void
 		{
 			for (var i:int = 0; i < _frames.length; i++)
 			{
 				var frame:FrameElement = _frames[i];
 				
-				if (e.oldValue == frame)
+				if (e.item == frame)
 				{
 					_frames.splice(i, 1);
 					break;

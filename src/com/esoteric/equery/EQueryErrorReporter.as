@@ -35,6 +35,7 @@
 
 package com.esoteric.equery 
 {
+	import com.carlcalderon.arthropod.Debug;
 	/**
 	 * Expression error reporter.
 	 * 
@@ -82,7 +83,7 @@ package com.esoteric.equery
 		{
 			var src:String = _eQuery.query.split(/[\n\r]+/m)[line - 1].replace(/^\s+|\s+$/g, '');
 			
-			trace('eQuery error:', header, ':', src, ':', msg);
+			Debug.error('eQuery error:' + header + ':' + src + ':' + msg);
 			
 			_hasErrors = true;
 		}

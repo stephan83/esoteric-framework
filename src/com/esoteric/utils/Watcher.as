@@ -34,6 +34,7 @@
 
 package com.esoteric.utils 
 {
+	import com.carlcalderon.arthropod.Debug;
 	import com.esoteric.events.PropertyChangeEvent;
 	
 	/**
@@ -80,9 +81,9 @@ package com.esoteric.utils
 			
 			if (_target && !_paused)
 			{
-				_target.addEventListener(PropertyChangeEvent.PROPERTY_ADDED, propertyAddedHandler, false, 0, _useWeakReferences);
-				_target.addEventListener(PropertyChangeEvent.PROPERTY_UPDATED, propertyUpdatedHandler, false, 0, _useWeakReferences);
-				_target.addEventListener(PropertyChangeEvent.PROPERTY_REMOVED, propertyRemovedHandler, false, 0, _useWeakReferences);
+				_target.addEventListener(PropertyChangeEvent.PROPERTY_ADDED + targetProperty, propertyAddedHandler, false, 0, _useWeakReferences);
+				_target.addEventListener(PropertyChangeEvent.PROPERTY_UPDATED + targetProperty, propertyUpdatedHandler, false, 0, _useWeakReferences);
+				_target.addEventListener(PropertyChangeEvent.PROPERTY_REMOVED + targetProperty, propertyRemovedHandler, false, 0, _useWeakReferences);
 			}
 		}
 		
@@ -94,9 +95,9 @@ package com.esoteric.utils
 		{
 			if (_target)
 			{
-				_target.removeEventListener(PropertyChangeEvent.PROPERTY_ADDED, propertyAddedHandler);
-				_target.removeEventListener(PropertyChangeEvent.PROPERTY_UPDATED, propertyUpdatedHandler);
-				_target.removeEventListener(PropertyChangeEvent.PROPERTY_REMOVED, propertyRemovedHandler);
+				_target.removeEventListener(PropertyChangeEvent.PROPERTY_ADDED + targetProperty, propertyAddedHandler);
+				_target.removeEventListener(PropertyChangeEvent.PROPERTY_UPDATED + targetProperty, propertyUpdatedHandler);
+				_target.removeEventListener(PropertyChangeEvent.PROPERTY_REMOVED + targetProperty, propertyRemovedHandler);
 			}
 		}
 		
@@ -106,20 +107,17 @@ package com.esoteric.utils
 		
 		private function propertyRemovedHandler(e:PropertyChangeEvent):void 
 		{
-			if (e.property == _targetProperty)
-				_handler(e);
+			_handler(e);
 		}
 		
 		private function propertyUpdatedHandler(e:PropertyChangeEvent):void 
 		{
-			if (e.property == _targetProperty)
-				_handler(e);
+			_handler(e);
 		}
 		
 		private function propertyAddedHandler(e:PropertyChangeEvent):void 
 		{
-			if (e.property == _targetProperty)
-				_handler(e);
+			_handler(e);
 		}
 		
 		//---------------------------------------------------------------------
@@ -135,9 +133,9 @@ package com.esoteric.utils
 			{
 				_paused = true;
 				
-				_target.removeEventListener(PropertyChangeEvent.PROPERTY_ADDED, propertyAddedHandler);
-				_target.removeEventListener(PropertyChangeEvent.PROPERTY_UPDATED, propertyUpdatedHandler);
-				_target.removeEventListener(PropertyChangeEvent.PROPERTY_REMOVED, propertyRemovedHandler);
+				_target.removeEventListener(PropertyChangeEvent.PROPERTY_ADDED + targetProperty, propertyAddedHandler);
+				_target.removeEventListener(PropertyChangeEvent.PROPERTY_UPDATED + targetProperty, propertyUpdatedHandler);
+				_target.removeEventListener(PropertyChangeEvent.PROPERTY_REMOVED + targetProperty, propertyRemovedHandler);
 				
 				if (_target.hasOwnProperty(_targetProperty))
 					_oldValue = _target[_targetProperty];
@@ -153,9 +151,9 @@ package com.esoteric.utils
 			{
 				_paused = false;
 				
-				_target.addEventListener(PropertyChangeEvent.PROPERTY_ADDED, propertyAddedHandler, false, 0, _useWeakReferences);
-				_target.addEventListener(PropertyChangeEvent.PROPERTY_UPDATED, propertyUpdatedHandler, false, 0, _useWeakReferences);
-				_target.addEventListener(PropertyChangeEvent.PROPERTY_REMOVED, propertyRemovedHandler, false, 0, _useWeakReferences);
+				_target.addEventListener(PropertyChangeEvent.PROPERTY_ADDED + targetProperty, propertyAddedHandler, false, 0, _useWeakReferences);
+				_target.addEventListener(PropertyChangeEvent.PROPERTY_UPDATED + targetProperty, propertyUpdatedHandler, false, 0, _useWeakReferences);
+				_target.addEventListener(PropertyChangeEvent.PROPERTY_REMOVED + targetProperty, propertyRemovedHandler, false, 0, _useWeakReferences);
 				
 				if (_target.hasOwnProperty(_targetProperty))
 					var newValue:* = _target[_targetProperty];
@@ -163,11 +161,11 @@ package com.esoteric.utils
 				if (_oldValue != newValue)
 				{
 					if (_oldValue)
-						_handler(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_ADDED, false, false, _targetProperty, _oldValue, newValue));
+						_handler(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_ADDED + targetProperty, false, false, _oldValue, newValue));
 					else if(newValue)
-						_handler(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, _targetProperty, _oldValue, newValue));
+						_handler(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + targetProperty, false, false, _oldValue, newValue));
 					else
-						_handler(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_REMOVED, false, false, _targetProperty, _oldValue, newValue));
+						_handler(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_REMOVED + targetProperty, false, false, _oldValue, newValue));
 				}
 			}
 		}
@@ -182,18 +180,18 @@ package com.esoteric.utils
 		{
 			if (_target)
 			{
-				_target.removeEventListener(PropertyChangeEvent.PROPERTY_ADDED, propertyAddedHandler);
-				_target.removeEventListener(PropertyChangeEvent.PROPERTY_UPDATED, propertyUpdatedHandler);
-				_target.removeEventListener(PropertyChangeEvent.PROPERTY_REMOVED, propertyRemovedHandler);
+				_target.removeEventListener(PropertyChangeEvent.PROPERTY_ADDED + targetProperty, propertyAddedHandler);
+				_target.removeEventListener(PropertyChangeEvent.PROPERTY_UPDATED + targetProperty, propertyUpdatedHandler);
+				_target.removeEventListener(PropertyChangeEvent.PROPERTY_REMOVED + targetProperty, propertyRemovedHandler);
 			}
 			
 			_target = value;
 			
 			if (_target)
 			{
-				_target.addEventListener(PropertyChangeEvent.PROPERTY_ADDED, propertyAddedHandler, false, 0, _useWeakReferences);
-				_target.addEventListener(PropertyChangeEvent.PROPERTY_UPDATED, propertyUpdatedHandler, false, 0, _useWeakReferences);
-				_target.addEventListener(PropertyChangeEvent.PROPERTY_REMOVED, propertyRemovedHandler, false, 0, _useWeakReferences);
+				_target.addEventListener(PropertyChangeEvent.PROPERTY_ADDED + targetProperty, propertyAddedHandler, false, 0, _useWeakReferences);
+				_target.addEventListener(PropertyChangeEvent.PROPERTY_UPDATED + targetProperty, propertyUpdatedHandler, false, 0, _useWeakReferences);
+				_target.addEventListener(PropertyChangeEvent.PROPERTY_REMOVED + targetProperty, propertyRemovedHandler, false, 0, _useWeakReferences);
 			}
 		}
 		

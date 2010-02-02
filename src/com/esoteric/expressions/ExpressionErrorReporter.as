@@ -35,6 +35,7 @@
 
 package com.esoteric.expressions 
 {
+	import com.carlcalderon.arthropod.Debug;
 	/**
 	 * Expression error reporter.
 	 * 
@@ -82,7 +83,7 @@ package com.esoteric.expressions
 		{
 			var src:String = _expression.expression.split(/[\n\r]+/m)[line - 1].replace(/^\s+|\s+$/g, '');
 			
-			trace('expression error:', header, ':', src, ':', msg);
+			Debug.error('expression error:' + header + ':' + src + ':' + msg);
 			
 			_hasErrors = true;
 		}

@@ -36,6 +36,9 @@ package com.esoteric.display
 {
 	import com.esoteric.core.IElement;
 	import com.esoteric.core.Context;
+	import com.esoteric.esoteric;
+	
+	use namespace esoteric;
 	
 	/**
 	* Generated 2008-08-03 06:25:49.304000 UTC.
@@ -64,7 +67,7 @@ package com.esoteric.display
 		 */
 		public function execute(shapeElement:ShapeElement):void
 		{
-			shapeElement.shape.graphics.beginFill(color, alpha);
+			shapeElement.shape.graphics.beginFill(_color, _alpha);
 			
 			var length:int = numChildren;
 			

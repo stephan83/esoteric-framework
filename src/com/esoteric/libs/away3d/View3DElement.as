@@ -34,6 +34,7 @@
 
 package com.esoteric.libs.away3d
 {
+	import away3dlite.containers.View3D;
 	import com.esoteric.core.Context;
 	import com.esoteric.core.IElement;
 	import com.esoteric.esoteric;

@@ -145,10 +145,9 @@ package com.esoteric.utils
 			var result:uint = super.push.apply(this, rest);
 			
 			dispatchEvent(new PropertyChangeEvent(
-				PropertyChangeEvent.PROPERTY_UPDATED,
+				PropertyChangeEvent.PROPERTY_UPDATED + 'length',
 				false,
 				false,
-				'length',
 				length - 1,
 				length
 			));
@@ -161,16 +160,15 @@ package com.esoteric.utils
 			var result:uint = super.unshift.apply(this, rest);
 			
 			dispatchEvent(new PropertyChangeEvent(
-				PropertyChangeEvent.PROPERTY_UPDATED,
+				PropertyChangeEvent.PROPERTY_UPDATED + 'length',
 				false,
 				false,
-				'length',
 				length - 1,
 				length
 			));
 			
 			dispatchEvent(new PropertyChangeEvent(
-				PropertyChangeEvent.PROPERTY_UPDATED,
+				PropertyChangeEvent.PROPERTY_UPDATED + 'length',
 				false,
 				false,
 				0
@@ -184,10 +182,9 @@ package com.esoteric.utils
 			var result:*= super.pop.apply(this);
 			
 			dispatchEvent(new PropertyChangeEvent(
-				PropertyChangeEvent.PROPERTY_UPDATED,
+				PropertyChangeEvent.PROPERTY_UPDATED + '0',
 				false,
 				false,
-				'length',
 				length + 1,
 				length
 			));
@@ -200,16 +197,15 @@ package com.esoteric.utils
 			var result:*= super.shift.apply(this);
 			
 			dispatchEvent(new PropertyChangeEvent(
-				PropertyChangeEvent.PROPERTY_UPDATED,
+				PropertyChangeEvent.PROPERTY_UPDATED + 'length',
 				false,
 				false,
-				'length',
 				length + 1,
 				length
 			));
 			
 			dispatchEvent(new PropertyChangeEvent(
-				PropertyChangeEvent.PROPERTY_UPDATED,
+				PropertyChangeEvent.PROPERTY_UPDATED + '0',
 				false,
 				false,
 				0
@@ -227,19 +223,17 @@ package com.esoteric.utils
 				super.splice(0, oldLength);
 				
 				dispatchEvent(new PropertyChangeEvent(
-					PropertyChangeEvent.PROPERTY_UPDATED,
+					PropertyChangeEvent.PROPERTY_UPDATED + 'length',
 					false,
 					false,
-					'length',
 					oldLength,
 					0
 				));
 				
 				dispatchEvent(new PropertyChangeEvent(
-					PropertyChangeEvent.PROPERTY_UPDATED,
+					PropertyChangeEvent.PROPERTY_UPDATED + '0',
 					false,
-					false,
-					0
+					false
 				));
 			}
 		}

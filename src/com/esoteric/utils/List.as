@@ -34,6 +34,7 @@
 
 package com.esoteric.utils 
 {
+	import com.esoteric.events.ListEvent;
 	import com.esoteric.events.PropertyChangeEvent;
 	
 	/**
@@ -74,8 +75,8 @@ package com.esoteric.utils
 		public function add(item:*):void
 		{
 			_items.push(item);
-			dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_ADDED, false, false, _items.length - 1, null, item));
-			dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'length', length - 1, length));
+			dispatchEvent(new ListEvent(ListEvent.ITEM_ADDED, false, false, item));
+			dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'length', false, false, length - 1, length));
 		}
 		
 		public function addArray(items:Array):void
@@ -95,8 +96,8 @@ package com.esoteric.utils
 				if (item == _items[i])
 				{
 					_items.splice(i, 1);
-					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_REMOVED, false, false, i, item));
-					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'length', length + 1, length));
+					dispatchEvent(new ListEvent(ListEvent.ITEM_REMOVED, false, false, item));
+					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'length', false, false, length + 1, length));
 					
 					return;
 				}

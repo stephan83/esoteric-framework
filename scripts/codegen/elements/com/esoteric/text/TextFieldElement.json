@@ -34,14 +34,12 @@
 		"textWidth": {
 			"type":	"int",
 			"default": "0",
-			"desc": "The text width.",
-			"update": false
+			"desc": "The text width."
 		},
 		"textHeight": {
 			"type":	"int",
 			"default": "0",
-			"desc": "The text height.",
-			"update": false
+			"desc": "The text height."
 		}
 	},
 	
@@ -192,13 +190,6 @@
 			"property": "tabStops",
 			"type":	"Array",
 			"desc": "The tab stops."
-		},
-		"target": {
-			"object": "textFormat",
-			"property": "target",
-			"type":	"String",
-			"default": "\"_self\"",
-			"desc": "The target frame for the link."
 		},
 		"underline": {
 			"object": "textFormat",

@@ -37,10 +37,14 @@ package com.esoteric.text
 	import com.esoteric.core.Context;
 	import com.esoteric.core.IElement;
 	import com.esoteric.core.Context;
+	import com.esoteric.esoteric;
+	import com.esoteric.events.ElementEvent;
 	import com.esoteric.events.PropertyChangeEvent;
 	import flash.display.InteractiveObject;
 	import flash.events.Event;
 	import flash.text.TextFormat;
+	
+	use namespace esoteric;
 	
 	/**
 	* Generated 2008-08-04 09:17:54.731000 UTC.
@@ -60,6 +64,7 @@ package com.esoteric.text
 			super(context, kind);
 			
 			textField.addEventListener(Event.CHANGE, textInputHandler, false, 0, true);
+			addEventListener(ElementEvent.UPDATED, updatedHandler);
 		}
 		
 		//---------------------------------------------------------------------
@@ -117,6 +122,14 @@ package com.esoteric.text
 		private function textInputHandler(e:Event):void
 		{
 			text = textField.text;
+		}
+		
+		/**
+		 * @private
+		 */
+		private function updatedHandler(e:ElementEvent):void 
+		{
+			_context.renderQueue.add(this);
 		}
 
 	}

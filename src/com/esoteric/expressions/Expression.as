@@ -34,6 +34,7 @@
 
 package com.esoteric.expressions 
 {
+	import com.carlcalderon.arthropod.Debug;
 	import com.esoteric.events.ExpressionEvent;
 	import com.esoteric.events.PropertyChangeEvent;
 	import com.esoteric.utils.IBindable;
@@ -144,11 +145,6 @@ package com.esoteric.expressions
 		
 		public function get value():*
 		{
-			if (_value)
-				return _value;
-			
-			eval();
-			
 			return _value;
 		}
 		
@@ -196,10 +192,7 @@ package com.esoteric.expressions
 			{
 				_vm.removeEventListener(ExpressionEvent.BINDABLE_PROPERTY_LOADED, vmBindablePropertyHandler);
 				
-				if (hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
-				{
-					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'value', oldValue, _value));
-				}
+				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'value', false, false, oldValue, _value));
 			}
 			
 			_outdated = false;
@@ -326,7 +319,6 @@ package com.esoteric.expressions
 		{
 			destroyWatchers(e.target, e.property);
 			_outdated = true;
-			
 			dispatchEvent(new ExpressionEvent(ExpressionEvent.OUTDATED));
 		}
 		

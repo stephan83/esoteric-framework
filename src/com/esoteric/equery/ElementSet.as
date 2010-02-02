@@ -101,7 +101,7 @@ package com.esoteric.equery
 			
 			_result = selectAllRec(_result);
 			
-			dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'result', old, _result));
+			dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'result', false, false, old, _result));
 		}
 		
 		/**
@@ -137,7 +137,7 @@ package com.esoteric.equery
 			
 			selectAttr('kind', '=', kind.toLowerCase());
 			
-			dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'result', old, _result));
+			dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'result', false, false, old, _result));
 		}
 		
 		/**
@@ -160,7 +160,7 @@ package com.esoteric.equery
 				_result = [];
 			}
 			
-			dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'result', old, _result));
+			dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'result', false, false, old, _result));
 		}
 		
 		/**
@@ -210,7 +210,7 @@ package com.esoteric.equery
 				}
 			}
 			
-			dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'result', old, _result));
+			dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'result', false, false, old, _result));
 		}
 		
 		/**
@@ -235,7 +235,7 @@ package com.esoteric.equery
 				_result = [_result[0]];
 			}
 			
-			dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'result', old, _result));
+			dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'result', false, false, old, _result));
 		}
 		
 		/**
@@ -250,7 +250,7 @@ package com.esoteric.equery
 				_result = [_result[_result.length - 1]];
 			}
 			
-			dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'result', old, _result));
+			dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'result', false, false, old, _result));
 		}
 		
 		/**
@@ -340,7 +340,7 @@ package com.esoteric.equery
 				}
 			}
 			
-			dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'result', old, _result));
+			dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'result', false, false, old, _result));
 		}
 		
 	}

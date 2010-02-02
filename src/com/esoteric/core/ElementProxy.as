@@ -67,10 +67,6 @@ package com.esoteric.core
 			super();
 			
 			_element = element;
-			
-			_element.addEventListener(PropertyChangeEvent.PROPERTY_ADDED, propertyAddedHandler);
-			_element.addEventListener(PropertyChangeEvent.PROPERTY_REMOVED, propertyRemovedHandler);
-			_element.addEventListener(PropertyChangeEvent.PROPERTY_UPDATED, propertyUpdatedHandler);
 			_element.addEventListener(ElementEvent.DESTROYED, elementDestroyedHandler);
 		}
 		
@@ -286,7 +282,7 @@ package com.esoteric.core
 			if (match)
 			{
 				_expressions[name] = new Expression(match[1], _element.context.vm, _element.closure, this);
-				_watchers[name] = new Watcher(_expressions[name], "value", createExpressionValueHandler(name));
+				_watchers[name] = new Watcher(_expressions[name], 'value', createExpressionValueHandler(name));
 				
 				_expressions[name].addEventListener(ExpressionEvent.OUTDATED, outdatedExpressionHandler);
 				
@@ -295,8 +291,6 @@ package com.esoteric.core
 			else
 			{
 				_element[name] = value;
-				
-				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, name, oldValue, value));
 			}
 		}
 		
@@ -348,6 +342,20 @@ package com.esoteric.core
 			return _element[name].apply(_element, args);
 		}
 		
+		/**
+		 * @inheritDoc
+		 */
+		override public function addEventListener(
+			type:String,
+			listener:Function, 
+			useCapture:Boolean = false,
+			priority:int = 0.0,
+			useWeakReference:Boolean = false
+		):void 
+		{
+			_element.addEventListener(type, listener, useCapture, priority, useWeakReference);
+		}
+		
 		//---------------------------------------------------------------------
 		// Methods
 		//---------------------------------------------------------------------
@@ -358,44 +366,6 @@ package com.esoteric.core
 		public function getExpression(name:String):Expression
 		{
 			return _expressions[name];
-		}
-		
-		/**
-		 * @private
-		 */
-		private function propertyUpdatedHandler(e:PropertyChangeEvent):void 
-		{
-			dispatchEvent(e);
-		}
-		
-		/**
-		 * @private
-		 */
-		private function propertyRemovedHandler(e:PropertyChangeEvent):void 
-		{
-			if (_expressions[e.property])
-			{
-				_expressions[e.property].destroy();
-				delete _expressions[e.property];
-			}
-			
-			if (_watchers[e.property])
-			{
-				_expressions[e.property].destroy();
-				delete _expressions[e.property];
-			}
-			
-			dispatchEvent(e);
-		}
-		
-		/**
-		 * @private
-		 */
-		private function propertyAddedHandler(e:PropertyChangeEvent):void 
-		{
-			_element[e.property] = e.newValue;
-			
-			dispatchEvent(e);
 		}
 		
 		/**

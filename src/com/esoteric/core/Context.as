@@ -35,6 +35,7 @@
 	
 package com.esoteric.core 
 {
+	import com.carlcalderon.arthropod.Debug;
 	import com.esoteric.display.DisplayObjectElement;
 	import com.esoteric.equery.ElementSet;
 	import com.esoteric.equery.EQuery;
@@ -78,11 +79,13 @@ package com.esoteric.core
 			
 			_closure['stageWidth'] = stage.stageWidth;
 			_closure['stageHeight'] = stage.stageHeight;
-			_closure['trace'] = trace;
+			_closure['log'] = Debug.log;
+			_closure['warning'] = Debug.warning;
+			_closure['error'] = Debug.error;
 			
 			// enable eQuery
 			_closure['$'] = function(query:String):EQueryObject {
-				return new EQueryObject(new ElementSet([_root])).$find(query);
+				return new EQueryObject(new ElementSet([_root])).find(query);
 			};
 			
 			// add easing functions

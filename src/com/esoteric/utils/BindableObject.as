@@ -112,10 +112,9 @@ package com.esoteric.utils
 				_object[name] = value;
 				
 				dispatchEvent(new PropertyChangeEvent(
-					PropertyChangeEvent.PROPERTY_UPDATED,
+					PropertyChangeEvent.PROPERTY_UPDATED + name,
 					false,
 					false,
-					name,
 					oldValue,
 					value
 				));
@@ -125,10 +124,9 @@ package com.esoteric.utils
 				_object[name] = value;
 				
 				dispatchEvent(new PropertyChangeEvent(
-					PropertyChangeEvent.PROPERTY_ADDED,
+					PropertyChangeEvent.PROPERTY_ADDED + name,
 					false,
 					false,
-					name,
 					null,
 					value
 				));

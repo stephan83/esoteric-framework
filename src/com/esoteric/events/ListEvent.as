@@ -1,4 +1,4 @@
-/*
+﻿/*
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	~                           Esoteric Framework                            ~
 	~                       framework.esotericorp.com                         ~
@@ -32,73 +32,42 @@
 	-----                                                                 -----
 */
 
-package com.esoteric.core
+package com.esoteric.events 
 {
-	import com.esoteric.core.IElement;
-	import com.esoteric.core.Context;
-	import com.esoteric.events.PropertyChangeEvent;
+	import flash.events.Event;
 	
-	public class WatcherElement extends AbstractWatcherElement
+	/**
+	* List event class.
+	* 
+	* @author Stephan Florquin
+	*/
+	public class ListEvent extends Event
 	{
 		
-		//---------------------------------------------------------------------
-		// Constructor
-		//---------------------------------------------------------------------
+		public static const ITEM_ADDED:String = "itemAdded";
+		public static const ITEM_REMOVED:String = "itemRemoved";
 		
-		/**
-		 * Constructor.
-		 */
-		public function WatcherElement(context:Context, kind:String) 
+		private var _item:*;
+		
+		public function ListEvent(type:String, bubbles:Boolean = false, cancelable:Boolean = false, item:* = null) 
 		{
-			super(context, kind);
+			_item = item;
 			
-			this.addEventListener(PropertyChangeEvent.PROPERTY_UPDATED, propertyUpdatedHandler);
+			super(type, bubbles, cancelable);
 		}
 		
-		//---------------------------------------------------------------------
-		// Overriden properties
-		//---------------------------------------------------------------------
-		
-		/**
-		 * @inheritDoc
-		 */
-		/*override public function createExpressionContext(name:String):Object
+		override public function clone():Event 
 		{
-			var context:Object = super.createExpressionContext(name);
-			
-			context.e = lastEvent;
-			
-			return context;
-		}*/
-		
-		/**
-		 * @inheritDoc
-		 */
-		override public function destroy():void
-		{
-			this.removeEventListener(PropertyChangeEvent.PROPERTY_UPDATED, propertyUpdatedHandler);
-			
-			super.destroy();
+			return new ListEvent(type, bubbles, cancelable, ITEM_ADDED);
 		}
 		
-		//---------------------------------------------------------------------
-		// Methods
-		//---------------------------------------------------------------------
+		public function get item():* { return _item; }
 		
-		/**
-		 * @private
-		 */
-		private function propertyUpdatedHandler(e:PropertyChangeEvent):void
+		public function set item(value:*):void 
 		{
-			if (e.property == 'watch')
-			{
-				lastEvent = e;
-				
-				run();
-			}
+			_item = value;
 		}
-
-
+		
 	}
 	
 }

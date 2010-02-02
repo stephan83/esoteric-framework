@@ -2,7 +2,7 @@
 	DO NOT MODIFY THIS FILE, THE CODE GENERATOR WILL ERASE ANY CHANGES MADE.
 	MAKE CHANGES TO THE DERIVED CLASS INSTEAD.
 
-	Last generated 2010-02-01 17:20:42.345000 UTC.
+	Last generated 2010-02-02 00:19:45.453000 UTC.
 
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	~                           Esoteric Framework                            ~
@@ -170,10 +170,7 @@ package com.esoteric.filters
 				}
 			
 				_glowFilter = value;
-				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
-				{
-					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'glowFilter', oldValue, value));
-				}
+				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'glowFilter', false, false, oldValue, value));
 				//context.renderQueue.add(this);
 
 
@@ -209,10 +206,7 @@ package com.esoteric.filters
 
 
 				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
-				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
-				{
-					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'strength', oldValue, value));
-				}
+				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'strength', false, false, oldValue, value));
 			}
 		}
 
@@ -243,10 +237,7 @@ package com.esoteric.filters
 
 
 				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
-				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
-				{
-					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'blurX', oldValue, value));
-				}
+				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'blurX', false, false, oldValue, value));
 			}
 		}
 
@@ -277,10 +268,7 @@ package com.esoteric.filters
 
 
 				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
-				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
-				{
-					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'blurY', oldValue, value));
-				}
+				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'blurY', false, false, oldValue, value));
 			}
 		}
 
@@ -311,10 +299,7 @@ package com.esoteric.filters
 
 
 				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
-				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
-				{
-					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'color', oldValue, value));
-				}
+				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'color', false, false, oldValue, value));
 			}
 		}
 
@@ -345,10 +330,7 @@ package com.esoteric.filters
 
 
 				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
-				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
-				{
-					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'knockout', oldValue, value));
-				}
+				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'knockout', false, false, oldValue, value));
 			}
 		}
 
@@ -379,10 +361,7 @@ package com.esoteric.filters
 
 
 				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
-				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
-				{
-					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'inner', oldValue, value));
-				}
+				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'inner', false, false, oldValue, value));
 			}
 		}
 
@@ -413,10 +392,7 @@ package com.esoteric.filters
 
 
 				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
-				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
-				{
-					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'alpha', oldValue, value));
-				}
+				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'alpha', false, false, oldValue, value));
 			}
 		}
 
@@ -447,10 +423,7 @@ package com.esoteric.filters
 
 
 				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
-				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
-				{
-					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'quality', oldValue, value));
-				}
+				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'quality', false, false, oldValue, value));
 			}
 		}
 

@@ -38,6 +38,7 @@ package com.esoteric.display
 	import com.esoteric.core.IElement;
 	import com.esoteric.core.Context;
 	import com.esoteric.esoteric;
+	import com.esoteric.events.ListEvent;
 	import com.esoteric.events.PropertyChangeEvent;
 	import flash.display.DisplayObject;
 	import flash.display.InteractiveObject;
@@ -79,13 +80,13 @@ package com.esoteric.display
 		/**
 		 * @inheritDoc
 		 */
-		override protected function childAddedHandler(e:PropertyChangeEvent):void 
+		override protected function childAddedHandler(e:ListEvent):void 
 		{
 			super.childAddedHandler(e);
 			
-			if (e.newValue is DisplayObjectElement)
+			if (e.item is DisplayObjectElement)
 			{
-				var dispObject:DisplayObjectElement = e.newValue as DisplayObjectElement;
+				var dispObject:DisplayObjectElement = e.item as DisplayObjectElement;
 				
 				_sprite.addChild(dispObject._displayObject);
 			}
@@ -94,13 +95,13 @@ package com.esoteric.display
 		/**
 		 * @inheritDoc
 		 */
-		override protected function childRemovedHandler(e:PropertyChangeEvent):void 
+		override protected function childRemovedHandler(e:ListEvent):void 
 		{
 			super.childAddedHandler(e);
 			
-			if (e.oldValue is DisplayObjectElement)
+			if (e.item is DisplayObjectElement)
 			{
-				var dispObject:DisplayObjectElement = e.oldValue as DisplayObjectElement;
+				var dispObject:DisplayObjectElement = e.item as DisplayObjectElement;
 				
 				_sprite.removeChild(dispObject._displayObject);
 			}

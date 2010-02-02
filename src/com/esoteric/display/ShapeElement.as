@@ -37,6 +37,7 @@ package com.esoteric.display
 	import com.esoteric.core.IElement;
 	import com.esoteric.core.Context;
 	import com.esoteric.esoteric;
+	import com.esoteric.events.ElementEvent;
 	import flash.display.DisplayObject;
 	
 	public class ShapeElement extends AbstractShapeElement
@@ -53,10 +54,12 @@ package com.esoteric.display
 		public function ShapeElement(context:Context, kind:String) 
 		{
 			super(context, kind);
+			
+			addEventListener(ElementEvent.UPDATED, updatedHandler);
 		}
 		
 		//---------------------------------------------------------------------
-		// Overridden property
+		// Overridden
 		//---------------------------------------------------------------------
 		
 		/**
@@ -87,6 +90,18 @@ package com.esoteric.display
 					IGraphicCommandElement(element).execute(this);
 				}
 			}
+		}
+		
+		//---------------------------------------------------------------------
+		// Methods
+		//---------------------------------------------------------------------
+		
+		/**
+		 * @private
+		 */
+		private function updatedHandler(e:ElementEvent):void 
+		{
+			context.renderQueue.add(this);
 		}
 		
 	}

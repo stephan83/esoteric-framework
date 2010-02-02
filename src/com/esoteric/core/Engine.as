@@ -36,10 +36,15 @@
 	
 package com.esoteric.core 
 {
+	import com.carlcalderon.arthropod.Debug;
 	import com.esoteric.esoteric;
+	import com.esoteric.events.VerboseEventDispatcher;
+	import com.esoteric.Settings;
 	import flash.geom.Matrix3D;
 	import flash.system.System;
 	import flash.utils.getTimer;
+	
+	use namespace esoteric;
 	
 	/**
 	 * Esoteric framework engine.
@@ -48,7 +53,6 @@ package com.esoteric.core
 	 */
 	public class Engine
 	{
-		use namespace esoteric;
 		
 		//---------------------------------------------------------------------
 		// Constructor
@@ -59,8 +63,9 @@ package com.esoteric.core
 		 */
 		public function Engine(context:Context) 
 		{
+			Debug.log('ESOTERIC ' + Settings.VERSION + ' ' + Settings.BRANCH);
 			_context = context;
-			_lastSecond = getTimer();
+			_lastTick = getTimer();
 		}
 		
 		//---------------------------------------------------------------------
@@ -75,17 +80,27 @@ package com.esoteric.core
 		/**
 		 * @private
 		 */
-		private var _lastSecond:int;
+		private var _lastTick:int;
 		
 		/**
 		 * @private
 		 */
-		private var _lastSecondInstructions:int = 0;
+		private var _lastTickInstructions:int = 0;
 		
 		/**
 		 * @private
 		 */
-		private var _lastSecondFrames:int = 0;
+		private var _lastTickFrames:int = 0;
+		
+		/**
+		 * @private
+		 */
+		private var _lastTickRenders:int = 0;
+		
+		/**
+		 * @private
+		 */
+		private const _TICK_INTERVAL:int = 10000;
 		
 		//---------------------------------------------------------------------
 		// Methods
@@ -111,6 +126,7 @@ package com.esoteric.core
 			//context.root.render();
 			
 			_context.expQueue.run();
+			_lastTickRenders += _context.renderQueue.numElements;
 			_context.renderQueue.render();
 			
 			updateStats();
@@ -122,17 +138,25 @@ package com.esoteric.core
 		private function updateStats():void
 		{
 			var time:int = getTimer();
-			_lastSecondFrames++;
+			_lastTickFrames++;
 			
-			if (time - _lastSecond > 5000)
+			if (time - _lastTick > _TICK_INTERVAL)
 			{
+				System.gc();
+				
 				var instructions:int = _context.vm.instructionCounter;
 				
-				trace(Math.round(1000 * (instructions - _lastSecondInstructions) / (time - _lastSecond)), 'ips', Math.round(1000 * _lastSecondFrames / (time - _lastSecond)) , 'fps', Math.round(System.totalMemory / 1024 / 1024 * 1000) / 1000, 'mb');
+				Debug.log('IPS: ' + Math.round(1000 * (instructions - _lastTickInstructions) / (time - _lastTick)), 0x999999);
+				Debug.log('RPS: ' + Math.round(1000 * (_lastTickRenders) / (time - _lastTick)), 0x999999);
+				Debug.log('FPS: ' + Math.round(1000 * _lastTickFrames / (time - _lastTick)), 0x999999);
+				Debug.log('MEM: ' + Math.round(System.totalMemory / 1024 / 1024 * 1000) / 1000 + 'mb', 0x999999);
 				
-				_lastSecondInstructions = instructions;
-				_lastSecond = time;
-				_lastSecondFrames = 0;
+				VerboseEventDispatcher.report();
+				
+				_lastTickInstructions = instructions;
+				_lastTickRenders = 0;
+				_lastTick = time;
+				_lastTickFrames = 0;
 			}
 		}
 		

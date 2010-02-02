@@ -1,9 +1,4 @@
-/*
-	DO NOT MODIFY THIS FILE, THE CODE GENERATOR WILL ERASE ANY CHANGES MADE.
-	MAKE CHANGES TO THE DERIVED CLASS INSTEAD.
-
-	Last generated 2010-02-01 17:20:42.181000 UTC.
-
+﻿/*
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	~                           Esoteric Framework                            ~
 	~                       framework.esotericorp.com                         ~
@@ -37,123 +32,81 @@
 	-----                                                                 -----
 */
 
-package com.esoteric.core 
+package com.esoteric.events 
 {
-
-	import com.esoteric.core.Context;
-	import com.esoteric.esoteric;
-	import com.esoteric.events.ElementEvent;
-	import com.esoteric.events.PropertyChangeEvent;
+	import flash.events.Event;
 	
-	use namespace esoteric;
-	
-	public class AbstractGlobalElement extends TweenableElement
+	/**
+	* Property change event.
+	* 
+	* @author Stephan Florquin
+	*/
+	public class ClosureEvent extends Event
 	{
 		
 		//---------------------------------------------------------------------
-		// Constructor
+		// CONSTANTS
 		//---------------------------------------------------------------------
 		
-		/**
-		 * Constructor.
-		 */
-		public function AbstractGlobalElement(context:Context, kind:String) 
+		public static const CLOSURE_PROPERTY_ADDED:String = "closurePropertyAdded";
+		public static const CLOSURE_PROPERTY_UPDATED:String = "closurePropertyUpdated";
+		public static const CLOSURE_PROPERTY_REMOVED:String = "closurePropertyRemoved";
+		
+		//---------------------------------------------------------------------
+		// MEMBERS
+		//---------------------------------------------------------------------
+		
+		private var _property:*;
+		private var _oldValue:*;
+		private var _newValue:*;
+		
+		//---------------------------------------------------------------------
+		// CONSTRUCTOR
+		//---------------------------------------------------------------------
+		
+		public function ClosureEvent(type:String, bubbles:Boolean = false, cancelable:Boolean = false, property:* = null, oldValue:* = null, newValue:* = null) 
 		{
-			super(context, kind);
+			super(type, bubbles, cancelable);
 			
-
+			_property = property;
+			_oldValue = oldValue;
+			_newValue = newValue;
 		}
 		
 		//---------------------------------------------------------------------
-		// Overrides
+		// OVERRIDES
 		//---------------------------------------------------------------------
 		
-		/**
-		 * @inheritDoc
-		 */
-		
-		override public function initialize():void
+		public override function clone():Event
 		{
-			super.initialize();
-			
-
+			return new ClosureEvent(type, bubbles, cancelable, _property, _oldValue, _newValue);
 		}
-
+		
 		//---------------------------------------------------------------------
-		// Variables
+		// GETTERS & SETTERS
 		//---------------------------------------------------------------------
 		
-		/**
-		 * @private
-		 */
-		esoteric var _name:String = null;
-
-		/**
-		 * @private
-		 */
-		esoteric var _value:* = null;
-
-
-		//---------------------------------------------------------------------
-		// Getters and setters
-		//---------------------------------------------------------------------
+		public function get oldValue():* { return _oldValue; }
 		
-		/**
-		 * The global variable's name. [default = null]
-		 *
-		 * @default	null
-		 */
-		public function get name():String { return _name; }
-		
-		public function set name(value:String):void 
+		public function set oldValue(value:*):void 
 		{
-			if(_name != value)
-			{
-				var oldValue:String = _name;
-			
-
-			
-				_name = value;
-				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
-				{
-					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'name', oldValue, value));
-				}
-				//context.renderQueue.add(this);
-
-
-				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
-			}
+			_oldValue = value;
 		}
-
-		/**
-		 * The global variable's value. [default = null]
-		 *
-		 * @default	null
-		 */
-		public function get value():* { return _value; }
 		
-		public function set value(value:*):void 
+		public function get newValue():* { return _newValue; }
+		
+		public function set newValue(value:*):void 
 		{
-			if(_value != value)
-			{
-				var oldValue:* = _value;
-			
-
-			
-				_value = value;
-				if(hasEventListener(PropertyChangeEvent.PROPERTY_UPDATED))
-				{
-					dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'value', oldValue, value));
-				}
-				//context.renderQueue.add(this);
-
-
-				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
-			}
+			_newValue = value;
 		}
-
-
-
+		
+		public function get property():* { return _property; }
+		
+		public function set property(value:*):void 
+		{
+			_property = value;
+		}
+		
 	}
 	
 }

@@ -52,7 +52,7 @@ package com.esoteric.equery
 	 * 
 	 * @author Stephan Florquin
 	 */
-	public class EQueryObject extends Enumerator implements IDestroyable, IBindable
+	public class EQueryObject implements IDestroyable
 	{
 		
 		//---------------------------------------------------------------------
@@ -62,10 +62,6 @@ package com.esoteric.equery
 		public function EQueryObject(elementSet:ElementSet) 
 		{
 			_elementSet = elementSet;
-			
-			addEventListeners(elementSet.result);
-			
-			_elementSet.addEventListener(PropertyChangeEvent.PROPERTY_UPDATED, resultUpdatedHandler, false, 0, true);
 		}
 		
 		//---------------------------------------------------------------------
@@ -77,118 +73,6 @@ package com.esoteric.equery
 		 */
 		private var _elementSet:ElementSet;
 		
-		/**
-		 * @private
-		 */
-		private var _listeners:Vector.<Function> = new Vector.<Function>();
-		
-		//---------------------------------------------------------------------
-		// Overriden properties
-		//---------------------------------------------------------------------
-		
-		/**
-		 * @inheritDoc
-		 */
-		override enumerator function getProperty(name:*):*
-		{
-			if (_elementSet.result.length == 1)
-			{
-				return _elementSet.result[0][name];
-			}
-			
-			return _elementSet.result.map(function(item:*, index:int, a:Array):*
-			{
-				return item[name];
-			});
-		}
-		
-		/**
-		 * @inheritDoc
-		 */
-		override enumerator function setProperty(name:*, value:*):void
-		{
-			_elementSet.result.forEach(function(item:*, index:int, a:Array):*
-			{
-				try
-				{
-					ElementProxyManager.getInstance(item)[name] = value;
-				}
-				catch (e:Error)
-				{
-					
-				}
-			});
-		}
-		
-		/**
-		 * @inheritDoc
-		 */
-		override enumerator function hasProperty(name:*):Boolean
-		{
-			_elementSet.result.forEach(function(item:*, index:int, a:Array):*
-			{
-				try
-				{
-					var v:* = item[name];
-					
-					return true;
-				}
-				catch (e:Error)
-				{
-					
-				}
-			});
-			
-			return false;
-		}
-		
-		/**
-		 * @inheritDoc
-		 */
-		/*override enumerator function nextNameIndex(index:int):int
-		{
-			
-		}*/
-		
-		/**
-		 * @inheritDoc
-		 */
-		/*override enumerator function nextName(index:int):String
-		{
-			
-		}*/
-		
-		/**
-		 * @inheritDoc
-		 */
-		/*override enumerator function nextValue(index:int):*
-		{
-			
-		}*/
-		
-		/**
-		 * @inheritDoc
-		 */
-		override enumerator function callProperty(name:*, args:Array):*
-		{
-			if (_elementSet.result.length == 1)
-			{
-				return _elementSet.result[0].apply(_elementSet.result[0], args);
-			}
-			
-			return _elementSet.result.map(function(item:*, index:int, a:Array):*
-			{
-				try
-				{
-					return item[name].apply(item, args);
-				}
-				catch (e:Error)
-				{
-					
-				}
-			});
-		}
-		
 		//---------------------------------------------------------------------
 		// Implementations
 		//---------------------------------------------------------------------
@@ -198,7 +82,6 @@ package com.esoteric.equery
 		 */
 		public function destroy():void
 		{
-			removeEventListeners(_elementSet.result);
 			_elementSet.destroy();
 			_elementSet = null;
 		}
@@ -231,17 +114,15 @@ package com.esoteric.equery
 		
 		public function set elementSet(value:ElementSet):void 
 		{
-			removeEventListeners(_elementSet.result);
 			_elementSet = value;
-			addEventListeners(_elementSet.result);
 		}
 		
-		public function $find(query:String):EQueryObject
+		public function find(query:String):EQueryObject
 		{
 			return new EQueryObject(new EQuery(query).eval(this));
 		}
 		
-		public function $attr(prop:*, value:* = undefined):*
+		public function attr(prop:*, value:* = undefined):*
 		{
 			if (value == undefined)
 			{
@@ -298,7 +179,7 @@ package com.esoteric.equery
 			return this;
 		}
 		
-		public function $apply(func:Function):EQueryObject
+		public function apply(func:Function):EQueryObject
 		{
 			for each (var element:IElement in _elementSet.result) 
 			{
@@ -308,17 +189,17 @@ package com.esoteric.equery
 			return this;
 		}
 		
-		public function $click(handler:Function):EQueryObject
+		public function click(handler:Function):EQueryObject
 		{
 			for each (var element:IElement in _elementSet.result) 
 			{
-				element.addEventListener(PointInputEvent.CLICK, handler, false, 0, true);
+				element.addEventListener(PointInputEvent.CLICK, handler, false, 0, false);
 			}
 			
 			return this;
 		}
 		
-		public function $mouseover(handler:Function):EQueryObject
+		public function mouseover(handler:Function):EQueryObject
 		{
 			for each (var element:IElement in _elementSet.result) 
 			{
@@ -328,7 +209,7 @@ package com.esoteric.equery
 			return this;
 		}
 		
-		public function $mouseout(handler:Function):EQueryObject
+		public function mouseout(handler:Function):EQueryObject
 		{
 			for each (var element:IElement in _elementSet.result) 
 			{
@@ -338,7 +219,7 @@ package com.esoteric.equery
 			return this;
 		}
 		
-		public function $mousedown(handler:Function):EQueryObject
+		public function mousedown(handler:Function):EQueryObject
 		{
 			for each (var element:IElement in _elementSet.result) 
 			{
@@ -348,7 +229,7 @@ package com.esoteric.equery
 			return this;
 		}
 		
-		public function $mouseup(handler:Function):EQueryObject
+		public function mouseup(handler:Function):EQueryObject
 		{
 			for each (var element:IElement in _elementSet.result) 
 			{
@@ -358,7 +239,7 @@ package com.esoteric.equery
 			return this;
 		}
 		
-		public function $mousemove(handler:Function):EQueryObject
+		public function mousemove(handler:Function):EQueryObject
 		{
 			for each (var element:IElement in _elementSet.result) 
 			{
@@ -369,22 +250,19 @@ package com.esoteric.equery
 		}
 		
 		
-		public function $change(handler:Function, property:*):EQueryObject
+		public function change(handler:Function, property:*):EQueryObject
 		{
 			for each (var element:IElement in _elementSet.result) 
 			{
-				element.addEventListener(PropertyChangeEvent.PROPERTY_UPDATED, function(e:PropertyChangeEvent):void {
-					if (e.property = property)
-					{
-						handler(e);
-					}
+				element.addEventListener(PropertyChangeEvent.PROPERTY_UPDATED + property, function(e:PropertyChangeEvent):void {
+					handler(e);
 				}, false, 0, true);
 			}
 			
 			return this;
 		}
 		
-		public function $remove():EQueryObject
+		public function remove():EQueryObject
 		{
 			for each (var element:IElement in _elementSet.result) 
 			{
@@ -397,7 +275,7 @@ package com.esoteric.equery
 			return this;
 		}
 		
-		public function $free():void
+		public function free():void
 		{
 			for each (var element:IElement in _elementSet.result) 
 			{
@@ -405,7 +283,7 @@ package com.esoteric.equery
 			}
 		}
 		
-		public function $elements():*
+		public function elements():*
 		{
 			if (_elementSet.result.length > 1)
 			{
@@ -415,7 +293,7 @@ package com.esoteric.equery
 			return _elementSet.result[0];
 		}
 		
-		public function $bind(type:String, handler:Function):EQueryObject
+		public function bind(type:String, handler:Function):EQueryObject
 		{
 			for each (var element:IElement in _elementSet.result) 
 			{
@@ -425,7 +303,7 @@ package com.esoteric.equery
 			return this;
 		}
 		
-		public function $unbind(type:String, handler:Function):EQueryObject
+		public function unbind(type:String, handler:Function):EQueryObject
 		{
 			for each (var element:IElement in _elementSet.result) 
 			{
@@ -435,7 +313,7 @@ package com.esoteric.equery
 			return this;
 		}
 		
-		public function $trigger(type:String):EQueryObject
+		public function trigger(type:String):EQueryObject
 		{
 			for each (var element:IElement in _elementSet.result) 
 			{
@@ -445,7 +323,7 @@ package com.esoteric.equery
 			return this;
 		}
 		
-		public function $animate(...args):EQueryObject
+		public function animate(...args):EQueryObject
 		{
 			if (args[0] is BindableObject)
 			{
@@ -487,36 +365,6 @@ package com.esoteric.equery
 			}
 			
 			return this;
-		}
-		
-		/**
-		 * @private
-		 */
-		private function resultUpdatedHandler(e:PropertyChangeEvent):void 
-		{
-			removeEventListeners(e.oldValue);
-			addEventListeners(e.newValue);
-		}
-		
-		private function removeEventListeners(elements:Array):void
-		{
-			for each (var element:IElement in elements) 
-			{
-				element.removeEventListener(PropertyChangeEvent.PROPERTY_UPDATED, elementPropertyUpdatedHandler);
-			}
-		}
-		
-		private function addEventListeners(elements:Array):void
-		{
-			for each (var element:IElement in elements) 
-			{
-				element.addEventListener(PropertyChangeEvent.PROPERTY_UPDATED, elementPropertyUpdatedHandler, false, 0, true);
-			}
-		}
-		
-		private function elementPropertyUpdatedHandler(e:PropertyChangeEvent):void 
-		{
-			dispatchEvent(e.clone());
 		}
 		
 	}

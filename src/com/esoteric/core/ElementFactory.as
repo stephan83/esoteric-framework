@@ -163,9 +163,7 @@ package com.esoteric.core
 			add("CurveTo", new StaticElementBuilder(CurveToElement));
 			add("DropShadowFilter", new StaticElementBuilder(DropShadowFilterElement));
 			add("Ellipse", new StaticElementBuilder(EllipseElement));
-			add("EventListener", new StaticElementBuilder(EventListenerElement));
 			add("Frame", new StaticElementBuilder(FrameElement));
-			add("Global", new StaticElementBuilder(GlobalElement));
 			add("GlowFilter", new StaticElementBuilder(GlowFilterElement));
 			add("GradientFill", new StaticElementBuilder(GradientFillElement));
 			add("LineGradientStyle", new StaticElementBuilder(LineGradientStyleElement));
@@ -185,7 +183,6 @@ package com.esoteric.core
 			add("Timeline", new StaticElementBuilder(TimelineElement));
 			add("Timer", new StaticElementBuilder(TimerElement));
 			add("VideoFile", new StaticElementBuilder(VideoFileElement));
-			add("Watcher", new StaticElementBuilder(WatcherElement));
 			
 			// Away3D
 			add("Camera3D", new StaticElementBuilder(Camera3DElement));

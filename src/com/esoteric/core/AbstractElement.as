@@ -34,30 +34,35 @@
 
 package com.esoteric.core 
 {
+	import com.carlcalderon.arthropod.Debug;
 	import com.esoteric.core.RenderQueue;
 	import com.esoteric.core.Context;
 	import com.esoteric.equery.ElementSet;
 	import com.esoteric.equery.EQueryObject;
 	import com.esoteric.events.ElementEvent;
+	import com.esoteric.events.ListEvent;
 	import com.esoteric.events.LoadEvent;
 	import com.esoteric.events.ProgressEvent;
 	import com.esoteric.events.PropertyChangeEvent;
+	import com.esoteric.esoteric;
+	import com.esoteric.events.VerboseEventDispatcher;
 	import com.esoteric.expressions.Closure;
 	import com.esoteric.utils.List;
 	import fl.motion.easing.Bounce;
 	import fl.motion.easing.Cubic;
 	import fl.motion.easing.Linear;
 	import flash.events.Event;
-	import flash.events.EventDispatcher;
 	import flash.external.ExternalInterface;
 	import flash.net.navigateToURL;
 	import flash.net.sendToURL;
 	import flash.net.URLRequest;
 	
+	use namespace esoteric;
+	
 	/**
 	* @author Stephan Florquin
 	*/
-	public class AbstractElement extends EventDispatcher implements IElement
+	public class AbstractElement extends VerboseEventDispatcher implements IElement
 	{
 		
 		//---------------------------------------------------------------------
@@ -74,43 +79,10 @@ package com.esoteric.core
 			_uid = String(_nextUID++);
 			_target = target ? target : this;
 			
-			/*_context = 
-			{
-				"this":			_target,
-				"root":			_root,
-				"parent":		_parent,
-				"globals":		_root.globals,
-				"Math":			Math,
-				"NaN":			NaN,
-				"null":			null,
-				"true":			true,
-				"false":		false,
-				"parseInt":		parseInt,
-				"parseFloat":	parseFloat,
-				"trace":		trace,
-				"navigateToURL":  function(url:String, target:String = null):void { navigateToURL(new URLRequest(url), target); },
-				"sendToURL":	function(url:String):void { sendToURL(new URLRequest(url)); },
-				"easing":		{
-									"Linear":	Linear,
-									"Bounce":	Bounce,
-									"Cubic":	Cubic
-								},
-				"callAPI":		function(functionName:String, ...rest):*
-								{
-									rest.unshift(functionName);
-									return ExternalInterface.call.apply(_target, rest);
-								}
-			};*/
-			
-			/*for (var s:String in root.extraContext)
-			{
-				_context[s] = root.extraContext[s];
-			}*/
-			
 			_numElements++;
 
-			_children.addEventListener(PropertyChangeEvent.PROPERTY_ADDED, childAddedHandler);
-			_children.addEventListener(PropertyChangeEvent.PROPERTY_REMOVED, childRemovedHandler);
+			_children.addEventListener(ListEvent.ITEM_ADDED, childAddedHandler);
+			_children.addEventListener(ListEvent.ITEM_REMOVED, childRemovedHandler);
 		}
 		
 		//---------------------------------------------------------------------
@@ -120,12 +92,12 @@ package com.esoteric.core
 		/**
 		 * @private
 		 */
-		private static var _nextUID:uint = 0;
+		esoteric static var _nextUID:uint = 0;
 		
 		/**
 		 * @private
 		 */
-		private static var _numElements:uint = 0;
+		esoteric static var _numElements:uint = 0;
 		
 		//---------------------------------------------------------------------
 		// Variables
@@ -134,47 +106,47 @@ package com.esoteric.core
 		/**
 		 * @private
 		 */
-		private var _parent:IElement;
+		esoteric var _parent:IElement;
 		
 		/**
 		 * @private
 		 */
-		private var _children:List = new List();
+		esoteric var _children:List = new List();
 		
 		/**
 		 * @private
 		 */
-		private var _id:String;
+		esoteric var _id:String;
 		
 		/**
 		 * @private
 		 */
-		private var _text:String;
+		esoteric var _text:String;
 		
 		/**
 		 * @private
 		 */
-		private var _closure:Closure;
+		esoteric var _closure:Closure;
 		
 		/**
 		 * @private
 		 */
-		private var _uid:String;
+		esoteric var _uid:String;
 		
 		/**
 		 * @private
 		 */
-		private var _kind:String;
+		esoteric var _kind:String;
 		
 		/**
 		 * @private
 		 */
-		private var _target:IElement;
+		esoteric var _target:IElement;
 		
 		/**
 		 * @private
 		 */
-		private var _context:Context;
+		esoteric var _context:Context;
 		
 		//---------------------------------------------------------------------
 		// Interface implementations
@@ -196,7 +168,7 @@ package com.esoteric.core
 		 */
 		public function render():void
 		{
-			//dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
+			
 		}
 		
 		/**
@@ -263,7 +235,7 @@ package com.esoteric.core
 					_parent.addChild(_target);
 				}
 				
-				_target.dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'parent', oldValue, value));
+				_target.dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'parent', false, false, oldValue, value));
 			}
 		}
 		
@@ -278,7 +250,7 @@ package com.esoteric.core
 			
 			_id = value;
 			
-			_target.dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'id', oldValue, value)); 
+			_target.dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'id', false, false, oldValue, value)); 
 		}
 		
 		/**
@@ -292,9 +264,9 @@ package com.esoteric.core
 			
 			_text = value;
 			
-			_target.dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, 'text', oldValue, value)); 
+			_target.dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'text', false, false, oldValue, value)); 
 			
-			_context.renderQueue.add(_target);
+			_target.dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 		}
 		
 		/**
@@ -339,7 +311,7 @@ package com.esoteric.core
 			
 				_children.add(element);
 			
-				_target.dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, "numChildren", numChildren - 1, numChildren));
+				_target.dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'numChildren', false, false, numChildren - 1, numChildren));
 			}
 		}
 		
@@ -351,7 +323,7 @@ package com.esoteric.core
 			_children.remove(child);
 			child.parent = null;
 			
-			_target.dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED, false, false, "numChildren", numChildren + 1, numChildren));
+			_target.dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'numChildren', false, false, numChildren + 1, numChildren));
 		}
 		
 		//---------------------------------------------------------------------
@@ -393,9 +365,9 @@ package com.esoteric.core
 		 * 
 		 * @param	e	the event
 		 */
-		protected function childAddedHandler(e:PropertyChangeEvent):void 
-		{	
-			e.newValue.addEventListener(ElementEvent.UPDATED, childUpdatedHandler);
+		protected function childAddedHandler(e:ListEvent):void 
+		{
+			e.item.addEventListener(ElementEvent.UPDATED, childUpdatedHandler);
 		}
 		
 		/**
@@ -403,15 +375,15 @@ package com.esoteric.core
 		 * 
 		 * @param	e	the event
 		 */
-		protected function childRemovedHandler(e:PropertyChangeEvent):void 
+		protected function childRemovedHandler(e:ListEvent):void 
 		{
-			e.oldValue.removeEventListener(ElementEvent.UPDATED, childUpdatedHandler);
+			e.item.removeEventListener(ElementEvent.UPDATED, childUpdatedHandler);
 		}
 		
 		/**
 		 * @private
 		 */
-		private function childUpdatedHandler(e:ElementEvent):void 
+		esoteric function childUpdatedHandler(e:ElementEvent):void 
 		{
 			_target.dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 		}

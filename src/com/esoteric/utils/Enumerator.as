@@ -34,8 +34,8 @@
 
 package com.esoteric.utils 
 {
+	import com.esoteric.events.VerboseEventDispatcher;
 	import flash.events.Event;
-	import flash.events.EventDispatcher;
 	import flash.events.IEventDispatcher;
 	import flash.utils.flash_proxy;
 	import flash.utils.Proxy;
@@ -53,7 +53,7 @@ package com.esoteric.utils
 		// MEMBERS
 		//---------------------------------------------------------------------
 		
-		private var _eventDispatcher:EventDispatcher;
+		private var _eventDispatcher:VerboseEventDispatcher;
 		
 		//---------------------------------------------------------------------
 		// CONSTRUCTOR
@@ -64,7 +64,7 @@ package com.esoteric.utils
 		 */
 		public function Enumerator() 
 		{
-			_eventDispatcher = new EventDispatcher(this);
+			_eventDispatcher = new VerboseEventDispatcher(this);
 		}
 		
 		//---------------------------------------------------------------------
