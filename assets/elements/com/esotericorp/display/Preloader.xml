@@ -36,7 +36,7 @@
 
 <Preloader>
 	
-	<TextField color="0xffffff">{stageWidth}</TextField>
+	<TextField color="0xffffff" z="0">{stageWidth}</TextField>
 	
 	<Scene3D id="scene">
 		<ObjectContainer3D rotationY="{mouseX}">
@@ -57,7 +57,7 @@
 		maxY="{stageHeight / 2}"
 	/>
 	
-	<Sprite mouseEnabled="true" buttonMode="true" useHandCursor="true" mouseChildren="true">
+	<Sprite mouseEnabled="true" buttonMode="true" useHandCursor="true" z="200" rotationY="20">
 		
 		<Shape alpha=".5">
 			<SolidFill color="0xffffff">
@@ -65,12 +65,14 @@
 			</SolidFill>
 		</Shape>
 		
-		<TextField id="clickMe" color="0x0000ff" size="50" width="{this.textWidth}" height="{this.textHeight}">CLICK ME</TextField>
+		<TextField id="clickMe" color="0x0000ff" size="50" width="{this.textWidth}" height="{this.textHeight}" z="-50">CLICK ME</TextField>
 		
 		<Script>
 			<![CDATA[
 				$this.click(function(e) {
-					$('#camera').animate('zoom', 5, 1, null, true);
+					var esoteric = $('#esoteric');
+					
+					$('#esoteric').animate('rotationY', esoteric.attr('rotationY') + 360, 2);
 				});
 			]]>
 		</Script>

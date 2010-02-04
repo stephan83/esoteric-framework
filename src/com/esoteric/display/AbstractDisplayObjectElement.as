@@ -2,7 +2,7 @@
 	DO NOT MODIFY THIS FILE, THE CODE GENERATOR WILL ERASE ANY CHANGES MADE.
 	MAKE CHANGES TO THE DERIVED CLASS INSTEAD.
 
-	Last generated 2010-02-02 00:19:45.334000 UTC.
+	Last generated 2010-02-03 16:20:33.918000 UTC.
 
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	~                           Esoteric Framework                            ~
@@ -94,6 +94,21 @@ package com.esoteric.display
 		/**
 		 * @private
 		 */
+		esoteric var _displayObject:DisplayObject = null;
+
+		/**
+		 * @private
+		 */
+		esoteric var _mask:DisplayObjectElement = null;
+
+		/**
+		 * @private
+		 */
+		esoteric var _filters:BindableArray = null;
+
+		/**
+		 * @private
+		 */
 		esoteric var _rotationZ:Number = 0.0;
 
 		/**
@@ -105,11 +120,6 @@ package com.esoteric.display
 		 * @private
 		 */
 		esoteric var _rotationX:Number = 0.0;
-
-		/**
-		 * @private
-		 */
-		esoteric var _mask:DisplayObjectElement = null;
 
 		/**
 		 * @private
@@ -134,17 +144,17 @@ package com.esoteric.display
 		/**
 		 * @private
 		 */
-		esoteric var _width:Number = 0.0;
+		esoteric var _visible:Boolean = true;
 
 		/**
 		 * @private
 		 */
-		esoteric var _displayObject:DisplayObject = null;
+		esoteric var _cacheAsBitmap:Boolean = false;
 
 		/**
 		 * @private
 		 */
-		esoteric var _filters:BindableArray = null;
+		esoteric var _alpha:Number = 1.0;
 
 		/**
 		 * @private
@@ -164,17 +174,7 @@ package com.esoteric.display
 		/**
 		 * @private
 		 */
-		esoteric var _visible:Boolean = true;
-
-		/**
-		 * @private
-		 */
-		esoteric var _cacheAsBitmap:Boolean = false;
-
-		/**
-		 * @private
-		 */
-		esoteric var _alpha:Number = 1.0;
+		esoteric var _width:Number = 0.0;
 
 
 		//---------------------------------------------------------------------
@@ -206,74 +206,40 @@ package com.esoteric.display
 		}
 
 		/**
-		 * The rotation of the display object around the z-axis, in degrees. [default = 0.0]
+		 * The DisplayObject object. [default = null]
 		 *
-		 * @default	0.0
+		 * @default	null
 		 */
-		public function get rotationZ():Number { return _rotationZ; }
+		esoteric function get displayObject():DisplayObject { return _displayObject; }
 		
-		public function set rotationZ(value:Number):void 
+		esoteric function set displayObject(value:DisplayObject):void 
 		{
-			if(_rotationZ != value)
+			if(_displayObject != value)
 			{
-				var oldValue:Number = _rotationZ;
+				var oldValue:DisplayObject = _displayObject;
 			
+				if(value)
+				{
+					value.rotationZ = _rotationZ;
+					value.rotationY = _rotationY;
+					value.rotationX = _rotationX;
+					value.scaleX = _scaleX;
+					value.scaleY = _scaleY;
+					value.scaleZ = _scaleZ;
+					value.height = _height;
+					value.visible = _visible;
+					value.cacheAsBitmap = _cacheAsBitmap;
+					value.alpha = _alpha;
+					value.y = _y;
+					value.x = _x;
+					value.z = _z;
+					value.width = _width;
 
+				}
 			
-				_rotationZ = value;
-				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'rotationZ', false, false, oldValue, value));
-				//context.renderQueue.add(this);
+				_displayObject = value;
 
 
-				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
-			}
-		}
-
-		/**
-		 * The rotation of the display object around the y-axis, in degrees. [default = 0.0]
-		 *
-		 * @default	0.0
-		 */
-		public function get rotationY():Number { return _rotationY; }
-		
-		public function set rotationY(value:Number):void 
-		{
-			if(_rotationY != value)
-			{
-				var oldValue:Number = _rotationY;
-			
-
-			
-				_rotationY = value;
-				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'rotationY', false, false, oldValue, value));
-				//context.renderQueue.add(this);
-
-
-				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
-			}
-		}
-
-		/**
-		 * The rotation of the display object around the x-axis, in degrees. [default = 0.0]
-		 *
-		 * @default	0.0
-		 */
-		public function get rotationX():Number { return _rotationX; }
-		
-		public function set rotationX(value:Number):void 
-		{
-			if(_rotationX != value)
-			{
-				var oldValue:Number = _rotationX;
-			
-
-			
-				_rotationX = value;
-				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'rotationX', false, false, oldValue, value));
-				//context.renderQueue.add(this);
-
-
-				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 
@@ -302,153 +268,6 @@ package com.esoteric.display
 		}
 
 		/**
-		 * The horizontal scaling factor of the display object. [default = 1.0]
-		 *
-		 * @default	1.0
-		 */
-		public function get scaleX():Number { return _scaleX; }
-		
-		public function set scaleX(value:Number):void 
-		{
-			if(_scaleX != value)
-			{
-				var oldValue:Number = _scaleX;
-			
-
-			
-				_scaleX = value;
-				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'scaleX', false, false, oldValue, value));
-				//context.renderQueue.add(this);
-
-
-				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
-			}
-		}
-
-		/**
-		 * The vertical scaling factor of the display object. [default = 1.0]
-		 *
-		 * @default	1.0
-		 */
-		public function get scaleY():Number { return _scaleY; }
-		
-		public function set scaleY(value:Number):void 
-		{
-			if(_scaleY != value)
-			{
-				var oldValue:Number = _scaleY;
-			
-
-			
-				_scaleY = value;
-				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'scaleY', false, false, oldValue, value));
-				//context.renderQueue.add(this);
-
-
-				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
-			}
-		}
-
-		/**
-		 * The depth scaling factor of the display object. [default = 1.0]
-		 *
-		 * @default	1.0
-		 */
-		public function get scaleZ():Number { return _scaleZ; }
-		
-		public function set scaleZ(value:Number):void 
-		{
-			if(_scaleZ != value)
-			{
-				var oldValue:Number = _scaleZ;
-			
-
-			
-				_scaleZ = value;
-				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'scaleZ', false, false, oldValue, value));
-				//context.renderQueue.add(this);
-
-
-				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
-			}
-		}
-
-		/**
-		 * The height of the display object. [default = 0.0]
-		 *
-		 * @default	0.0
-		 */
-		public function get height():Number { return _height; }
-		
-		public function set height(value:Number):void 
-		{
-			if(_height != value)
-			{
-				var oldValue:Number = _height;
-			
-
-			
-				_height = value;
-				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'height', false, false, oldValue, value));
-				//context.renderQueue.add(this);
-
-
-				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
-			}
-		}
-
-		/**
-		 * The width of the display object. [default = 0.0]
-		 *
-		 * @default	0.0
-		 */
-		public function get width():Number { return _width; }
-		
-		public function set width(value:Number):void 
-		{
-			if(_width != value)
-			{
-				var oldValue:Number = _width;
-			
-
-			
-				_width = value;
-				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'width', false, false, oldValue, value));
-				//context.renderQueue.add(this);
-
-
-				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
-			}
-		}
-
-		/**
-		 * The DisplayObject object. [default = null]
-		 *
-		 * @default	null
-		 */
-		esoteric function get displayObject():DisplayObject { return _displayObject; }
-		
-		esoteric function set displayObject(value:DisplayObject):void 
-		{
-			if(_displayObject != value)
-			{
-				var oldValue:DisplayObject = _displayObject;
-			
-				if(value)
-				{
-					value.visible = _visible;
-					value.cacheAsBitmap = _cacheAsBitmap;
-					value.alpha = _alpha;
-
-				}
-			
-				_displayObject = value;
-
-
-			}
-		}
-
-		/**
 		 * An array of bitmap filters. [default = null]
 		 *
 		 * @default	null
@@ -472,78 +291,223 @@ package com.esoteric.display
 			}
 		}
 
+
 		/**
-		 * The horizontal position of the display object. [default = 0.0]
+		 * The rotation of the display object around the z-axis, in degrees. [default = 0.0]
 		 *
 		 * @default	0.0
 		 */
-		public function get y():Number { return _y; }
+		public function get rotationZ():Number { return _rotationZ; }
 		
-		public function set y(value:Number):void 
+		public function set rotationZ(value:Number):void 
 		{
-			if(_y != value)
-			{
-				var oldValue:Number = _y;
-			
 
-			
-				_y = value;
-				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'y', false, false, oldValue, value));
+			if(rotationZ != value)
+			{
+				var oldValue:Number = _rotationZ;
+
+
+				
+				_rotationZ = value;
+
+				if(displayObject)
+				{
+					displayObject.rotationZ = value;
+				}
+
 				//context.renderQueue.add(this);
 
 
-				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
+				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'rotationZ', false, false, oldValue, value));
 			}
 		}
 
 		/**
-		 * The vertical position of the display object. [default = 0.0]
+		 * The rotation of the display object around the y-axis, in degrees. [default = 0.0]
 		 *
 		 * @default	0.0
 		 */
-		public function get x():Number { return _x; }
+		public function get rotationY():Number { return _rotationY; }
 		
-		public function set x(value:Number):void 
+		public function set rotationY(value:Number):void 
 		{
-			if(_x != value)
-			{
-				var oldValue:Number = _x;
-			
 
-			
-				_x = value;
-				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'x', false, false, oldValue, value));
+			if(rotationY != value)
+			{
+				var oldValue:Number = _rotationY;
+
+
+				
+				_rotationY = value;
+
+				if(displayObject)
+				{
+					displayObject.rotationY = value;
+				}
+
 				//context.renderQueue.add(this);
 
 
-				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
+				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'rotationY', false, false, oldValue, value));
 			}
 		}
 
 		/**
-		 * The depth of the display object. [default = 0.0]
+		 * The rotation of the display object around the x-axis, in degrees. [default = 0.0]
 		 *
 		 * @default	0.0
 		 */
-		public function get z():Number { return _z; }
+		public function get rotationX():Number { return _rotationX; }
 		
-		public function set z(value:Number):void 
+		public function set rotationX(value:Number):void 
 		{
-			if(_z != value)
-			{
-				var oldValue:Number = _z;
-			
 
-			
-				_z = value;
-				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'z', false, false, oldValue, value));
+			if(rotationX != value)
+			{
+				var oldValue:Number = _rotationX;
+
+
+				
+				_rotationX = value;
+
+				if(displayObject)
+				{
+					displayObject.rotationX = value;
+				}
+
 				//context.renderQueue.add(this);
 
 
-				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
+				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'rotationX', false, false, oldValue, value));
 			}
 		}
 
+		/**
+		 * The horizontal scaling factor of the display object. [default = 1.0]
+		 *
+		 * @default	1.0
+		 */
+		public function get scaleX():Number { return _scaleX; }
+		
+		public function set scaleX(value:Number):void 
+		{
+
+			if(scaleX != value)
+			{
+				var oldValue:Number = _scaleX;
+
+
+				
+				_scaleX = value;
+
+				if(displayObject)
+				{
+					displayObject.scaleX = value;
+				}
+
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
+				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'scaleX', false, false, oldValue, value));
+			}
+		}
+
+		/**
+		 * The vertical scaling factor of the display object. [default = 1.0]
+		 *
+		 * @default	1.0
+		 */
+		public function get scaleY():Number { return _scaleY; }
+		
+		public function set scaleY(value:Number):void 
+		{
+
+			if(scaleY != value)
+			{
+				var oldValue:Number = _scaleY;
+
+
+				
+				_scaleY = value;
+
+				if(displayObject)
+				{
+					displayObject.scaleY = value;
+				}
+
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
+				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'scaleY', false, false, oldValue, value));
+			}
+		}
+
+		/**
+		 * The depth scaling factor of the display object. [default = 1.0]
+		 *
+		 * @default	1.0
+		 */
+		public function get scaleZ():Number { return _scaleZ; }
+		
+		public function set scaleZ(value:Number):void 
+		{
+
+			if(scaleZ != value)
+			{
+				var oldValue:Number = _scaleZ;
+
+
+				
+				_scaleZ = value;
+
+				if(displayObject)
+				{
+					displayObject.scaleZ = value;
+				}
+
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
+				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'scaleZ', false, false, oldValue, value));
+			}
+		}
+
+		/**
+		 * The height of the display object. [default = 0.0]
+		 *
+		 * @default	0.0
+		 */
+		public function get height():Number { return _height; }
+		
+		public function set height(value:Number):void 
+		{
+
+			if(height != value)
+			{
+				var oldValue:Number = _height;
+
+
+				
+				_height = value;
+
+				if(displayObject)
+				{
+					displayObject.height = value;
+				}
+
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
+				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'height', false, false, oldValue, value));
+			}
+		}
 
 		/**
 		 * Whether the display object is visible. [default = true]
@@ -635,6 +599,130 @@ package com.esoteric.display
 
 				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
 				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'alpha', false, false, oldValue, value));
+			}
+		}
+
+		/**
+		 * The horizontal position of the display object. [default = 0.0]
+		 *
+		 * @default	0.0
+		 */
+		public function get y():Number { return _y; }
+		
+		public function set y(value:Number):void 
+		{
+
+			if(y != value)
+			{
+				var oldValue:Number = _y;
+
+
+				
+				_y = value;
+
+				if(displayObject)
+				{
+					displayObject.y = value;
+				}
+
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
+				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'y', false, false, oldValue, value));
+			}
+		}
+
+		/**
+		 * The vertical position of the display object. [default = 0.0]
+		 *
+		 * @default	0.0
+		 */
+		public function get x():Number { return _x; }
+		
+		public function set x(value:Number):void 
+		{
+
+			if(x != value)
+			{
+				var oldValue:Number = _x;
+
+
+				
+				_x = value;
+
+				if(displayObject)
+				{
+					displayObject.x = value;
+				}
+
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
+				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'x', false, false, oldValue, value));
+			}
+		}
+
+		/**
+		 * The depth of the display object. [default = 0.0]
+		 *
+		 * @default	0.0
+		 */
+		public function get z():Number { return _z; }
+		
+		public function set z(value:Number):void 
+		{
+
+			if(z != value)
+			{
+				var oldValue:Number = _z;
+
+
+				
+				_z = value;
+
+				if(displayObject)
+				{
+					displayObject.z = value;
+				}
+
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
+				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'z', false, false, oldValue, value));
+			}
+		}
+
+		/**
+		 * The width of the display object. [default = 0.0]
+		 *
+		 * @default	0.0
+		 */
+		public function get width():Number { return _width; }
+		
+		public function set width(value:Number):void 
+		{
+
+			if(width != value)
+			{
+				var oldValue:Number = _width;
+
+
+				
+				_width = value;
+
+				if(displayObject)
+				{
+					displayObject.width = value;
+				}
+
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
+				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'width', false, false, oldValue, value));
 			}
 		}
 

@@ -18,61 +18,6 @@
 			"doc": false,
 			"namespace": "esoteric"
 		},
-		"x": {
-			"type":	"Number",
-			"default": "0.0",
-			"desc": "The vertical position of the display object."
-		},
-		"y": {
-			"type":	"Number",
-			"default": "0.0",
-			"desc": "The horizontal position of the display object."
-		},
-		"z": {
-			"type":	"Number",
-			"default": "0.0",
-			"desc": "The depth of the display object."
-		},
-		"scaleX": {
-			"type":	"Number",
-			"default": "1.0",
-			"desc": "The horizontal scaling factor of the display object."
-		},
-		"scaleY": {
-			"type":	"Number",
-			"default": "1.0",
-			"desc": "The vertical scaling factor of the display object."
-		},
-		"scaleZ": {
-			"type":	"Number",
-			"default": "1.0",
-			"desc": "The depth scaling factor of the display object."
-		},
-		"rotationX": {
-			"type":	"Number",
-			"default": "0.0",
-			"desc": "The rotation of the display object around the x-axis, in degrees."
-		},
-		"rotationY": {
-			"type":	"Number",
-			"default": "0.0",
-			"desc": "The rotation of the display object around the y-axis, in degrees."
-		},
-		"rotationZ": {
-			"type":	"Number",
-			"default": "0.0",
-			"desc": "The rotation of the display object around the z-axis, in degrees."
-		},
-		"width": {
-			"type":	"Number",
-			"desc": "The width of the display object.",
-			"default": "0.0"
-		},
-		"height": {
-			"type":	"Number",
-			"desc": "The height of the display object.",
-			"default": "0.0"
-		},
 		"mask": {
 			"type":	"DisplayObjectElement",
 			"desc": "The DisplayObjectElement to use as a mask."
@@ -109,6 +54,83 @@
 			"type":	"Boolean",
 			"default": "false",
 			"desc": "Whether to cache as bitmap."
+		},
+		"x": {
+			"object": "displayObject",
+			"property": "x",
+			"type":	"Number",
+			"default": "0.0",
+			"desc": "The vertical position of the display object."
+		},
+		"y": {
+			"object": "displayObject",
+			"property": "y",
+			"type":	"Number",
+			"default": "0.0",
+			"desc": "The horizontal position of the display object."
+		},
+		"z": {
+			"object": "displayObject",
+			"property": "z",
+			"type":	"Number",
+			"default": "0.0",
+			"desc": "The depth of the display object."
+		},
+		"scaleX": {
+			"object": "displayObject",
+			"property": "scaleX",
+			"type":	"Number",
+			"default": "1.0",
+			"desc": "The horizontal scaling factor of the display object."
+		},
+		"scaleY": {
+			"object": "displayObject",
+			"property": "scaleY",
+			"type":	"Number",
+			"default": "1.0",
+			"desc": "The vertical scaling factor of the display object."
+		},
+		"scaleZ": {
+			"object": "displayObject",
+			"property": "scaleZ",
+			"type":	"Number",
+			"default": "1.0",
+			"desc": "The depth scaling factor of the display object."
+		},
+		"rotationX": {
+			"object": "displayObject",
+			"property": "rotationX",
+			"type":	"Number",
+			"default": "0.0",
+			"desc": "The rotation of the display object around the x-axis, in degrees."
+		},
+		"rotationY": {
+			"object": "displayObject",
+			"property": "rotationY",
+			"type":	"Number",
+			"default": "0.0",
+			"desc": "The rotation of the display object around the y-axis, in degrees."
+		},
+		"rotationZ": {
+			"object": "displayObject",
+			"property": "rotationZ",
+			"type":	"Number",
+			"default": "0.0",
+			"desc": "The rotation of the display object around the z-axis, in degrees."
+		},
+		"width": {
+			"object": "displayObject",
+			"property": "width",
+			"type":	"Number",
+			"desc": "The width of the display object.",
+			"default": "0.0"
+		},
+		"height": {
+			"object": "displayObject",
+			"property": "height",
+			"type":	"Number",
+			"desc": "The height of the display object.",
+			"default": "0.0"
 		}
 	}
 }

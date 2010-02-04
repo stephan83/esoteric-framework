@@ -4,8 +4,8 @@
         <contributor>
             <authoring_tool>CINEMA4D 11.514 COLLADA Exporter</authoring_tool>
         </contributor>
-        <created>2010-02-01T17:17:16Z</created>
-        <modified>2010-02-01T17:17:16Z</modified>
+        <created>2010-02-04T13:51:30Z</created>
+        <modified>2010-02-04T13:51:30Z</modified>
         <unit name="meter"/>
         <up_axis>Y_UP</up_axis>
     </asset>
@@ -231,7 +231,7 @@
                     </instance_geometry>
                 </node>
             </node>
-            <node id="ID28" name="logo.1">
+            <node id="ID28" name="esoteric">
                 <translate sid="translate">0 3.35626 0</translate>
                 <rotate sid="rotateY">0 1 0 0</rotate>
                 <rotate sid="rotateX">1 0 0 0</rotate>

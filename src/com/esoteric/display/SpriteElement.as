@@ -107,26 +107,6 @@ package com.esoteric.display
 			}
 		}
 		
-		/**
-		 * @inheritDoc
-		 */
-		override esoteric function updateGlobalPosition(matrix:Matrix3D):void
-		{
-			super.updateGlobalPosition(matrix);
-			
-			var child:IElement;
-			
-			for (var i:int = 0; i < numChildren; i++) 
-			{
-				child = getChildAt(i);
-				
-				if (child is DisplayObjectElement)
-				{
-					(child as DisplayObjectElement).updateGlobalPosition(_transformMatrix.clone());
-				}
-			}
-		}
-		
 		//---------------------------------------------------------------------
 		// Methods
 		//---------------------------------------------------------------------

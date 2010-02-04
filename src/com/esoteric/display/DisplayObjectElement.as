@@ -76,20 +76,9 @@ package com.esoteric.display
 			new Watcher(this, 'parent', parentWatcher);
 			new Watcher(this, 'hiddenAncestor', hiddenAncestorWatcher);
 			
-			displayObject = createDisplayObject();
-			
-			// Enable 3D
-			displayObject.z = 0;
+			_displayObject = createDisplayObject();
+			_displayObject.transform.matrix3D = new Matrix3D();
 		}
-		
-		//---------------------------------------------------------------------
-		// Members
-		//---------------------------------------------------------------------
-		
-		/**
-		 * @private
-		 */
-		esoteric var _transformMatrix = new Matrix3D();
 		
 		//---------------------------------------------------------------------
 		// Overridden properties
@@ -217,33 +206,13 @@ package com.esoteric.display
 		//---------------------------------------------------------------------
 		
 		/**
-		 * Updates the global position of the object.
-		 * 
-		 * @param	matrix	the parent transformation matrix
-		 */
-		esoteric function updateGlobalPosition(matrix:Matrix3D):void
-		{
-			_transformMatrix.identity();
-			_transformMatrix.appendScale(scaleX, scaleY, scaleZ);
-			_transformMatrix.appendRotation(rotationX, Vector3D.X_AXIS);
-			_transformMatrix.appendRotation(rotationY, Vector3D.Y_AXIS);
-			_transformMatrix.appendRotation(rotationZ, Vector3D.Z_AXIS);
-			_transformMatrix.appendTranslation(x, y, z);
-			_transformMatrix.append(matrix);
-			
-			_displayObject.transform.matrix3D = _transformMatrix;
-			//displayObject.transform.perspectiveProjection = context.container.transform.perspectiveProjection;
-			//displayObject.transform.perspectiveProjection.projectionCenter = new Point(context.container.stage.stageWidth / 2, context.container.stage.stageHeight / 2);
-		}
-		
-		/**
 		 * Returns the global position of the object.
 		 * 
 		 * @return	the global position of the object
 		 */
 		esoteric function getGlobalPosition():Vector3D
 		{
-			return _transformMatrix.position;
+			return _displayObject.transform.matrix3D.position;
 		}
 		
 		/**

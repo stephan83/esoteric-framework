@@ -84,14 +84,6 @@ package com.esoteric.libs.away3d
 			}
 		}
 		
-		/**
-		 * @inheritDoc
-		 */
-		override protected function createObject():Object3D 
-		{
-			return _loader;
-		}
-		
 		//---------------------------------------------------------------------
 		// Members
 		//---------------------------------------------------------------------
@@ -111,6 +103,8 @@ package com.esoteric.libs.away3d
 		 */
 		private function loadSuccessHandler(e:Loader3DEvent):void 
 		{
+			loadChildren(_loader.handle);
+			
 			dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 		}
 

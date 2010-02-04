@@ -122,7 +122,7 @@ package com.esoteric.core
 		public function render():void
 		{
 			// TEMPORARY REMOVE THIS!!!!!!!!!!
-			_context.root.esoteric::updateGlobalPosition(new Matrix3D());
+			//_context.root.esoteric::updateGlobalPosition(new Matrix3D());
 			//context.root.render();
 			
 			_context.expQueue.run();

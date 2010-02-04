@@ -35,10 +35,11 @@
 package com.esoteric.libs.away3d
 {
 	import away3dlite.core.base.Object3D;
+	import com.carlcalderon.arthropod.Debug;
 	import com.esoteric.display.DisplayObjectElement;
 	import com.esoteric.esoteric;
 	import com.esoteric.core.Context;
-	import com.esoteric.core.IElement;
+	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	import flash.geom.Matrix3D;
 	import flash.geom.Vector3D;
@@ -55,10 +56,21 @@ package com.esoteric.libs.away3d
 		/**
 		 * Constructor.
 		 */
-		public function Object3DElement(context:Context, kind:String) 
+		public function Object3DElement(context:Context, kind:String, object:Object3D = null) 
 		{
+			_initObject = object;
+			
 			super(context, kind); 
 		}
+		
+		//---------------------------------------------------------------------
+		// Members
+		//---------------------------------------------------------------------
+		
+		/**
+		 * @private
+		 */
+		private var _initObject:Object3D;
 		
 		//---------------------------------------------------------------------
 		// Overrides
@@ -75,30 +87,25 @@ package com.esoteric.libs.away3d
 		/**
 		 * @inheritDoc
 		 */
-		override esoteric function updateGlobalPosition(matrix:Matrix3D):void
+		override public function initialize():void 
 		{
-			_transformMatrix.identity();
-			_transformMatrix.appendScale(scaleX, scaleY, scaleZ);
-			_transformMatrix.appendRotation(rotationX, Vector3D.X_AXIS);
-			_transformMatrix.appendRotation(rotationY, Vector3D.Y_AXIS);
-			_transformMatrix.appendRotation(rotationZ, Vector3D.Z_AXIS);
-			_transformMatrix.appendTranslation(x, y, z);
+			super.initialize();
 			
-			_object.transform.matrix3D = _transformMatrix;
-			
-			var child:IElement;
-			
-			for (var i:int = 0; i < numChildren; i++) 
+			if (_initObject)
 			{
-				child = getChildAt(i);
-				
-				if (child is DisplayObjectElement)
-				{
-					(child as DisplayObjectElement).updateGlobalPosition(_transformMatrix.clone());
-				}
+				id = _initObject.name;
+				x = _initObject.x;
+				y = _initObject.y;
+				z = _initObject.z;
+				rotationX = _initObject.rotationX;
+				rotationY = _initObject.rotationY;
+				rotationZ = _initObject.rotationZ;
+				scaleX = _initObject.scaleX;
+				scaleY = _initObject.scaleY;
+				scaleZ = _initObject.scaleZ;
+					
+				loadChildren(_initObject);
 			}
-			
-			context.renderQueue.add(this);
 		}
 		
 		//---------------------------------------------------------------------
@@ -112,7 +119,32 @@ package com.esoteric.libs.away3d
 		 */
 		protected function createObject():Object3D 
 		{
-			return new Object3D();
+			return _initObject ? _initObject.clone() : new Object3D();
+		}
+		
+		/**
+		 * Creates nodes for the children of an Object3D.
+		 * 
+		 * @param	object	the object3D
+		 */		
+		esoteric function loadChildren(object:Object3D):void
+		{
+			var dispObject:DisplayObject;
+			var object3D:Object3D;
+			var element:Object3DElement;
+			
+			for (var i:int = 0; i < object.numChildren; i++) 
+			{
+				dispObject = object.getChildAt(i);
+				if (dispObject is Object3D)
+				{
+					object3D = dispObject as Object3D;
+				
+					element = new Object3DElement(context, 'Object3D', object3D);
+					addChild(element);
+					element.initialize();
+				}
+			}
 		}
 	}
 	
