@@ -41,6 +41,7 @@ package com.esoteric.libs.away3d
 	import com.esoteric.core.IElement;
 	import com.esoteric.esoteric;
 	import com.esoteric.events.ElementEvent;
+	import com.esoteric.events.ProgressEvent;
 	import flash.display.Sprite;
 	
 	use namespace esoteric;
@@ -104,6 +105,8 @@ package com.esoteric.libs.away3d
 		private function loadSuccessHandler(e:Loader3DEvent):void 
 		{
 			loadChildren(_loader.handle);
+			
+			dispatchEvent(new ProgressEvent(ProgressEvent.COMPLETE));
 			
 			dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 		}

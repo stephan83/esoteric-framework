@@ -139,7 +139,7 @@ package com.esoteric.libs.away3d
 				if (dispObject is Object3D)
 				{
 					object3D = dispObject as Object3D;
-				
+					
 					element = new Object3DElement(context, 'Object3D', object3D);
 					addChild(element);
 					element.initialize();

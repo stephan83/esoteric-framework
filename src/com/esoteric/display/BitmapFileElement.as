@@ -34,6 +34,7 @@
 
 package com.esoteric.display
 {
+	import com.carlcalderon.arthropod.Debug;
 	import com.esoteric.core.IElement;
 	import com.esoteric.core.Context;
 	import com.esoteric.esoteric;

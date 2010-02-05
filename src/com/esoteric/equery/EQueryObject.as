@@ -40,6 +40,7 @@ package com.esoteric.equery
 	import com.esoteric.core.IElement;
 	import com.esoteric.core.TweenableElement;
 	import com.esoteric.events.PointInputEvent;
+	import com.esoteric.events.ProgressEvent;
 	import com.esoteric.events.PropertyChangeEvent;
 	import com.esoteric.utils.BindableArray;
 	import com.esoteric.utils.BindableObject;
@@ -257,6 +258,19 @@ package com.esoteric.equery
 				element.addEventListener(PropertyChangeEvent.PROPERTY_UPDATED + property, function(e:PropertyChangeEvent):void {
 					handler(e);
 				}, false, 0, true);
+			}
+			
+			return this;
+		}
+		
+		
+		public function complete(handler:Function):EQueryObject
+		{
+			for each (var element:IElement in _elementSet.result) 
+			{
+				element.addEventListener(ProgressEvent.COMPLETE, function(e:ProgressEvent):void {
+					handler(e);
+				});
 			}
 			
 			return this;

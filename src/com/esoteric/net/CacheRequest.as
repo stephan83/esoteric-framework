@@ -34,6 +34,7 @@
 	
 package com.esoteric.net 
 {
+	import com.carlcalderon.arthropod.Debug;
 	import flash.display.Bitmap;
 	import flash.display.Loader;
 	import flash.events.Event;
@@ -120,8 +121,8 @@ package com.esoteric.net
 					
 				}
 				
-				_urlLoader.addEventListener(Event.COMPLETE, completeHandler, false, 0, true);
-				_urlLoader.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler, false, 0, true);
+				_urlLoader.addEventListener(Event.COMPLETE, completeHandler);
+				_urlLoader.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
 				_urlLoader.load(new URLRequest(_url));
 			}
 		}
@@ -130,12 +131,12 @@ package com.esoteric.net
 		 * @private
 		 */
 		private function completeHandler(event:Event):void
-		{
+		{Debug.log('test');
 			if (_bitmapData)
 			{
 				_loader.loadBytes(ByteArray(_urlLoader.data));
-				_loader.contentLoaderInfo.addEventListener(Event.COMPLETE, bytesLoadedHandler, false, 0, true);
-				_loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, bytesIoErrorHandler, false, 0, true);
+				_loader.contentLoaderInfo.addEventListener(Event.COMPLETE, bytesLoadedHandler);
+				_loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, bytesIoErrorHandler);
 			}
 			else
 			{

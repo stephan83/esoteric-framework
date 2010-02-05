@@ -34,48 +34,41 @@
 	-----                                                                 -----
 -->
 
-<Preloader>
+<MyApp>
 	
-	<TextField color="0xffffff" z="0">{stageWidth}</TextField>
-	
-	<Scene3D id="scene">
-		<ObjectContainer3D rotationY="{mouseX}">
-			<Collada url="assets/preloader.dae" />
-		</ObjectContainer3D>
+	<Scene3D id="scene" rotationX="{-20 + mouseY / 10}">
+		<Collada id="collada" url="assets/preloader.dae" rotationY="{mouseX}" />
 	</Scene3D>
 	
-	<Camera3D id="camera" y="-200" z="-2000"></Camera3D>
+	<Camera3D id="camera" y="-850" z="-2000" rotationX="-20" rotationY="10" />
 	
-	<View3D
-		scene="{$('#scene').elements()}"
-		camera="{$('#camera').elements()}"
-		x="{stageWidth / 2}"
-		y="{stageHeight / 2}"
-		minX="{-stageWidth / 2}"
-		maxX="{stageWidth / 2}"
-		minY="{-stageHeight / 2}"
-		maxY="{stageHeight / 2}"
-	/>
+	<BlurFilter id="blur" blurX="100" blurY="{this.blurX}" />
 	
-	<Sprite mouseEnabled="true" buttonMode="true" useHandCursor="true" z="200" rotationY="20">
-		
-		<Shape alpha=".5">
-			<SolidFill color="0xffffff">
-				<Rectangle width="{$('#clickMe').elements().width}" height="{$('#clickMe').elements().height}" />
-			</SolidFill>
-		</Shape>
-		
-		<TextField id="clickMe" color="0x0000ff" size="50" width="{this.textWidth}" height="{this.textHeight}" z="-50">CLICK ME</TextField>
-		
-		<Script>
-			<![CDATA[
-				$this.click(function(e) {
-					var esoteric = $('#esoteric');
-					
-					$('#esoteric').animate('rotationY', esoteric.attr('rotationY') + 360, 2);
-				});
-			]]>
-		</Script>
+	<Sprite filters="{[$('#blur').elements()]}">
+		<View3D
+			scene="{$('#scene').elements()}"
+			camera="{$('#camera').elements()}"
+			x="{stageWidth / 2}"
+			y="{stageHeight / 2}"
+			minX="{-stageWidth / 2}"
+			maxX="{stageWidth / 2}"
+			minY="{-stageHeight / 2}"
+			maxY="{stageHeight / 2}"
+		/>
 	</Sprite>
 	
-</Preloader>
+	<BitmapFile url="assets/fg.png" />
+	
+	<Script>
+		<![CDATA[
+			// add a listener when COLLADA is loaded
+			$('#collada').complete(function(e) {
+				// tween camera
+				$('#camera').animate({z: -1200, rotationX: -35, rotationY: 0}, 4);
+				// dim blur
+				$('#blur').animate('blurX', 1, 4, easing.bounce.easeOut);
+			});
+		]]>
+	</Script>
+	
+</MyApp>
