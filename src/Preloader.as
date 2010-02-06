@@ -23,7 +23,7 @@
 	
 	use namespace esoteric;
 	
-	[SWF(backgroundColor='#000000', frameRate='25')]
+	[SWF(backgroundColor='#111111', frameRate='25')]
 	
 	/**
 	 * The preloader.

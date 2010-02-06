@@ -1,4 +1,9 @@
 /*
+	DO NOT MODIFY THIS FILE, THE CODE GENERATOR WILL ERASE ANY CHANGES MADE.
+	MAKE CHANGES TO THE DERIVED CLASS INSTEAD.
+
+	Last generated 2010-02-06 16:15:13.792000 UTC.
+
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	~                           Esoteric Framework                            ~
 	~                       framework.esotericorp.com                         ~
@@ -32,22 +37,18 @@
 	-----                                                                 -----
 */
 
-package com.esoteric.libs.away3d
+package com.esoteric.libs.away3d 
 {
-	import away3dlite.core.base.Object3D;
-	import away3dlite.events.Loader3DEvent;
-	import away3dlite.loaders.AbstractParser;
-	import com.carlcalderon.arthropod.Debug;
+	import away3dlite.core.base.Mesh;
+
 	import com.esoteric.core.Context;
-	import com.esoteric.core.IElement;
 	import com.esoteric.esoteric;
 	import com.esoteric.events.ElementEvent;
-	import com.esoteric.events.ProgressEvent;
-	import flash.display.Sprite;
+	import com.esoteric.events.PropertyChangeEvent;
 	
 	use namespace esoteric;
 	
-	public class Loader3DElement extends AbstractLoader3DElement
+	public class AbstractMeshElement extends Object3DElement
 	{
 		
 		//---------------------------------------------------------------------
@@ -57,11 +58,11 @@ package com.esoteric.libs.away3d
 		/**
 		 * Constructor.
 		 */
-		public function Loader3DElement(context:Context, kind:String) 
+		public function AbstractMeshElement(context:Context, kind:String) 
 		{
 			super(context, kind);
 			
-			_parser = createParser();
+
 		}
 		
 		//---------------------------------------------------------------------
@@ -71,46 +72,79 @@ package com.esoteric.libs.away3d
 		/**
 		 * @inheritDoc
 		 */
-		override public function set url(value:String):void 
-		{
-			if (url != value)
-			{
-				if (value)
-				{
-					_loader.loadGeometry(value, _parser);
-					
-					_loader.addEventListener(Loader3DEvent.LOAD_SUCCESS, loadSuccessHandler);
-				}
-				
-				super.url = value;
-			}
-		}
 		
+		override public function initialize():void
+		{
+			super.initialize();
+			
+
+		}
+
 		//---------------------------------------------------------------------
-		// Members
+		// Variables
 		//---------------------------------------------------------------------
 		
 		/**
-		 * Template function to create the parser.
-		 * 
-		 * @return	the parser
+		 * @private
 		 */
-		protected function createParser():AbstractParser
-		{
-			return new AbstractParser();
-		}
+		esoteric var _material:IMaterialElement = null;
 
 		/**
 		 * @private
 		 */
-		private function loadSuccessHandler(e:Loader3DEvent):void 
+		esoteric var _mesh:Mesh = null;
+
+
+		//---------------------------------------------------------------------
+		// Getters and setters
+		//---------------------------------------------------------------------
+		
+		/**
+		 * The material. [default = null]
+		 *
+		 * @default	null
+		 */
+		public function get material():IMaterialElement { return _material; }
+		
+		public function set material(value:IMaterialElement):void 
 		{
-			loadChildren(_loader.handle);
+			if(_material != value)
+			{
+				var oldValue:IMaterialElement = _material;
 			
-			dispatchEvent(new ProgressEvent(ProgressEvent.COMPLETE));
+
 			
-			dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
+				_material = value;
+				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'material', false, false, oldValue, value));
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
+			}
 		}
+
+		/**
+		 * The mesh. [default = null]
+		 *
+		 * @default	null
+		 */
+		esoteric function get mesh():Mesh { return _mesh; }
+		
+		esoteric function set mesh(value:Mesh):void 
+		{
+			if(_mesh != value)
+			{
+				var oldValue:Mesh = _mesh;
+			
+
+			
+				_mesh = value;
+
+
+			}
+		}
+
+
 
 	}
 	

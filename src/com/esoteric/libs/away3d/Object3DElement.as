@@ -34,6 +34,7 @@
 
 package com.esoteric.libs.away3d
 {
+	import away3dlite.core.base.Mesh;
 	import away3dlite.core.base.Object3D;
 	import com.carlcalderon.arthropod.Debug;
 	import com.esoteric.display.DisplayObjectElement;
@@ -58,7 +59,10 @@ package com.esoteric.libs.away3d
 		 */
 		public function Object3DElement(context:Context, kind:String, object:Object3D = null) 
 		{
-			_initObject = object;
+			if (object)
+			{
+				_initObject = object;
+			}
 			
 			super(context, kind); 
 		}
@@ -70,7 +74,7 @@ package com.esoteric.libs.away3d
 		/**
 		 * @private
 		 */
-		private var _initObject:Object3D;
+		esoteric var _initObject:Object3D;
 		
 		//---------------------------------------------------------------------
 		// Overrides
@@ -131,16 +135,26 @@ package com.esoteric.libs.away3d
 		{
 			var dispObject:DisplayObject;
 			var object3D:Object3D;
+			var mesh:Mesh;
 			var element:Object3DElement;
 			
 			for (var i:int = 0; i < object.numChildren; i++) 
 			{
 				dispObject = object.getChildAt(i);
-				if (dispObject is Object3D)
+				
+				if (dispObject is Mesh)
+				{
+					mesh = dispObject as Mesh;
+					
+					element = new MeshElement(context, 'mesh', mesh);
+					addChild(element);
+					element.initialize();
+				}
+				else if (dispObject is Object3D)
 				{
 					object3D = dispObject as Object3D;
 					
-					element = new Object3DElement(context, 'Object3D', object3D);
+					element = new Object3DElement(context, 'object3D', object3D);
 					addChild(element);
 					element.initialize();
 				}

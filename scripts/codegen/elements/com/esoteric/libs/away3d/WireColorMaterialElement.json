@@ -1,0 +1,60 @@
+{
+	"desc": "A wire color material.",
+	
+	"baseclass": "TweenableElement",
+
+	"imports": [
+		"away3dlite.materials.WireColorMaterial",
+		"com.esoteric.core.TweenableElement"
+	],
+	
+	"properties": {
+		"material": {
+			"type":	"WireColorMaterial",
+			"default": "new WireColorMaterial()",
+			"desc": "The material.",
+			"bindable": false,
+			"update": false,
+			"namespace": "esoteric"
+		}
+	},
+	
+	"objectProperties": {
+		"color": {
+			"object": "material",
+			"property": "color",
+			"type":	"int",
+			"default": "0xffffff",
+			"desc": "The color."
+		},
+		"alpha": {
+			"object": "material",
+			"property": "alpha",
+			"type":	"Number",
+			"default": "1",
+			"desc": "Alpha value."
+		},
+		"wireColor": {
+			"object": "material",
+			"property": "wireColor",
+			"type":	"int",
+			"default": "0xff0000",
+			"desc": "The color."
+		},
+		"wireAlpha": {
+			"object": "material",
+			"property": "wireAlpha",
+			"type":	"Number",
+			"default": "1",
+			"desc": "Alpha value."
+		},
+		"thickness": {
+			"object": "material",
+			"property": "thickness",
+			"type":	"Number",
+			"default": "1",
+			"desc": "Wire thickness."
+		}
+	}
+	
+}

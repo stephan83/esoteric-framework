@@ -34,20 +34,13 @@
 
 package com.esoteric.libs.away3d
 {
-	import away3dlite.core.base.Object3D;
-	import away3dlite.events.Loader3DEvent;
-	import away3dlite.loaders.AbstractParser;
-	import com.carlcalderon.arthropod.Debug;
+	import away3dlite.materials.Material;
 	import com.esoteric.core.Context;
-	import com.esoteric.core.IElement;
 	import com.esoteric.esoteric;
-	import com.esoteric.events.ElementEvent;
-	import com.esoteric.events.ProgressEvent;
-	import flash.display.Sprite;
 	
 	use namespace esoteric;
 	
-	public class Loader3DElement extends AbstractLoader3DElement
+	public class WireColorMaterialElement extends AbstractWireColorMaterialElement implements IMaterialElement
 	{
 		
 		//---------------------------------------------------------------------
@@ -57,60 +50,23 @@ package com.esoteric.libs.away3d
 		/**
 		 * Constructor.
 		 */
-		public function Loader3DElement(context:Context, kind:String) 
+		public function WireColorMaterialElement(context:Context, kind:String) 
 		{
 			super(context, kind);
-			
-			_parser = createParser();
 		}
 		
 		//---------------------------------------------------------------------
-		// Overrides
+		// Implementations
 		//---------------------------------------------------------------------
 		
 		/**
 		 * @inheritDoc
 		 */
-		override public function set url(value:String):void 
+		public function get material():Material
 		{
-			if (url != value)
-			{
-				if (value)
-				{
-					_loader.loadGeometry(value, _parser);
-					
-					_loader.addEventListener(Loader3DEvent.LOAD_SUCCESS, loadSuccessHandler);
-				}
-				
-				super.url = value;
-			}
-		}
-		
-		//---------------------------------------------------------------------
-		// Members
-		//---------------------------------------------------------------------
-		
-		/**
-		 * Template function to create the parser.
-		 * 
-		 * @return	the parser
-		 */
-		protected function createParser():AbstractParser
-		{
-			return new AbstractParser();
+			return _material;
 		}
 
-		/**
-		 * @private
-		 */
-		private function loadSuccessHandler(e:Loader3DEvent):void 
-		{
-			loadChildren(_loader.handle);
-			
-			dispatchEvent(new ProgressEvent(ProgressEvent.COMPLETE));
-			
-			dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
-		}
 
 	}
 	

@@ -34,20 +34,16 @@
 
 package com.esoteric.libs.away3d
 {
-	import away3dlite.core.base.Object3D;
-	import away3dlite.events.Loader3DEvent;
-	import away3dlite.loaders.AbstractParser;
+	import away3dlite.core.base.Mesh;
 	import com.carlcalderon.arthropod.Debug;
 	import com.esoteric.core.Context;
-	import com.esoteric.core.IElement;
 	import com.esoteric.esoteric;
-	import com.esoteric.events.ElementEvent;
-	import com.esoteric.events.ProgressEvent;
-	import flash.display.Sprite;
+	import com.esoteric.events.PropertyChangeEvent;
+	import com.esoteric.utils.Watcher;
 	
 	use namespace esoteric;
 	
-	public class Loader3DElement extends AbstractLoader3DElement
+	public class MeshElement extends AbstractMeshElement
 	{
 		
 		//---------------------------------------------------------------------
@@ -57,11 +53,13 @@ package com.esoteric.libs.away3d
 		/**
 		 * Constructor.
 		 */
-		public function Loader3DElement(context:Context, kind:String) 
+		public function MeshElement(context:Context, kind:String, mesh:Mesh = null) 
 		{
+			_initObject = mesh;
+			
 			super(context, kind);
 			
-			_parser = createParser();
+			new Watcher(this, 'material', materialHandler);
 		}
 		
 		//---------------------------------------------------------------------
@@ -71,46 +69,35 @@ package com.esoteric.libs.away3d
 		/**
 		 * @inheritDoc
 		 */
-		override public function set url(value:String):void 
+		override public function initialize():void 
 		{
-			if (url != value)
+			super.initialize();
+			
+			if (_object is Mesh)
 			{
-				if (value)
-				{
-					_loader.loadGeometry(value, _parser);
-					
-					_loader.addEventListener(Loader3DEvent.LOAD_SUCCESS, loadSuccessHandler);
-				}
-				
-				super.url = value;
+				_mesh = _object as Mesh;
 			}
 		}
-		
+		 
 		//---------------------------------------------------------------------
-		// Members
+		// Methods
 		//---------------------------------------------------------------------
 		
-		/**
-		 * Template function to create the parser.
-		 * 
-		 * @return	the parser
-		 */
-		protected function createParser():AbstractParser
-		{
-			return new AbstractParser();
-		}
-
 		/**
 		 * @private
 		 */
-		private function loadSuccessHandler(e:Loader3DEvent):void 
+		private function materialHandler(e:PropertyChangeEvent):void
 		{
-			loadChildren(_loader.handle);
-			
-			dispatchEvent(new ProgressEvent(ProgressEvent.COMPLETE));
-			
-			dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
+			if (e.newValue)
+			{
+				_mesh.material = e.newValue.material;
+			}
+			else
+			{
+				_mesh.material = null;
+			}
 		}
+
 
 	}
 	

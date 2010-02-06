@@ -56,9 +56,12 @@ package com.esoteric.core
 	import com.esoteric.filters.GlowFilterElement;
 	import com.esoteric.libs.away3d.Camera3DElement;
 	import com.esoteric.libs.away3d.ColladaElement;
+	import com.esoteric.libs.away3d.MeshElement;
 	import com.esoteric.libs.away3d.ObjectContainer3DElement;
 	import com.esoteric.libs.away3d.Scene3DElement;
 	import com.esoteric.libs.away3d.View3DElement;
+	import com.esoteric.libs.away3d.WireColorMaterialElement;
+	import com.esoteric.libs.away3d.WireframeMaterialElement;
 	import com.esoteric.media.VideoFileElement;
 	import com.esoteric.motion.FrameElement;
 	import com.esoteric.motion.TimelineElement;
@@ -187,9 +190,12 @@ package com.esoteric.core
 			// Away3D
 			add("Camera3D", new StaticElementBuilder(Camera3DElement));
 			add("Collada", new StaticElementBuilder(ColladaElement));
+			add("Mesh", new StaticElementBuilder(MeshElement));
 			add("ObjectContainer3D", new StaticElementBuilder(ObjectContainer3DElement));
 			add("Scene3D", new StaticElementBuilder(Scene3DElement));
 			add("View3D", new StaticElementBuilder(View3DElement));
+			add("WireColorMaterial", new StaticElementBuilder(WireColorMaterialElement));
+			add("WireframeMaterial", new StaticElementBuilder(WireframeMaterialElement));
 		}
 		
 	}

@@ -1,4 +1,9 @@
 /*
+	DO NOT MODIFY THIS FILE, THE CODE GENERATOR WILL ERASE ANY CHANGES MADE.
+	MAKE CHANGES TO THE DERIVED CLASS INSTEAD.
+
+	Last generated 2010-02-06 16:26:10.625000 UTC.
+
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	~                           Esoteric Framework                            ~
 	~                       framework.esotericorp.com                         ~
@@ -32,22 +37,19 @@
 	-----                                                                 -----
 */
 
-package com.esoteric.libs.away3d
+package com.esoteric.libs.away3d 
 {
-	import away3dlite.core.base.Object3D;
-	import away3dlite.events.Loader3DEvent;
-	import away3dlite.loaders.AbstractParser;
-	import com.carlcalderon.arthropod.Debug;
+	import away3dlite.materials.WireframeMaterial;
+	import com.esoteric.core.TweenableElement;
+
 	import com.esoteric.core.Context;
-	import com.esoteric.core.IElement;
 	import com.esoteric.esoteric;
 	import com.esoteric.events.ElementEvent;
-	import com.esoteric.events.ProgressEvent;
-	import flash.display.Sprite;
+	import com.esoteric.events.PropertyChangeEvent;
 	
 	use namespace esoteric;
 	
-	public class Loader3DElement extends AbstractLoader3DElement
+	public class AbstractWireframeMaterialElement extends TweenableElement
 	{
 		
 		//---------------------------------------------------------------------
@@ -57,11 +59,13 @@ package com.esoteric.libs.away3d
 		/**
 		 * Constructor.
 		 */
-		public function Loader3DElement(context:Context, kind:String) 
+		public function AbstractWireframeMaterialElement(context:Context, kind:String) 
 		{
 			super(context, kind);
 			
-			_parser = createParser();
+			material.color = _color;
+			material.alpha = _alpha;
+
 		}
 		
 		//---------------------------------------------------------------------
@@ -71,46 +75,127 @@ package com.esoteric.libs.away3d
 		/**
 		 * @inheritDoc
 		 */
-		override public function set url(value:String):void 
-		{
-			if (url != value)
-			{
-				if (value)
-				{
-					_loader.loadGeometry(value, _parser);
-					
-					_loader.addEventListener(Loader3DEvent.LOAD_SUCCESS, loadSuccessHandler);
-				}
-				
-				super.url = value;
-			}
-		}
 		
+		override public function initialize():void
+		{
+			super.initialize();
+			
+
+		}
+
 		//---------------------------------------------------------------------
-		// Members
+		// Variables
 		//---------------------------------------------------------------------
 		
 		/**
-		 * Template function to create the parser.
-		 * 
-		 * @return	the parser
+		 * @private
 		 */
-		protected function createParser():AbstractParser
-		{
-			return new AbstractParser();
-		}
+		esoteric var _material:WireframeMaterial = new WireframeMaterial();
 
 		/**
 		 * @private
 		 */
-		private function loadSuccessHandler(e:Loader3DEvent):void 
+		esoteric var _color:int = 0xffffff;
+
+		/**
+		 * @private
+		 */
+		esoteric var _alpha:Number = 1;
+
+
+		//---------------------------------------------------------------------
+		// Getters and setters
+		//---------------------------------------------------------------------
+		
+		/**
+		 * The material. [default = new WireframeMaterial()]
+		 *
+		 * @default	new WireframeMaterial()
+		 */
+		esoteric function get material():WireframeMaterial { return _material; }
+		
+		esoteric function set material(value:WireframeMaterial):void 
 		{
-			loadChildren(_loader.handle);
+			if(_material != value)
+			{
+				var oldValue:WireframeMaterial = _material;
 			
-			dispatchEvent(new ProgressEvent(ProgressEvent.COMPLETE));
+				if(value)
+				{
+					value.color = _color;
+					value.alpha = _alpha;
+
+				}
 			
-			dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
+				_material = value;
+
+
+			}
 		}
+
+
+		/**
+		 * The color. [default = 0xffffff]
+		 *
+		 * @default	0xffffff
+		 */
+		public function get color():int { return _color; }
+		
+		public function set color(value:int):void 
+		{
+
+			if(color != value)
+			{
+				var oldValue:int = _color;
+
+
+				
+				_color = value;
+
+				if(material)
+				{
+					material.color = value;
+				}
+
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
+				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'color', false, false, oldValue, value));
+			}
+		}
+
+		/**
+		 * Alpha value. [default = 1]
+		 *
+		 * @default	1
+		 */
+		public function get alpha():Number { return _alpha; }
+		
+		public function set alpha(value:Number):void 
+		{
+
+			if(alpha != value)
+			{
+				var oldValue:Number = _alpha;
+
+
+				
+				_alpha = value;
+
+				if(material)
+				{
+					material.alpha = value;
+				}
+
+				//context.renderQueue.add(this);
+
+
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));			
+				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'alpha', false, false, oldValue, value));
+			}
+		}
+
 
 	}
 	

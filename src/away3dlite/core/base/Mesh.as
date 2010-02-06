@@ -146,7 +146,7 @@ package away3dlite.core.base
 			//update property in faces
 			var i:int = _faces.length;
 			while (i--)
-				_faces[i].material = _faceMaterials[i] || _material;
+				_faces[i].material = /*_faceMaterials[i] || */_material;
 				
 			// calculate normals for the shaders
 			//if (_material is IShader)

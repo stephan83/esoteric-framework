@@ -36,13 +36,17 @@
 
 <MyApp>
 	
+	<WireframeMaterial id="material1" color="0xff00ff" />
+	<WireframeMaterial id="material2" color="0xffff00" />
+	<WireframeMaterial id="material3" color="0x00ffff" />
+	
 	<Scene3D id="scene" rotationX="{-20 + mouseY / 10}">
-		<Collada id="collada" url="assets/preloader.dae" rotationY="{mouseX}" />
+		<Collada id="collada" url="assets/soon.dae" rotationY="{180 + mouseX}" />
 	</Scene3D>
 	
-	<Camera3D id="camera" y="-850" z="-2000" rotationX="-20" rotationY="10" />
+	<Camera3D id="camera" y="-200" z="-1500" />
 	
-	<BlurFilter id="blur" blurX="100" blurY="{this.blurX}" />
+	<BlurFilter id="blur" blurX="0" blurY="{this.blurX}" />
 	
 	<Sprite filters="{[$('#blur').elements()]}">
 		<View3D
@@ -57,16 +61,15 @@
 		/>
 	</Sprite>
 	
-	<BitmapFile url="assets/fg.png" />
-	
 	<Script>
 		<![CDATA[
 			// add a listener when COLLADA is loaded
 			$('#collada').complete(function(e) {
-				// tween camera
-				$('#camera').animate({z: -1200, rotationX: -35, rotationY: 0}, 4);
-				// dim blur
-				$('#blur').animate('blurX', 1, 4, easing.bounce.easeOut);
+				var i = 1;
+				
+				$('* [kind=mesh]').apply(function(e) {
+					e.attr('material', $('#material' + i++).elements());
+				});
 			});
 		]]>
 	</Script>

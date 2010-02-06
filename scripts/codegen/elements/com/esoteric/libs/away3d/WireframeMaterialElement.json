@@ -1,0 +1,39 @@
+{
+	"desc": "A wireframe material.",
+	
+	"baseclass": "TweenableElement",
+
+	"imports": [
+		"away3dlite.materials.WireframeMaterial",
+		"com.esoteric.core.TweenableElement"
+	],
+	
+	"properties": {
+		"material": {
+			"type":	"WireframeMaterial",
+			"default": "new WireframeMaterial()",
+			"desc": "The material.",
+			"bindable": false,
+			"update": false,
+			"namespace": "esoteric"
+		}
+	},
+	
+	"objectProperties": {
+		"color": {
+			"object": "material",
+			"property": "color",
+			"type":	"int",
+			"default": "0xffffff",
+			"desc": "The color."
+		},
+		"alpha": {
+			"object": "material",
+			"property": "alpha",
+			"type":	"Number",
+			"default": "1",
+			"desc": "Alpha value."
+		}
+	}
+	
+}

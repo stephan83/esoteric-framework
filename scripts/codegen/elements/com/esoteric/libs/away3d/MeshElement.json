@@ -1,0 +1,26 @@
+{
+	"desc": "A mesh.",
+	
+	"baseclass": "Object3DElement",
+
+	"imports": [
+		"away3dlite.core.base.Mesh"
+	],
+	
+	"properties": {
+		"mesh": {
+			"type":	"Mesh",
+			"desc": "The mesh.",
+			"bindable": false,
+			"update": false,
+			"namespace": "esoteric"
+		},
+		"material": {
+			"type":	"IMaterialElement",
+			"desc": "The material.",
+			"bindable": true,
+			"update": true
+		}
+	}
+	
+}
