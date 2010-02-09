@@ -18,9 +18,9 @@
     <path-element>C:\Users\Stephan\Documents\Work\Clients\esoteric\esotericorp\src\Preloader.as</path-element>
   </file-specs>
   <default-background-color>#FFFFFF</default-background-color>
-  <default-frame-rate>30</default-frame-rate>
+  <default-frame-rate>60</default-frame-rate>
   <default-size>
-    <width>800</width>
-    <height>600</height>
+    <width>1200</width>
+    <height>800</height>
   </default-size>
 </flex-config>

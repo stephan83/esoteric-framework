@@ -1,0 +1,31 @@
+{
+	"desc": " ",
+	
+	"baseclass": "AbstractElement",
+
+	"imports": [
+		"com.esoteric.core.AbstractElement",
+		"flash.display.BitmapData"
+	],
+	
+	"properties": {
+		"bitmapData": {
+			"type":	"BitmapData",
+			"desc": "The bitmap data object.",
+			"bindable": false,
+			"update": false,
+			"namespace": "esoteric"
+		},
+		"width": {
+			"type":	"int",
+			"desc": "The bitmap data width.",
+			"default": "0"
+		},
+		"height": {
+			"type":	"int",
+			"desc": "The bitmap data height.",
+			"default": "0"
+		}
+	}
+	
+}

@@ -1,0 +1,13 @@
+{
+	"desc": " ",
+	
+	"baseclass": "BitmapDataElement",
+	
+	"properties": {
+		"url": {
+			"type":	"String",
+			"desc": "URL of the image."
+		}
+	}
+	
+}

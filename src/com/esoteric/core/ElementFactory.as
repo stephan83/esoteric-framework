@@ -35,6 +35,7 @@
 package com.esoteric.core 
 {
 	import com.esoteric.core.Context;
+	import com.esoteric.display.BitmapDataFileElement;
 	import com.esoteric.display.BitmapFileElement;
 	import com.esoteric.display.CircleElement;
 	import com.esoteric.display.CurveToElement;
@@ -47,6 +48,7 @@ package com.esoteric.core
 	import com.esoteric.display.MoveToElement;
 	import com.esoteric.display.RoundedRectangleElement;
 	import com.esoteric.display.RectangleElement;
+	import com.esoteric.display.ShaderFillElement;
 	import com.esoteric.display.ShapeElement;
 	import com.esoteric.display.SolidFillElement;
 	import com.esoteric.display.SpriteElement;
@@ -162,6 +164,7 @@ package com.esoteric.core
 		private function loadBuiltins():void
 		{
 			// Core elements
+			add("BitmapDataFile", new StaticElementBuilder(BitmapDataFileElement));
 			add("BitmapFile", new StaticElementBuilder(BitmapFileElement));
 			add("BlurFilter", new StaticElementBuilder(BlurFilterElement));
 			add("Circle", new StaticElementBuilder(CircleElement));
@@ -181,6 +184,7 @@ package com.esoteric.core
 			add("RoundedRectangle", new StaticElementBuilder(RoundedRectangleElement));
 			add("Script", new StaticElementBuilder(ScriptElement));
 			add("Shader", new StaticElementBuilder(ShaderElement));
+			add("ShaderFill", new StaticElementBuilder(ShaderFillElement));
 			add("ShaderFilter", new StaticElementBuilder(ShaderFilterElement));
 			add("Shape", new StaticElementBuilder(ShapeElement));
 			add("SolidFill", new StaticElementBuilder(SolidFillElement));

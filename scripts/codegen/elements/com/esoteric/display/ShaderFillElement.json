@@ -1,0 +1,17 @@
+{
+	"desc": "The ShaderFill element is used to initiate a shader fill.",
+	
+	"baseclass": "AbstractElement",
+
+	"imports": [
+		"com.esoteric.core.AbstractElement",
+		"com.esoteric.filters.ShaderElement"
+	],
+	
+	"properties": {
+		"shader": {
+			"type":	"ShaderElement",
+			"desc": "The shader."
+		}
+	}
+}

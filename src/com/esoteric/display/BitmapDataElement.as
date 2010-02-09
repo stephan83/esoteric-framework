@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
-
-<!--
+/*
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	~                           Esoteric Framework                            ~
 	~                       framework.esotericorp.com                         ~
@@ -32,58 +30,52 @@
 	DEALINGS IN THE SOFTWARE.
 	
 	-----                                                                 -----
--->
+*/
 
-<MyApp>
+package com.esoteric.display
+{
+	import com.esoteric.core.Context;
+	import com.esoteric.esoteric;
+	import flash.display.BitmapData;
 	
-	<WireframeMaterial id="material1" color="0xff00ff" />
-	<WireframeMaterial id="material2" color="0xffff00" />
-	<WireframeMaterial id="material3" color="0x00ffff" />
+	use namespace esoteric;
 	
-	<Scene3D id="scene" rotationX="{-20 + mouseY / 10}">
-		<Collada id="collada" url="assets/soon.dae" rotationY="{180 + mouseX}" />
-	</Scene3D>
-	
-	<Camera3D id="camera" y="-200" z="-1000" />
-	
-	<Sprite scaleX="{stageWidth / 1200}" scaleY="{this.scaleX}">
+	public class BitmapDataElement extends AbstractBitmapDataElement
+	{
 		
-		<BitmapDataFile id="bg" url="assets/bg.jpg" />
+		//---------------------------------------------------------------------
+		// Constructor
+		//---------------------------------------------------------------------
 		
-		<ShaderJob shader="{$('#waves').elements()}" />
+		/**
+		 * Constructor.
+		 */
+		public function BitmapDataElement(context:Context, kind:String) 
+		{
+			super(context, kind);
+		}
 		
-		<BitmapFile url="assets/bridge.png" />
-		<BitmapFile url="assets/fg.png" />
-	</Sprite>
+		//---------------------------------------------------------------------
+		// Methods
+		//---------------------------------------------------------------------
+		
+		/**
+		 * Creates the bitmap data.
+		 * 
+		 * @param	width			width of the bitmap data
+		 * @param	height			height of the bitmap data
+		 * @param	transparent		enable transparancy
+		 * @param	fillColor		the initial fill color
+		 */
+		public function create(width:int, height:int, transparent:Boolean = true, fillColor:int = 0x00000000):void
+		{
+			_bitmapData = new BitmapData(width, height, transparent, fillColor);
+			
+			this.width = width;
+			this.height = height;
+		}
+
+
+	}
 	
-	<!--Sprite>
-		<View3D
-			scene="{$('#scene').elements()}"
-			camera="{$('#camera').elements()}"
-			x="{stageWidth / 2}"
-			y="{stageHeight / 2}"
-			minX="{-stageWidth / 2}"
-			maxX="{stageWidth / 2}"
-			minY="{-stageHeight / 2}"
-			maxY="{stageHeight / 2}"
-		/>
-	</Sprite-->
-	
-	<Script>
-		<![CDATA[
-			// add a listener when COLLADA is loaded
-			$('#collada').complete(function(e) {
-				var i = 1;
-				
-				$('* [kind=mesh]').apply(function(e) {
-					e.attr('material', $('#material' + i++).elements());
-				});
-				
-				$('#waves').animate('progress', 1, 3, easing.linear.easeNone, false, -1);
-			});
-		]]>
-	</Script>
-	
-	<Shader id="waves" url="assets/waves.pbj" src="{$('#bg').elements()}" center="400" minY="350" maxY="800" power="1" frequency="10" amplitude=".11" precisionHint="{ShaderPrecision.FAST}" />
-	
-</MyApp>
+}

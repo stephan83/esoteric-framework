@@ -44,6 +44,7 @@ package com.esoteric.core
 	import com.esoteric.expressions.ExpressionVm;
 	import com.esoteric.net.Cache;
 	import fl.motion.easing.*;
+	import flash.display.ShaderPrecision;
 	import flash.display.Stage;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -105,6 +106,9 @@ package com.esoteric.core
 			
 			// add math functions
 			_closure['Math'] = Math;
+			
+			// add Flash contants
+			_closure['ShaderPrecision'] = ShaderPrecision;
 			
 			stage.addEventListener(Event.RESIZE, resizeHandler);
 			stage.addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);

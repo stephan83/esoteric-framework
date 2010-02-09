@@ -39,6 +39,7 @@ package com.esoteric.filters
 	import com.esoteric.core.IElement;
 	import com.esoteric.core.ITweenableElement;
 	import com.esoteric.core.TweenableElement;
+	import com.esoteric.display.BitmapDataElement;
 	import com.esoteric.esoteric;
 	import com.esoteric.events.ElementEvent;
 	import com.esoteric.events.PropertyChangeEvent;
@@ -47,8 +48,11 @@ package com.esoteric.filters
 	import com.esoteric.net.CacheLoader;
 	import com.esoteric.utils.BindableObject;
 	import com.esoteric.utils.ICloneable;
+	import com.esoteric.utils.Watcher;
 	import flash.display.Shader;
+	import flash.display.ShaderInput;
 	import flash.display.ShaderParameter;
+	import flash.display.ShaderPrecision;
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
 	import flash.net.URLRequest;
@@ -91,7 +95,17 @@ package com.esoteric.filters
 		/**
 		 * @private
 		 */
+		private var _precisionHint:String = ShaderPrecision.FULL;
+		
+		/**
+		 * @private
+		 */
 		esoteric var _shader:Shader;
+		
+		/**
+		 * @private
+		 */
+		private var _shaderInputWatchers:Object = new Object();
 	
 		//---------------------------------------------------------------------
 		// Implementations
@@ -277,7 +291,7 @@ package com.esoteric.filters
 		{
 			if (_url != value)
 			{
-				var old:String = url;
+				var old:String = _url;
 				
 				_url = value;
 				
@@ -298,6 +312,28 @@ package com.esoteric.filters
 		}
 		
 		/**
+		 * Math precision.
+		 */
+		public function get precisionHint():String { return _precisionHint; }
+		
+		public function set precisionHint(value:String):void 
+		{
+			if (_precisionHint != value)
+			{
+				var old:String = _precisionHint;
+				
+				_precisionHint = value;
+				
+				if (_shader)
+				{
+					_shader.precisionHint = value;
+				}
+				
+				dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_UPDATED + 'precisionHint', false, false, old, value));
+			}
+		}
+		
+		/**
 		 * @private
 		 */
 		private function ioErrorHandler(e:IOErrorEvent):void 
@@ -311,6 +347,8 @@ package com.esoteric.filters
 		private function completeHandler(e:Event):void 
 		{
 			_shader = new Shader(_tweenableElement.context.cache.get(_url, CacheFormat.BIT_ARRAY));
+			
+			_shader.precisionHint = _precisionHint;
 			
 			for (var name:String in _object)
 			{
@@ -347,6 +385,50 @@ package com.esoteric.filters
 					param.value = [value];
 					dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 				}
+				else if (obj is ShaderInput && value is BitmapDataElement)
+				{
+					if (_shaderInputWatchers.hasOwnProperty(name))
+					{
+						_shaderInputWatchers[name].destroy();
+					}
+					
+					var input:ShaderInput = obj as ShaderInput;
+					
+					_shaderInputWatchers[name] = new Watcher(value, 'bitmapData', createInputWatcherHandler(input));
+				}
+			}
+		}
+		
+		/**
+		 * @private
+		 */
+		private function inputWatcher(e:PropertyChangeEvent):void
+		{
+			if (e.newValue)
+			{
+				var input:ShaderInput = e.target.input;
+				
+				input.input = e.newValue;
+			}
+		}
+		
+		/**
+		 * @private
+		 */
+		private function createInputWatcherHandler(input:ShaderInput):Function
+		{
+			return function(e:PropertyChangeEvent):void 
+			{
+				if (e.newValue)
+				{
+					input.input = e.newValue;
+				}
+				else
+				{
+					input.input = null;
+				}
+				
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 			}
 		}
 		
