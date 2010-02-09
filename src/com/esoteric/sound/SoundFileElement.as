@@ -200,27 +200,9 @@ package com.esoteric.sound
 		 */
 		private function load(url:String):void
 		{
-			var data:* = context.cache.get(url);
-			
-			if (data)
-			{
-				_sound = data;
-				
-				if (playing)
-				{
-					play();
-				}
-				
-				_ready = true;
-			}
-			else
-			{	
-				_sound = new Sound(new URLRequest(url));
-				_sound.addEventListener(Event.OPEN, openHandler, false, 0, true);
-				_sound.addEventListener(Event.ID3, ID3Handler, false, 0, true);
-				
-				_ready = false;
-			}
+			_sound = new Sound(new URLRequest(url));
+			_sound.addEventListener(Event.OPEN, openHandler, false, 0, true);
+			_sound.addEventListener(Event.ID3, ID3Handler, false, 0, true);
 		}
 		
 		/**

@@ -35,6 +35,7 @@
 package com.esoteric.net 
 {
 	import flash.utils.ByteArray;
+	import flash.utils.Dictionary;
 	
 	/**
 	 * Cache class.
@@ -50,7 +51,7 @@ package com.esoteric.net
 		/**
 		 * @private
 		 */
-		private var _data:Object = new Object();
+		private var _data:Vector.<Dictionary> = new Vector.<Dictionary>(2);
 		
 		//---------------------------------------------------------------------
 		// Functions
@@ -61,23 +62,33 @@ package com.esoteric.net
 		 * 
 		 * @param	url		the url of the resource
 		 * @param	data	the resource data
+		 * @param	format	the format
 		 */
-		public function set(url:String, data:*):void
+		public function set(url:String, data:*, format:int):void
 		{
-			_data[url] = data;
+			if(!_data[format])
+			{
+				_data[format] = new Dictionary();
+			}
+			
+			_data[format][url] = data;
 		}
 		
 		/**
 		 * Gets a cached resource.
 		 * 
 		 * @param	url		the url of the resource
+		 * @param	format	the format
 		 * @return			the data
 		 */
-		public function get(url:String):*
+		public function get(url:String, format:int):*
 		{
-			if (_data.hasOwnProperty(url))
+			if (_data.length > format && _data[format])
 			{
-				return _data[url];
+				if (_data[format].hasOwnProperty(url))
+				{
+					return _data[format][url];
+				}
 			}
 			
 			return null;

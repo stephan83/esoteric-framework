@@ -38,7 +38,7 @@ package com.esoteric.equery
 	import com.esoteric.core.ElementProxy;
 	import com.esoteric.core.ElementProxyManager;
 	import com.esoteric.core.IElement;
-	import com.esoteric.core.TweenableElement;
+	import com.esoteric.core.ITweenableElement;
 	import com.esoteric.events.PointInputEvent;
 	import com.esoteric.events.ProgressEvent;
 	import com.esoteric.events.PropertyChangeEvent;
@@ -344,17 +344,18 @@ package com.esoteric.equery
 				var tweens:BindableObject = args[0];
 				var duration:Number = args[1];
 				var easingFunc:Function = args.length > 2 ? args[2]: null;
-				var yoyo:Boolean = args.length > 3 ? args[3]: null;
+				var yoyo:Boolean = args.length > 3 ? args[3]: false;
+				var loop:int = args.length > 4 ? args[4]: 0;
 				
 				for each (var element:IElement in _elementSet.result) 
 				{
-					if (element is TweenableElement)
+					if (element is ITweenableElement)
 					{
-						var tweenable:TweenableElement = element as TweenableElement;
+						var tweenable:ITweenableElement = element as ITweenableElement;
 						
 						for (var p:* in tweens)
 						{
-							tweenable.startTween(p, tweens[p], duration, easingFunc, yoyo);
+							tweenable.startTween(p, tweens[p], duration, easingFunc, yoyo, loop);
 						}
 					}
 				}
@@ -365,15 +366,16 @@ package com.esoteric.equery
 				var endValue:Number = args[1];
 				var duration:Number = args[2];
 				var easingFunc:Function = args.length > 3 ? args[3]: null;
-				var yoyo:Boolean = args.length > 4 ? args[4]: null;
+				var yoyo:Boolean = args.length > 4 ? args[4]: false;
+				var loop:int = args.length > 5 ? args[5]: 0;
 				
 				for each (var element:IElement in _elementSet.result) 
 				{
-					if (element is TweenableElement)
+					if (element is ITweenableElement)
 					{
-						var tweenable:TweenableElement = element as TweenableElement;
+						var tweenable:ITweenableElement = element as ITweenableElement;
 						
-						tweenable.startTween(prop, endValue, duration, easingFunc, yoyo);
+						tweenable.startTween(prop, endValue, duration, easingFunc, yoyo, loop);
 					}
 				}
 			}

@@ -54,6 +54,8 @@ package com.esoteric.core
 	import com.esoteric.filters.BlurFilterElement;
 	import com.esoteric.filters.DropShadowFilterElement;
 	import com.esoteric.filters.GlowFilterElement;
+	import com.esoteric.filters.ShaderElement;
+	import com.esoteric.filters.ShaderFilterElement;
 	import com.esoteric.libs.away3d.Camera3DElement;
 	import com.esoteric.libs.away3d.ColladaElement;
 	import com.esoteric.libs.away3d.MeshElement;
@@ -178,6 +180,8 @@ package com.esoteric.core
 			add("RemoteXML", new StaticElementBuilder(RemoteXMLElement));
 			add("RoundedRectangle", new StaticElementBuilder(RoundedRectangleElement));
 			add("Script", new StaticElementBuilder(ScriptElement));
+			add("Shader", new StaticElementBuilder(ShaderElement));
+			add("ShaderFilter", new StaticElementBuilder(ShaderFilterElement));
 			add("Shape", new StaticElementBuilder(ShapeElement));
 			add("SolidFill", new StaticElementBuilder(SolidFillElement));
 			add("SoundFile", new StaticElementBuilder(SoundFileElement));

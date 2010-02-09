@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
-
-<!--
+﻿/*
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	~                           Esoteric Framework                            ~
 	~                       framework.esotericorp.com                         ~
@@ -11,7 +9,7 @@
 	
 	-----                                                                 -----
 
-	Copyright (c) 2009 Stephan Florquin
+	Copyright (c) 2010 Stephan Florquin
 
 	Permission is hereby granted, free of charge, to any person	obtaining a
 	copy of this software and associated documentationfiles (the "Software"),
@@ -32,52 +30,32 @@
 	DEALINGS IN THE SOFTWARE.
 	
 	-----                                                                 -----
--->
+*/
+	
+package com.esoteric.net 
+{
+	/**
+	 * Cache file formats.
+	 * 
+	 * @author Stephan Florquin
+	 */
+	public class CacheFormat
+	{
+		
+		//---------------------------------------------------------------------
+		// Variables
+		//---------------------------------------------------------------------
+		
+		/**
+		 * Store as a bit array.
+		 */
+		public static const BIT_ARRAY:int = 0x000000;
+		
+		/**
+		 * Store as bitmap data.
+		 */
+		public static const BITMAP_DATA:int = 0x000001;
+		
+	}
 
-<MyApp>
-	
-	<WireframeMaterial id="material1" color="0xff00ff" />
-	<WireframeMaterial id="material2" color="0xffff00" />
-	<WireframeMaterial id="material3" color="0x00ffff" />
-	
-	<Scene3D id="scene" rotationX="{-20 + mouseY / 10}">
-		<Collada id="collada" url="assets/soon.dae" rotationY="{180 + mouseX}" />
-	</Scene3D>
-	
-	<Camera3D id="camera" y="-200" z="-1000" />
-	
-	<BitmapFile url="assets/hdr.jpg" filters="{[$('#wavesFilter').elements()]}" />
-	
-	<!--Sprite>
-		<View3D
-			scene="{$('#scene').elements()}"
-			camera="{$('#camera').elements()}"
-			x="{stageWidth / 2}"
-			y="{stageHeight / 2}"
-			minX="{-stageWidth / 2}"
-			maxX="{stageWidth / 2}"
-			minY="{-stageHeight / 2}"
-			maxY="{stageHeight / 2}"
-		/>
-	</Sprite-->
-	
-	<Script>
-		<![CDATA[
-			// add a listener when COLLADA is loaded
-			$('#collada').complete(function(e) {
-				var i = 1;
-				
-				$('* [kind=mesh]').apply(function(e) {
-					e.attr('material', $('#material' + i++).elements());
-				});
-				
-				$('#waves').animate('progress', 1, 4, easing.linear.easeNone, false, -1);
-			});
-		]]>
-	</Script>
-	
-	<Shader id="waves" url="assets/waves.pbj" center="400" minY="200" maxY="{stageHeight}" />
-	
-	<ShaderFilter id="wavesFilter" shader="{$('#waves').elements()}" />
-	
-</MyApp>
+}

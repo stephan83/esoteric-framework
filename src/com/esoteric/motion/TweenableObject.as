@@ -34,6 +34,7 @@
 
 package com.esoteric.motion 
 {
+	import com.carlcalderon.arthropod.Debug;
 	import com.esoteric.events.TweenEvent;
 	import fl.motion.easing.Cubic;
 	import fl.transitions.Tween;
@@ -79,6 +80,11 @@ package com.esoteric.motion
 		 */
 		private var _yoyo:Object = new Object();
 		
+		/**
+		 * @private
+		 */
+		private var _loop:Object = new Object();
+		
 		//---------------------------------------------------------------------
 		// Methods
 		//---------------------------------------------------------------------
@@ -87,9 +93,14 @@ package com.esoteric.motion
 		// public
 		//---------------------------------------
 		
-		public function start(prop:*, endValue:Number, duration:Number, easingFunc:Function = null, yoyo:Boolean = false):void
+		public function start(prop:*, endValue:Number, duration:Number, easingFunc:Function = null, yoyo:Boolean = false, loop:int = 0):void
 		{
 				stop(prop);
+				
+				if (isNaN(_obj[prop]))
+				{
+					_obj[prop] = 0;
+				}
 				
 				if(_obj[prop] != endValue)
 				{
@@ -103,6 +114,8 @@ package com.esoteric.motion
 					_tweens[prop].addEventListener(fl.transitions.TweenEvent.MOTION_FINISH, tweenFinishHandler, false, 0, true);
 					
 					_yoyo[prop] = yoyo;
+					
+					_loop[prop] = loop;
 				}
 		}
 		
@@ -134,11 +147,16 @@ package com.esoteric.motion
 		{
 			var tween:Tween = Tween(e.target);
 			
-			if (_yoyo[tween.prop])
+			if (_yoyo[tween.prop] && tween.position != 0)
 			{
 				tween.yoyo();
+			}
+			else if (_loop[tween.prop])
+			{
+				_loop[tween.prop]--;
 				
-				_yoyo[tween.prop] = null;
+				tween.rewind();
+				tween.start();
 			}
 			else
 			{

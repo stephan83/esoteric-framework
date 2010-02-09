@@ -184,7 +184,7 @@ package com.esoteric.display
 		/**
 		 * @inheritDoc
 		 */
-		override public function startTween(prop:*, endValue:Number , duration:Number, easingFunc:Function = null, yoyo:Boolean = false):void
+		override public function startTween(prop:*, endValue:Number , duration:Number, easingFunc:Function = null, yoyo:Boolean = false, loop:int = 0):void
 		{
 			// TODO: optimize visible
 			var element:IElementProxy = ElementProxyManager.getInstance(this);
@@ -197,7 +197,7 @@ package com.esoteric.display
 			}
 			else
 			{
-				super.startTween(prop, endValue, duration, easingFunc, yoyo);
+				super.startTween(prop, endValue, duration, easingFunc, yoyo, loop);
 			}
 		}
 		

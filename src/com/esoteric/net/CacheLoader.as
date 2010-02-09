@@ -35,10 +35,10 @@
 package com.esoteric.net 
 {
 	import com.carlcalderon.arthropod.Debug;
+	import com.esoteric.events.VerboseEventDispatcher;
 	import flash.display.Bitmap;
 	import flash.display.Loader;
 	import flash.events.Event;
-	import flash.events.EventDispatcher;
 	import flash.events.IOErrorEvent;
 	import flash.net.URLLoader;
 	import flash.net.URLLoaderDataFormat;
@@ -46,11 +46,11 @@ package com.esoteric.net
 	import flash.utils.ByteArray;
 	
 	/**
-	 * A cache request.
+	 * A cache loader.
 	 * 
 	 * @author Stephan Florquin
 	 */
-	public class CacheRequest extends EventDispatcher
+	public class CacheLoader extends VerboseEventDispatcher
 	{
 		
 		//---------------------------------------------------------------------
@@ -62,18 +62,23 @@ package com.esoteric.net
 		 * 
 		 * @param	cache	the cache
 		 * @param	url		the URL
+		 * @param	format	the format
 		 */
-		public function CacheRequest(cache:Cache, url:String, bitmapData:Boolean = false) 
+		public function CacheLoader(
+			cache:Cache,
+			urlReq:URLRequest,
+			format:int = CacheFormat.BIT_ARRAY
+		)
 		{
 			_cache = cache;
-			_url = url;
-			_bitmapData = bitmapData;
+			_urlReq = urlReq;
+			_format = format;
 			
 			_urlLoader.dataFormat = URLLoaderDataFormat.BINARY;
 		}
 		
 		//---------------------------------------------------------------------
-		// Variables
+		// Members
 		//---------------------------------------------------------------------
 		
 		/**
@@ -84,12 +89,12 @@ package com.esoteric.net
 		/**
 		 * @private
 		 */
-		private var _url:String;
+		private var _urlReq:URLRequest;
 		
 		/**
 		 * @private
 		 */
-		private var _bitmapData:Boolean;
+		private var _format:int;
 		
 		/**
 		 * @private
@@ -110,7 +115,7 @@ package com.esoteric.net
 		 */
 		public function load():void
 		{
-			if (_url)
+			if (_urlReq)
 			{
 				try
 				{
@@ -121,9 +126,31 @@ package com.esoteric.net
 					
 				}
 				
+				var data:* = _cache.get(_urlReq.url, _format);
+				
+				if (data)
+				{
+					dispatchEvent(new Event(Event.COMPLETE));
+					return;
+				}
+				
+				if (_format != CacheFormat.BIT_ARRAY)
+				{
+					data = _cache.get(_urlReq.url, CacheFormat.BIT_ARRAY);
+					
+					if (data)
+					{
+						_loader.loadBytes(ByteArray(data));
+						_loader.contentLoaderInfo.addEventListener(Event.COMPLETE, bytesLoadedHandler);
+						_loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, bytesIoErrorHandler);
+						
+						return;
+					}
+				}
+				
 				_urlLoader.addEventListener(Event.COMPLETE, completeHandler);
 				_urlLoader.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
-				_urlLoader.load(new URLRequest(_url));
+				_urlLoader.load(_urlReq);
 			}
 		}
 		
@@ -131,18 +158,19 @@ package com.esoteric.net
 		 * @private
 		 */
 		private function completeHandler(event:Event):void
-		{Debug.log('test');
-			if (_bitmapData)
+		{
+			switch(_format)
 			{
+				case CacheFormat.BIT_ARRAY:
+				_cache.set(_urlReq.url, ByteArray(_urlLoader.data), CacheFormat.BIT_ARRAY);
+				dispatchEvent(new Event(Event.COMPLETE));
+				break;
+				
+				case CacheFormat.BITMAP_DATA:
 				_loader.loadBytes(ByteArray(_urlLoader.data));
 				_loader.contentLoaderInfo.addEventListener(Event.COMPLETE, bytesLoadedHandler);
 				_loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, bytesIoErrorHandler);
-			}
-			else
-			{
-				_cache.set(_url, ByteArray(_urlLoader.data));
-				
-				dispatchEvent(new Event(Event.COMPLETE));
+				break;
 			}
 			
 			_urlLoader.removeEventListener(Event.COMPLETE, completeHandler);
@@ -154,7 +182,7 @@ package com.esoteric.net
 		 */
 		private function ioErrorHandler(event:IOErrorEvent):void
 		{
-			_cache.set(_url, null);
+			_cache.set(_urlReq.url, null, CacheFormat.BIT_ARRAY);
 			
 			_urlLoader.removeEventListener(Event.COMPLETE, completeHandler);
 			_urlLoader.removeEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
@@ -169,7 +197,7 @@ package com.esoteric.net
 		{
 			var content:Bitmap = Bitmap(_loader.content);
 			
-			_cache.set(_url, content.bitmapData);
+			_cache.set(_urlReq.url, content.bitmapData, CacheFormat.BITMAP_DATA);
 			_loader.contentLoaderInfo.removeEventListener(Event.COMPLETE, bytesLoadedHandler);
 			_loader.contentLoaderInfo.removeEventListener(IOErrorEvent.IO_ERROR, bytesIoErrorHandler);
 			dispatchEvent(new Event(Event.COMPLETE));
@@ -180,7 +208,7 @@ package com.esoteric.net
 		 */
 		private function bytesIoErrorHandler(e:IOErrorEvent):void
 		{
-			_cache.set(_url, null);
+			_cache.set(_urlReq.url, null, CacheFormat.BITMAP_DATA);
 			_loader.contentLoaderInfo.removeEventListener(Event.COMPLETE, bytesLoadedHandler);
 			_loader.contentLoaderInfo.removeEventListener(IOErrorEvent.IO_ERROR, bytesIoErrorHandler);
 			dispatchEvent(new IOErrorEvent(IOErrorEvent.IO_ERROR));

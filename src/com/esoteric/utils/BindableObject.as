@@ -48,7 +48,7 @@ package com.esoteric.utils
 		// MEMBERS
 		//---------------------------------------------------------------------
 		
-		private var _object:Object;
+		protected var _object:Object;
 		private var _items:Array;
 		
 		//---------------------------------------------------------------------

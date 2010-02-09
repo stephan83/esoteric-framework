@@ -32,29 +32,25 @@
 	-----                                                                 -----
 */
 
-package com.esoteric.display
+package com.esoteric.filters
 {
 	import com.carlcalderon.arthropod.Debug;
-	import com.esoteric.core.IElement;
 	import com.esoteric.core.Context;
 	import com.esoteric.esoteric;
-	import com.esoteric.net.CacheFormat;
-	import com.esoteric.net.CacheLoader;
-	import flash.display.Bitmap;
-	import flash.display.BitmapData;
-	import flash.display.Loader;
-	import flash.events.Event;
-	import flash.events.IOErrorEvent;
-	import flash.net.URLRequest;
+	import com.esoteric.events.ElementEvent;
+	import com.esoteric.events.PropertyChangeEvent;
+	import com.esoteric.utils.Watcher;
+	import flash.display.Shader;
+	import flash.filters.BitmapFilter;
 	import flash.utils.ByteArray;
 	
 	use namespace esoteric;
 	
-	/**
-	* Generated 2008-08-04 08:40:26.455000 UTC.
-	*/
-	public class BitmapFileElement extends AbstractBitmapFileElement
+	public class ShaderFilterElement extends AbstractShaderFilterElement
 	{
+		
+		[Embed(source = '../../../../assets/esoteric/default-shader.pbj', mimeType = 'application/octet-stream')]
+		private var _defaultShader:Class;
 		
 		//---------------------------------------------------------------------
 		// Constructor
@@ -63,14 +59,23 @@ package com.esoteric.display
 		/**
 		 * Constructor.
 		 */
-		public function BitmapFileElement(context:Context, kind:String) 
+		public function ShaderFilterElement(context:Context, kind:String) 
 		{
 			super(context, kind);
+			
+			_shaderFilter.shader = new Shader(new _defaultShader() as ByteArray);
+			
+			new Watcher(this, 'shader', shaderHandler);
 		}
 		
 		//---------------------------------------------------------------------
-		// Variables
+		// Members
 		//---------------------------------------------------------------------
+		
+		/**
+		 * @private
+		 */
+		private var _shaderWatcher:Watcher;
 		
 		//---------------------------------------------------------------------
 		// Overridden properties
@@ -79,21 +84,9 @@ package com.esoteric.display
 		/**
 		 * @inheritDoc
 		 */
-		override public function set url(value:String):void
+		override protected function createBitmapFilter():BitmapFilter
 		{
-			if (value) 
-			{
-				var cacheLoader:CacheLoader = new CacheLoader(context.cache, new URLRequest(value), CacheFormat.BITMAP_DATA);
-				cacheLoader.addEventListener(Event.COMPLETE, completeHandler);
-				cacheLoader.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
-				cacheLoader.load();
-			}
-			else
-			{
-				_bitmap.bitmapData = null;
-			}
-			
-			super.url = value;
+			return _shaderFilter;
 		}
 		
 		//---------------------------------------------------------------------
@@ -103,44 +96,44 @@ package com.esoteric.display
 		/**
 		 * @private
 		 */
-		private function completeHandler(e:Event):void 
+		private function shaderHandler(e:PropertyChangeEvent):void
 		{
-			var bitmapData:BitmapData = context.cache.get(_url, CacheFormat.BITMAP_DATA) as BitmapData;
+			if (_shaderWatcher)
+			{
+				_shaderWatcher.destroy();
+			}
 			
-			setBitmapData(bitmapData);
+			if (e.oldValue)
+			{
+				e.oldValue.removeEventListener(ElementEvent.UPDATED, shaderUpdatedHandler);
+			}
 			
-			e.target.removeEventListener(Event.COMPLETE, completeHandler);
-			e.target.removeEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
+			if (e.newValue is ShaderElement)
+			{
+				_shaderWatcher = new Watcher(e.newValue, 'shader', shaderWatcher);
+				e.newValue.addEventListener(ElementEvent.UPDATED, shaderUpdatedHandler);
+			}
 		}
 		
 		/**
 		 * @private
 		 */
-		private function ioErrorHandler(e:Event):void 
+		private function shaderUpdatedHandler(e:ElementEvent):void 
 		{
-			e.target.removeEventListener(Event.COMPLETE, completeHandler);
-			e.target.removeEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
+			dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
 		}
 		
 		/**
 		 * @private
 		 */
-		private function setBitmapData(value:BitmapData):void
+		private function shaderWatcher(e:PropertyChangeEvent):void
 		{
-			// TODO: clone?? Not sure if needed.
-			bitmap.bitmapData = value.clone();
-			
-			bitmapWidth = value.width;
-			bitmapHeight = value.height;
-			
-			bitmap.smoothing = smoothing;
-			
-			
-			if(width != 0.0)
-				bitmap.width = width;
-			
-			if(height != 0.0)
-				bitmap.height = height;
+			if (e.newValue)
+			{
+				_shaderFilter.shader = e.newValue;
+				
+				dispatchEvent(new ElementEvent(ElementEvent.UPDATED));
+			}
 		}
 
 	}

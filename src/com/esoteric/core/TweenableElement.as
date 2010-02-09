@@ -36,14 +36,17 @@ package com.esoteric.core
 {
 	import com.esoteric.motion.TweenableObject;
 	import com.esoteric.core.Context;
+	import com.esoteric.esoteric;
 	import com.esoteric.events.TweenEvent;
 	import com.esoteric.utils.BindableObject;
 	import fl.motion.easing.*;
 	
+	use namespace esoteric;
+	
 	/**
 	* @author Stephan Florquin
 	*/
-	public class TweenableElement extends AbstractElement
+	public class TweenableElement extends AbstractElement implements ITweenableElement
 	{
 		
 		//---------------------------------------------------------------------
@@ -53,11 +56,11 @@ package com.esoteric.core
 		/**
 		 * Constructor.
 		 */
-		public function TweenableElement(context:Context, kind:String) 
+		public function TweenableElement(context:Context, kind:String, target:IElement = null) 
 		{
-			super(context, kind);
+			super(context, kind, target);
 			
-			_tweenableObject = new TweenableObject(this);
+			_tweenableObject = new TweenableObject(_target);
 			
 			_tweenableObject.addEventListener(TweenEvent.MOTION_FINISH, tweenMotionFinishHandler);
 		}
@@ -78,9 +81,9 @@ package com.esoteric.core
 		/**
 		 * @inheritDoc
 		 */
-		public function startTween(prop:*, endValue:Number , duration:Number, easingFunc:Function = null, yoyo:Boolean = false):void
+		public function startTween(prop:*, endValue:Number , duration:Number, easingFunc:Function = null, yoyo:Boolean = false, loop:int = 0):void
 		{
-			_tweenableObject.start(prop, endValue, duration, easingFunc, yoyo);
+			_tweenableObject.start(prop, endValue, duration, easingFunc, yoyo, loop);
 		}
 		
 		/**
@@ -108,7 +111,7 @@ package com.esoteric.core
 		 */
 		private function tweenMotionFinishHandler(e:TweenEvent):void 
 		{
-			dispatchEvent(new TweenEvent(e.type, e.bubbles, e.cancelable, e.obj, e.prop));
+			_target.dispatchEvent(new TweenEvent(e.type, e.bubbles, e.cancelable, e.obj, e.prop));
 		}
 		
 	}

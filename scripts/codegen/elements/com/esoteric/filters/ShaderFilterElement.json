@@ -1,0 +1,55 @@
+{
+	"desc": "The ShaderFilter element is used to create a shader filter.",
+	
+	"baseclass": "BitmapFilterElement",
+
+	"imports": [
+		"flash.filters.ShaderFilter"
+	],
+	
+	"properties": {
+		"shaderFilter": {
+			"type":	"ShaderFilter",
+			"default": "new ShaderFilter()",
+			"desc": "",
+			"doc": false
+		},
+		"shader": {
+			"type":	"ShaderElement",
+			"desc": "",
+			"doc": false
+		}
+	},
+	
+	"objectProperties": {
+		"topExtension": {
+			"object": "shaderFilter",
+			"property": "topExtension",
+			"type":	"int",
+			"default": "0",
+			"desc": ""
+		},
+		"rightExtension": {
+			"object": "shaderFilter",
+			"property": "rightExtension",
+			"type":	"int",
+			"default": "0",
+			"desc": ""
+		},
+		"bottomExtension": {
+			"object": "shaderFilter",
+			"property": "bottomExtension",
+			"type":	"int",
+			"default": "0",
+			"desc": ""
+		},
+		"leftExtension": {
+			"object": "shaderFilter",
+			"property": "leftExtension",
+			"type":	"int",
+			"default": "0",
+			"desc": ""
+		}
+	}
+	
+}
