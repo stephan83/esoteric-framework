@@ -37,6 +37,7 @@ package com.esoteric.core
 	import com.esoteric.core.Context;
 	import com.esoteric.display.BitmapDataFileElement;
 	import com.esoteric.display.BitmapFileElement;
+	import com.esoteric.display.BitmapShaderElement;
 	import com.esoteric.display.CircleElement;
 	import com.esoteric.display.CurveToElement;
 	import com.esoteric.display.EllipseElement;
@@ -166,6 +167,7 @@ package com.esoteric.core
 			// Core elements
 			add("BitmapDataFile", new StaticElementBuilder(BitmapDataFileElement));
 			add("BitmapFile", new StaticElementBuilder(BitmapFileElement));
+			add("BitmapShader", new StaticElementBuilder(BitmapShaderElement));
 			add("BlurFilter", new StaticElementBuilder(BlurFilterElement));
 			add("Circle", new StaticElementBuilder(CircleElement));
 			add("CurveTo", new StaticElementBuilder(CurveToElement));

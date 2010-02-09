@@ -77,7 +77,7 @@ package com.esoteric.display
 			new Watcher(this, 'hiddenAncestor', hiddenAncestorWatcher);
 			
 			_displayObject = createDisplayObject();
-			_displayObject.transform.matrix3D = new Matrix3D();
+			//_displayObject.transform.matrix3D = new Matrix3D();
 		}
 		
 		//---------------------------------------------------------------------

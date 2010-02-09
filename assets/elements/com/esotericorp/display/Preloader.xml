@@ -48,9 +48,11 @@
 	
 	<Sprite scaleX="{stageWidth / 1200}" scaleY="{this.scaleX}">
 		
-		<BitmapDataFile id="bg" url="assets/bg.jpg" />
+		<BitmapFile url="assets/bg.jpg" />
 		
-		<ShaderJob shader="{$('#waves').elements()}" />
+		<BitmapDataFile id="water" url="assets/water.jpg" />
+		
+		<BitmapShader shader="{$('#waves').elements()}" bitmapWidth="1200" bitmapHeight="427" y="{800 - 427}" />
 		
 		<BitmapFile url="assets/bridge.png" />
 		<BitmapFile url="assets/fg.png" />
@@ -84,6 +86,6 @@
 		]]>
 	</Script>
 	
-	<Shader id="waves" url="assets/waves.pbj" src="{$('#bg').elements()}" center="400" minY="350" maxY="800" power="1" frequency="10" amplitude=".11" precisionHint="{ShaderPrecision.FAST}" />
+	<Shader id="waves" url="assets/waves.pbj" src="{$('#water').elements()}" center="400" maxY="427" power="1" frequency="10" amplitude=".11" precisionHint="{ShaderPrecision.FAST}" />
 	
 </MyApp>

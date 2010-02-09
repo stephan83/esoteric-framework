@@ -1,0 +1,17 @@
+{
+	"desc": "The BitmapShader element is to create a bitmap shader job.",
+	
+	"baseclass": "BitmapElement",
+	
+	"imports": [
+		"com.esoteric.filters.ShaderElement"
+	],
+	
+	"properties": {
+		"shader": {
+			"type":	"ShaderElement",
+			"desc": "The shader."
+		}
+	}
+	
+}
